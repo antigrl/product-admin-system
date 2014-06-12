@@ -1,0 +1,63 @@
+﻿@model NPR2._0._8.Models.ProductSellPrice
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>ProductSellPrice</legend>
+    
+    @Html.HiddenFor(model => model.SellPriceID)
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SellPriceName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SellPriceName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SellPriceLevel)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SellPriceLevel)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SellPriceMarginPercent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SellPriceMarginPercent)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SellPriceMarginDollarAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SellPriceMarginDollarAmount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SellPriceFinalAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SellPriceFinalAmount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Product.ProductName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Product.ProductName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

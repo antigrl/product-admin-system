@@ -1,0 +1,71 @@
+﻿@model IEnumerable<NPR2._0._8.Models.Campaign>
+
+@{
+    ViewBag.Title = "Campaign Index";
+}
+
+<h2>@ViewBag.TitleMessage Campaign Index</h2>
+
+<p>
+    @Html.ActionLink("Create New Campaign", "Create")
+    @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+    {
+        <span class="float-right">@Html.ActionLink("View Active Campaigns", "Index")</span>
+    }
+    else
+    {
+        <span class="float-right">@Html.ActionLink("View Archived Campaigns", "ArchivedIndex")</span>
+    }
+</p>
+<table class="index-table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CampaignName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CampaignReason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CampaignCreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CampaignCreatedOnDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CampaignStatus)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CampaignName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CampaignReason)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CampaignCreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CampaignCreatedOnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CampaignStatus)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CampaignID }) |
+                @Html.ActionLink("Archive", "Archive", new { id = item.CampaignID })
+            </td>
+        </tr>
+    }
+
+</table>

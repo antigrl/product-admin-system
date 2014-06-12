@@ -1,0 +1,113 @@
+﻿@model NPR2._0._8.Models.ProductDecoration
+@using NPR2._0._8.Models
+@using NPR2._0._8.Helpers
+
+@{
+    ViewBag.Title = "Edit Product Decoration";
+}
+
+<h2>Edit Product Decoration</h2>
+
+@using(Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="left-half-content">
+        <legend>ProductDecoration</legend>
+
+        @Html.HiddenFor(model => model.DecorationID)
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.DecorationName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DecorationName)
+            @Html.ValidationMessageFor(model => model.DecorationName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.DecorationMethodID, "DecorationMethod")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("DecorationMethodID", String.Empty)
+            @Html.ValidationMessageFor(model => model.DecorationMethodID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.DecorationColor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DecorationColor)
+            @Html.ValidationMessageFor(model => model.DecorationColor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.DecorationLocation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DecorationLocation)
+            @Html.ValidationMessageFor(model => model.DecorationLocation)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.DecorationSize)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DecorationSize)
+            @Html.ValidationMessageFor(model => model.DecorationSize)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.DecorationVendor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DecorationVendor)
+            @Html.ValidationMessageFor(model => model.DecorationVendor)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.DecorationEmbroideryDesignNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DecorationEmbroideryDesignNumber)
+            @Html.ValidationMessageFor(model => model.DecorationEmbroideryDesignNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.DecorationEmbroideryStitchCount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DecorationEmbroideryStitchCount)
+            @Html.ValidationMessageFor(model => model.DecorationEmbroideryStitchCount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.DecorationEmbroideryColorWay)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DecorationEmbroideryColorWay)
+            @Html.ValidationMessageFor(model => model.DecorationEmbroideryColorWay)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.ProductID, "Product")
+        </div>
+        <div class="editor-field">
+            <span>@Html.DisplayFor(model => model.Product.ProductName)</span>
+            @Html.HiddenFor(model => model.ProductID)
+            @Html.ValidationMessageFor(model => model.ProductID)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+        <div>
+            @Html.ActionLink("Back to Product Decoration List", "Index")
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+
+}

@@ -1,0 +1,34 @@
+﻿@model NPR2._0._8.Models.FeeName
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>FeeName</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FeeNameName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FeeNameName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FeeNameType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FeeNameType)
+    </div>
+
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

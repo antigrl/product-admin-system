@@ -1,0 +1,1800 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="AuditTrail" EntityType="Model.Store.AuditTrail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Campaign" EntityType="Model.Store.Campaign" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Company" EntityType="Model.Store.Company" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DecorationMethod" EntityType="Model.Store.DecorationMethod" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Fee" EntityType="Model.Store.Fee" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FeeName" EntityType="Model.Store.FeeName" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PackagingType" EntityType="Model.Store.PackagingType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PricingTier" EntityType="Model.Store.PricingTier" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Product" EntityType="Model.Store.Product" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductDecoration" EntityType="Model.Store.ProductDecoration" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductSellPrice" EntityType="Model.Store.ProductSellPrice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductUpcharge" EntityType="Model.Store.ProductUpcharge" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UpchargeSellPrice" EntityType="Model.Store.UpchargeSellPrice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="VendorName" EntityType="Model.Store.VendorName" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="VendorType" EntityType="Model.Store.VendorType" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_AuditTrail_Campaign" Association="Model.Store.FK_AuditTrail_Campaign">
+            <End Role="Campaign" EntitySet="Campaign" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_Company" Association="Model.Store.FK_AuditTrail_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_DecorationMethod" Association="Model.Store.FK_AuditTrail_DecorationMethod">
+            <End Role="DecorationMethod" EntitySet="DecorationMethod" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_Fee" Association="Model.Store.FK_AuditTrail_Fee">
+            <End Role="Fee" EntitySet="Fee" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_FeeName" Association="Model.Store.FK_AuditTrail_FeeName">
+            <End Role="FeeName" EntitySet="FeeName" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_PackagingType" Association="Model.Store.FK_AuditTrail_PackagingType">
+            <End Role="PackagingType" EntitySet="PackagingType" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_PricingTier" Association="Model.Store.FK_AuditTrail_PricingTier">
+            <End Role="PricingTier" EntitySet="PricingTier" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_Product" Association="Model.Store.FK_AuditTrail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_ProductDecoration" Association="Model.Store.FK_AuditTrail_ProductDecoration">
+            <End Role="ProductDecoration" EntitySet="ProductDecoration" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_ProductSellPrice" Association="Model.Store.FK_AuditTrail_ProductSellPrice">
+            <End Role="ProductSellPrice" EntitySet="ProductSellPrice" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_ProductUpcharge" Association="Model.Store.FK_AuditTrail_ProductUpcharge">
+            <End Role="ProductUpcharge" EntitySet="ProductUpcharge" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_UpchargeSellPrice" Association="Model.Store.FK_AuditTrail_UpchargeSellPrice">
+            <End Role="UpchargeSellPrice" EntitySet="UpchargeSellPrice" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_VendorName" Association="Model.Store.FK_AuditTrail_VendorName">
+            <End Role="VendorName" EntitySet="VendorName" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_VendorType" Association="Model.Store.FK_AuditTrail_VendorType">
+            <End Role="VendorType" EntitySet="VendorType" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Campaign_Company" Association="Model.Store.FK_Campaign_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Campaign" EntitySet="Campaign" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fee_Campaign" Association="Model.Store.FK_Fee_Campaign">
+            <End Role="Campaign" EntitySet="Campaign" />
+            <End Role="Fee" EntitySet="Fee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fee_Company" Association="Model.Store.FK_Fee_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Fee" EntitySet="Fee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fee_FeeName" Association="Model.Store.FK_Fee_FeeName">
+            <End Role="FeeName" EntitySet="FeeName" />
+            <End Role="Fee" EntitySet="Fee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fee_PricingTier" Association="Model.Store.FK_Fee_PricingTier">
+            <End Role="PricingTier" EntitySet="PricingTier" />
+            <End Role="Fee" EntitySet="Fee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fee_Product" Association="Model.Store.FK_Fee_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Fee" EntitySet="Fee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fee_ProductSellPrice" Association="Model.Store.FK_Fee_ProductSellPrice">
+            <End Role="ProductSellPrice" EntitySet="ProductSellPrice" />
+            <End Role="Fee" EntitySet="Fee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PricingTier_Company" Association="Model.Store.FK_PricingTier_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="PricingTier" EntitySet="PricingTier" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Campaign" Association="Model.Store.FK_Product_Campaign">
+            <End Role="Campaign" EntitySet="Campaign" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_PackagingType" Association="Model.Store.FK_Product_PackagingType">
+            <End Role="PackagingType" EntitySet="PackagingType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_VendorName" Association="Model.Store.FK_Product_VendorName">
+            <End Role="VendorName" EntitySet="VendorName" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_VendorType" Association="Model.Store.FK_Product_VendorType">
+            <End Role="VendorType" EntitySet="VendorType" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDecoration_DecorationMethod" Association="Model.Store.FK_ProductDecoration_DecorationMethod">
+            <End Role="DecorationMethod" EntitySet="DecorationMethod" />
+            <End Role="ProductDecoration" EntitySet="ProductDecoration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDecoration_Product" Association="Model.Store.FK_ProductDecoration_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductDecoration" EntitySet="ProductDecoration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSellPrice_Product" Association="Model.Store.FK_ProductSellPrice_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductSellPrice" EntitySet="ProductSellPrice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductUpcharge_Product" Association="Model.Store.FK_ProductUpcharge_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductUpcharge" EntitySet="ProductUpcharge" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UpchargeSellPrice_ProductUpcharge" Association="Model.Store.FK_UpchargeSellPrice_ProductUpcharge">
+            <End Role="ProductUpcharge" EntitySet="ProductUpcharge" />
+            <End Role="UpchargeSellPrice" EntitySet="UpchargeSellPrice" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AuditTrail">
+          <Key>
+            <PropertyRef Name="AuditTrailID" />
+          </Key>
+          <Property Name="AuditTrailID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AuditTrailTimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="AuditTrailUserName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="CampaignID" Type="int" />
+          <Property Name="CompanyID" Type="int" />
+          <Property Name="DecorationMethodID" Type="int" />
+          <Property Name="FeeID" Type="int" />
+          <Property Name="FeeNameID" Type="int" />
+          <Property Name="PackagingTypeID" Type="int" />
+          <Property Name="PricingTierID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="DecorationID" Type="int" />
+          <Property Name="SellPriceID" Type="int" />
+          <Property Name="UpchargeID" Type="int" />
+          <Property Name="VendorNameID" Type="int" />
+          <Property Name="VendorTypeID" Type="int" />
+          <Property Name="UpchargeSellPriceID" Type="int" />
+        </EntityType>
+        <EntityType Name="Campaign">
+          <Key>
+            <PropertyRef Name="CampaignID" />
+          </Key>
+          <Property Name="CampaignID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CampaignName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+          <Property Name="CampaignReason" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="CampaignProductCount" Type="numeric" />
+          <Property Name="CampaignAccountManagerComments" Type="nvarchar" />
+          <Property Name="CampaignMerchandiserComments" Type="nvarchar" />
+          <Property Name="CampaignInventoryBuyerComments" Type="nvarchar" />
+          <Property Name="CampaignMentorComments" Type="nvarchar" />
+          <Property Name="CampaignStatus" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="CampaignCreatedBy" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="CampaignCreatedOnDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="CompanyDivisionNumber" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="CompanyImage" Type="image" />
+          <Property Name="CompanyImageType" Type="nvarchar" MaxLength="150" />
+          <Property Name="CompanyContactName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="CompanyContactEmail" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="CompanyAccountManagerName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="CompanyAccountManagerEmail" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="CompanyMentorName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="CompanyMentorEmail" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="CompanyLocation" Type="nvarchar" MaxLength="150" />
+          <Property Name="CompanyAdditionalDetails" Type="nvarchar" />
+          <Property Name="CompanyStatus" Type="nvarchar" MaxLength="150" />
+          <Property Name="CompanyUrl" Type="nvarchar" MaxLength="150" />
+          <Property Name="CompanyDefaultMargin" Type="numeric" Nullable="false" Scale="3" />
+        </EntityType>
+        <EntityType Name="DecorationMethod">
+          <Key>
+            <PropertyRef Name="DecorationMethodID" />
+          </Key>
+          <Property Name="DecorationMethodID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DecorationMethodName" Type="nvarchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Fee">
+          <Key>
+            <PropertyRef Name="FeeID" />
+          </Key>
+          <Property Name="FeeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FeeNameID" Type="int" Nullable="false" />
+          <Property Name="FeeType" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="FeeLevel" Type="int" Nullable="false" />
+          <Property Name="FeeInherited" Type="bit" Nullable="false" />
+          <Property Name="FeeInheritedFeeID" Type="int" />
+          <Property Name="FeeCalculation" Type="nvarchar" MaxLength="150" />
+          <Property Name="FeeAmortizedCharge" Type="numeric" Scale="3" />
+          <Property Name="FeeAmortizedType" Type="nvarchar" MaxLength="150" />
+          <Property Name="FeePercent" Type="numeric" Scale="3" />
+          <Property Name="FeePercentType" Type="nvarchar" MaxLength="150" />
+          <Property Name="FeeDollarAmount" Type="numeric" Scale="3" />
+          <Property Name="CompanyID" Type="int" />
+          <Property Name="CampaignID" Type="int" />
+          <Property Name="PricingTierID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="ProductSellPriceID" Type="int" />
+        </EntityType>
+        <EntityType Name="FeeName">
+          <Key>
+            <PropertyRef Name="FeeNameID" />
+          </Key>
+          <Property Name="FeeNameID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FeeNameName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="FeeNameType" Type="nvarchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="PackagingType">
+          <Key>
+            <PropertyRef Name="PackagingTypeID" />
+          </Key>
+          <Property Name="PackagingTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PackagingTypeName" Type="nvarchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="PricingTier">
+          <Key>
+            <PropertyRef Name="PricingTierID" />
+          </Key>
+          <Property Name="PricingTierID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PricingTierName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="PricingTierLevel" Type="int" Nullable="false" />
+          <Property Name="CompanyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="ProductImage" Type="image" />
+          <Property Name="ProductImageType" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProductDescription" Type="nvarchar" />
+          <Property Name="ProductStatus" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="ProductCategory" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProductUnitOfMeasure" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="PackagingTypeID" Type="int" Nullable="false" />
+          <Property Name="ProductReplacementItemNumber" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProductSelectedSizes" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProductSelectedColors" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProductPresentationSell" Type="numeric" Scale="3" />
+          <Property Name="ProductQuoteNumber" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProductSalesAnalysis" Type="nvarchar" />
+          <Property Name="VendorNameID" Type="int" Nullable="false" />
+          <Property Name="VendorTypeID" Type="int" />
+          <Property Name="ProductVendorLeadTime" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="ProductVendorMinimumOrder" Type="numeric" Nullable="false" />
+          <Property Name="ProductCountryOfOrigin" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProductHarmonizedCode" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProductInitialOrderQuantity" Type="numeric" />
+          <Property Name="ProductVendorItemNumber" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="ProductAnnualSalesProjection" Type="numeric" />
+          <Property Name="ProductGatewayCDIMinumumOrder" Type="numeric" />
+          <Property Name="ProductCost" Type="numeric" Scale="3" />
+          <Property Name="ProductNetCost" Type="numeric" Scale="3" />
+          <Property Name="ProductTotalCost" Type="numeric" Scale="3" />
+          <Property Name="ProductLandedCost" Type="numeric" Scale="3" />
+          <Property Name="ProductGatewayCDISKU" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProductItemEDP" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProductAccountManagerComments" Type="nvarchar" />
+          <Property Name="ProductMerchandiserComments" Type="nvarchar" />
+          <Property Name="ProductInventoryBuyerComments" Type="nvarchar" />
+          <Property Name="ProductMentorComments" Type="nvarchar" />
+          <Property Name="CampaignID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductDecoration">
+          <Key>
+            <PropertyRef Name="DecorationID" />
+          </Key>
+          <Property Name="DecorationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DecorationName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="DecorationMethodID" Type="int" Nullable="false" />
+          <Property Name="DecorationColor" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="DecorationLocation" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="DecorationSize" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="DecorationVendor" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="DecorationImage" Type="image" />
+          <Property Name="DecorationImageType" Type="nvarchar" MaxLength="150" />
+          <Property Name="DecorationEmbroideryDesignNumber" Type="nvarchar" MaxLength="150" />
+          <Property Name="DecorationEmbroideryStitchCount" Type="nvarchar" MaxLength="150" />
+          <Property Name="DecorationEmbroideryColorWay" Type="nvarchar" MaxLength="150" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductSellPrice">
+          <Key>
+            <PropertyRef Name="SellPriceID" />
+          </Key>
+          <Property Name="SellPriceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SellPriceName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="SellPriceLevel" Type="int" Nullable="false" />
+          <Property Name="SellPriceMarginPercent" Type="numeric" Nullable="false" Scale="3" />
+          <Property Name="SellPriceMarginDollarAmount" Type="numeric" Nullable="false" Scale="3" />
+          <Property Name="SellPriceFinalAmount" Type="numeric" Nullable="false" Scale="3" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductUpcharge">
+          <Key>
+            <PropertyRef Name="UpchargeID" />
+          </Key>
+          <Property Name="UpchargeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UpchargeName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="UpchargeAmount" Type="numeric" Nullable="false" Scale="3" />
+          <Property Name="UpchargeTotalCost" Type="numeric" Scale="3" />
+          <Property Name="ProductID" Type="int" />
+        </EntityType>
+        <EntityType Name="UpchargeSellPrice">
+          <Key>
+            <PropertyRef Name="UpchargeSellPriceID" />
+          </Key>
+          <Property Name="UpchargeSellPriceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UpchargeSellPriceName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="UpchargeSellPriceLevel" Type="int" Nullable="false" />
+          <Property Name="UpchargeSellPriceFinalAmount" Type="numeric" Nullable="false" Scale="3" />
+          <Property Name="UpchargeSellPriceLocked" Type="bit" Nullable="false" />
+          <Property Name="UpchargeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VendorName">
+          <Key>
+            <PropertyRef Name="VendorNameID" />
+          </Key>
+          <Property Name="VendorNameID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VendorNameName" Type="nvarchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="VendorType">
+          <Key>
+            <PropertyRef Name="VendorTypeID" />
+          </Key>
+          <Property Name="VendorTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VendorTypeName" Type="nvarchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <Association Name="FK_AuditTrail_Campaign">
+          <End Role="Campaign" Type="Model.Store.Campaign" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Model.Store.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaign">
+              <PropertyRef Name="CampaignID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="CampaignID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_Company">
+          <End Role="Company" Type="Model.Store.Company" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Model.Store.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_DecorationMethod">
+          <End Role="DecorationMethod" Type="Model.Store.DecorationMethod" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Model.Store.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DecorationMethod">
+              <PropertyRef Name="DecorationMethodID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="DecorationMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_Fee">
+          <End Role="Fee" Type="Model.Store.Fee" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Model.Store.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fee">
+              <PropertyRef Name="FeeID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="FeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_FeeName">
+          <End Role="FeeName" Type="Model.Store.FeeName" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Model.Store.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeeName">
+              <PropertyRef Name="FeeNameID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="FeeNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_PackagingType">
+          <End Role="PackagingType" Type="Model.Store.PackagingType" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Model.Store.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PackagingType">
+              <PropertyRef Name="PackagingTypeID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="PackagingTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_PricingTier">
+          <End Role="PricingTier" Type="Model.Store.PricingTier" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Model.Store.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PricingTier">
+              <PropertyRef Name="PricingTierID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="PricingTierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_Product">
+          <End Role="Product" Type="Model.Store.Product" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Model.Store.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_ProductDecoration">
+          <End Role="ProductDecoration" Type="Model.Store.ProductDecoration" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Model.Store.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductDecoration">
+              <PropertyRef Name="DecorationID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="DecorationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_ProductSellPrice">
+          <End Role="ProductSellPrice" Type="Model.Store.ProductSellPrice" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Model.Store.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSellPrice">
+              <PropertyRef Name="SellPriceID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="SellPriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_ProductUpcharge">
+          <End Role="ProductUpcharge" Type="Model.Store.ProductUpcharge" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Model.Store.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductUpcharge">
+              <PropertyRef Name="UpchargeID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="UpchargeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_UpchargeSellPrice">
+          <End Role="UpchargeSellPrice" Type="Model.Store.UpchargeSellPrice" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Model.Store.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UpchargeSellPrice">
+              <PropertyRef Name="UpchargeSellPriceID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="UpchargeSellPriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_VendorName">
+          <End Role="VendorName" Type="Model.Store.VendorName" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Model.Store.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendorName">
+              <PropertyRef Name="VendorNameID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="VendorNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_VendorType">
+          <End Role="VendorType" Type="Model.Store.VendorType" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Model.Store.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendorType">
+              <PropertyRef Name="VendorTypeID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="VendorTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Campaign_Company">
+          <End Role="Company" Type="Model.Store.Company" Multiplicity="1" />
+          <End Role="Campaign" Type="Model.Store.Campaign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Campaign">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fee_Campaign">
+          <End Role="Campaign" Type="Model.Store.Campaign" Multiplicity="0..1" />
+          <End Role="Fee" Type="Model.Store.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaign">
+              <PropertyRef Name="CampaignID" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="CampaignID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fee_Company">
+          <End Role="Company" Type="Model.Store.Company" Multiplicity="0..1" />
+          <End Role="Fee" Type="Model.Store.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fee_FeeName">
+          <End Role="FeeName" Type="Model.Store.FeeName" Multiplicity="1" />
+          <End Role="Fee" Type="Model.Store.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeeName">
+              <PropertyRef Name="FeeNameID" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="FeeNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fee_PricingTier">
+          <End Role="PricingTier" Type="Model.Store.PricingTier" Multiplicity="0..1" />
+          <End Role="Fee" Type="Model.Store.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PricingTier">
+              <PropertyRef Name="PricingTierID" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="PricingTierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fee_Product">
+          <End Role="Product" Type="Model.Store.Product" Multiplicity="0..1" />
+          <End Role="Fee" Type="Model.Store.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fee_ProductSellPrice">
+          <End Role="ProductSellPrice" Type="Model.Store.ProductSellPrice" Multiplicity="0..1" />
+          <End Role="Fee" Type="Model.Store.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSellPrice">
+              <PropertyRef Name="SellPriceID" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="ProductSellPriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PricingTier_Company">
+          <End Role="Company" Type="Model.Store.Company" Multiplicity="1" />
+          <End Role="PricingTier" Type="Model.Store.PricingTier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="PricingTier">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Campaign">
+          <End Role="Campaign" Type="Model.Store.Campaign" Multiplicity="1" />
+          <End Role="Product" Type="Model.Store.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaign">
+              <PropertyRef Name="CampaignID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CampaignID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_PackagingType">
+          <End Role="PackagingType" Type="Model.Store.PackagingType" Multiplicity="1" />
+          <End Role="Product" Type="Model.Store.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PackagingType">
+              <PropertyRef Name="PackagingTypeID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="PackagingTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_VendorName">
+          <End Role="VendorName" Type="Model.Store.VendorName" Multiplicity="1" />
+          <End Role="Product" Type="Model.Store.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendorName">
+              <PropertyRef Name="VendorNameID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="VendorNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_VendorType">
+          <End Role="VendorType" Type="Model.Store.VendorType" Multiplicity="0..1" />
+          <End Role="Product" Type="Model.Store.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendorType">
+              <PropertyRef Name="VendorTypeID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="VendorTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDecoration_DecorationMethod">
+          <End Role="DecorationMethod" Type="Model.Store.DecorationMethod" Multiplicity="1" />
+          <End Role="ProductDecoration" Type="Model.Store.ProductDecoration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DecorationMethod">
+              <PropertyRef Name="DecorationMethodID" />
+            </Principal>
+            <Dependent Role="ProductDecoration">
+              <PropertyRef Name="DecorationMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDecoration_Product">
+          <End Role="Product" Type="Model.Store.Product" Multiplicity="1" />
+          <End Role="ProductDecoration" Type="Model.Store.ProductDecoration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductDecoration">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSellPrice_Product">
+          <End Role="Product" Type="Model.Store.Product" Multiplicity="1" />
+          <End Role="ProductSellPrice" Type="Model.Store.ProductSellPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductSellPrice">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductUpcharge_Product">
+          <End Role="Product" Type="Model.Store.Product" Multiplicity="0..1" />
+          <End Role="ProductUpcharge" Type="Model.Store.ProductUpcharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductUpcharge">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UpchargeSellPrice_ProductUpcharge">
+          <End Role="ProductUpcharge" Type="Model.Store.ProductUpcharge" Multiplicity="1" />
+          <End Role="UpchargeSellPrice" Type="Model.Store.UpchargeSellPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductUpcharge">
+              <PropertyRef Name="UpchargeID" />
+            </Principal>
+            <Dependent Role="UpchargeSellPrice">
+              <PropertyRef Name="UpchargeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Campaigns" EntityType="Model.Campaign" />
+          <EntitySet Name="Companies" EntityType="Model.Company" />
+          <EntitySet Name="DecorationMethods" EntityType="Model.DecorationMethod" />
+          <EntitySet Name="Fees" EntityType="Model.Fee" />
+          <EntitySet Name="FeeNames" EntityType="Model.FeeName" />
+          <EntitySet Name="PackagingTypes" EntityType="Model.PackagingType" />
+          <EntitySet Name="PricingTiers" EntityType="Model.PricingTier" />
+          <EntitySet Name="Products" EntityType="Model.Product" />
+          <EntitySet Name="ProductDecorations" EntityType="Model.ProductDecoration" />
+          <EntitySet Name="ProductSellPrices" EntityType="Model.ProductSellPrice" />
+          <EntitySet Name="ProductUpcharges" EntityType="Model.ProductUpcharge" />
+          <EntitySet Name="UpchargeSellPrices" EntityType="Model.UpchargeSellPrice" />
+          <EntitySet Name="VendorNames" EntityType="Model.VendorName" />
+          <EntitySet Name="VendorTypes" EntityType="Model.VendorType" />
+          <AssociationSet Name="FK_Campaign_Company" Association="Model.FK_Campaign_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Campaign" EntitySet="Campaigns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fee_Campaign" Association="Model.FK_Fee_Campaign">
+            <End Role="Campaign" EntitySet="Campaigns" />
+            <End Role="Fee" EntitySet="Fees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Campaign" Association="Model.FK_Product_Campaign">
+            <End Role="Campaign" EntitySet="Campaigns" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fee_Company" Association="Model.FK_Fee_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Fee" EntitySet="Fees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PricingTier_Company" Association="Model.FK_PricingTier_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="PricingTier" EntitySet="PricingTiers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDecoration_DecorationMethod" Association="Model.FK_ProductDecoration_DecorationMethod">
+            <End Role="DecorationMethod" EntitySet="DecorationMethods" />
+            <End Role="ProductDecoration" EntitySet="ProductDecorations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fee_FeeName" Association="Model.FK_Fee_FeeName">
+            <End Role="FeeName" EntitySet="FeeNames" />
+            <End Role="Fee" EntitySet="Fees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fee_PricingTier" Association="Model.FK_Fee_PricingTier">
+            <End Role="PricingTier" EntitySet="PricingTiers" />
+            <End Role="Fee" EntitySet="Fees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fee_Product" Association="Model.FK_Fee_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Fee" EntitySet="Fees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fee_ProductSellPrice" Association="Model.FK_Fee_ProductSellPrice">
+            <End Role="ProductSellPrice" EntitySet="ProductSellPrices" />
+            <End Role="Fee" EntitySet="Fees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_PackagingType" Association="Model.FK_Product_PackagingType">
+            <End Role="PackagingType" EntitySet="PackagingTypes" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_VendorName" Association="Model.FK_Product_VendorName">
+            <End Role="VendorName" EntitySet="VendorNames" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_VendorType" Association="Model.FK_Product_VendorType">
+            <End Role="VendorType" EntitySet="VendorTypes" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDecoration_Product" Association="Model.FK_ProductDecoration_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductDecoration" EntitySet="ProductDecorations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSellPrice_Product" Association="Model.FK_ProductSellPrice_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductSellPrice" EntitySet="ProductSellPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductUpcharge_Product" Association="Model.FK_ProductUpcharge_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductUpcharge" EntitySet="ProductUpcharges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UpchargeSellPrice_ProductUpcharge" Association="Model.FK_UpchargeSellPrice_ProductUpcharge">
+            <End Role="ProductUpcharge" EntitySet="ProductUpcharges" />
+            <End Role="UpchargeSellPrice" EntitySet="UpchargeSellPrices" />
+          </AssociationSet>
+          <EntitySet Name="AuditTrails" EntityType="Model.AuditTrail" />
+          <AssociationSet Name="FK_AuditTrail_Campaign" Association="Model.FK_AuditTrail_Campaign">
+            <End Role="Campaign" EntitySet="Campaigns" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_Company" Association="Model.FK_AuditTrail_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_DecorationMethod" Association="Model.FK_AuditTrail_DecorationMethod">
+            <End Role="DecorationMethod" EntitySet="DecorationMethods" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_Fee" Association="Model.FK_AuditTrail_Fee">
+            <End Role="Fee" EntitySet="Fees" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_FeeName" Association="Model.FK_AuditTrail_FeeName">
+            <End Role="FeeName" EntitySet="FeeNames" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_PackagingType" Association="Model.FK_AuditTrail_PackagingType">
+            <End Role="PackagingType" EntitySet="PackagingTypes" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_PricingTier" Association="Model.FK_AuditTrail_PricingTier">
+            <End Role="PricingTier" EntitySet="PricingTiers" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_Product" Association="Model.FK_AuditTrail_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_ProductDecoration" Association="Model.FK_AuditTrail_ProductDecoration">
+            <End Role="ProductDecoration" EntitySet="ProductDecorations" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_ProductSellPrice" Association="Model.FK_AuditTrail_ProductSellPrice">
+            <End Role="ProductSellPrice" EntitySet="ProductSellPrices" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_ProductUpcharge" Association="Model.FK_AuditTrail_ProductUpcharge">
+            <End Role="ProductUpcharge" EntitySet="ProductUpcharges" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_VendorName" Association="Model.FK_AuditTrail_VendorName">
+            <End Role="VendorName" EntitySet="VendorNames" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_VendorType" Association="Model.FK_AuditTrail_VendorType">
+            <End Role="VendorType" EntitySet="VendorTypes" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_UpchargeSellPrice" Association="Model.FK_AuditTrail_UpchargeSellPrice">
+            <End Role="UpchargeSellPrice" EntitySet="UpchargeSellPrices" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Campaign">
+          <Key>
+            <PropertyRef Name="CampaignID" />
+          </Key>
+          <Property Name="CampaignID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CampaignName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="CampaignReason" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CampaignProductCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="CampaignAccountManagerComments" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="CampaignMerchandiserComments" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="CampaignInventoryBuyerComments" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="CampaignMentorComments" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="CampaignStatus" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CampaignCreatedBy" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CampaignCreatedOnDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Company" Relationship="Model.FK_Campaign_Company" FromRole="Campaign" ToRole="Company" />
+          <NavigationProperty Name="Fees" Relationship="Model.FK_Fee_Campaign" FromRole="Campaign" ToRole="Fee" />
+          <NavigationProperty Name="Products" Relationship="Model.FK_Product_Campaign" FromRole="Campaign" ToRole="Product" />
+          <NavigationProperty Name="AuditTrails" Relationship="Model.FK_AuditTrail_Campaign" FromRole="Campaign" ToRole="AuditTrail" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyID" />
+          </Key>
+          <Property Name="CompanyID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyDivisionNumber" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CompanyImageType" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyContactName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyContactEmail" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyAccountManagerName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyAccountManagerEmail" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyMentorName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyMentorEmail" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyLocation" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyAdditionalDetails" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyStatus" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyUrl" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyDefaultMargin" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <NavigationProperty Name="Campaigns" Relationship="Model.FK_Campaign_Company" FromRole="Company" ToRole="Campaign" />
+          <NavigationProperty Name="Fees" Relationship="Model.FK_Fee_Company" FromRole="Company" ToRole="Fee" />
+          <NavigationProperty Name="PricingTiers" Relationship="Model.FK_PricingTier_Company" FromRole="Company" ToRole="PricingTier" />
+          <NavigationProperty Name="AuditTrails" Relationship="Model.FK_AuditTrail_Company" FromRole="Company" ToRole="AuditTrail" />
+        </EntityType>
+        <EntityType Name="DecorationMethod">
+          <Key>
+            <PropertyRef Name="DecorationMethodID" />
+          </Key>
+          <Property Name="DecorationMethodID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="DecorationMethodName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ProductDecorations" Relationship="Model.FK_ProductDecoration_DecorationMethod" FromRole="DecorationMethod" ToRole="ProductDecoration" />
+          <NavigationProperty Name="AuditTrails" Relationship="Model.FK_AuditTrail_DecorationMethod" FromRole="DecorationMethod" ToRole="AuditTrail" />
+        </EntityType>
+        <EntityType Name="Fee">
+          <Key>
+            <PropertyRef Name="FeeID" />
+          </Key>
+          <Property Name="FeeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FeeNameID" Type="Int32" Nullable="false" />
+          <Property Name="FeeType" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="FeeLevel" Type="Int32" Nullable="false" />
+          <Property Name="FeeInherited" Type="Boolean" Nullable="false" />
+          <Property Name="FeeInheritedFeeID" Type="Int32" />
+          <Property Name="FeeCalculation" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="FeeAmortizedCharge" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="FeeAmortizedType" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="FeePercent" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="FeePercentType" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="FeeDollarAmount" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="CampaignID" Type="Int32" />
+          <Property Name="PricingTierID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="ProductSellPriceID" Type="Int32" />
+          <NavigationProperty Name="Campaign" Relationship="Model.FK_Fee_Campaign" FromRole="Fee" ToRole="Campaign" />
+          <NavigationProperty Name="Company" Relationship="Model.FK_Fee_Company" FromRole="Fee" ToRole="Company" />
+          <NavigationProperty Name="FeeName" Relationship="Model.FK_Fee_FeeName" FromRole="Fee" ToRole="FeeName" />
+          <NavigationProperty Name="PricingTier" Relationship="Model.FK_Fee_PricingTier" FromRole="Fee" ToRole="PricingTier" />
+          <NavigationProperty Name="Product" Relationship="Model.FK_Fee_Product" FromRole="Fee" ToRole="Product" />
+          <NavigationProperty Name="ProductSellPrice" Relationship="Model.FK_Fee_ProductSellPrice" FromRole="Fee" ToRole="ProductSellPrice" />
+          <NavigationProperty Name="AuditTrails" Relationship="Model.FK_AuditTrail_Fee" FromRole="Fee" ToRole="AuditTrail" />
+        </EntityType>
+        <EntityType Name="FeeName">
+          <Key>
+            <PropertyRef Name="FeeNameID" />
+          </Key>
+          <Property Name="FeeNameID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="FeeNameName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="FeeNameType" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Fees" Relationship="Model.FK_Fee_FeeName" FromRole="FeeName" ToRole="Fee" />
+          <NavigationProperty Name="AuditTrails" Relationship="Model.FK_AuditTrail_FeeName" FromRole="FeeName" ToRole="AuditTrail" />
+        </EntityType>
+        <EntityType Name="PackagingType">
+          <Key>
+            <PropertyRef Name="PackagingTypeID" />
+          </Key>
+          <Property Name="PackagingTypeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PackagingTypeName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Products" Relationship="Model.FK_Product_PackagingType" FromRole="PackagingType" ToRole="Product" />
+          <NavigationProperty Name="AuditTrails" Relationship="Model.FK_AuditTrail_PackagingType" FromRole="PackagingType" ToRole="AuditTrail" />
+        </EntityType>
+        <EntityType Name="PricingTier">
+          <Key>
+            <PropertyRef Name="PricingTierID" />
+          </Key>
+          <Property Name="PricingTierID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="PricingTierName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="PricingTierLevel" Type="Int32" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="Model.FK_PricingTier_Company" FromRole="PricingTier" ToRole="Company" />
+          <NavigationProperty Name="Fees" Relationship="Model.FK_Fee_PricingTier" FromRole="PricingTier" ToRole="Fee" />
+          <NavigationProperty Name="AuditTrails" Relationship="Model.FK_AuditTrail_PricingTier" FromRole="PricingTier" ToRole="AuditTrail" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ProductImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductImageType" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="ProductStatus" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ProductCategory" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ProductUnitOfMeasure" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="PackagingTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ProductReplacementItemNumber" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ProductSelectedSizes" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ProductSelectedColors" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ProductPresentationSell" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="ProductQuoteNumber" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ProductSalesAnalysis" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="VendorNameID" Type="Int32" Nullable="false" />
+          <Property Name="VendorTypeID" Type="Int32" />
+          <Property Name="ProductVendorLeadTime" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ProductVendorMinimumOrder" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ProductCountryOfOrigin" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ProductHarmonizedCode" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ProductInitialOrderQuantity" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ProductVendorItemNumber" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ProductAnnualSalesProjection" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ProductGatewayCDIMinumumOrder" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ProductCost" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="ProductNetCost" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="ProductTotalCost" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="ProductLandedCost" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="ProductGatewayCDISKU" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ProductItemEDP" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ProductAccountManagerComments" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="ProductMerchandiserComments" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="ProductInventoryBuyerComments" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="ProductMentorComments" Type="String" MaxLength="4000" Unicode="true" FixedLength="false" />
+          <Property Name="CampaignID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Campaign" Relationship="Model.FK_Product_Campaign" FromRole="Product" ToRole="Campaign" />
+          <NavigationProperty Name="Fees" Relationship="Model.FK_Fee_Product" FromRole="Product" ToRole="Fee" />
+          <NavigationProperty Name="PackagingType" Relationship="Model.FK_Product_PackagingType" FromRole="Product" ToRole="PackagingType" />
+          <NavigationProperty Name="VendorName" Relationship="Model.FK_Product_VendorName" FromRole="Product" ToRole="VendorName" />
+          <NavigationProperty Name="VendorType" Relationship="Model.FK_Product_VendorType" FromRole="Product" ToRole="VendorType" />
+          <NavigationProperty Name="ProductDecorations" Relationship="Model.FK_ProductDecoration_Product" FromRole="Product" ToRole="ProductDecoration" />
+          <NavigationProperty Name="ProductSellPrices" Relationship="Model.FK_ProductSellPrice_Product" FromRole="Product" ToRole="ProductSellPrice" />
+          <NavigationProperty Name="ProductUpcharges" Relationship="Model.FK_ProductUpcharge_Product" FromRole="Product" ToRole="ProductUpcharge" />
+          <NavigationProperty Name="AuditTrails" Relationship="Model.FK_AuditTrail_Product" FromRole="Product" ToRole="AuditTrail" />
+        </EntityType>
+        <EntityType Name="ProductDecoration">
+          <Key>
+            <PropertyRef Name="DecorationID" />
+          </Key>
+          <Property Name="DecorationID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="DecorationName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="DecorationMethodID" Type="Int32" Nullable="false" />
+          <Property Name="DecorationColor" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="DecorationLocation" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="DecorationSize" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="DecorationVendor" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="DecorationImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DecorationImageType" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="DecorationEmbroideryDesignNumber" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="DecorationEmbroideryStitchCount" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="DecorationEmbroideryColorWay" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DecorationMethod" Relationship="Model.FK_ProductDecoration_DecorationMethod" FromRole="ProductDecoration" ToRole="DecorationMethod" />
+          <NavigationProperty Name="Product" Relationship="Model.FK_ProductDecoration_Product" FromRole="ProductDecoration" ToRole="Product" />
+          <NavigationProperty Name="AuditTrails" Relationship="Model.FK_AuditTrail_ProductDecoration" FromRole="ProductDecoration" ToRole="AuditTrail" />
+        </EntityType>
+        <EntityType Name="ProductSellPrice">
+          <Key>
+            <PropertyRef Name="SellPriceID" />
+          </Key>
+          <Property Name="SellPriceID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="SellPriceName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="SellPriceLevel" Type="Int32" Nullable="false" />
+          <Property Name="SellPriceMarginPercent" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="SellPriceMarginDollarAmount" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="SellPriceFinalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Fees" Relationship="Model.FK_Fee_ProductSellPrice" FromRole="ProductSellPrice" ToRole="Fee" />
+          <NavigationProperty Name="Product" Relationship="Model.FK_ProductSellPrice_Product" FromRole="ProductSellPrice" ToRole="Product" />
+          <NavigationProperty Name="AuditTrails" Relationship="Model.FK_AuditTrail_ProductSellPrice" FromRole="ProductSellPrice" ToRole="AuditTrail" />
+        </EntityType>
+        <EntityType Name="ProductUpcharge">
+          <Key>
+            <PropertyRef Name="UpchargeID" />
+          </Key>
+          <Property Name="UpchargeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UpchargeName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="UpchargeAmount" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="UpchargeTotalCost" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="ProductID" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Model.FK_ProductUpcharge_Product" FromRole="ProductUpcharge" ToRole="Product" />
+          <NavigationProperty Name="UpchargeSellPrices" Relationship="Model.FK_UpchargeSellPrice_ProductUpcharge" FromRole="ProductUpcharge" ToRole="UpchargeSellPrice" />
+          <NavigationProperty Name="AuditTrails" Relationship="Model.FK_AuditTrail_ProductUpcharge" FromRole="ProductUpcharge" ToRole="AuditTrail" />
+        </EntityType>
+        <EntityType Name="UpchargeSellPrice">
+          <Key>
+            <PropertyRef Name="UpchargeSellPriceID" />
+          </Key>
+          <Property Name="UpchargeSellPriceID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UpchargeSellPriceName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="UpchargeSellPriceLevel" Type="Int32" Nullable="false" />
+          <Property Name="UpchargeSellPriceFinalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="UpchargeSellPriceLocked" Type="Boolean" Nullable="false" />
+          <Property Name="UpchargeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProductUpcharge" Relationship="Model.FK_UpchargeSellPrice_ProductUpcharge" FromRole="UpchargeSellPrice" ToRole="ProductUpcharge" />
+          <NavigationProperty Name="AuditTrails" Relationship="Model.FK_AuditTrail_UpchargeSellPrice" FromRole="UpchargeSellPrice" ToRole="AuditTrail" />
+        </EntityType>
+        <EntityType Name="VendorName">
+          <Key>
+            <PropertyRef Name="VendorNameID" />
+          </Key>
+          <Property Name="VendorNameID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorNameName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Products" Relationship="Model.FK_Product_VendorName" FromRole="VendorName" ToRole="Product" />
+          <NavigationProperty Name="AuditTrails" Relationship="Model.FK_AuditTrail_VendorName" FromRole="VendorName" ToRole="AuditTrail" />
+        </EntityType>
+        <EntityType Name="VendorType">
+          <Key>
+            <PropertyRef Name="VendorTypeID" />
+          </Key>
+          <Property Name="VendorTypeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorTypeName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Products" Relationship="Model.FK_Product_VendorType" FromRole="VendorType" ToRole="Product" />
+          <NavigationProperty Name="AuditTrails" Relationship="Model.FK_AuditTrail_VendorType" FromRole="VendorType" ToRole="AuditTrail" />
+        </EntityType>
+        <Association Name="FK_Campaign_Company">
+          <End Role="Company" Type="Model.Company" Multiplicity="1" />
+          <End Role="Campaign" Type="Model.Campaign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Campaign">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fee_Campaign">
+          <End Role="Campaign" Type="Model.Campaign" Multiplicity="0..1" />
+          <End Role="Fee" Type="Model.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaign">
+              <PropertyRef Name="CampaignID" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="CampaignID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Campaign">
+          <End Role="Campaign" Type="Model.Campaign" Multiplicity="1" />
+          <End Role="Product" Type="Model.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaign">
+              <PropertyRef Name="CampaignID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CampaignID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fee_Company">
+          <End Role="Company" Type="Model.Company" Multiplicity="0..1" />
+          <End Role="Fee" Type="Model.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PricingTier_Company">
+          <End Role="Company" Type="Model.Company" Multiplicity="1" />
+          <End Role="PricingTier" Type="Model.PricingTier" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="PricingTier">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDecoration_DecorationMethod">
+          <End Role="DecorationMethod" Type="Model.DecorationMethod" Multiplicity="1" />
+          <End Role="ProductDecoration" Type="Model.ProductDecoration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DecorationMethod">
+              <PropertyRef Name="DecorationMethodID" />
+            </Principal>
+            <Dependent Role="ProductDecoration">
+              <PropertyRef Name="DecorationMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fee_FeeName">
+          <End Role="FeeName" Type="Model.FeeName" Multiplicity="1" />
+          <End Role="Fee" Type="Model.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeeName">
+              <PropertyRef Name="FeeNameID" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="FeeNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fee_PricingTier">
+          <End Role="PricingTier" Type="Model.PricingTier" Multiplicity="0..1" />
+          <End Role="Fee" Type="Model.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PricingTier">
+              <PropertyRef Name="PricingTierID" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="PricingTierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fee_Product">
+          <End Role="Product" Type="Model.Product" Multiplicity="0..1" />
+          <End Role="Fee" Type="Model.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fee_ProductSellPrice">
+          <End Role="ProductSellPrice" Type="Model.ProductSellPrice" Multiplicity="0..1" />
+          <End Role="Fee" Type="Model.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSellPrice">
+              <PropertyRef Name="SellPriceID" />
+            </Principal>
+            <Dependent Role="Fee">
+              <PropertyRef Name="ProductSellPriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_PackagingType">
+          <End Role="PackagingType" Type="Model.PackagingType" Multiplicity="1" />
+          <End Role="Product" Type="Model.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PackagingType">
+              <PropertyRef Name="PackagingTypeID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="PackagingTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_VendorName">
+          <End Role="VendorName" Type="Model.VendorName" Multiplicity="1" />
+          <End Role="Product" Type="Model.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendorName">
+              <PropertyRef Name="VendorNameID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="VendorNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_VendorType">
+          <End Role="VendorType" Type="Model.VendorType" Multiplicity="0..1" />
+          <End Role="Product" Type="Model.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendorType">
+              <PropertyRef Name="VendorTypeID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="VendorTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDecoration_Product">
+          <End Role="Product" Type="Model.Product" Multiplicity="1" />
+          <End Role="ProductDecoration" Type="Model.ProductDecoration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductDecoration">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSellPrice_Product">
+          <End Role="Product" Type="Model.Product" Multiplicity="1" />
+          <End Role="ProductSellPrice" Type="Model.ProductSellPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductSellPrice">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductUpcharge_Product">
+          <End Role="Product" Type="Model.Product" Multiplicity="0..1" />
+          <End Role="ProductUpcharge" Type="Model.ProductUpcharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductUpcharge">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UpchargeSellPrice_ProductUpcharge">
+          <End Role="ProductUpcharge" Type="Model.ProductUpcharge" Multiplicity="1" />
+          <End Role="UpchargeSellPrice" Type="Model.UpchargeSellPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductUpcharge">
+              <PropertyRef Name="UpchargeID" />
+            </Principal>
+            <Dependent Role="UpchargeSellPrice">
+              <PropertyRef Name="UpchargeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AuditTrail">
+          <Key>
+            <PropertyRef Name="AuditTrailID" />
+          </Key>
+          <Property Type="Int32" Name="AuditTrailID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="AuditTrailTimeStamp" Nullable="false" Precision="3" />
+          <Property Type="String" Name="AuditTrailUserName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CampaignID" />
+          <Property Type="Int32" Name="CompanyID" />
+          <Property Type="Int32" Name="DecorationMethodID" />
+          <Property Type="Int32" Name="FeeID" />
+          <Property Type="Int32" Name="FeeNameID" />
+          <Property Type="Int32" Name="PackagingTypeID" />
+          <Property Type="Int32" Name="PricingTierID" />
+          <Property Type="Int32" Name="ProductID" />
+          <Property Type="Int32" Name="DecorationID" />
+          <Property Type="Int32" Name="SellPriceID" />
+          <Property Type="Int32" Name="UpchargeID" />
+          <Property Type="Int32" Name="VendorNameID" />
+          <Property Type="Int32" Name="VendorTypeID" />
+          <NavigationProperty Name="Campaign" Relationship="Model.FK_AuditTrail_Campaign" FromRole="AuditTrail" ToRole="Campaign" />
+          <NavigationProperty Name="Company" Relationship="Model.FK_AuditTrail_Company" FromRole="AuditTrail" ToRole="Company" />
+          <NavigationProperty Name="DecorationMethod" Relationship="Model.FK_AuditTrail_DecorationMethod" FromRole="AuditTrail" ToRole="DecorationMethod" />
+          <NavigationProperty Name="Fee" Relationship="Model.FK_AuditTrail_Fee" FromRole="AuditTrail" ToRole="Fee" />
+          <NavigationProperty Name="FeeName" Relationship="Model.FK_AuditTrail_FeeName" FromRole="AuditTrail" ToRole="FeeName" />
+          <NavigationProperty Name="PackagingType" Relationship="Model.FK_AuditTrail_PackagingType" FromRole="AuditTrail" ToRole="PackagingType" />
+          <NavigationProperty Name="PricingTier" Relationship="Model.FK_AuditTrail_PricingTier" FromRole="AuditTrail" ToRole="PricingTier" />
+          <NavigationProperty Name="Product" Relationship="Model.FK_AuditTrail_Product" FromRole="AuditTrail" ToRole="Product" />
+          <NavigationProperty Name="ProductDecoration" Relationship="Model.FK_AuditTrail_ProductDecoration" FromRole="AuditTrail" ToRole="ProductDecoration" />
+          <NavigationProperty Name="ProductSellPrice" Relationship="Model.FK_AuditTrail_ProductSellPrice" FromRole="AuditTrail" ToRole="ProductSellPrice" />
+          <NavigationProperty Name="ProductUpcharge" Relationship="Model.FK_AuditTrail_ProductUpcharge" FromRole="AuditTrail" ToRole="ProductUpcharge" />
+          <NavigationProperty Name="VendorName" Relationship="Model.FK_AuditTrail_VendorName" FromRole="AuditTrail" ToRole="VendorName" />
+          <NavigationProperty Name="VendorType" Relationship="Model.FK_AuditTrail_VendorType" FromRole="AuditTrail" ToRole="VendorType" />
+          <Property Type="Int32" Name="UpchargeSellPriceID" />
+          <NavigationProperty Name="UpchargeSellPrice" Relationship="Model.FK_AuditTrail_UpchargeSellPrice" FromRole="AuditTrail" ToRole="UpchargeSellPrice" />
+        </EntityType>
+        <Association Name="FK_AuditTrail_Campaign">
+          <End Type="Model.Campaign" Role="Campaign" Multiplicity="0..1" />
+          <End Type="Model.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaign">
+              <PropertyRef Name="CampaignID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="CampaignID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_Company">
+          <End Type="Model.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="Model.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_DecorationMethod">
+          <End Type="Model.DecorationMethod" Role="DecorationMethod" Multiplicity="0..1" />
+          <End Type="Model.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DecorationMethod">
+              <PropertyRef Name="DecorationMethodID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="DecorationMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_Fee">
+          <End Type="Model.Fee" Role="Fee" Multiplicity="0..1" />
+          <End Type="Model.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fee">
+              <PropertyRef Name="FeeID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="FeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_FeeName">
+          <End Type="Model.FeeName" Role="FeeName" Multiplicity="0..1" />
+          <End Type="Model.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FeeName">
+              <PropertyRef Name="FeeNameID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="FeeNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_PackagingType">
+          <End Type="Model.PackagingType" Role="PackagingType" Multiplicity="0..1" />
+          <End Type="Model.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PackagingType">
+              <PropertyRef Name="PackagingTypeID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="PackagingTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_PricingTier">
+          <End Type="Model.PricingTier" Role="PricingTier" Multiplicity="0..1" />
+          <End Type="Model.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PricingTier">
+              <PropertyRef Name="PricingTierID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="PricingTierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_Product">
+          <End Type="Model.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="Model.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_ProductDecoration">
+          <End Type="Model.ProductDecoration" Role="ProductDecoration" Multiplicity="0..1" />
+          <End Type="Model.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductDecoration">
+              <PropertyRef Name="DecorationID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="DecorationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_ProductSellPrice">
+          <End Type="Model.ProductSellPrice" Role="ProductSellPrice" Multiplicity="0..1" />
+          <End Type="Model.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSellPrice">
+              <PropertyRef Name="SellPriceID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="SellPriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_ProductUpcharge">
+          <End Type="Model.ProductUpcharge" Role="ProductUpcharge" Multiplicity="0..1" />
+          <End Type="Model.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductUpcharge">
+              <PropertyRef Name="UpchargeID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="UpchargeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_VendorName">
+          <End Type="Model.VendorName" Role="VendorName" Multiplicity="0..1" />
+          <End Type="Model.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendorName">
+              <PropertyRef Name="VendorNameID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="VendorNameID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_VendorType">
+          <End Type="Model.VendorType" Role="VendorType" Multiplicity="0..1" />
+          <End Type="Model.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VendorType">
+              <PropertyRef Name="VendorTypeID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="VendorTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_UpchargeSellPrice">
+          <End Type="Model.UpchargeSellPrice" Role="UpchargeSellPrice" Multiplicity="0..1" />
+          <End Type="Model.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UpchargeSellPrice">
+              <PropertyRef Name="UpchargeSellPriceID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="UpchargeSellPriceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Campaigns">
+            <EntityTypeMapping TypeName="Model.Campaign">
+              <MappingFragment StoreEntitySet="Campaign">
+                <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+                <ScalarProperty Name="CampaignName" ColumnName="CampaignName" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CampaignReason" ColumnName="CampaignReason" />
+                <ScalarProperty Name="CampaignProductCount" ColumnName="CampaignProductCount" />
+                <ScalarProperty Name="CampaignAccountManagerComments" ColumnName="CampaignAccountManagerComments" />
+                <ScalarProperty Name="CampaignMerchandiserComments" ColumnName="CampaignMerchandiserComments" />
+                <ScalarProperty Name="CampaignInventoryBuyerComments" ColumnName="CampaignInventoryBuyerComments" />
+                <ScalarProperty Name="CampaignMentorComments" ColumnName="CampaignMentorComments" />
+                <ScalarProperty Name="CampaignStatus" ColumnName="CampaignStatus" />
+                <ScalarProperty Name="CampaignCreatedBy" ColumnName="CampaignCreatedBy" />
+                <ScalarProperty Name="CampaignCreatedOnDate" ColumnName="CampaignCreatedOnDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="Model.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyDivisionNumber" ColumnName="CompanyDivisionNumber" />
+                <ScalarProperty Name="CompanyImage" ColumnName="CompanyImage" />
+                <ScalarProperty Name="CompanyImageType" ColumnName="CompanyImageType" />
+                <ScalarProperty Name="CompanyContactName" ColumnName="CompanyContactName" />
+                <ScalarProperty Name="CompanyContactEmail" ColumnName="CompanyContactEmail" />
+                <ScalarProperty Name="CompanyAccountManagerName" ColumnName="CompanyAccountManagerName" />
+                <ScalarProperty Name="CompanyAccountManagerEmail" ColumnName="CompanyAccountManagerEmail" />
+                <ScalarProperty Name="CompanyMentorName" ColumnName="CompanyMentorName" />
+                <ScalarProperty Name="CompanyMentorEmail" ColumnName="CompanyMentorEmail" />
+                <ScalarProperty Name="CompanyLocation" ColumnName="CompanyLocation" />
+                <ScalarProperty Name="CompanyAdditionalDetails" ColumnName="CompanyAdditionalDetails" />
+                <ScalarProperty Name="CompanyStatus" ColumnName="CompanyStatus" />
+                <ScalarProperty Name="CompanyUrl" ColumnName="CompanyUrl" />
+                <ScalarProperty Name="CompanyDefaultMargin" ColumnName="CompanyDefaultMargin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DecorationMethods">
+            <EntityTypeMapping TypeName="Model.DecorationMethod">
+              <MappingFragment StoreEntitySet="DecorationMethod">
+                <ScalarProperty Name="DecorationMethodID" ColumnName="DecorationMethodID" />
+                <ScalarProperty Name="DecorationMethodName" ColumnName="DecorationMethodName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fees">
+            <EntityTypeMapping TypeName="Model.Fee">
+              <MappingFragment StoreEntitySet="Fee">
+                <ScalarProperty Name="FeeID" ColumnName="FeeID" />
+                <ScalarProperty Name="FeeNameID" ColumnName="FeeNameID" />
+                <ScalarProperty Name="FeeType" ColumnName="FeeType" />
+                <ScalarProperty Name="FeeLevel" ColumnName="FeeLevel" />
+                <ScalarProperty Name="FeeInherited" ColumnName="FeeInherited" />
+                <ScalarProperty Name="FeeInheritedFeeID" ColumnName="FeeInheritedFeeID" />
+                <ScalarProperty Name="FeeCalculation" ColumnName="FeeCalculation" />
+                <ScalarProperty Name="FeeAmortizedCharge" ColumnName="FeeAmortizedCharge" />
+                <ScalarProperty Name="FeeAmortizedType" ColumnName="FeeAmortizedType" />
+                <ScalarProperty Name="FeePercent" ColumnName="FeePercent" />
+                <ScalarProperty Name="FeePercentType" ColumnName="FeePercentType" />
+                <ScalarProperty Name="FeeDollarAmount" ColumnName="FeeDollarAmount" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+                <ScalarProperty Name="PricingTierID" ColumnName="PricingTierID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductSellPriceID" ColumnName="ProductSellPriceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeeNames">
+            <EntityTypeMapping TypeName="Model.FeeName">
+              <MappingFragment StoreEntitySet="FeeName">
+                <ScalarProperty Name="FeeNameID" ColumnName="FeeNameID" />
+                <ScalarProperty Name="FeeNameName" ColumnName="FeeNameName" />
+                <ScalarProperty Name="FeeNameType" ColumnName="FeeNameType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PackagingTypes">
+            <EntityTypeMapping TypeName="Model.PackagingType">
+              <MappingFragment StoreEntitySet="PackagingType">
+                <ScalarProperty Name="PackagingTypeID" ColumnName="PackagingTypeID" />
+                <ScalarProperty Name="PackagingTypeName" ColumnName="PackagingTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PricingTiers">
+            <EntityTypeMapping TypeName="Model.PricingTier">
+              <MappingFragment StoreEntitySet="PricingTier">
+                <ScalarProperty Name="PricingTierID" ColumnName="PricingTierID" />
+                <ScalarProperty Name="PricingTierName" ColumnName="PricingTierName" />
+                <ScalarProperty Name="PricingTierLevel" ColumnName="PricingTierLevel" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="Model.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+                <ScalarProperty Name="ProductImageType" ColumnName="ProductImageType" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductStatus" ColumnName="ProductStatus" />
+                <ScalarProperty Name="ProductCategory" ColumnName="ProductCategory" />
+                <ScalarProperty Name="ProductUnitOfMeasure" ColumnName="ProductUnitOfMeasure" />
+                <ScalarProperty Name="PackagingTypeID" ColumnName="PackagingTypeID" />
+                <ScalarProperty Name="ProductReplacementItemNumber" ColumnName="ProductReplacementItemNumber" />
+                <ScalarProperty Name="ProductSelectedSizes" ColumnName="ProductSelectedSizes" />
+                <ScalarProperty Name="ProductSelectedColors" ColumnName="ProductSelectedColors" />
+                <ScalarProperty Name="ProductPresentationSell" ColumnName="ProductPresentationSell" />
+                <ScalarProperty Name="ProductQuoteNumber" ColumnName="ProductQuoteNumber" />
+                <ScalarProperty Name="ProductSalesAnalysis" ColumnName="ProductSalesAnalysis" />
+                <ScalarProperty Name="VendorNameID" ColumnName="VendorNameID" />
+                <ScalarProperty Name="VendorTypeID" ColumnName="VendorTypeID" />
+                <ScalarProperty Name="ProductVendorLeadTime" ColumnName="ProductVendorLeadTime" />
+                <ScalarProperty Name="ProductVendorMinimumOrder" ColumnName="ProductVendorMinimumOrder" />
+                <ScalarProperty Name="ProductCountryOfOrigin" ColumnName="ProductCountryOfOrigin" />
+                <ScalarProperty Name="ProductHarmonizedCode" ColumnName="ProductHarmonizedCode" />
+                <ScalarProperty Name="ProductInitialOrderQuantity" ColumnName="ProductInitialOrderQuantity" />
+                <ScalarProperty Name="ProductVendorItemNumber" ColumnName="ProductVendorItemNumber" />
+                <ScalarProperty Name="ProductAnnualSalesProjection" ColumnName="ProductAnnualSalesProjection" />
+                <ScalarProperty Name="ProductGatewayCDIMinumumOrder" ColumnName="ProductGatewayCDIMinumumOrder" />
+                <ScalarProperty Name="ProductCost" ColumnName="ProductCost" />
+                <ScalarProperty Name="ProductNetCost" ColumnName="ProductNetCost" />
+                <ScalarProperty Name="ProductTotalCost" ColumnName="ProductTotalCost" />
+                <ScalarProperty Name="ProductLandedCost" ColumnName="ProductLandedCost" />
+                <ScalarProperty Name="ProductGatewayCDISKU" ColumnName="ProductGatewayCDISKU" />
+                <ScalarProperty Name="ProductItemEDP" ColumnName="ProductItemEDP" />
+                <ScalarProperty Name="ProductAccountManagerComments" ColumnName="ProductAccountManagerComments" />
+                <ScalarProperty Name="ProductMerchandiserComments" ColumnName="ProductMerchandiserComments" />
+                <ScalarProperty Name="ProductInventoryBuyerComments" ColumnName="ProductInventoryBuyerComments" />
+                <ScalarProperty Name="ProductMentorComments" ColumnName="ProductMentorComments" />
+                <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductDecorations">
+            <EntityTypeMapping TypeName="Model.ProductDecoration">
+              <MappingFragment StoreEntitySet="ProductDecoration">
+                <ScalarProperty Name="DecorationID" ColumnName="DecorationID" />
+                <ScalarProperty Name="DecorationName" ColumnName="DecorationName" />
+                <ScalarProperty Name="DecorationMethodID" ColumnName="DecorationMethodID" />
+                <ScalarProperty Name="DecorationColor" ColumnName="DecorationColor" />
+                <ScalarProperty Name="DecorationLocation" ColumnName="DecorationLocation" />
+                <ScalarProperty Name="DecorationSize" ColumnName="DecorationSize" />
+                <ScalarProperty Name="DecorationVendor" ColumnName="DecorationVendor" />
+                <ScalarProperty Name="DecorationImage" ColumnName="DecorationImage" />
+                <ScalarProperty Name="DecorationImageType" ColumnName="DecorationImageType" />
+                <ScalarProperty Name="DecorationEmbroideryDesignNumber" ColumnName="DecorationEmbroideryDesignNumber" />
+                <ScalarProperty Name="DecorationEmbroideryStitchCount" ColumnName="DecorationEmbroideryStitchCount" />
+                <ScalarProperty Name="DecorationEmbroideryColorWay" ColumnName="DecorationEmbroideryColorWay" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductSellPrices">
+            <EntityTypeMapping TypeName="Model.ProductSellPrice">
+              <MappingFragment StoreEntitySet="ProductSellPrice">
+                <ScalarProperty Name="SellPriceID" ColumnName="SellPriceID" />
+                <ScalarProperty Name="SellPriceName" ColumnName="SellPriceName" />
+                <ScalarProperty Name="SellPriceLevel" ColumnName="SellPriceLevel" />
+                <ScalarProperty Name="SellPriceMarginPercent" ColumnName="SellPriceMarginPercent" />
+                <ScalarProperty Name="SellPriceMarginDollarAmount" ColumnName="SellPriceMarginDollarAmount" />
+                <ScalarProperty Name="SellPriceFinalAmount" ColumnName="SellPriceFinalAmount" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductUpcharges">
+            <EntityTypeMapping TypeName="Model.ProductUpcharge">
+              <MappingFragment StoreEntitySet="ProductUpcharge">
+                <ScalarProperty Name="UpchargeID" ColumnName="UpchargeID" />
+                <ScalarProperty Name="UpchargeName" ColumnName="UpchargeName" />
+                <ScalarProperty Name="UpchargeAmount" ColumnName="UpchargeAmount" />
+                <ScalarProperty Name="UpchargeTotalCost" ColumnName="UpchargeTotalCost" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UpchargeSellPrices">
+            <EntityTypeMapping TypeName="Model.UpchargeSellPrice">
+              <MappingFragment StoreEntitySet="UpchargeSellPrice">
+                <ScalarProperty Name="UpchargeSellPriceID" ColumnName="UpchargeSellPriceID" />
+                <ScalarProperty Name="UpchargeSellPriceName" ColumnName="UpchargeSellPriceName" />
+                <ScalarProperty Name="UpchargeSellPriceLevel" ColumnName="UpchargeSellPriceLevel" />
+                <ScalarProperty Name="UpchargeSellPriceFinalAmount" ColumnName="UpchargeSellPriceFinalAmount" />
+                <ScalarProperty Name="UpchargeSellPriceLocked" ColumnName="UpchargeSellPriceLocked" />
+                <ScalarProperty Name="UpchargeID" ColumnName="UpchargeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VendorNames">
+            <EntityTypeMapping TypeName="Model.VendorName">
+              <MappingFragment StoreEntitySet="VendorName">
+                <ScalarProperty Name="VendorNameID" ColumnName="VendorNameID" />
+                <ScalarProperty Name="VendorNameName" ColumnName="VendorNameName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VendorTypes">
+            <EntityTypeMapping TypeName="Model.VendorType">
+              <MappingFragment StoreEntitySet="VendorType">
+                <ScalarProperty Name="VendorTypeID" ColumnName="VendorTypeID" />
+                <ScalarProperty Name="VendorTypeName" ColumnName="VendorTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuditTrails">
+            <EntityTypeMapping TypeName="Model.AuditTrail">
+              <MappingFragment StoreEntitySet="AuditTrail">
+                <ScalarProperty Name="UpchargeSellPriceID" ColumnName="UpchargeSellPriceID" />
+                <ScalarProperty Name="VendorTypeID" ColumnName="VendorTypeID" />
+                <ScalarProperty Name="VendorNameID" ColumnName="VendorNameID" />
+                <ScalarProperty Name="UpchargeID" ColumnName="UpchargeID" />
+                <ScalarProperty Name="SellPriceID" ColumnName="SellPriceID" />
+                <ScalarProperty Name="DecorationID" ColumnName="DecorationID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="PricingTierID" ColumnName="PricingTierID" />
+                <ScalarProperty Name="PackagingTypeID" ColumnName="PackagingTypeID" />
+                <ScalarProperty Name="FeeNameID" ColumnName="FeeNameID" />
+                <ScalarProperty Name="FeeID" ColumnName="FeeID" />
+                <ScalarProperty Name="DecorationMethodID" ColumnName="DecorationMethodID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+                <ScalarProperty Name="AuditTrailUserName" ColumnName="AuditTrailUserName" />
+                <ScalarProperty Name="AuditTrailTimeStamp" ColumnName="AuditTrailTimeStamp" />
+                <ScalarProperty Name="AuditTrailID" ColumnName="AuditTrailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

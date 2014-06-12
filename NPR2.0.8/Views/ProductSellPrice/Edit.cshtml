@@ -1,0 +1,80 @@
+﻿@model NPR2._0._8.Models.ProductSellPrice
+@using NPR2._0._8.Helpers;
+
+@{
+    ViewBag.Title = "Edit Sell Price";
+}
+
+<h2>Edit Sell Price</h2>
+
+@using(Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="left-half-content">
+        <legend>ProductSellPrice</legend>
+
+        @Html.HiddenFor(model => model.SellPriceID)
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.SellPriceName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SellPriceName)
+            @Html.ValidationMessageFor(model => model.SellPriceName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.SellPriceLevel)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SellPriceLevel)
+            @Html.ValidationMessageFor(model => model.SellPriceLevel)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.SellPriceMarginPercent)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SellPriceMarginPercent)
+            @Html.ValidationMessageFor(model => model.SellPriceMarginPercent)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.SellPriceMarginDollarAmount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SellPriceMarginDollarAmount)
+            @Html.ValidationMessageFor(model => model.SellPriceMarginDollarAmount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.SellPriceFinalAmount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SellPriceFinalAmount)
+            @Html.ValidationMessageFor(model => model.SellPriceFinalAmount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.ProductID, "Product")
+        </div>
+        <div class="editor-field">
+            <span>@Html.DisplayFor(model => model.Product.ProductName)</span>
+            @Html.HiddenFor(model => model.ProductID)
+            @Html.ValidationMessageFor(model => model.ProductID)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+        <div>
+            @Html.ActionLink("Back to Sell Price List", "Index")
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+
+}

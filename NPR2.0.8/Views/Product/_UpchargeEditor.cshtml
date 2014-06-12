@@ -1,0 +1,30 @@
+﻿@model NPR2._0._8.Models.ProductUpcharge
+@using NPR2._0._8.Models
+@using NPR2._0._8.Helpers
+
+<div class="upcharge">
+    @using(Html.BeginCollectionItem("ProductUpcharges"))
+    {
+        @Html.ActionLink("Remove Upcharge", "Delete", "ProductUpcharge", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), id = Model.UpchargeID }, null)
+        <div class="editor-label">
+            <label>
+                @Html.DisplayFor(model => model.UpchargeName)
+            </label>
+            @Html.HiddenFor(model => model.UpchargeID)
+            @Html.HiddenFor(model => model.ProductID)
+            @Html.HiddenFor(model => model.UpchargeName)
+        </div> 
+        <div class="editor-field">
+            $@Html.TextBoxFor(model => model.UpchargeAmount, new { @class = "dollar-value" })
+            @Html.ValidationMessageFor(model => model.UpchargeAmount)
+        </div>
+        <span>Total Cost: @Html.DisplayFor(model => model.UpchargeTotalCost)
+        </span>
+        <div class="hidden-inputs">
+            @foreach(var upchargeSellPrice in Model.UpchargeSellPrices.OrderBy(price => price.UpchargeSellPriceLevel))
+            {
+                Html.RenderPartial("_UpchargeSellPriceEditor", upchargeSellPrice);
+            }
+        </div>
+    }
+</div>

@@ -1,0 +1,100 @@
+﻿@model NPR2._0._8.Models.Campaign
+
+@{
+    ViewBag.Title = "Archive Campaign";
+}
+
+<h2>Archive Campaign</h2>
+
+<h3>Are you sure you want to archive this Campaign?</h3>
+<fieldset>
+    <legend>Campaign</legend>
+
+    @Html.HiddenFor(model => model.CampaignStatus, new { Value = "Disabled" })
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.CampaignName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CampaignName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Company.CompanyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Company.CompanyName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.CampaignReason)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CampaignReason)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.CampaignProductCount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CampaignProductCount)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.CampaignAccountManagerComments)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CampaignAccountManagerComments)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.CampaignMerchandiserComments)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CampaignMerchandiserComments)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.CampaignInventoryBuyerComments)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CampaignInventoryBuyerComments)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.CampaignMentorComments)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CampaignMentorComments)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.CampaignStatus)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CampaignStatus)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.CampaignCreatedBy)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CampaignCreatedBy)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.CampaignCreatedOnDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CampaignCreatedOnDate)
+    </div>
+</fieldset>
+@using(Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Archive" />
+        |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

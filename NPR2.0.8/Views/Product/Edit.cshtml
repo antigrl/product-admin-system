@@ -1,0 +1,40 @@
+﻿@model NPR2._0._8.Models.Product
+
+@{
+    ViewBag.Title = "Edit Product";
+}
+
+<h2>
+    Edit Product #@Html.DisplayFor(model => model.ProductID) 
+    <span class="campaign-company-title">
+        Campaign: @Html.DisplayFor(model => model.Campaign.CampaignName)         
+        Company: @Html.DisplayFor(model => model.Campaign.Company.CompanyName)
+    </span>
+</h2>
+
+@using(Html.BeginForm("Close", "Product", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="full-content">
+        <legend>Product</legend>
+
+        @Html.HiddenFor(model => model.ProductID)
+
+        @Html.Partial("_EditorData")
+
+        <p style="float: right;">
+            <button type="submit" formaction="@Url.Action("SaveAndCalculateSellPrice", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Calculate Price</button>
+            <input type="submit" value="Close /  Cancel" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

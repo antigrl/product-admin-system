@@ -1,0 +1,146 @@
+﻿@model NPR2._0._8.Models.Campaign
+@using NPR2._0._8.Models
+@using NPR2._0._8.Helpers
+
+@{
+    ViewBag.Title = "Create Campaign";
+}
+
+<h2>Create a New Campaign</h2>
+
+@using(Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Campaign</legend>
+
+        <div class="left-half-content">
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CampaignName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CampaignName)
+                @Html.ValidationMessageFor(model => model.CampaignName)
+            </div>
+
+            @if(Request.QueryString.GetValues("CompanyID") == null)
+            {
+                <div class="editor-label">
+                    @Html.LabelForRequired(model => model.CompanyID, "Company")
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownList("CompanyID", String.Empty)
+                    @Html.ValidationMessageFor(model => model.CompanyID)
+                </div>
+            }
+            else
+            {                
+                <span>@Html.DisplayFor(model => model.Company.CompanyName)</span>
+                @Html.HiddenFor(model => model.CompanyID)
+            }
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CampaignReason)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CampaignReason)
+                @Html.ValidationMessageFor(model => model.CampaignReason)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CampaignProductCount)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CampaignProductCount)
+                @Html.ValidationMessageFor(model => model.CampaignProductCount)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CampaignStatus)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => model.CampaignStatus)
+                @Html.HiddenFor(model => model.CampaignStatus, new { Value = MyExtensions.GetEnumDescription(Status.Pending_Approval) })
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CampaignCreatedBy)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CampaignCreatedBy)
+                @Html.ValidationMessageFor(model => model.CampaignCreatedBy)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CampaignCreatedOnDate)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CampaignCreatedOnDate)
+                @Html.ValidationMessageFor(model => model.CampaignCreatedOnDate)
+            </div>
+
+        </div>
+
+        <div class="right-content">
+        </div>
+
+        <div class="full-content">
+            <div class="comments">
+                <h3>Campaign Comments</h3>
+                <table>
+                    <tr>
+                        <th>
+                            @Html.LabelForRequired(model => model.CampaignAccountManagerComments)
+                        </th>
+                        <th>
+                            @Html.LabelForRequired(model => model.CampaignMerchandiserComments)</th>
+                        <th>
+                            @Html.LabelForRequired(model => model.CampaignInventoryBuyerComments)</th>
+                        <th>
+                            @Html.LabelForRequired(model => model.CampaignMentorComments)</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.CampaignAccountManagerComments)
+                                @Html.ValidationMessageFor(model => model.CampaignAccountManagerComments)
+                            </div>
+                        </td>
+                        <td>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.CampaignMerchandiserComments)
+                                @Html.ValidationMessageFor(model => model.CampaignMerchandiserComments)
+                            </div>
+                        </td>
+                        <td>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.CampaignInventoryBuyerComments)
+                                @Html.ValidationMessageFor(model => model.CampaignInventoryBuyerComments)
+                            </div>
+                        </td>
+                        <td>
+                            <div class="editor-field">
+                                @Html.EditorFor(model => model.CampaignMentorComments)
+                                @Html.ValidationMessageFor(model => model.CampaignMentorComments)
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to Campaign List", "Index")
+</div>
+
+@section Scripts {
+
+}

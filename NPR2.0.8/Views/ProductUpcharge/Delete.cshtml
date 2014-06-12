@@ -1,0 +1,54 @@
+﻿@model NPR2._0._8.Models.ProductUpcharge
+
+@{
+    ViewBag.Title = "Delete Product Upcharge";
+}
+
+<h2>Delete Product Upcharge</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>ProductUpcharge</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UpchargeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UpchargeID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UpchargeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UpchargeName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UpchargeAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UpchargeAmount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UpchargeTotalCost)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UpchargeTotalCost)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Product.ProductName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Product.ProductName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

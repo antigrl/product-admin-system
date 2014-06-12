@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a77104a07189462aac7964e5d25fa28e" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Campaign" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Company" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DecorationMethod" Width="1.5" PointX="8.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Fee" Width="1.5" PointX="5.875" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.FeeName" Width="1.5" PointX="2" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PackagingType" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PricingTier" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Product" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ProductDecoration" Width="1.5" PointX="10.5" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ProductSellPrice" Width="1.5" PointX="10.5" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ProductUpcharge" Width="1.5" PointX="10.5" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.UpchargeSellPrice" Width="1.5" PointX="12.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VendorName" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VendorType" Width="1.5" PointX="6" PointY="15.75" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Campaign_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Fee_Campaign" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Product_Campaign" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Fee_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_PricingTier_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ProductDecoration_DecorationMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Fee_FeeName" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Fee_PricingTier" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Fee_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Fee_ProductSellPrice" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Product_PackagingType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Product_VendorName" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Product_VendorType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ProductDecoration_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ProductSellPrice_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ProductUpcharge_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_UpchargeSellPrice_ProductUpcharge" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.AuditTrail" Width="1.5" PointX="8.375" PointY="17.375" />
+        <AssociationConnector Association="Model.FK_AuditTrail_Campaign" />
+        <AssociationConnector Association="Model.FK_AuditTrail_Company" />
+        <AssociationConnector Association="Model.FK_AuditTrail_DecorationMethod" />
+        <AssociationConnector Association="Model.FK_AuditTrail_Fee" />
+        <AssociationConnector Association="Model.FK_AuditTrail_FeeName" />
+        <AssociationConnector Association="Model.FK_AuditTrail_PackagingType" />
+        <AssociationConnector Association="Model.FK_AuditTrail_PricingTier" />
+        <AssociationConnector Association="Model.FK_AuditTrail_Product" />
+        <AssociationConnector Association="Model.FK_AuditTrail_ProductDecoration" />
+        <AssociationConnector Association="Model.FK_AuditTrail_ProductSellPrice" />
+        <AssociationConnector Association="Model.FK_AuditTrail_ProductUpcharge" />
+        <AssociationConnector Association="Model.FK_AuditTrail_VendorName" />
+        <AssociationConnector Association="Model.FK_AuditTrail_VendorType" />
+        <AssociationConnector Association="Model.FK_AuditTrail_UpchargeSellPrice" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

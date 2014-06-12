@@ -1,0 +1,91 @@
+﻿@model NPR2._0._8.Models.ProductDecoration
+@using NPR2._0._8.Helpers;
+@using NPR2._0._8.Models;
+
+<div class="product-decoration editor-row">
+    @using(Html.BeginCollectionItem("ProductDecorations"))
+    {
+        @Html.HiddenFor(model => model.DecorationID)
+        @Html.HiddenFor(model => model.ProductID)
+        <div class="left-third">
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.DecorationName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DecorationName)
+                @Html.ValidationMessageFor(model => model.DecorationName)
+            </div>
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.DecorationVendor)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DecorationVendor)
+                @Html.ValidationMessageFor(model => model.DecorationVendor)
+            </div>
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.DecorationMethodID, "DecorationMethod")
+            </div>
+            <div class="editor-field">
+                @if(Model.DecorationMethodID == 0)
+                {
+                    @Html.DropDownList("DecorationMethodID", ViewBag.DecorationMethods as SelectList, String.Empty)
+                }
+                else
+                {
+                    @Html.DropDownList("DecorationMethodID", ViewBag.DecorationMethods as SelectList)
+                }
+                @Html.ValidationMessageFor(model => model.DecorationMethodID)
+            </div>
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.DecorationEmbroideryDesignNumber)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DecorationEmbroideryDesignNumber)
+                @Html.ValidationMessageFor(model => model.DecorationEmbroideryDesignNumber)
+            </div>
+        </div>
+        <div class="left-third">
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.DecorationColor)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DecorationColor)
+                @Html.ValidationMessageFor(model => model.DecorationColor)
+            </div>
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.DecorationLocation)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DecorationLocation)
+                @Html.ValidationMessageFor(model => model.DecorationLocation)
+            </div>
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.DecorationSize)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DecorationSize)
+                @Html.ValidationMessageFor(model => model.DecorationSize)
+            </div>
+        </div>
+        <div class="left-third">
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.DecorationEmbroideryStitchCount)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DecorationEmbroideryStitchCount)
+                @Html.ValidationMessageFor(model => model.DecorationEmbroideryStitchCount)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.DecorationEmbroideryColorWay)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.DecorationEmbroideryColorWay)
+                @Html.ValidationMessageFor(model => model.DecorationEmbroideryColorWay)
+            </div>
+            <div class="float-right">
+                <button type="button" class="delete-row">Remove Decoration</button>
+            </div>
+        </div>
+    }
+</div>
