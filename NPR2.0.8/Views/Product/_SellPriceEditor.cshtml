@@ -3,7 +3,7 @@
 @using NPRModels
 
 <div class="sell-prices">
-    @using(Html.BeginCollectionItem("ProductSellPrices"))
+    @using (Html.BeginCollectionItem("ProductSellPrices"))
     {
         <div class="sell-price">
             <div class="left-content">
@@ -17,21 +17,21 @@
                 <br />
             </div>
             <div class="right-content">
-                <b>Fees</b> 
+                <b>Fees</b>
                 <span>
                     @Html.ActionLink("Add New Sell Price Fee", "Create", "Fee", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), ProductSellPriceID = Model.SellPriceID }, null)
                 </span>
                 @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
                 {
-                    if(fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
+                    if (fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
                     {
                         Html.RenderPartial("_SellPricePercentFeeEditor", fee);
                     }
-                    if(fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount))
+                    if (fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount))
                     {
                         Html.RenderPartial("_SellPriceDollarFeeEditor", fee);
                     }
-                    if(fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized))
+                    if (fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized))
                     {
                         Html.RenderPartial("_SellPriceAmortizedFeeEditor", fee);
                     }
@@ -46,15 +46,15 @@
             </span>
 
             <div class="upcharged-sell-price">
-                @foreach(var upcharge in Model.Product.ProductUpcharges)
+                @foreach (var upcharge in Model.Product.ProductUpcharges.Where(u => u.UpchargeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
                 {
-                    foreach(var upchargeSellPrice in upcharge.UpchargeSellPrices)
+                    foreach (var upchargeSellPrice in upcharge.UpchargeSellPrices.Where(s => s.UpchargeSellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)))
                     {
-                        if(upchargeSellPrice.UpchargeSellPriceLevel == Model.SellPriceLevel)
+                        if (upchargeSellPrice.UpchargeSellPriceLevel == Model.SellPriceLevel)
                         {
-                    <b>@upcharge.UpchargeName | @upchargeSellPrice.UpchargeSellPriceName Sell Price: </b>
-                    <span>$@upchargeSellPrice.UpchargeSellPriceFinalAmount</span>
-                    <br />
+                            <b>@upcharge.UpchargeName | @upchargeSellPrice.UpchargeSellPriceName Sell Price: </b>
+                            <span>$@upchargeSellPrice.UpchargeSellPriceFinalAmount</span>
+                            <br />
                         }
                     }
                 }

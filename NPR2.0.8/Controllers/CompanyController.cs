@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using NPRModels;
 using NPR2._0._8.Helpers;
 using NPR2._0._8.Mailers;
-using NPRModels;
 
 namespace NPR2._0._8.Controllers
 {
@@ -46,7 +45,11 @@ namespace NPR2._0._8.Controllers
         // GET: /Company/Create
         public ActionResult Create()
         {
-            return View();
+            // Generate Company for member initialization
+            Company company = new Company();
+            company.OnCreate();
+
+            return View(company);
         }
 
         //
@@ -55,9 +58,9 @@ namespace NPR2._0._8.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Exclude = "CompanyImage")]Company company, HttpPostedFileBase CompanyImage)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                if(CompanyImage != null && CompanyImage.ContentLength > 0)
+                if (CompanyImage != null && CompanyImage.ContentLength > 0)
                 {
                     byte[] imageBinaryData = new byte[CompanyImage.ContentLength];
                     int readresult = CompanyImage.InputStream.Read(imageBinaryData, 0, CompanyImage.ContentLength);
@@ -82,7 +85,7 @@ namespace NPR2._0._8.Controllers
         public ActionResult Edit(int id = 0)
         {
             Company company = db.Companies.Find(id);
-            if(company == null)
+            if (company == null)
             {
                 return HttpNotFound();
             }
@@ -95,9 +98,9 @@ namespace NPR2._0._8.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Company company, HttpPostedFileBase CompanyImage)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                if(CompanyImage != null && CompanyImage.ContentLength > 0)
+                if (CompanyImage != null && CompanyImage.ContentLength > 0)
                 {
                     byte[] imageBinaryData = new byte[CompanyImage.ContentLength];
                     int readresult = CompanyImage.InputStream.Read(imageBinaryData, 0, CompanyImage.ContentLength);
@@ -108,20 +111,24 @@ namespace NPR2._0._8.Controllers
                 // Add Audit Entry 
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, company, company.CompanyID, "Edit");
                 db.AuditTrails.Add(audit);
-
-                db.Entry(company).State = EntityState.Modified;
-                db.SaveChanges();
-
+                
                 // Send Emails
                 #region SendEmails
-                List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(company.CompanyStatus);
-                var urlBuilder = Request.Url.AbsoluteUri;
-                if(sendEmailTos != null && sendEmailTos.Count > 0)
+                // Check previous status 
+                if (db.Companies.Where(c => c.CompanyID == company.CompanyID).FirstOrDefault().CompanyStatus != company.CompanyStatus)
                 {
-                    UserMailer.SendStatusUpdate(sendEmailTos, "Company Updated by: " + User.Identity.Name, urlBuilder.ToString(), company, null, null).Send();
+                    List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(company.CompanyStatus);
+                    var urlBuilder = Request.Url.AbsoluteUri;
+                    if (sendEmailTos != null && sendEmailTos.Count > 0)
+                    {
+                        UserMailer.SendStatusUpdate(sendEmailTos, "Company Updated by: " + User.Identity.Name, urlBuilder.ToString(), company, null, null).Send();
+                    }
                 }
                 #endregion
 
+                var current = db.Companies.Find(company.CompanyID);
+                db.Entry(current).CurrentValues.SetValues(company);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(company);
@@ -132,7 +139,7 @@ namespace NPR2._0._8.Controllers
         public ActionResult Archive(int id = 0)
         {
             Company company = db.Companies.Find(id);
-            if(company == null)
+            if (company == null)
             {
                 return HttpNotFound();
             }
@@ -147,7 +154,7 @@ namespace NPR2._0._8.Controllers
         {
             Company company = db.Companies.Find(id);
             company.CompanyStatus = MyExtensions.GetEnumDescription(Status.Archived);
-            
+
             // Add Audit Entry 
             AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, company, company.CompanyID, "Archive");
             db.AuditTrails.Add(audit);
@@ -174,9 +181,9 @@ namespace NPR2._0._8.Controllers
 
                 return file;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.Write("CompanyController.cs Show() failure. Exception: " + ex.ToString()); 
+                Console.Write("CompanyController.cs Show() failure. Exception: " + ex.ToString());
                 return View();
             }
         }

@@ -427,6 +427,11 @@ namespace NPRModels
     [MetadataType(typeof(CompanyMetadata))]
     public partial class Company
     {
+        // Default Constructor additions
+        public void OnCreate()
+        {
+            this.CompanyStatus = MyExtensions.GetEnumDescription(Status.New);
+        }
     }
 
     [MetadataType(typeof(DecorationMethodMetadata))]

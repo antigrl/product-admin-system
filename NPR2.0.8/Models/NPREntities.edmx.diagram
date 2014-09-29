@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9d7d7e94dd384d0db7327fef5ec3398a" Name="Diagram1">
+      <Diagram DiagramId="eb3cbba8602d45b28808ca5b27b771ea" Name="Diagram1">
         <EntityTypeShape EntityType="NPRModel.AuditTrail" Width="1.5" PointX="7.5" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NPRModel.Campaign" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
         <EntityTypeShape EntityType="NPRModel.Category" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />

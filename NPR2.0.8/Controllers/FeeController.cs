@@ -7,8 +7,6 @@ using System.Web;
 using System.Web.Mvc;
 using NPRModels;
 using NPR2._0._8.Helpers;
-using NPRModels;
-
 namespace NPR2._0._8.Controllers
 {
     public class FeeController : Controller
@@ -147,7 +145,8 @@ namespace NPR2._0._8.Controllers
         {
             if(ModelState.IsValid)
             {
-                db.Entry(fee).State = EntityState.Modified;
+                var current = db.Fees.Find(fee.FeeID);
+                db.Entry(current).CurrentValues.SetValues(fee);
                 db.SaveChanges();
 
                 if(returnUrl == null)

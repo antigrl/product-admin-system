@@ -162,7 +162,7 @@
     <Key>
       <PropertyRef Name="AuditTrailID" />
     </Key>
-    <Property Name="AuditTrailID" Type="Int32" Nullable="false" />
+    <Property Name="AuditTrailID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="AuditTrailTimeStamp" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="AuditTrailUserName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="AuditTrailComment" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
@@ -203,7 +203,7 @@
     <Key>
       <PropertyRef Name="CampaignID" />
     </Key>
-    <Property Name="CampaignID" Type="Int32" Nullable="false" />
+    <Property Name="CampaignID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="CampaignName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="CompanyID" Type="Int32" Nullable="false" />
     <Property Name="CampaignReason" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
@@ -224,7 +224,7 @@
     <Key>
       <PropertyRef Name="CategoryID" />
     </Key>
-    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="CategoryType" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="CategoryStatus" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
@@ -236,7 +236,7 @@
     <Key>
       <PropertyRef Name="CompanyID" />
     </Key>
-    <Property Name="CompanyID" Type="Int32" Nullable="false" />
+    <Property Name="CompanyID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="CompanyDivisionNumber" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
     <Property Name="CompanyImage" Type="Binary" MaxLength="Max" FixedLength="false" />
@@ -261,7 +261,7 @@
     <Key>
       <PropertyRef Name="DecorationMethodID" />
     </Key>
-    <Property Name="DecorationMethodID" Type="Int32" Nullable="false" />
+    <Property Name="DecorationMethodID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="DecorationMethodName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="DecorationMethodStatus" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="AuditTrails" Relationship="NPRModel.FK_AuditTrail_DecorationMethod" FromRole="DecorationMethod" ToRole="AuditTrail" />
@@ -271,7 +271,7 @@
     <Key>
       <PropertyRef Name="FeeID" />
     </Key>
-    <Property Name="FeeID" Type="Int32" Nullable="false" />
+    <Property Name="FeeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="FeeNameID" Type="Int32" Nullable="false" />
     <Property Name="FeeType" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="FeeLevel" Type="Int32" Nullable="false" />
@@ -301,7 +301,7 @@
     <Key>
       <PropertyRef Name="FeeNameID" />
     </Key>
-    <Property Name="FeeNameID" Type="Int32" Nullable="false" />
+    <Property Name="FeeNameID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="FeeNameName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="FeeNameType" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="FeeNameStatus" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
@@ -312,7 +312,7 @@
     <Key>
       <PropertyRef Name="PackagingTypeID" />
     </Key>
-    <Property Name="PackagingTypeID" Type="Int32" Nullable="false" />
+    <Property Name="PackagingTypeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="PackagingTypeName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="PackagingTypeStatus" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="AuditTrails" Relationship="NPRModel.FK_AuditTrail_PackagingType" FromRole="PackagingType" ToRole="AuditTrail" />
@@ -322,7 +322,7 @@
     <Key>
       <PropertyRef Name="PricingTierID" />
     </Key>
-    <Property Name="PricingTierID" Type="Int32" Nullable="false" />
+    <Property Name="PricingTierID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="PricingTierName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="PricingTierLevel" Type="Int32" Nullable="false" />
     <Property Name="CompanyID" Type="Int32" Nullable="false" />
@@ -335,7 +335,7 @@
     <Key>
       <PropertyRef Name="ProductID" />
     </Key>
-    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="ProductName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="ProductImage" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="ProductImageType" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
@@ -388,7 +388,7 @@
     <Key>
       <PropertyRef Name="DecorationID" />
     </Key>
-    <Property Name="DecorationID" Type="Int32" Nullable="false" />
+    <Property Name="DecorationID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="DecorationName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="DecorationMethodID" Type="Int32" Nullable="false" />
     <Property Name="DecorationColor" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
@@ -410,7 +410,7 @@
     <Key>
       <PropertyRef Name="SellPriceID" />
     </Key>
-    <Property Name="SellPriceID" Type="Int32" Nullable="false" />
+    <Property Name="SellPriceID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="SellPriceName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="SellPriceLevel" Type="Int32" Nullable="false" />
     <Property Name="SellPriceMarginPercent" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
@@ -426,7 +426,7 @@
     <Key>
       <PropertyRef Name="UpchargeID" />
     </Key>
-    <Property Name="UpchargeID" Type="Int32" Nullable="false" />
+    <Property Name="UpchargeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="UpchargeName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="UpchargeAmount" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
     <Property Name="UpchargeTotalCost" Type="Decimal" Precision="18" Scale="3" />
@@ -440,7 +440,7 @@
     <Key>
       <PropertyRef Name="UpchargeSellPriceID" />
     </Key>
-    <Property Name="UpchargeSellPriceID" Type="Int32" Nullable="false" />
+    <Property Name="UpchargeSellPriceID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="UpchargeSellPriceName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="UpchargeSellPriceLevel" Type="Int32" Nullable="false" />
     <Property Name="UpchargeSellPriceFinalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
@@ -454,7 +454,7 @@
     <Key>
       <PropertyRef Name="VendorNameID" />
     </Key>
-    <Property Name="VendorNameID" Type="Int32" Nullable="false" />
+    <Property Name="VendorNameID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="VendorNameName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="VendorNameStatus" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="AuditTrails" Relationship="NPRModel.FK_AuditTrail_VendorName" FromRole="VendorName" ToRole="AuditTrail" />
@@ -464,7 +464,7 @@
     <Key>
       <PropertyRef Name="VendorTypeID" />
     </Key>
-    <Property Name="VendorTypeID" Type="Int32" Nullable="false" />
+    <Property Name="VendorTypeID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
     <Property Name="VendorTypeName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <Property Name="VendorTypeStatus" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="AuditTrails" Relationship="NPRModel.FK_AuditTrail_VendorType" FromRole="VendorType" ToRole="AuditTrail" />

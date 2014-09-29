@@ -7,6 +7,7 @@ using System.Text;
 
 namespace NPR2._0._8.Tests.Features
 {
+
     class FeeCalculator
     {
         private Product _product;
@@ -20,7 +21,7 @@ namespace NPR2._0._8.Tests.Features
         // ComputeUpcharges calculates all of the upcharges for a product, setting the up Charge sell Prices for each product sell price
         public void ComputeUpcharges()
         {
-            foreach(var upcharge in _product.ProductUpcharges)
+            foreach (var upcharge in _product.ProductUpcharges.Where(u => u.UpchargeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
             {
                 // Compute All Product Costs with the upcharge as an addition to product Cost;
                 upchargeValue = upcharge.UpchargeAmount;
@@ -31,10 +32,10 @@ namespace NPR2._0._8.Tests.Features
                 upcharge.UpchargeTotalCost = _product.ProductTotalCost;
                 ComputeSellPrices();
                 // Set the upcharge Sell Prices 
-                foreach(var upchargeSellPrice in upcharge.UpchargeSellPrices)
+                foreach (var upchargeSellPrice in upcharge.UpchargeSellPrices.Where(u => u.UpchargeSellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)))
                 {
                     upchargeSellPrice.UpchargeSellPriceFinalAmount = _product.ProductSellPrices.Where(p => p.SellPriceLevel == upchargeSellPrice.UpchargeSellPriceLevel).FirstOrDefault().SellPriceFinalAmount;
-                }             
+                }
             }
             upchargeValue = (decimal)0.0;
         }
@@ -46,15 +47,15 @@ namespace NPR2._0._8.Tests.Features
             decimal? netCost = _product.ProductCost + upchargeValue;
 
             // Add Dollar Fees
-            foreach(var fee in _product.Fees)
+            foreach (var fee in _product.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
             {
                 // Check for Amortized Fee
-                if(fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized))
+                if (fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized))
                 {
                     CalculateAmortizedFee(fee);
                 }
                 // If it's a percent fee 
-                else if(fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
+                else if (fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
                 {
                     // continue out of this element 
                     // [This prevent's the percent's dollar amount from being added to the net cost]
@@ -72,11 +73,11 @@ namespace NPR2._0._8.Tests.Features
         public void ComputeTotalCost()
         {
             // Calculates Total Cost from Net cost [Percent Fee Calculations]
-            decimal? totalCost = CalculatePercentFees(_product.Fees.ToList(), _product.ProductNetCost);
+            decimal? totalCost = CalculatePercentFees(_product.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived)).ToList(), _product.ProductNetCost);
 
             // Set the product total to the 'currentTotalCost' based on the calculated cost within the loop 
             // [rounded to the 3rd decimal point]
-            _product.ProductTotalCost = RoundNumberToDecimalPlace((decimal)totalCost,3);
+            _product.ProductTotalCost = RoundNumberToDecimalPlace((decimal)totalCost, 3);
         }
 
         public void ComputeSellPrices()
@@ -84,7 +85,7 @@ namespace NPR2._0._8.Tests.Features
             // Pull total Cost to use in margin Calculations
             decimal productTotalCost = (decimal)_product.ProductTotalCost;
 
-            foreach(var sellPrice in _product.ProductSellPrices)
+            foreach (var sellPrice in _product.ProductSellPrices.Where(p => p.SellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)))
             {
                 // Calculate Margin based on the margin on the sell price
                 decimal finalSellPrice = productTotalCost / (1 - (sellPrice.SellPriceMarginPercent / 100));
@@ -95,36 +96,36 @@ namespace NPR2._0._8.Tests.Features
 
                 // Check Sell Price Dollar and Amortized Fees
 
-                foreach(var fee in sellPrice.Fees.ToList())
+                foreach (var fee in sellPrice.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived)).ToList())
                 {
                     // Check for Amortized Fee
-                    if(fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized))
+                    if (fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized))
                     {
                         CalculateAmortizedFee(fee);
                     }
                     // If it's a percent fee 
-                    else if(fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
+                    else if (fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
                     {
                         // continue out of this element 
                         // [This prevent's the percent's dollar amount from being added to the net cost]
                         continue;
                     }
                     // increase net cost based off the Fee's Dollar amount
-                    if(fee.FeeDollarAmount != null)
+                    if (fee.FeeDollarAmount != null)
                     {
                         finalSellPrice += (decimal)fee.FeeDollarAmount;
                     }
                 }
 
                 // Set Final sell Price
-                sellPrice.SellPriceFinalAmount = RoundNumberToDecimalPlace((decimal)finalSellPrice,3);
+                sellPrice.SellPriceFinalAmount = RoundNumberToDecimalPlace((decimal)finalSellPrice, 3);
             }
         }
 
         public void ComputeAllProductPrices()
         {
             // Runs all Functions for calculating Product data. if proudct has a cost
-            if(_product.ProductCost != null)
+            if (_product.ProductCost != null)
             {
                 ComputeUpcharges();
                 ComputeNetCost();
@@ -137,19 +138,19 @@ namespace NPR2._0._8.Tests.Features
         {
             ComputeNetCost();
             ComputeTotalCost();
-            foreach(var sellPrice in _product.ProductSellPrices)
+            foreach (var sellPrice in _product.ProductSellPrices.Where(p => p.SellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)))
             {
                 //Calcuate the margin based on the sell price Final Amount
                 decimal finalSellPrice = sellPrice.SellPriceFinalAmount;
                 decimal productTotalCost = (decimal)_product.ProductTotalCost;
 
-                decimal baseSellPrice = (decimal)0.0;                
+                decimal baseSellPrice = (decimal)0.0;
                 // Calculate Dollar/Amortized fees (first b/c they are calculated last
                 baseSellPrice = (decimal)CalculateBaseSellPrice(sellPrice.Fees.ToList(), finalSellPrice);
 
                 // Calculate Percent fees
                 baseSellPrice = (decimal)CalculateBaseSellPricePercentFees(sellPrice.Fees.ToList(), baseSellPrice);
-                
+
                 // Calculate Margin
                 decimal newMarginPercent = (100 - ((productTotalCost / baseSellPrice) * 100));
 
@@ -167,7 +168,7 @@ namespace NPR2._0._8.Tests.Features
             decimal factor = 1;
             decimal answer = 0;
 
-            for(int index = 1; index <= places; index++)
+            for (int index = 1; index <= places; index++)
             {
                 factor = factor * (decimal)10.0;
                 answer = (Math.Round((number + (decimal).05 / (factor)) * factor)) / factor;
@@ -179,19 +180,19 @@ namespace NPR2._0._8.Tests.Features
         private void CalculateAmortizedFee(Fee fee)
         {
             // Determime the type of amortized fee and use the value associated 
-            if(fee.FeeAmortizedType == MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project))
+            if (fee.FeeAmortizedType == MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project))
             {
                 fee.FeeDollarAmount = fee.FeeAmortizedCharge / _product.ProductAnnualSalesProjection;
             }
-            else if(fee.FeeAmortizedType == MyExtensions.GetEnumDescription(AmortizedTypeList.GatewayCDI_Minimum_Order))
+            else if (fee.FeeAmortizedType == MyExtensions.GetEnumDescription(AmortizedTypeList.GatewayCDI_Minimum_Order))
             {
                 fee.FeeDollarAmount = fee.FeeAmortizedCharge / _product.ProductGatewayCDIMinumumOrder;
             }
-            else if(fee.FeeAmortizedType == MyExtensions.GetEnumDescription(AmortizedTypeList.Initial_Order_Quantity))
+            else if (fee.FeeAmortizedType == MyExtensions.GetEnumDescription(AmortizedTypeList.Initial_Order_Quantity))
             {
                 fee.FeeDollarAmount = fee.FeeAmortizedCharge / _product.ProductInitialOrderQuantity;
             }
-            else if(fee.FeeAmortizedType == MyExtensions.GetEnumDescription(AmortizedTypeList.Vindor_Minimum))
+            else if (fee.FeeAmortizedType == MyExtensions.GetEnumDescription(AmortizedTypeList.Vindor_Minimum))
             {
                 fee.FeeDollarAmount = fee.FeeAmortizedCharge / _product.ProductVendorMinimumOrder;
             }
@@ -202,17 +203,17 @@ namespace NPR2._0._8.Tests.Features
             // create 2 variables for Percent Calculations
             decimal? previousValue = startingValue;
             decimal? currentValue = previousValue;
-            foreach(var fee in feeList.OrderBy(f => f.FeeLevel))
+            foreach (var fee in feeList.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(f => f.FeeLevel))
             {
                 // If the fee is a percent calculate
-                if(fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
+                if (fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
                 {
-                    if(fee.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Multiplication))
+                    if (fee.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Multiplication))
                     {
                         // Calculate based on multiplication
                         currentValue = ((fee.FeePercent / 100) + 1) * previousValue;
                     }
-                    else if(fee.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Division))
+                    else if (fee.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Division))
                     {
                         // Calculate based on division 
                         currentValue = previousValue / (1 - (fee.FeePercent / 100));
@@ -238,18 +239,18 @@ namespace NPR2._0._8.Tests.Features
         {
             decimal? previousValue = finalSellPrice;
             decimal? currentValue = previousValue;
-            foreach(var fee in feeList)
+            foreach (var fee in feeList.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
             {
                 // If the fee is a percent calculate
 
-                if(fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
+                if (fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
                 {
-                    if(fee.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Multiplication))
+                    if (fee.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Multiplication))
                     {
                         // Calculate based on division 
                         currentValue = previousValue / ((fee.FeePercent / 100) + 1);
                     }
-                    else if(fee.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Division))
+                    else if (fee.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Division))
                     {
                         // Calculate based on multiplication
                         currentValue = (1 - (fee.FeePercent / 100)) * previousValue;
@@ -273,13 +274,13 @@ namespace NPR2._0._8.Tests.Features
 
         private decimal CalculateBaseSellPrice(List<Fee> feeList, decimal baseSellPrice)
         {
-            foreach(var fee in feeList)
+            foreach (var fee in feeList.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
             {
                 // If the fee is a percent calculate
-                if(fee.FeeType != MyExtensions.GetEnumDescription(FeeTypeList.Percent))
+                if (fee.FeeType != MyExtensions.GetEnumDescription(FeeTypeList.Percent))
                 {
                     // increase net cost based off the Fee's Dollar amount
-                    if(fee.FeeDollarAmount != null)
+                    if (fee.FeeDollarAmount != null)
                     {
                         baseSellPrice -= (decimal)fee.FeeDollarAmount;
                     }

@@ -7,7 +7,6 @@ using System.Web;
 using System.Web.Mvc;
 using NPRModels;
 using NPR2._0._8.Helpers;
-using NPRModels;
 
 namespace NPR2._0._8.Controllers
 {

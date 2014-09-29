@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using NPRModels;
 using NPR2._0._8.Helpers;
 using NPR2._0._8.Mailers;
-using NPRModels;
 
 namespace NPR2._0._8.Controllers
 {
@@ -131,7 +130,8 @@ namespace NPR2._0._8.Controllers
                 #endregion
 
                 // Save entry into DB
-                db.Entry(campaign).State = EntityState.Modified;
+                var current = db.Campaigns.Find(campaign.CampaignID);
+                db.Entry(current).CurrentValues.SetValues(campaign);
                 db.SaveChanges();
                 
                 if(returnUrl == null)
@@ -172,7 +172,7 @@ namespace NPR2._0._8.Controllers
 
             // Inventory Costs
             decimal? inventoryCostSum = (decimal?)0.0;
-            foreach(var product in campaign.Products)
+            foreach(var product in campaign.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)))
             {
                 inventoryCostSum += product.ProductInitialOrderQuantity * product.ProductTotalCost;
             }
@@ -181,14 +181,15 @@ namespace NPR2._0._8.Controllers
             // Blended Margins
             // For each Pricing tier there will be a blended margin
             List<decimal?> pricingTierBlendedMargins = new List<decimal?>();
-            foreach(var tier in campaign.Company.PricingTiers.OrderBy(p => p.PricingTierLevel))
+            foreach (var tier in campaign.Company.PricingTiers.Where(p => p.PricingTierStatus != MyExtensions.GetEnumDescription(Status.Archived))
+                                                                .OrderBy(p => p.PricingTierLevel))
             {
                 // Variables
                 decimal? tieredBlenededMargin = (decimal?)0.0;
                 decimal? totalAnnualSalesProjectionForTier = (decimal)0.0;
 
                 // For each product within the campaign
-                foreach(var product in campaign.Products)
+                foreach (var product in campaign.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)))
                 {
                     // Pull the current Pricing tier 
                     var currentTierSellPrice = product.ProductSellPrices.Where(s => s.SellPriceLevel == tier.PricingTierLevel).FirstOrDefault();

@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using NPRModels;
 using NPR2._0._8.Helpers;
 using NPR2._0._8.Mailers;
-using NPRModels;
 
 namespace NPR2._0._8.Controllers
 {
@@ -79,14 +78,14 @@ namespace NPR2._0._8.Controllers
             {
                 // Get product's campaign and loop though that campaigns, companies price tiers
                 Campaign thisCampaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID).FirstOrDefault();
-                foreach(var tier in thisCampaign.Company.PricingTiers)
+                foreach (var tier in thisCampaign.Company.PricingTiers.Where(p => p.PricingTierStatus != MyExtensions.GetEnumDescription(Status.Archived)))
                 {
                     // Create a new sell price for each price tier and add to DB
                     ProductSellPrice newSellPrice = new ProductSellPrice(product, tier.PricingTierName, tier.PricingTierLevel, (decimal)thisCampaign.Company.CompanyDefaultMargin);
                     db.ProductSellPrices.Add(newSellPrice);
 
                     // Attach fees                 
-                    foreach(var fee in tier.Fees)
+                    foreach (var fee in tier.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
                     {
                         Fee newFee = new Fee(fee.FeeNameID, newSellPrice, fee.FeeType, fee.FeeCalculation, fee.FeeDollarAmount, fee.FeeAmortizedCharge, fee.FeeAmortizedType, fee.FeePercent, fee.FeePercentType, fee.FeeID);
                         db.Fees.Add(newFee);
@@ -173,7 +172,7 @@ namespace NPR2._0._8.Controllers
                 }
 
                 int index = -100;
-                foreach(var fee in product.Fees)
+                foreach (var fee in product.Fees)
                 {
                     // IF it's a new fee
                     if(fee.FeeID <= 0)
@@ -299,20 +298,22 @@ namespace NPR2._0._8.Controllers
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Save and Calculate Prices");
                 db.AuditTrails.Add(audit);
 
-                db.SaveChanges();
-
                 // Send Emails
                 #region SendEmails
-                // TODO: Check previous status (must move db.savechanges() call)
-
-                List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(product.ProductStatus);
-                var urlBuilder = new System.UriBuilder(Request.Url.AbsoluteUri) { Path = Url.Action("Edit", "Product") + "/" + product.ProductID, Query = null, };
-                var campaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID).FirstOrDefault();
-                if(sendEmailTos != null && sendEmailTos.Count > 0)
+                // Check previous status 
+                if (db.Products.Where(p => p.ProductID == product.ProductID).FirstOrDefault().ProductStatus != product.ProductStatus)
                 {
-                    UserMailer.SendStatusUpdate(sendEmailTos, "Product Updated by: " + User.Identity.Name, urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, product).Send();
+                    List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(product.ProductStatus);
+                    var urlBuilder = new System.UriBuilder(Request.Url.AbsoluteUri) { Path = Url.Action("Edit", "Product") + "/" + product.ProductID, Query = null, };
+                    var campaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID).FirstOrDefault();
+                    if (sendEmailTos != null && sendEmailTos.Count > 0)
+                    {
+                        UserMailer.SendStatusUpdate(sendEmailTos, "Product Updated by: " + User.Identity.Name, urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, product).Send();
+                    }
                 }
                 #endregion
+
+                db.SaveChanges();
 
 
                 return RedirectToAction("Edit", new { id = product.ProductID, ReturnUrl = returnUrl });

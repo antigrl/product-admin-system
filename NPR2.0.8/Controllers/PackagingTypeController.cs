@@ -7,7 +7,6 @@ using System.Web;
 using System.Web.Mvc;
 using NPRModels;
 using NPR2._0._8.Helpers;
-using NPRModels;
 
 namespace NPR2._0._8.Controllers
 {
@@ -90,7 +89,8 @@ namespace NPR2._0._8.Controllers
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, packagingtype, packagingtype.PackagingTypeID, "Edit");
                 db.AuditTrails.Add(audit);
 
-                db.Entry(packagingtype).State = EntityState.Modified;
+                var current = db.PackagingTypes.Find(packagingtype.PackagingTypeID);
+                db.Entry(current).CurrentValues.SetValues(packagingtype);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

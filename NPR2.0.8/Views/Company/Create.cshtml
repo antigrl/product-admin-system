@@ -14,6 +14,8 @@
 
     <fieldset class="left-half-content">
         <legend>Company</legend>
+        
+        @Html.HiddenFor(model => model.CompanyStatus)
 
         <div class="editor-label">
             @Html.LabelForRequired(model => model.CompanyName)
