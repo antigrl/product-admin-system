@@ -200,3 +200,4 @@ C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NP
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8\obj\Debug\NPR2.0.8.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8\obj\Debug\NPR2.0.8.pdb
+C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8\obj\Debug\NPR2.0.8.csprojResolveAssemblyReference.cache

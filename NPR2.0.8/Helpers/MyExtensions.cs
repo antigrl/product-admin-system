@@ -55,7 +55,8 @@ namespace NPR2._0._8.Helpers
                 emailToList.Add(EmailTo.Mentor);
             }
             else if(objectStatus == MyExtensions.GetEnumDescription(Status.Send_To_Inventory_Buyers) ||
-                        objectStatus == MyExtensions.GetEnumDescription(Status.Mentor_Approved))
+                        objectStatus == MyExtensions.GetEnumDescription(Status.Mentor_Approved) || 
+                        objectStatus == MyExtensions.GetEnumDescription(Status.Rejected))
             {
                 emailToList.Add(EmailTo.Inventory_Buyers);
             }
