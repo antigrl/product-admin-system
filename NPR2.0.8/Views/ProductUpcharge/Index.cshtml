@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NPR2._0._8.Models.ProductUpcharge>
+﻿@model IEnumerable<NPRModels.ProductUpcharge>
 
 @{
     ViewBag.Title = "Product Upcharge Index";
@@ -57,7 +57,7 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.UpchargeID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.UpchargeID })
+                @Html.ActionLink("Archive", "Archive", new { id = item.UpchargeID })
             </td>
         </tr>
     }

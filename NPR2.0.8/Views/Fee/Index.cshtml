@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NPR2._0._8.Models.Fee>
+﻿@model IEnumerable<NPRModels.Fee>
 
 @{
     ViewBag.Title = "Fee Index";
@@ -19,6 +19,9 @@
 </p>
 <table class="index-table">
     <tr>
+        <th>            
+            @Html.DisplayNameFor(model => model.FeeStatus)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.FeeName.FeeNameName)
         </th>
@@ -39,6 +42,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FeeStatus)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.FeeName.FeeNameName)
         </td>
@@ -83,7 +89,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.FeeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.FeeID })
+            @Html.ActionLink("Archive", "Archive", new { id=item.FeeID })
         </td>
     </tr>
 }

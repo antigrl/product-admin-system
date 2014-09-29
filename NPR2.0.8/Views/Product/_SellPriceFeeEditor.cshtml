@@ -1,28 +1,28 @@
-﻿@model NPR2._0._8.Models.Fee
+﻿@model NPRModels.Fee
 @using NPR2._0._8.Helpers;
-@using NPR2._0._8.Models;
+@using NPRModels;
 
 <div class="sell-price-fee">
-    @using(Html.BeginCollectionItem("Fees"))
+    @using (Html.BeginCollectionItem("Fees"))
     {
         <div>
             <div class="editor-label float-left">
                 <label>@Html.DisplayFor(model => model.FeeName.FeeNameName):</label>
             </div>
             <div class="editor-field">
-                @if(Model.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
+                @if (Model.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
                 {
                     <span>%@Html.TextBoxFor(model => model.FeePercent, new { @class = "percent-value" })</span>
-                    if(Model.FeeDollarAmount > 0)
+                    if (Model.FeeDollarAmount > 0)
                     {
                         <span>$@Html.DisplayFor(model => model.FeeDollarAmount)</span>
                     }
                 }
-                @if(Model.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount))
+                @if (Model.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount))
                 {
                     <span>$@Html.TextBoxFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })</span>
                 }
-                @if(Model.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized))
+                @if (Model.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized))
                 {
                     <span class="left-half-content">Full Charge
                         <br />
@@ -45,6 +45,7 @@
                 @Html.HiddenFor(model => model.FeeDollarAmount)
                 @Html.HiddenFor(model => model.FeePercent)
                 @Html.HiddenFor(model => model.FeePercentType)
+                @Html.HiddenFor(model => model.FeeStatus)
                 <!-- Not sure if I need to add other Hidden inputs -->
             </div>
         </div> 

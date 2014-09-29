@@ -1,0 +1,141 @@
+﻿@model NPRModels.AuditTrail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>AuditTrail</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AuditTrailTimeStamp)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AuditTrailTimeStamp)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AuditTrailUserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AuditTrailUserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AuditTrailComment)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AuditTrailComment)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CampaignID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CampaignID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CompanyID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CompanyID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DecorationMethodID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DecorationMethodID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FeeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FeeID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FeeNameID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FeeNameID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PackagingTypeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PackagingTypeID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PricingTierID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PricingTierID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProductID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DecorationID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DecorationID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SellPriceID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SellPriceID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UpchargeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UpchargeID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.VendorNameID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.VendorNameID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.VendorTypeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.VendorTypeID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UpchargeSellPriceID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UpchargeSellPriceID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CategoryID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CategoryID)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.AuditTrailID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

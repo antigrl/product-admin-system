@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NPR2._0._8.Models
+namespace NPRModels
 {
     using System;
     using System.Collections.Generic;
@@ -25,8 +25,9 @@ namespace NPR2._0._8.Models
         public decimal UpchargeSellPriceFinalAmount { get; set; }
         public bool UpchargeSellPriceLocked { get; set; }
         public int UpchargeID { get; set; }
+        public string UpchargeSellPriceStatus { get; set; }
     
-        public virtual ProductUpcharge ProductUpcharge { get; set; }
         public virtual ICollection<AuditTrail> AuditTrails { get; set; }
+        public virtual ProductUpcharge ProductUpcharge { get; set; }
     }
 }

@@ -7,9 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NPR2._0._8.Models
+namespace NPRModels
 {
-    using NPR2._0._8.Helpers;
     using System;
     using System.Collections.Generic;
     
@@ -17,13 +16,10 @@ namespace NPR2._0._8.Models
     {
         public Company()
         {
+            this.AuditTrails = new HashSet<AuditTrail>();
             this.Campaigns = new HashSet<Campaign>();
             this.Fees = new HashSet<Fee>();
             this.PricingTiers = new HashSet<PricingTier>();
-            this.AuditTrails = new HashSet<AuditTrail>();
-
-            // Non-Generated 
-            this.CompanyStatus = MyExtensions.GetEnumDescription(Status.Pending_Approval);
         }
     
         public int CompanyID { get; set; }
@@ -43,9 +39,9 @@ namespace NPR2._0._8.Models
         public string CompanyUrl { get; set; }
         public decimal CompanyDefaultMargin { get; set; }
     
+        public virtual ICollection<AuditTrail> AuditTrails { get; set; }
         public virtual ICollection<Campaign> Campaigns { get; set; }
         public virtual ICollection<Fee> Fees { get; set; }
         public virtual ICollection<PricingTier> PricingTiers { get; set; }
-        public virtual ICollection<AuditTrail> AuditTrails { get; set; }
     }
 }

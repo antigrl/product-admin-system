@@ -5,19 +5,35 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NPR2._0._8.Models;
+using NPRModels;
+using NPR2._0._8.Helpers;
+using NPRModels;
 
 namespace NPR2._0._8.Controllers
 {
     public class FeeNameController : Controller
     {
-        private Entities db = new Entities();
+        private NPREntities db = new NPREntities();
+        private string archived = MyExtensions.GetEnumDescription(Status.Archived);
 
         //
         // GET: /FeeName/
         public ActionResult Index()
         {
-            return View(db.FeeNames.ToList());
+            ViewBag.TitleMessage = "Active";
+            var feeNames = db.FeeNames.Where(f => f.FeeNameStatus != archived)
+                                        .OrderBy(f => f.FeeNameName);
+            return View(feeNames.ToList());
+        }
+
+        //
+        // GET: /FeeName/ArchivedIndex
+        public ActionResult ArchivedIndex()
+        {
+            ViewBag.TitleMessage = "Archived";
+            var feeNames = db.FeeNames.Where(f => f.FeeNameStatus == archived)
+                                        .OrderBy(f => f.FeeNameName);
+            return View("Index", feeNames.ToList());
         }
 
         //
@@ -25,8 +41,12 @@ namespace NPR2._0._8.Controllers
         public ActionResult Create(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            
+            // Generate Decoration method for member initialization
+            FeeName feeName = new FeeName();
+            feeName.OnCreate();
 
-            return View();
+            return View(feeName);
         }
 
         //
@@ -37,6 +57,10 @@ namespace NPR2._0._8.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, feename, feename.FeeNameID, "Create");
+                db.AuditTrails.Add(audit);
+
                 db.FeeNames.Add(feename);
                 db.SaveChanges();
 
@@ -70,6 +94,10 @@ namespace NPR2._0._8.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, feename, feename.FeeNameID, "Edit");
+                db.AuditTrails.Add(audit);
+
                 db.Entry(feename).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,8 +106,8 @@ namespace NPR2._0._8.Controllers
         }
 
         //
-        // GET: /FeeName/Delete/5
-        public ActionResult Delete(int id = 0)
+        // GET: /FeeName/Archive/5
+        public ActionResult Archive(int id = 0)
         {
             FeeName feename = db.FeeNames.Find(id);
             if (feename == null)
@@ -90,13 +118,20 @@ namespace NPR2._0._8.Controllers
         }
 
         //
-        // POST: /FeeName/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: /FeeName/Archive/5
+        [HttpPost, ActionName("Archive")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult ArchiveConfirmed(int id)
         {
             FeeName feename = db.FeeNames.Find(id);
-            db.FeeNames.Remove(feename);
+
+            // Add Audit Entry 
+            AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, feename, feename.FeeNameID, "Archive");
+            db.AuditTrails.Add(audit);
+
+            // Archive
+            feename.FeeNameStatus = MyExtensions.GetEnumDescription(Status.Archived);
+            db.Entry(feename).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

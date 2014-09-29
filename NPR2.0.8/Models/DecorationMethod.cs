@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NPR2._0._8.Models
+namespace NPRModels
 {
     using System;
     using System.Collections.Generic;
@@ -16,14 +16,15 @@ namespace NPR2._0._8.Models
     {
         public DecorationMethod()
         {
-            this.ProductDecorations = new HashSet<ProductDecoration>();
             this.AuditTrails = new HashSet<AuditTrail>();
+            this.ProductDecorations = new HashSet<ProductDecoration>();
         }
     
         public int DecorationMethodID { get; set; }
         public string DecorationMethodName { get; set; }
+        public string DecorationMethodStatus { get; set; }
     
-        public virtual ICollection<ProductDecoration> ProductDecorations { get; set; }
         public virtual ICollection<AuditTrail> AuditTrails { get; set; }
+        public virtual ICollection<ProductDecoration> ProductDecorations { get; set; }
     }
 }

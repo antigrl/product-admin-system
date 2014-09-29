@@ -1,4 +1,4 @@
-﻿@model NPR2._0._8.Models.PricingTier
+﻿@model NPRModels.PricingTier
 @using NPR2._0._8.Helpers;
 
 @{
@@ -14,6 +14,8 @@
 
     <fieldset class="left-half-content">
         <legend>PricingTier</legend>
+        
+        @Html.HiddenFor(model => model.PricingTierStatus)
 
         <div class="editor-label">
             @Html.LabelForRequired(model => model.PricingTierName)

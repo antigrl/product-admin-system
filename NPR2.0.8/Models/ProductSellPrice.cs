@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NPR2._0._8.Models
+namespace NPRModels
 {
     using System;
     using System.Collections.Generic;
@@ -16,8 +16,8 @@ namespace NPR2._0._8.Models
     {
         public ProductSellPrice()
         {
-            this.Fees = new HashSet<Fee>();
             this.AuditTrails = new HashSet<AuditTrail>();
+            this.Fees = new HashSet<Fee>();
         }
     
         public int SellPriceID { get; set; }
@@ -27,9 +27,10 @@ namespace NPR2._0._8.Models
         public decimal SellPriceMarginDollarAmount { get; set; }
         public decimal SellPriceFinalAmount { get; set; }
         public int ProductID { get; set; }
+        public string SellPriceStatus { get; set; }
     
+        public virtual ICollection<AuditTrail> AuditTrails { get; set; }
         public virtual ICollection<Fee> Fees { get; set; }
         public virtual Product Product { get; set; }
-        public virtual ICollection<AuditTrail> AuditTrails { get; set; }
     }
 }

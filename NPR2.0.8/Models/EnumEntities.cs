@@ -6,9 +6,9 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace NPR2._0._8.Models
+namespace NPRModels
 {
-    public class EnumEntities
+    public class EnumNPREntities
     {
     }
 
@@ -85,15 +85,26 @@ namespace NPR2._0._8.Models
         XXXL,
         [Description("4XL")]
         XXXXL,
+        [Description("5XL")]
+        XXXXXL,
+        [Description("6XL")]
+        XXXXXXL,
         [Description("LT")]
         LT,
         [Description("XLT")]
-        XLT
+        XLT,
+        [Description("2XLT")]
+        XXLT,
+        [Description("3XLT")]
+        XXXLT
     }
 
-    public enum ProductMajorCategories
+    public enum CategoryTypeList
     {
-
+        [Description("Major")]
+        MAJOR,
+        [Description("Minor")]
+        MINOR
     }
 
     #region SizeEnums
@@ -182,6 +193,8 @@ namespace NPR2._0._8.Models
 
     public enum Status
     {
+        [Description("New")]
+        New,
         [Description("Send to Merchandisers")]
         Send_To_Merchandisers,
         [Description("Send to Inventory Buyers")]
@@ -190,15 +203,50 @@ namespace NPR2._0._8.Models
         Send_To_Account_Manager,
         [Description("Send to Mentor")]
         Send_To_Mentor,
-        [Description("Pending Approval")]
-        Pending_Approval,
-        [Description("Processing")]
-        Processing,
+        [Description("Mentor Approved")]
+        Mentor_Approved,
         [Description("Active")]
         Active,
         [Description("Rejected")]
         Rejected,
-        [Description("Completed")]
-        Completed
+        [Description("Discontinued")]
+        Discontinued,
+        [Description("Archived")]
+        Archived
+    }
+
+    public enum ObjectType
+    {
+        [Description("Campaign")]
+        Campaign,
+        [Description("Category")]
+        Category,
+        [Description("Company")]
+        Company,
+        [Description("Decoration Method")]
+        Decoration_Method,
+        [Description("Fee")]
+        Fee,
+        [Description("FeeName")]
+        Fee_Name,
+        [Description("Packaging Type")]
+        Packaging_Type,
+        [Description("Pricing Tier")]
+        Pricing_Tier,
+        [Description("Product")]
+        Product,
+        [Description("Product Decoration")]
+        Product_Decoration,
+        [Description("Product Sell Price")]
+        Product_Sell_Price,
+        [Description("Product Upcharge")]
+        Product_Upcharge,
+        [Description("Upcharge Sell Price")]
+        Upcharge_Sell_Price,
+        [Description("Vendor Name")]
+        Vendor_Name,
+        [Description("Vendor Type")]
+        Vendor_Type,
+        Null
     }
 }

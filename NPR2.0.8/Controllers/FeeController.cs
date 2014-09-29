@@ -5,14 +5,16 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NPR2._0._8.Models;
+using NPRModels;
 using NPR2._0._8.Helpers;
+using NPRModels;
 
 namespace NPR2._0._8.Controllers
 {
     public class FeeController : Controller
     {
-        private Entities db = new Entities();
+        private NPREntities db = new NPREntities();
+        private string archived = MyExtensions.GetEnumDescription(Status.Archived);
 
         //
         // GET: /Fee/
@@ -25,15 +27,25 @@ namespace NPR2._0._8.Controllers
                                 .Include(f => f.PricingTier)
                                 .Include(f => f.Product)
                                 .Include(f => f.ProductSellPrice)
-                                .Where(f => (f.Company != null && f.Company.CompanyStatus != "Archived") ||
-                                        (f.Campaign != null && f.Campaign.CampaignStatus != "Archived") ||
-                                        (f.Product != null && f.Product.ProductStatus != "Archived" &&
-                                            f.Product.Campaign.CampaignStatus != "Archived" &&
-                                            f.Product.Campaign.Company.CompanyStatus != "Archived") ||
-                                        (f.PricingTier != null && f.PricingTier.Company.CompanyStatus != "Archived") ||
-                                        (f.ProductSellPrice != null && f.ProductSellPrice.Product.ProductStatus != "Archived" &&
-                                            f.ProductSellPrice.Product.Campaign.CampaignStatus != "Archived" &&
-                                            f.ProductSellPrice.Product.Campaign.Company.CompanyStatus != "Archived"));
+                                .Where(f => f.FeeStatus != archived && 
+                                    (
+                                        (f.Company != null && 
+                                            f.Company.CompanyStatus != archived) ||
+                                        (f.Campaign != null &&
+                                            f.Campaign.CampaignStatus != archived) ||
+                                        (f.Product != null &&
+                                            f.Product.ProductStatus != archived &&
+                                            f.Product.Campaign.CampaignStatus != archived &&
+                                            f.Product.Campaign.Company.CompanyStatus != archived) ||
+                                        (f.PricingTier != null && 
+                                            f.PricingTier.PricingTierStatus != archived &&
+                                            f.PricingTier.Company.CompanyStatus != archived) ||
+                                        (f.ProductSellPrice != null && 
+                                            f.ProductSellPrice.SellPriceStatus != archived &&
+                                            f.ProductSellPrice.Product.ProductStatus != archived &&
+                                            f.ProductSellPrice.Product.Campaign.CampaignStatus != archived &&
+                                            f.ProductSellPrice.Product.Campaign.Company.CompanyStatus != archived))
+                                    );
             return View(fees.ToList());
         }
 
@@ -48,15 +60,18 @@ namespace NPR2._0._8.Controllers
                                 .Include(f => f.PricingTier)
                                 .Include(f => f.Product)
                                 .Include(f => f.ProductSellPrice)
-                                .Where(f => f.Company.CompanyStatus == "Archived" ||
-                                            f.Campaign.CampaignStatus == "Archived" ||
-                                            f.Product.ProductStatus == "Archived" ||
-                                                f.Product.Campaign.CampaignStatus == "Archived" ||
-                                                f.Product.Campaign.Company.CompanyStatus == "Archived" ||
-                                            f.PricingTier.Company.CompanyStatus == "Archived" ||
-                                            f.ProductSellPrice.Product.ProductStatus == "Archived" ||
-                                                f.ProductSellPrice.Product.Campaign.CampaignStatus == "Archived" ||
-                                                f.ProductSellPrice.Product.Campaign.Company.CompanyStatus == "Archived");
+                                .Where(f => f.FeeStatus == archived ||
+                                            f.Company.CompanyStatus == archived ||
+                                            f.Campaign.CampaignStatus == archived ||
+                                            f.Product.ProductStatus == archived ||
+                                                f.Product.Campaign.CampaignStatus == archived ||
+                                                f.Product.Campaign.Company.CompanyStatus == archived ||
+                                            f.PricingTier.PricingTierStatus == archived ||
+                                                f.PricingTier.Company.CompanyStatus == archived ||
+                                            f.ProductSellPrice.SellPriceStatus == archived ||
+                                                f.ProductSellPrice.Product.ProductStatus == archived ||
+                                                f.ProductSellPrice.Product.Campaign.CampaignStatus == archived ||
+                                                f.ProductSellPrice.Product.Campaign.Company.CompanyStatus == archived);
             return View("Index", fees.ToList());
         }
 
@@ -76,36 +91,14 @@ namespace NPR2._0._8.Controllers
         // GET: /Fee/Create
         public ActionResult Create(string returnUrl, int CompanyID = 0, int CampaignID = 0, int PricingTierID = 0, int ProductSellPriceID = 0)
         {
-            ViewBag.ReturnUrl = returnUrl;
-            // Company List
-            var companyList = db.Companies.Where(c => c.CompanyStatus != "Archived");
-            ViewBag.CompanyID = new SelectList(companyList, "CompanyID", "CompanyName");
+            ViewBag.ReturnUrl = returnUrl; 
+            InstantiateEmptyViewBagLists();
+            
+            // Generate Decoration method for member initialization
+            Fee fee = new Fee();
+            fee.OnCreate();
 
-            // Pricing Tier List
-            var pricingTierList = db.PricingTiers.Where(p => p.Company.CompanyStatus != "Archived");
-            ViewBag.PricingTierID = new SelectList(pricingTierList, "PricingTierID", "PricingTierName");
-
-            // Campaign List
-            var campaignList = db.Campaigns.Where(c => c.CampaignStatus != "Archived" &&
-                                                        c.Company.CompanyStatus != "Archived");
-            ViewBag.CampaignID = new SelectList(campaignList, "CampaignID", "CampaignName");
-
-            // Product List
-            var productList = db.Products.Where(p => p.ProductStatus != "Archived" &&
-                                                        p.Campaign.CampaignStatus != "Archived" &&
-                                                        p.Campaign.Company.CompanyStatus != "Archived");
-            ViewBag.ProductID = new SelectList(productList, "ProductID", "ProductName");
-
-            // Sell Price List
-            var sellPriceList = db.ProductSellPrices.Where(p => p.Product.ProductStatus != "Archived" &&
-                                                                p.Product.Campaign.CampaignStatus != "Archived" &&
-                                                                p.Product.Campaign.Company.CompanyStatus != "Archived");
-            ViewBag.ProductSellPriceID = new SelectList(sellPriceList, "SellPriceID", "SellPriceName");
-
-            // Fee Name list
-            ViewBag.FeeNameID = new SelectList(db.FeeNames.OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName");
-
-            return View();
+            return View(fee);
         }
 
         //
@@ -126,36 +119,11 @@ namespace NPR2._0._8.Controllers
                 return Redirect(returnUrl);
             }
             ViewBag.ReturnUrl = returnUrl;
-            // Company List
-            var companyList = db.Companies.Where(c => c.CompanyStatus != "Archived");
-            ViewBag.CompanyID = new SelectList(companyList, "CompanyID", "CompanyName", fee.CompanyID);
-
-            // Pricing Tier List
-            var pricingTierList = db.PricingTiers.Where(p => p.Company.CompanyStatus != "Archived");
-            ViewBag.PricingTierID = new SelectList(pricingTierList, "PricingTierID", "PricingTierName", fee.PricingTierID);
-
-            // Campaign List
-            var campaignList = db.Campaigns.Where(c => c.CampaignStatus != "Archived" &&
-                                                        c.Company.CompanyStatus != "Archived");
-            ViewBag.CampaignID = new SelectList(campaignList, "CampaignID", "CampaignName", fee.CampaignID);
-
-            // Product List
-            var productList = db.Products.Where(p => p.ProductStatus != "Archived" &&
-                                                        p.Campaign.CampaignStatus != "Archived" &&
-                                                        p.Campaign.Company.CompanyStatus != "Archived");
-            ViewBag.ProductID = new SelectList(productList, "ProductID", "ProductName", fee.ProductID);
-
-            // Sell Price List
-            var sellPriceList = db.ProductSellPrices.Where(p => p.Product.ProductStatus != "Archived" &&
-                                                                p.Product.Campaign.CampaignStatus != "Archived" &&
-                                                                p.Product.Campaign.Company.CompanyStatus != "Archived");
-            ViewBag.ProductSellPriceID = new SelectList(sellPriceList, "SellPriceID", "SellPriceName", fee.ProductSellPriceID);
-
-            ViewBag.FeeNameID = new SelectList(db.FeeNames, "FeeNameID", "FeeNameName", fee.FeeNameID);
+            InstantiateFullViewBagLists(fee);
 
             return View(fee);
         }
-
+        
         //
         // GET: /Fee/Edit/5
         public ActionResult Edit(string returnUrl, int id = 0)
@@ -166,32 +134,8 @@ namespace NPR2._0._8.Controllers
             {
                 return HttpNotFound();
             }
-            // Company List
-            var companyList = db.Companies.Where(c => c.CompanyStatus != "Archived");
-            ViewBag.CompanyID = new SelectList(companyList, "CompanyID", "CompanyName", fee.CompanyID);
+            InstantiateFullViewBagLists(fee);
 
-            // Pricing Tier List
-            var pricingTierList = db.PricingTiers.Where(p => p.Company.CompanyStatus != "Archived");
-            ViewBag.PricingTierID = new SelectList(pricingTierList, "PricingTierID", "PricingTierName", fee.PricingTierID);
-
-            // Campaign List
-            var campaignList = db.Campaigns.Where(c => c.CampaignStatus != "Archived" &&
-                                                        c.Company.CompanyStatus != "Archived");
-            ViewBag.CampaignID = new SelectList(campaignList, "CampaignID", "CampaignName", fee.CampaignID);
-
-            // Product List
-            var productList = db.Products.Where(p => p.ProductStatus != "Archived" &&
-                                                        p.Campaign.CampaignStatus != "Archived" &&
-                                                        p.Campaign.Company.CompanyStatus != "Archived");
-            ViewBag.ProductID = new SelectList(productList, "ProductID", "ProductName", fee.ProductID);
-
-            // Sell Price List
-            var sellPriceList = db.ProductSellPrices.Where(p => p.Product.ProductStatus != "Archived" &&
-                                                                p.Product.Campaign.CampaignStatus != "Archived" &&
-                                                                p.Product.Campaign.Company.CompanyStatus != "Archived");
-            ViewBag.ProductSellPriceID = new SelectList(sellPriceList, "SellPriceID", "SellPriceName", fee.ProductSellPriceID);
-
-            ViewBag.FeeNameID = new SelectList(db.FeeNames, "FeeNameID", "FeeNameName", fee.FeeNameID);
             return View(fee);
         }
 
@@ -212,39 +156,16 @@ namespace NPR2._0._8.Controllers
                 }
                 return Redirect(returnUrl);
             }
-            ViewBag.ReturnUrl = returnUrl;
-            // Company List
-            var companyList = db.Companies.Where(c => c.CompanyStatus != "Archived");
-            ViewBag.CompanyID = new SelectList(companyList, "CompanyID", "CompanyName", fee.CompanyID);
 
-            // Pricing Tier List
-            var pricingTierList = db.PricingTiers.Where(p => p.Company.CompanyStatus != "Archived");
-            ViewBag.PricingTierID = new SelectList(pricingTierList, "PricingTierID", "PricingTierName", fee.PricingTierID);
+            ViewBag.ReturnUrl = returnUrl;            
+            InstantiateFullViewBagLists(fee);
 
-            // Campaign List
-            var campaignList = db.Campaigns.Where(c => c.CampaignStatus != "Archived" &&
-                                                        c.Company.CompanyStatus != "Archived");
-            ViewBag.CampaignID = new SelectList(campaignList, "CampaignID", "CampaignName", fee.CampaignID);
-
-            // Product List
-            var productList = db.Products.Where(p => p.ProductStatus != "Archived" &&
-                                                        p.Campaign.CampaignStatus != "Archived" &&
-                                                        p.Campaign.Company.CompanyStatus != "Archived");
-            ViewBag.ProductID = new SelectList(productList, "ProductID", "ProductName", fee.ProductID);
-
-            // Sell Price List
-            var sellPriceList = db.ProductSellPrices.Where(p => p.Product.ProductStatus != "Archived" &&
-                                                                p.Product.Campaign.CampaignStatus != "Archived" &&
-                                                                p.Product.Campaign.Company.CompanyStatus != "Archived");
-            ViewBag.ProductSellPriceID = new SelectList(sellPriceList, "SellPriceID", "SellPriceName", fee.ProductSellPriceID);
-
-            ViewBag.FeeNameID = new SelectList(db.FeeNames, "FeeNameID", "FeeNameName", fee.FeeNameID);
             return View(fee);
         }
 
         //
-        // GET: /Fee/Delete/5
-        public ActionResult Delete(string returnUrl, int id = 0)
+        // GET: /Fee/Archive/5
+        public ActionResult Archive(string returnUrl, int id = 0)
         {
             Fee fee = db.Fees.Find(id);
 
@@ -254,18 +175,19 @@ namespace NPR2._0._8.Controllers
             }
 
             ViewBag.ReturnUrl = returnUrl;
-            ViewBag.FeeNameID = new SelectList(db.FeeNames, "FeeNameID", "FeeNameName", fee.FeeNameID);
+            ViewBag.FeeNameID = new SelectList(db.FeeNames.Where(f => f.FeeNameStatus != archived), "FeeNameID", "FeeNameName", fee.FeeNameID);
             return View(fee);
         }
 
         //
-        // POST: /Fee/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: /Fee/Archive/5
+        [HttpPost, ActionName("Archive")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id, string returnUrl)
+        public ActionResult ArchiveConfirmed(int id, string returnUrl)
         {
             Fee fee = db.Fees.Find(id);
-            db.Fees.Remove(fee);
+            fee.FeeStatus = MyExtensions.GetEnumDescription(Status.Archived);
+            db.Entry(fee).State = EntityState.Modified;
             db.SaveChanges();
 
             if(returnUrl == null)
@@ -280,5 +202,74 @@ namespace NPR2._0._8.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+        #region CustomMethods
+        private void InstantiateFullViewBagLists(Fee fee)
+        {
+            // Company List
+            var companyList = db.Companies.Where(c => c.CompanyStatus != archived);
+            ViewBag.CompanyID = new SelectList(companyList, "CompanyID", "CompanyName", fee.CompanyID);
+
+            // Pricing Tier List
+            var pricingTierList = db.PricingTiers.Where(p => p.Company.CompanyStatus != archived &&
+                                                                p.PricingTierStatus != archived);
+            ViewBag.PricingTierID = new SelectList(pricingTierList, "PricingTierID", "PricingTierName", fee.PricingTierID);
+
+            // Campaign List
+            var campaignList = db.Campaigns.Where(c => c.CampaignStatus != archived &&
+                                                        c.Company.CompanyStatus != archived);
+            ViewBag.CampaignID = new SelectList(campaignList, "CampaignID", "CampaignName", fee.CampaignID);
+
+            // Product List
+            var productList = db.Products.Where(p => p.ProductStatus != archived &&
+                                                        p.Campaign.CampaignStatus != archived &&
+                                                        p.Campaign.Company.CompanyStatus != archived);
+            ViewBag.ProductID = new SelectList(productList, "ProductID", "ProductName", fee.ProductID);
+
+            // Sell Price List
+            var sellPriceList = db.ProductSellPrices.Where(p => p.SellPriceStatus != archived &&
+                                                                p.Product.ProductStatus != archived &&
+                                                                p.Product.Campaign.CampaignStatus != archived &&
+                                                                p.Product.Campaign.Company.CompanyStatus != archived);
+            ViewBag.ProductSellPriceID = new SelectList(sellPriceList, "SellPriceID", "SellPriceName", fee.ProductSellPriceID);
+
+            // Fee Name List
+            ViewBag.FeeNameID = new SelectList(db.FeeNames.Where(f => f.FeeNameStatus != archived), "FeeNameID", "FeeNameName", fee.FeeNameID);
+        }
+
+        private void InstantiateEmptyViewBagLists()
+        {
+            // Company List
+            var companyList = db.Companies.Where(c => c.CompanyStatus != archived);
+            ViewBag.CompanyID = new SelectList(companyList, "CompanyID", "CompanyName");
+
+            // Pricing Tier List
+            var pricingTierList = db.PricingTiers.Where(p => p.Company.CompanyStatus != archived
+                                                            && p.PricingTierStatus != archived);
+            ViewBag.PricingTierID = new SelectList(pricingTierList, "PricingTierID", "PricingTierName");
+
+            // Campaign List
+            var campaignList = db.Campaigns.Where(c => c.CampaignStatus != archived &&
+                                                        c.Company.CompanyStatus != archived);
+            ViewBag.CampaignID = new SelectList(campaignList, "CampaignID", "CampaignName");
+
+            // Product List
+            var productList = db.Products.Where(p => p.ProductStatus != archived &&
+                                                        p.Campaign.CampaignStatus != archived &&
+                                                        p.Campaign.Company.CompanyStatus != archived);
+            ViewBag.ProductID = new SelectList(productList, "ProductID", "ProductName");
+
+            // Sell Price List
+            var sellPriceList = db.ProductSellPrices.Where(p => p.SellPriceStatus != archived &&
+                                                                p.Product.ProductStatus != archived &&
+                                                                p.Product.Campaign.CampaignStatus != archived &&
+                                                                p.Product.Campaign.Company.CompanyStatus != archived);
+            ViewBag.ProductSellPriceID = new SelectList(sellPriceList, "SellPriceID", "SellPriceName");
+
+            // Fee Name list
+            ViewBag.FeeNameID = new SelectList(db.FeeNames.Where(f => f.FeeNameStatus != archived).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName");
+        }
+        #endregion
+
     }
 }

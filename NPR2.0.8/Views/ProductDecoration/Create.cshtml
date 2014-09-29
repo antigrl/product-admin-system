@@ -1,5 +1,5 @@
-﻿@model NPR2._0._8.Models.ProductDecoration
-@using NPR2._0._8.Models
+﻿@model NPRModels.ProductDecoration
+@using NPRModels
 @using NPR2._0._8.Helpers
 
 @{
@@ -15,6 +15,8 @@
 
     <fieldset class="left-half-content">
         <legend>ProductDecoration</legend>
+        
+        @Html.HiddenFor(model => model.DecorationStatus)
 
         <div class="editor-label">
             @Html.LabelForRequired(model => model.DecorationName)

@@ -5,26 +5,47 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NPR2._0._8.Models;
+using NPRModels;
+using NPR2._0._8.Helpers;
+using NPRModels;
 
 namespace NPR2._0._8.Controllers
 {
     public class VendorNameController : Controller
     {
-        private Entities db = new Entities();
+        private NPREntities db = new NPREntities();
+        private string archived = MyExtensions.GetEnumDescription(Status.Archived);
 
         //
         // GET: /VendorName/
         public ActionResult Index()
         {
-            return View(db.VendorNames.ToList());
+            ViewBag.TitleMessage = "Active";
+            var vendorNames = db.VendorNames.Where(v => v.VendorNameStatus != archived)
+                                                .OrderBy(v => v.VendorNameName);
+            return View(vendorNames.ToList());
         }
+
+        //
+        // GET: /VendorName/ArchivedIndex
+        public ActionResult ArchivedIndex()
+        {
+            ViewBag.TitleMessage = "Archived";
+            var vendorNames = db.VendorNames.Where(v => v.VendorNameStatus == archived)
+                                                .OrderBy(v => v.VendorNameName);
+            return View("Index", vendorNames.ToList());
+        }
+
 
         //
         // GET: /VendorName/Create
         public ActionResult Create()
         {
-            return View();
+            // Generate Decoration method for member initialization
+            VendorName vendorName = new VendorName();
+            vendorName.OnCreate();
+
+            return View(vendorName);
         }
 
         //
@@ -35,6 +56,10 @@ namespace NPR2._0._8.Controllers
         {
             if(ModelState.IsValid)
             {
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, vendorname, vendorname.VendorNameID, "Create");
+                db.AuditTrails.Add(audit);
+
                 db.VendorNames.Add(vendorname);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -63,6 +88,10 @@ namespace NPR2._0._8.Controllers
         {
             if(ModelState.IsValid)
             {
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, vendorname, vendorname.VendorNameID, "Edit");
+                db.AuditTrails.Add(audit);
+
                 db.Entry(vendorname).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -71,8 +100,8 @@ namespace NPR2._0._8.Controllers
         }
 
         //
-        // GET: /VendorName/Delete/5
-        public ActionResult Delete(int id = 0)
+        // GET: /VendorName/Archive/5
+        public ActionResult Archive(int id = 0)
         {
             VendorName vendorname = db.VendorNames.Find(id);
             if(vendorname == null)
@@ -83,13 +112,20 @@ namespace NPR2._0._8.Controllers
         }
 
         //
-        // POST: /VendorName/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: /VendorName/Archive/5
+        [HttpPost, ActionName("Archive")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult ArchiveConfirmed(int id)
         {
             VendorName vendorname = db.VendorNames.Find(id);
-            db.VendorNames.Remove(vendorname);
+
+            // Add Audit Entry 
+            AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, vendorname, id, "Archive");
+            db.AuditTrails.Add(audit);
+
+            // Archive
+            vendorname.VendorNameStatus = MyExtensions.GetEnumDescription(Status.Archived);
+            db.Entry(vendorname).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -1,4 +1,4 @@
-﻿@model NPR2._0._8.Models.DecorationMethod
+﻿@model NPRModels.DecorationMethod
 
 @{
     ViewBag.Title = "Edit Decoration Method";
@@ -6,7 +6,7 @@
 
 <h2>Edit Decoration Method</h2>
 
-@using(Html.BeginForm())
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -15,6 +15,7 @@
         <legend>DecorationMethod</legend>
 
         @Html.HiddenFor(model => model.DecorationMethodID)
+        @Html.HiddenFor(model => model.DecorationMethodStatus)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.DecorationMethodName)

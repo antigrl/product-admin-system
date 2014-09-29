@@ -1,0 +1,28 @@
+﻿@model NPRModels.DecorationMethod
+
+@{
+    ViewBag.Title = "Archive Decoration Method";
+}
+
+<h2>Archive Decoration Method</h2>
+
+<h3>Are you sure you want to archive this Decoration Method?</h3>
+<fieldset>
+    <legend>DecorationMethod</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.DecorationMethodName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DecorationMethodName)
+    </div>
+</fieldset>
+@using(Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Archive" />
+        |
+        @Html.ActionLink("Back to Decoration Method List", "Index")
+    </p>
+}

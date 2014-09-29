@@ -15,6 +15,13 @@ namespace NPR2._0._8.Controllers
             return View();
         }
 
+        public ActionResult AdminLinks()
+        {
+            ViewBag.Message = "Displays admin links to all data within the system";
+
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";

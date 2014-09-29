@@ -1,4 +1,4 @@
-﻿@model NPR2._0._8.Models.VendorType
+﻿@model NPRModels.VendorType
 
 @{
     ViewBag.Title = "Create Vendor Type";
@@ -13,6 +13,8 @@
 
     <fieldset class="left-half-content">
         <legend>VendorType</legend>
+        
+        @Html.HiddenFor(model => model.VendorTypeStatus)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.VendorTypeName)

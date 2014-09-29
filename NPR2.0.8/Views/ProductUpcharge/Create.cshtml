@@ -1,5 +1,5 @@
-﻿@model NPR2._0._8.Models.ProductUpcharge
-@using NPR2._0._8.Models
+﻿@model NPRModels.ProductUpcharge
+@using NPRModels
 @using NPR2._0._8.Helpers
 
 @{
@@ -15,6 +15,9 @@
     
     <fieldset class="left-half-content">
         <legend>ProductUpcharge</legend>
+        
+        @Html.HiddenFor(model => model.UpchargeStatus)
+
         <div class="editor-label">
             @Html.LabelForRequired(model => model.UpchargeName)
         </div>

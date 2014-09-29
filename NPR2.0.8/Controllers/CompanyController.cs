@@ -5,15 +5,17 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NPR2._0._8.Models;
+using NPRModels;
 using NPR2._0._8.Helpers;
 using NPR2._0._8.Mailers;
+using NPRModels;
 
 namespace NPR2._0._8.Controllers
 {
     public class CompanyController : Controller
     {
-        private Entities db = new Entities();
+        private NPREntities db = new NPREntities();
+        private string archived = MyExtensions.GetEnumDescription(Status.Archived);
 
         private IUserMailer _userMailer = new UserMailer();
         public IUserMailer UserMailer
@@ -27,7 +29,8 @@ namespace NPR2._0._8.Controllers
         public ActionResult Index()
         {
             ViewBag.TitleMessage = "Active";
-            return View(db.Companies.Where(c => c.CompanyStatus != "Archived").OrderBy(c => c.CompanyDivisionNumber).ToList());
+            return View(db.Companies.Where(c => c.CompanyStatus != archived)
+                                        .OrderBy(c => c.CompanyDivisionNumber).ToList());
         }
 
         //
@@ -35,7 +38,8 @@ namespace NPR2._0._8.Controllers
         public ActionResult ArchivedIndex()
         {
             ViewBag.TitleMessage = "Archived";
-            return View("Index", db.Companies.Where(c => c.CompanyStatus == "Archived").OrderBy(c => c.CompanyDivisionNumber).ToList());
+            return View("Index", db.Companies.Where(c => c.CompanyStatus == archived)
+                                                .OrderBy(c => c.CompanyDivisionNumber).ToList());
         }
 
         //
@@ -60,6 +64,10 @@ namespace NPR2._0._8.Controllers
                     company.CompanyImage = imageBinaryData;
                     company.CompanyImageType = CompanyImage.ContentType;
                 }
+
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, company, company.CompanyID, "Create");
+                db.AuditTrails.Add(audit);
 
                 db.Companies.Add(company);
                 db.SaveChanges();
@@ -96,6 +104,10 @@ namespace NPR2._0._8.Controllers
                     company.CompanyImage = imageBinaryData;
                     company.CompanyImageType = CompanyImage.ContentType;
                 }
+
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, company, company.CompanyID, "Edit");
+                db.AuditTrails.Add(audit);
 
                 db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();
@@ -134,9 +146,11 @@ namespace NPR2._0._8.Controllers
         public ActionResult ArchiveConfirmed(int id)
         {
             Company company = db.Companies.Find(id);
-
-            // TODO: Set status to disabled/hidden and no longer show
-            company.CompanyStatus = "Archived";
+            company.CompanyStatus = MyExtensions.GetEnumDescription(Status.Archived);
+            
+            // Add Audit Entry 
+            AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, company, company.CompanyID, "Archive");
+            db.AuditTrails.Add(audit);
 
             db.Entry(company).State = EntityState.Modified;
             db.SaveChanges();

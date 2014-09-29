@@ -5,14 +5,16 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NPR2._0._8.Models;
+using NPRModels;
 using NPR2._0._8.Helpers;
+using NPRModels;
 
 namespace NPR2._0._8.Controllers
 {
     public class PricingTierController : Controller
     {
-        private Entities db = new Entities();
+        private NPREntities db = new NPREntities();
+        private string archived = MyExtensions.GetEnumDescription(Status.Archived);
 
         //
         // GET: /PricingTier/
@@ -20,7 +22,8 @@ namespace NPR2._0._8.Controllers
         {
             ViewBag.TitleMessage = "Active";
             var pricingtiers = db.PricingTiers.Include(p => p.Company)
-                                                .Where(p => p.Company.CompanyStatus != "Archived")
+                                                .Where(p => p.PricingTierStatus != archived &&
+                                                            p.Company.CompanyStatus != archived)
                                                 .OrderBy(p => p.CompanyID).ThenBy(p => p.PricingTierLevel);
             return View(pricingtiers.ToList());
         }
@@ -30,7 +33,8 @@ namespace NPR2._0._8.Controllers
         {
             ViewBag.TitleMessage = "Archived";
             var pricingtiers = db.PricingTiers.Include(p => p.Company)
-                                                .Where(p => p.Company.CompanyStatus == "Archived")
+                                                .Where(p => p.PricingTierStatus == archived ||
+                                                            p.Company.CompanyStatus == archived)
                                                 .OrderBy(p => p.CompanyID).ThenBy(p => p.PricingTierLevel);
             return View("Index", pricingtiers.ToList());
         }
@@ -40,8 +44,13 @@ namespace NPR2._0._8.Controllers
         public ActionResult Create(string returnUrl, int CompanyID = 0)
         {
             ViewBag.ReturnUrl = returnUrl;
-            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != "Archived"), "CompanyID", "CompanyName");
-            return View();
+            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != archived), "CompanyID", "CompanyName");
+
+            // Generate Decoration method for member initialization
+            PricingTier pricingTier = new PricingTier();
+            pricingTier.OnCreate();
+
+            return View(pricingTier);
         }
 
         //
@@ -52,6 +61,10 @@ namespace NPR2._0._8.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, pricingtier, pricingtier.PricingTierID, "Create");
+                db.AuditTrails.Add(audit);
+
                 db.PricingTiers.Add(pricingtier);
                 db.SaveChanges();
 
@@ -62,7 +75,7 @@ namespace NPR2._0._8.Controllers
                 return Redirect(returnUrl);
             }
 
-            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != "Archived"), "CompanyID", "CompanyName", pricingtier.CompanyID);
+            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != archived), "CompanyID", "CompanyName", pricingtier.CompanyID);
             return View(pricingtier);
         }
 
@@ -76,7 +89,7 @@ namespace NPR2._0._8.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != "Archived"), "CompanyID", "CompanyName", pricingtier.CompanyID);
+            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != archived), "CompanyID", "CompanyName", pricingtier.CompanyID);
             return View(pricingtier);
         }
 
@@ -88,6 +101,10 @@ namespace NPR2._0._8.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, pricingtier, pricingtier.PricingTierID, "Edit");
+                db.AuditTrails.Add(audit);
+
                 db.Entry(pricingtier).State = EntityState.Modified;
                 db.SaveChanges();
 
@@ -97,13 +114,13 @@ namespace NPR2._0._8.Controllers
                 }
                 return Redirect(returnUrl);
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != "Archived"), "CompanyID", "CompanyName", pricingtier.CompanyID);
+            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != archived), "CompanyID", "CompanyName", pricingtier.CompanyID);
             return View(pricingtier);
         }
 
         //
-        // GET: /PricingTier/Delete/5
-        public ActionResult Delete(string returnUrl, int id = 0)
+        // GET: /PricingTier/Archive/5
+        public ActionResult Archive(string returnUrl, int id = 0)
         {
             ViewBag.ReturnUrl = returnUrl;
             PricingTier pricingtier = db.PricingTiers.Find(id);
@@ -115,13 +132,20 @@ namespace NPR2._0._8.Controllers
         }
 
         //
-        // POST: /PricingTier/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: /PricingTier/Archive/5
+        [HttpPost, ActionName("Archive")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id, string returnUrl)
+        public ActionResult ArchiveConfirmed(int id, string returnUrl)
         {
             PricingTier pricingtier = db.PricingTiers.Find(id);
-            db.PricingTiers.Remove(pricingtier);
+
+            // Add Audit Entry 
+            AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, pricingtier, pricingtier.PricingTierID, "Archive");
+            db.AuditTrails.Add(audit);
+
+            //Archive
+            pricingtier.PricingTierStatus = MyExtensions.GetEnumDescription(Status.Archived);
+            db.Entry(pricingtier).State = EntityState.Modified;
             db.SaveChanges();
 
             if(returnUrl == null)

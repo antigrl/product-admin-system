@@ -5,15 +5,17 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NPR2._0._8.Models;
+using NPRModels;
 using NPR2._0._8.Helpers;
 using NPR2._0._8.Mailers;
+using NPRModels;
 
 namespace NPR2._0._8.Controllers
 {
     public class ProductController : Controller
     {
-        private Entities db = new Entities();
+        private NPREntities db = new NPREntities();
+        private string archived = MyExtensions.GetEnumDescription(Status.Archived);
 
         private IUserMailer _userMailer = new UserMailer();
         public IUserMailer UserMailer
@@ -28,9 +30,9 @@ namespace NPR2._0._8.Controllers
         {
             ViewBag.TitleMessage = "Active";
             var products = db.Products.Include(p => p.Campaign)
-                                        .Where(p => p.ProductStatus != "Archived" &&
-                                                    p.Campaign.CampaignStatus != "Archived" &&
-                                                    p.Campaign.Company.CompanyStatus != "Archived")
+                                        .Where(p => p.ProductStatus != archived &&
+                                                    p.Campaign.CampaignStatus != archived &&
+                                                    p.Campaign.Company.CompanyStatus != archived)
                                         .OrderBy(p => p.Campaign.CampaignID);
             return View(products.ToList());
         }
@@ -41,9 +43,9 @@ namespace NPR2._0._8.Controllers
         {
             ViewBag.TitleMessage = "Archived";
             var products = db.Products.Include(p => p.Campaign)
-                                        .Where(p => p.ProductStatus == "Archived" ||
-                                                    p.Campaign.CampaignStatus == "Archived" ||
-                                                    p.Campaign.Company.CompanyStatus == "Archived")
+                                        .Where(p => p.ProductStatus == archived ||
+                                                    p.Campaign.CampaignStatus == archived ||
+                                                    p.Campaign.Company.CompanyStatus == archived)
                                         .OrderBy(p => p.Campaign.CampaignID);
             return View("Index", products.ToList());
         }
@@ -98,6 +100,10 @@ namespace NPR2._0._8.Controllers
                     product.ProductImage = imageBinaryData;
                     product.ProductImageType = ProductImage.ContentType;
                 }
+
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Create");
+                db.AuditTrails.Add(audit);
 
                 db.Products.Add(product);
                 db.SaveChanges();
@@ -185,7 +191,8 @@ namespace NPR2._0._8.Controllers
                 {
                     if(!Fees.Contains(fee))
                     {
-                        db.Fees.Remove(fee);
+                        fee.FeeStatus = MyExtensions.GetEnumDescription(Status.Archived);
+                        db.Entry(fee).State = EntityState.Modified;;
                     }
                 }
 
@@ -251,7 +258,8 @@ namespace NPR2._0._8.Controllers
                 {
                     if(!decorations.Contains(decoration))
                     {
-                        db.ProductDecorations.Remove(decoration);
+                        decoration.DecorationStatus = MyExtensions.GetEnumDescription(Status.Archived);
+                        db.Entry(decoration).State = EntityState.Modified;
                     }
                 }
 
@@ -286,11 +294,17 @@ namespace NPR2._0._8.Controllers
                     product.ProductImage = imageBinaryData;
                     product.ProductImageType = ProductImage.ContentType;
                 }
+                
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Save and Calculate Prices");
+                db.AuditTrails.Add(audit);
 
                 db.SaveChanges();
 
                 // Send Emails
                 #region SendEmails
+                // TODO: Check previous status (must move db.savechanges() call)
+
                 List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(product.ProductStatus);
                 var urlBuilder = new System.UriBuilder(Request.Url.AbsoluteUri) { Path = Url.Action("Edit", "Product") + "/" + product.ProductID, Query = null, };
                 var campaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID).FirstOrDefault();
@@ -318,7 +332,8 @@ namespace NPR2._0._8.Controllers
                 }
             }
             // Error
-            product.Campaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID).FirstOrDefault();
+            product.Campaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID)
+                                            .FirstOrDefault();
             return View("Edit", product);
         }
 
@@ -355,7 +370,8 @@ namespace NPR2._0._8.Controllers
                 {
                     if(!Fees.Contains(fee))
                     {
-                        db.Fees.Remove(fee);
+                        fee.FeeStatus = MyExtensions.GetEnumDescription(Status.Archived);
+                        db.Entry(fee).State = EntityState.Modified;
                     }
                 }
 
@@ -422,7 +438,8 @@ namespace NPR2._0._8.Controllers
                 {
                     if(!decorations.Contains(decoration))
                     {
-                        db.ProductDecorations.Remove(decoration);
+                        decoration.DecorationStatus = MyExtensions.GetEnumDescription(Status.Archived);
+                        db.Entry(decoration).State = EntityState.Modified;
                     }
                 }
 
@@ -449,6 +466,10 @@ namespace NPR2._0._8.Controllers
                     product.ProductImage = imageBinaryData;
                     product.ProductImageType = ProductImage.ContentType;
                 }
+                
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Save and Calculate Margin");
+                db.AuditTrails.Add(audit);
 
                 db.SaveChanges();
                 return RedirectToAction("Edit", new { id = product.ProductID, ReturnUrl = returnUrl });
@@ -493,8 +514,12 @@ namespace NPR2._0._8.Controllers
             Product product = db.Products.Find(id);
 
             // Archive Product
-            product.ProductStatus = "Archived";
+            product.ProductStatus = MyExtensions.GetEnumDescription(Status.Archived);
             db.Entry(product).State = EntityState.Modified;
+
+            // Add Audit Entry 
+            AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Archive");
+            db.AuditTrails.Add(audit);
 
             db.SaveChanges();
 
@@ -513,7 +538,9 @@ namespace NPR2._0._8.Controllers
 
         public PartialViewResult BlankEditorRow(int productID, bool isDecoration = false, string feeType = "", string feeCalculation = "")
         {
-            ViewBag.FeeNames = new SelectList(db.FeeNames.Where(f => f.FeeNameType == feeType).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", 0);
+            ViewBag.FeeNames = new SelectList(db.FeeNames.Where(f => f.FeeNameType == feeType &&
+                                                                        f.FeeNameStatus != archived)
+                                                            .OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", 0);
 
             if(feeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount))
             {
@@ -530,7 +557,8 @@ namespace NPR2._0._8.Controllers
 
             if(isDecoration)
             {
-                ViewBag.DecorationMethods = new SelectList(db.DecorationMethods.OrderBy(d => d.DecorationMethodName), "DecorationMethodID", "DecorationMethodName");
+                ViewBag.DecorationMethods = new SelectList(db.DecorationMethods.Where(d => d.DecorationMethodStatus != archived)
+                                                                                .OrderBy(d => d.DecorationMethodName), "DecorationMethodID", "DecorationMethodName");
                 return PartialView("_ProductDecorationEditor", new ProductDecoration(productID));
             }
 
@@ -539,7 +567,7 @@ namespace NPR2._0._8.Controllers
 
         public PartialViewResult BlankEditorRowExtended(int productID, string feeType, string feeCalculation, int feeNameID, decimal? feeDollarAmount, decimal? feeAmortizedCharge, string feeAmortizedType, decimal? feePercent, string feePercentType, int inheritedID)
         {
-            ViewBag.FeeNames = new SelectList(new Entities().FeeNames.Where(f => f.FeeNameType == feeType).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", feeNameID);
+            ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == feeType).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", feeNameID);
 
             if(feeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount))
             {
@@ -580,29 +608,33 @@ namespace NPR2._0._8.Controllers
 
             if(product != null)
             {
-                var list = db.Campaigns.Where(c => c.CampaignStatus != "Archived" &&
-                                                    c.Company.CompanyStatus != "Archived");
+                var list = db.Campaigns.Where(c => c.CampaignStatus != archived &&
+                                                    c.Company.CompanyStatus != archived);
 
                 ViewBag.Campaigns = new SelectList(list, "CampaignID", "CampaignName", product.CampaignID);
-                ViewBag.PackagingTypes = new SelectList(db.PackagingTypes.OrderBy(p => p.PackagingTypeName), "PackagingTypeID", "PackagingTypeName", product.PackagingTypeID);
-                ViewBag.VendorNames = new SelectList(db.VendorNames.OrderBy(v => v.VendorNameName), "VendorNameID", "VendorNameName", product.VendorNameID);
-                ViewBag.VendorTypes = new SelectList(db.VendorTypes, "VendorTypeID", "VendorTypeName", product.VendorTypeID);
-                ViewBag.FeeNames = new SelectList(db.FeeNames, "FeeNameID", "FeeNameName", 0);
-                ViewBag.DecorationMethodsDB = db.DecorationMethods;
+                ViewBag.PackagingTypes = new SelectList(db.PackagingTypes.Where(p => p.PackagingTypeStatus != archived).OrderBy(p => p.PackagingTypeName), "PackagingTypeID", "PackagingTypeName", product.PackagingTypeID);
+                ViewBag.VendorNames = new SelectList(db.VendorNames.Where(v => v.VendorNameStatus != archived).OrderBy(v => v.VendorNameName), "VendorNameID", "VendorNameName", product.VendorNameID);
+                ViewBag.VendorTypes = new SelectList(db.VendorTypes.Where(v => v.VendorTypeStatus != archived), "VendorTypeID", "VendorTypeName", product.VendorTypeID);
+                ViewBag.FeeNames = new SelectList(db.FeeNames.Where(f => f.FeeNameStatus != archived), "FeeNameID", "FeeNameName", 0);
+                ViewBag.MajorCategories = new SelectList(db.Categories.Where(c => c.CategoryStatus != archived && c.CategoryType == "Major").OrderBy(c => c.CategoryName), "CategoryID", "CategoryName", product.MajorCategoryID);
+                ViewBag.MinorCategories = new SelectList(db.Categories.Where(c => c.CategoryStatus != archived && c.CategoryType == "Minor").OrderBy(c => c.CategoryName), "CategoryID", "CategoryName", product.MinorCategoryID);
+                ViewBag.DecorationMethodsDB = db.DecorationMethods.Where(d => d.DecorationMethodStatus != archived).OrderBy(d => d.DecorationMethodName);
             }
 
             else if(product == null)
             {
                 ViewBag.ReturnUrl = returnUrl;
-                var campaignList = db.Campaigns.Where(c => c.CampaignStatus != "Archived" &&
-                                                    c.Company.CompanyStatus != "Archived");
+                var campaignList = db.Campaigns.Where(c => c.CampaignStatus != archived &&
+                                                    c.Company.CompanyStatus != archived);
 
                 ViewBag.Campaigns = new SelectList(campaignList, "CampaignID", "CampaignName");
-                ViewBag.PackagingTypes = new SelectList(db.PackagingTypes.OrderBy(p => p.PackagingTypeName), "PackagingTypeID", "PackagingTypeName");
-                ViewBag.VendorNames = new SelectList(db.VendorNames.OrderBy(v => v.VendorNameName), "VendorNameID", "VendorNameName");
-                ViewBag.VendorTypes = new SelectList(db.VendorTypes, "VendorTypeID", "VendorTypeName");
-                ViewBag.FeeNames = new SelectList(db.FeeNames, "FeeNameID", "FeeNameName", 0);
-                ViewBag.DecorationMethodsDB = db.DecorationMethods;
+                ViewBag.PackagingTypes = new SelectList(db.PackagingTypes.Where(p => p.PackagingTypeStatus != archived).OrderBy(p => p.PackagingTypeName), "PackagingTypeID", "PackagingTypeName");
+                ViewBag.VendorNames = new SelectList(db.VendorNames.Where(v => v.VendorNameStatus != archived).OrderBy(v => v.VendorNameName), "VendorNameID", "VendorNameName");
+                ViewBag.VendorTypes = new SelectList(db.VendorTypes.Where(v => v.VendorTypeStatus != archived), "VendorTypeID", "VendorTypeName");
+                ViewBag.FeeNames = new SelectList(db.FeeNames.Where(f => f.FeeNameStatus != archived), "FeeNameID", "FeeNameName", 0);
+                ViewBag.MajorCategories = new SelectList(db.Categories.Where(c => c.CategoryStatus != archived && c.CategoryType == "Major").OrderBy(c => c.CategoryName), "CategoryID", "CategoryName");
+                ViewBag.MinorCategories = new SelectList(db.Categories.Where(c => c.CategoryStatus != archived && c.CategoryType == "Minor").OrderBy(c => c.CategoryName), "CategoryID", "CategoryName");
+                ViewBag.DecorationMethodsDB = db.DecorationMethods.Where(d => d.DecorationMethodStatus != archived).OrderBy(d => d.DecorationMethodName);
             }
         }
     }

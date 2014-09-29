@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NPR2._0._8.Models
+namespace NPRModels
 {
     using System;
     using System.Collections.Generic;
@@ -17,6 +17,7 @@ namespace NPR2._0._8.Models
         public int AuditTrailID { get; set; }
         public System.DateTime AuditTrailTimeStamp { get; set; }
         public string AuditTrailUserName { get; set; }
+        public string AuditTrailComment { get; set; }
         public Nullable<int> CampaignID { get; set; }
         public Nullable<int> CompanyID { get; set; }
         public Nullable<int> DecorationMethodID { get; set; }
@@ -31,8 +32,12 @@ namespace NPR2._0._8.Models
         public Nullable<int> VendorNameID { get; set; }
         public Nullable<int> VendorTypeID { get; set; }
         public Nullable<int> UpchargeSellPriceID { get; set; }
+        public Nullable<int> CategoryID { get; set; }
     
+        public virtual AuditTrail AuditTrail1 { get; set; }
+        public virtual AuditTrail AuditTrail2 { get; set; }
         public virtual Campaign Campaign { get; set; }
+        public virtual Category Category { get; set; }
         public virtual Company Company { get; set; }
         public virtual DecorationMethod DecorationMethod { get; set; }
         public virtual Fee Fee { get; set; }
@@ -43,8 +48,8 @@ namespace NPR2._0._8.Models
         public virtual ProductDecoration ProductDecoration { get; set; }
         public virtual ProductSellPrice ProductSellPrice { get; set; }
         public virtual ProductUpcharge ProductUpcharge { get; set; }
+        public virtual UpchargeSellPrice UpchargeSellPrice { get; set; }
         public virtual VendorName VendorName { get; set; }
         public virtual VendorType VendorType { get; set; }
-        public virtual UpchargeSellPrice UpchargeSellPrice { get; set; }
     }
 }

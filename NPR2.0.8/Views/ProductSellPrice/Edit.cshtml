@@ -1,4 +1,4 @@
-﻿@model NPR2._0._8.Models.ProductSellPrice
+﻿@model NPRModels.ProductSellPrice
 @using NPR2._0._8.Helpers;
 
 @{
@@ -7,7 +7,7 @@
 
 <h2>Edit Sell Price</h2>
 
-@using(Html.BeginForm())
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -16,6 +16,7 @@
         <legend>ProductSellPrice</legend>
 
         @Html.HiddenFor(model => model.SellPriceID)
+        @Html.HiddenFor(model => model.SellPriceStatus)
 
         <div class="editor-label">
             @Html.LabelForRequired(model => model.SellPriceName)

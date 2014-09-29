@@ -1,16 +1,16 @@
-﻿@model NPR2._0._8.Models.Fee
+﻿@model NPRModels.Fee
 @using NPR2._0._8.Helpers;
-@using NPR2._0._8.Models;
+@using NPRModels;
 
 <div class="editor-row">
-    @using(Html.BeginCollectionItem("Fees"))
+    @using (Html.BeginCollectionItem("Fees"))
     {
         @Html.ValidationSummary(true)
         <button type="button" class="delete-row">-</button>
         @Html.ValidationMessageFor(model => model.FeeNameID)
         <div class="editor-label">
             @Html.EditorFor(model => model.FeeLevel)
-            @if(Model.FeeNameID == 0)
+            @if (Model.FeeNameID == 0)
             {
                 @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)
             }
@@ -22,6 +22,7 @@
             @Html.HiddenFor(model => model.ProductID)
             @Html.HiddenFor(model => model.FeeType)
             @Html.HiddenFor(model => model.FeeCalculation)
+            @Html.HiddenFor(model => model.FeeStatus)
             <span class="inherited-id">
                 @Html.HiddenFor(model => model.FeeInheritedFeeID)
             </span>
@@ -38,7 +39,7 @@
                 <span title="Divide">Divide</span>
             </span>
             <span class="percent-span">%&nbsp;@Html.TextBoxFor(model => model.FeePercent, new { @class = "percent-value" })</span>
-            @if(Model.FeeDollarAmount != null)
+            @if (Model.FeeDollarAmount != null)
             {
                 <span>$&nbsp;@Html.DisplayFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })</span>
             }

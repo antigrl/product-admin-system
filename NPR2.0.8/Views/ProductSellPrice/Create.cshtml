@@ -1,4 +1,4 @@
-﻿@model NPR2._0._8.Models.ProductSellPrice
+﻿@model NPRModels.ProductSellPrice
 @using NPR2._0._8.Helpers;
 
 @{
@@ -14,6 +14,8 @@
 
     <fieldset class="left-half-content">
         <legend>ProductSellPrice</legend>
+        
+        @Html.HiddenFor(model => model.SellPriceStatus)
 
         <div class="editor-label">
             @Html.LabelForRequired(model => model.SellPriceName)

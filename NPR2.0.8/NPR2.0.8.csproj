@@ -149,7 +149,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AuditTrailController.cs" />
     <Compile Include="Controllers\CampaignController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DecorationMethodController.cs" />
     <Compile Include="Controllers\FeeController.cs" />
@@ -174,67 +176,70 @@
     <Compile Include="Mailers\IUserMailer.cs" />
     <Compile Include="Mailers\UserMailer.cs" />
     <Compile Include="Models\AuditTrail.cs">
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Campaign.cs">
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Company.cs">
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DecorationMethod.cs">
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EnumEntities.cs" />
     <Compile Include="Models\Fee.cs">
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FeeName.cs">
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Metadata.cs" />
-    <Compile Include="Models\NPR2.0.8Entities.Designer.cs">
+    <Compile Include="Models\NPREntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NPR2.0.8Entities.edmx</DependentUpon>
+      <DependentUpon>NPREntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NPR2.0.Context.cs">
+    <Compile Include="Models\NPREntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NPR2.0.Context.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NPR2.0.cs">
+    <Compile Include="Models\NPREntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\PackagingType.cs">
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PartialClasses.cs" />
     <Compile Include="Models\PricingTier.cs">
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductDecoration.cs">
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductSellPrice.cs">
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductUpcharge.cs">
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UpchargeSellPrice.cs">
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VendorName.cs">
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VendorType.cs">
-      <DependentUpon>NPR2.0.tt</DependentUpon>
+      <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -297,22 +302,22 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Images\logo.jpg" />
-    <EntityDeploy Include="Models\NPR2.0.8Entities.edmx">
+    <EntityDeploy Include="Models\NPREntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>NPR2.0.8Entities.Designer.cs</LastGenOutput>
+      <LastGenOutput>NPREntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\NPR2.0.8Entities.edmx.diagram">
-      <DependentUpon>NPR2.0.8Entities.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\NPR2.0.Context.tt">
+    <Content Include="Models\NPREntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NPR2.0.8Entities.edmx</DependentUpon>
-      <LastGenOutput>NPR2.0.Context.cs</LastGenOutput>
+      <DependentUpon>NPREntities.edmx</DependentUpon>
+      <LastGenOutput>NPREntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\NPR2.0.tt">
+    <Content Include="Models\NPREntities.edmx.diagram">
+      <DependentUpon>NPREntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\NPREntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>NPR2.0.8Entities.edmx</DependentUpon>
-      <LastGenOutput>NPR2.0.cs</LastGenOutput>
+      <DependentUpon>NPREntities.edmx</DependentUpon>
+      <LastGenOutput>NPREntities.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -330,7 +335,9 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\NPR.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -371,35 +378,35 @@
     <Content Include="Views\Company\Edit.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\DecorationMethod\Create.cshtml" />
-    <Content Include="Views\DecorationMethod\Delete.cshtml" />
+    <Content Include="Views\DecorationMethod\Archive.cshtml" />
     <Content Include="Views\DecorationMethod\Edit.cshtml" />
     <Content Include="Views\DecorationMethod\Index.cshtml" />
     <Content Include="Views\FeeName\Create.cshtml" />
-    <Content Include="Views\FeeName\Delete.cshtml" />
+    <Content Include="Views\FeeName\Archive.cshtml" />
     <Content Include="Views\FeeName\Edit.cshtml" />
     <Content Include="Views\FeeName\Index.cshtml" />
     <Content Include="Views\Fee\Create.cshtml" />
-    <Content Include="Views\Fee\Delete.cshtml" />
+    <Content Include="Views\Fee\Archive.cshtml" />
     <Content Include="Views\Fee\Edit.cshtml" />
     <Content Include="Views\Fee\Index.cshtml" />
     <Content Include="Views\PackagingType\Create.cshtml" />
-    <Content Include="Views\PackagingType\Delete.cshtml" />
+    <Content Include="Views\PackagingType\Archive.cshtml" />
     <Content Include="Views\PackagingType\Edit.cshtml" />
     <Content Include="Views\PackagingType\Index.cshtml" />
     <Content Include="Views\PricingTier\Create.cshtml" />
-    <Content Include="Views\PricingTier\Delete.cshtml" />
+    <Content Include="Views\PricingTier\Archive.cshtml" />
     <Content Include="Views\PricingTier\Edit.cshtml" />
     <Content Include="Views\PricingTier\Index.cshtml" />
     <Content Include="Views\ProductDecoration\Create.cshtml" />
-    <Content Include="Views\ProductDecoration\Delete.cshtml" />
+    <Content Include="Views\ProductDecoration\Archive.cshtml" />
     <Content Include="Views\ProductDecoration\Edit.cshtml" />
     <Content Include="Views\ProductDecoration\Index.cshtml" />
     <Content Include="Views\ProductSellPrice\Create.cshtml" />
-    <Content Include="Views\ProductSellPrice\Delete.cshtml" />
+    <Content Include="Views\ProductSellPrice\Archive.cshtml" />
     <Content Include="Views\ProductSellPrice\Edit.cshtml" />
     <Content Include="Views\ProductSellPrice\Index.cshtml" />
     <Content Include="Views\ProductUpcharge\Create.cshtml" />
-    <Content Include="Views\ProductUpcharge\Delete.cshtml" />
+    <Content Include="Views\ProductUpcharge\Archive.cshtml" />
     <Content Include="Views\ProductUpcharge\Edit.cshtml" />
     <Content Include="Views\ProductUpcharge\Index.cshtml" />
     <Content Include="Views\Product\Archive.cshtml" />
@@ -419,21 +426,27 @@
     <Content Include="Views\Product\_UpchargeEditor.cshtml" />
     <Content Include="Views\Product\_UpchargeSellPriceEditor.cshtml" />
     <Content Include="Views\UpchargeSellPrice\Create.cshtml" />
-    <Content Include="Views\UpchargeSellPrice\Delete.cshtml" />
+    <Content Include="Views\UpchargeSellPrice\Archive.cshtml" />
     <Content Include="Views\UpchargeSellPrice\Edit.cshtml" />
     <Content Include="Views\UpchargeSellPrice\Index.cshtml" />
     <Content Include="Views\UserMailer\SendStatusUpdate.cshtml" />
     <Content Include="Views\UserMailer\Welcome.cshtml" />
     <Content Include="Views\UserMailer\_Layout.cshtml" />
     <Content Include="Views\VendorName\Create.cshtml" />
-    <Content Include="Views\VendorName\Delete.cshtml" />
+    <Content Include="Views\VendorName\Archive.cshtml" />
     <Content Include="Views\VendorName\Edit.cshtml" />
     <Content Include="Views\VendorName\Index.cshtml" />
     <Content Include="Views\VendorType\Create.cshtml" />
-    <Content Include="Views\VendorType\Delete.cshtml" />
+    <Content Include="Views\VendorType\Archive.cshtml" />
     <Content Include="Views\VendorType\Edit.cshtml" />
     <Content Include="Views\VendorType\Index.cshtml" />
     <Content Include="Views\Campaign\ReportView.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Category\Archive.cshtml" />
+    <Content Include="Views\AuditTrail\Index.cshtml" />
+    <Content Include="Views\AuditTrail\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

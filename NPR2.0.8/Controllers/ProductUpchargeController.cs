@@ -5,13 +5,16 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NPR2._0._8.Models;
+using NPRModels;
+using NPR2._0._8.Helpers;
+using NPRModels;
 
 namespace NPR2._0._8.Controllers
 {
     public class ProductUpchargeController : Controller
     {
-        private Entities db = new Entities();
+        private NPREntities db = new NPREntities();
+        private string archived = MyExtensions.GetEnumDescription(Status.Archived);
 
         //
         // GET: /ProductUpcharge/
@@ -19,9 +22,10 @@ namespace NPR2._0._8.Controllers
         {
             ViewBag.TitleMessage = "Active";
             var productupcharges = db.ProductUpcharges.Include(p => p.Product)
-                                                        .Where(p => p.Product.ProductStatus != "Archived" &&
-                                                                    p.Product.Campaign.CampaignStatus != "Archived" &&
-                                                                    p.Product.Campaign.Company.CompanyStatus != "Archived");
+                                                        .Where(p => p.UpchargeStatus != archived &&
+                                                                    p.Product.ProductStatus != archived &&
+                                                                    p.Product.Campaign.CampaignStatus != archived &&
+                                                                    p.Product.Campaign.Company.CompanyStatus != archived);
             return View(productupcharges.ToList());
         }
 
@@ -31,9 +35,10 @@ namespace NPR2._0._8.Controllers
         {
             ViewBag.TitleMessage = "Archived";
             var productupcharges = db.ProductUpcharges.Include(p => p.Product)
-                                                        .Where(p => p.Product.ProductStatus == "Archived" ||
-                                                                    p.Product.Campaign.CampaignStatus == "Archived" ||
-                                                                    p.Product.Campaign.Company.CompanyStatus == "Archived");
+                                                        .Where(p => p.UpchargeStatus == archived ||
+                                                                    p.Product.ProductStatus == archived ||
+                                                                    p.Product.Campaign.CampaignStatus == archived ||
+                                                                    p.Product.Campaign.Company.CompanyStatus == archived);
             return View("Index", productupcharges.ToList());
         }
 
@@ -43,11 +48,16 @@ namespace NPR2._0._8.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
 
-            var list = db.Products.Where(p => p.ProductStatus != "Archived" &&
-                                                p.Campaign.CampaignStatus != "Archived" &&
-                                                p.Campaign.Company.CompanyStatus != "Archived");
+            var list = db.Products.Where(p => p.ProductStatus != archived &&
+                                                p.Campaign.CampaignStatus != archived &&
+                                                p.Campaign.Company.CompanyStatus != archived);
             ViewBag.ProductID = new SelectList(list, "ProductID", "ProductName");
-            return View();
+            
+            // Generate Decoration method for member initialization
+            ProductUpcharge productUpcharge = new ProductUpcharge();
+            productUpcharge.OnCreate();
+
+            return View(productUpcharge);
         }
 
         //
@@ -76,7 +86,10 @@ namespace NPR2._0._8.Controllers
                 return Redirect(returnUrl);
             }
 
-            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", productUpcharge.ProductID);
+            var list = db.Products.Where(p => p.ProductStatus != archived &&
+                                                p.Campaign.CampaignStatus != archived &&
+                                                p.Campaign.Company.CompanyStatus != archived);
+            ViewBag.ProductID = new SelectList(list, "ProductID", "ProductName", productUpcharge.ProductID);
             return View(productUpcharge);
         }
 
@@ -89,7 +102,11 @@ namespace NPR2._0._8.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", productupcharge.ProductID);
+
+            var list = db.Products.Where(p => p.ProductStatus != archived &&
+                                                p.Campaign.CampaignStatus != archived &&
+                                                p.Campaign.Company.CompanyStatus != archived);
+            ViewBag.ProductID = new SelectList(list, "ProductID", "ProductName", productupcharge.ProductID);
             return View(productupcharge);
         }
 
@@ -105,13 +122,17 @@ namespace NPR2._0._8.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", productupcharge.ProductID);
+
+            var list = db.Products.Where(p => p.ProductStatus != archived &&
+                                                p.Campaign.CampaignStatus != archived &&
+                                                p.Campaign.Company.CompanyStatus != archived);
+            ViewBag.ProductID = new SelectList(list, "ProductID", "ProductName", productupcharge.ProductID);
             return View(productupcharge);
         }
 
         //
-        // GET: /ProductUpcharge/Delete/5
-        public ActionResult Delete(string returnUrl, int id = 0)
+        // GET: /ProductUpcharge/Archive/5
+        public ActionResult Archive(string returnUrl, int id = 0)
         {
             ViewBag.ReturnUrl = returnUrl;
             ProductUpcharge productupcharge = db.ProductUpcharges.Find(id);
@@ -123,19 +144,15 @@ namespace NPR2._0._8.Controllers
         }
 
         //
-        // POST: /ProductUpcharge/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: /ProductUpcharge/Archive/5
+        [HttpPost, ActionName("Archive")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id, string returnUrl)
+        public ActionResult ArchiveConfirmed(int id, string returnUrl)
         {
             ProductUpcharge productupcharge = db.ProductUpcharges.Find(id);
+            productupcharge.UpchargeStatus = MyExtensions.GetEnumDescription(Status.Archived);
 
-            foreach(var upchargeSellPrice in productupcharge.UpchargeSellPrices.ToList())
-            {
-                db.UpchargeSellPrices.Remove(upchargeSellPrice);
-            }
-
-            db.ProductUpcharges.Remove(productupcharge);
+            db.Entry(productupcharge).State = EntityState.Modified;
             db.SaveChanges();
 
             if(returnUrl == null)

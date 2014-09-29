@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NPR2._0._8.Models.ProductDecoration>
+﻿@model IEnumerable<NPRModels.ProductDecoration>
 
 @{
     ViewBag.Title = "Product Decoration Index";
@@ -20,6 +20,9 @@
 <table class="index-table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.DecorationName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.DecorationColor)
         </th>
         <th>
@@ -32,9 +35,6 @@
             @Html.DisplayNameFor(model => model.DecorationVendor)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DecorationName)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Product.ProductName)
         </th>
         <th></th>
@@ -42,6 +42,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DecorationName)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.DecorationColor)
         </td>
@@ -55,14 +58,11 @@
             @Html.DisplayFor(modelItem => item.DecorationVendor)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DecorationName)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Product.ProductName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.DecorationID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DecorationID })
+            @Html.ActionLink("Archive", "Archive", new { id=item.DecorationID })
         </td>
     </tr>
 }

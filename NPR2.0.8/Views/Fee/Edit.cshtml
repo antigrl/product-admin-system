@@ -1,5 +1,5 @@
-﻿@model NPR2._0._8.Models.Fee
-@using NPR2._0._8.Models;
+﻿@model NPRModels.Fee
+@using NPRModels;
 @using NPR2._0._8.Helpers;
 
 @{
@@ -8,7 +8,7 @@
 
 <h2>Edit Fee</h2>
 
-@using(Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -17,6 +17,7 @@
         <legend>Fee</legend>
 
         @Html.HiddenFor(model => model.FeeID)
+        @Html.HiddenFor(model => model.FeeStatus)
         @Html.HiddenFor(model => model.FeeInherited)
         @Html.HiddenFor(model => model.FeeInheritedFeeID)
         

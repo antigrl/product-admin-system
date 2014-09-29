@@ -1,5 +1,5 @@
-﻿@model NPR2._0._8.Models.Campaign
-@using NPR2._0._8.Models
+﻿@model NPRModels.Campaign
+@using NPRModels
 @using NPR2._0._8.Helpers
 
 @{
@@ -62,7 +62,7 @@
             </div>
             <div class="editor-field">
                 @Html.DisplayFor(model => model.CampaignStatus)
-                @Html.HiddenFor(model => model.CampaignStatus, new { Value = MyExtensions.GetEnumDescription(Status.Pending_Approval) })
+                @Html.HiddenFor(model => model.CampaignStatus, new { Value = MyExtensions.GetEnumDescription(Status.New) })
             </div>
 
             <div class="editor-label">

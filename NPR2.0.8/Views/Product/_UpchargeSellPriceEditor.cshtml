@@ -1,9 +1,9 @@
-﻿@model NPR2._0._8.Models.UpchargeSellPrice
+﻿@model NPRModels.UpchargeSellPrice
 @using NPR2._0._8.Helpers;
-@using NPR2._0._8.Models;
+@using NPRModels;
 
 <div class="sell-price-fee">
-    @using(Html.BeginCollectionItem("UpchargeSellPrices"))
+    @using (Html.BeginCollectionItem("UpchargeSellPrices"))
     {
         <div class="hidden-inputs">
             @Html.HiddenFor(model => model.UpchargeSellPriceID)
@@ -12,6 +12,7 @@
             @Html.HiddenFor(model => model.UpchargeSellPriceFinalAmount)
             @Html.HiddenFor(model => model.UpchargeSellPriceLocked)
             @Html.HiddenFor(model => model.UpchargeID)
+            @Html.HiddenFor(model => model.UpchargeSellPriceStatus)
         </div>
     }
 </div>

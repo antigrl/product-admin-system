@@ -1,4 +1,4 @@
-﻿@model NPR2._0._8.Models.VendorType
+﻿@model NPRModels.VendorType
 
 @{
     ViewBag.Title = "Edit Vendor Type";
@@ -6,7 +6,7 @@
 
 <h2>Edit Vendor Type</h2>
 
-@using(Html.BeginForm())
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -15,6 +15,7 @@
         <legend>VendorType</legend>
 
         @Html.HiddenFor(model => model.VendorTypeID)
+        @Html.HiddenFor(model => model.VendorTypeStatus)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.VendorTypeName)

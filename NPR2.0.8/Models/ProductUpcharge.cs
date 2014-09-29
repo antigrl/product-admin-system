@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NPR2._0._8.Models
+namespace NPRModels
 {
     using System;
     using System.Collections.Generic;
@@ -16,8 +16,8 @@ namespace NPR2._0._8.Models
     {
         public ProductUpcharge()
         {
-            this.UpchargeSellPrices = new HashSet<UpchargeSellPrice>();
             this.AuditTrails = new HashSet<AuditTrail>();
+            this.UpchargeSellPrices = new HashSet<UpchargeSellPrice>();
         }
     
         public int UpchargeID { get; set; }
@@ -25,9 +25,10 @@ namespace NPR2._0._8.Models
         public decimal UpchargeAmount { get; set; }
         public Nullable<decimal> UpchargeTotalCost { get; set; }
         public Nullable<int> ProductID { get; set; }
+        public string UpchargeStatus { get; set; }
     
+        public virtual ICollection<AuditTrail> AuditTrails { get; set; }
         public virtual Product Product { get; set; }
         public virtual ICollection<UpchargeSellPrice> UpchargeSellPrices { get; set; }
-        public virtual ICollection<AuditTrail> AuditTrails { get; set; }
     }
 }

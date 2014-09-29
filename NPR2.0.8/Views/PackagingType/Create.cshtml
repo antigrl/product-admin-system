@@ -1,4 +1,4 @@
-﻿@model NPR2._0._8.Models.PackagingType
+﻿@model NPRModels.PackagingType
 
 @{
     ViewBag.Title = "Create Packaging Type";
@@ -13,6 +13,8 @@
 
     <fieldset class="left-half-content">
         <legend>PackagingType</legend>
+        
+        @Html.HiddenFor(model => model.PackagingTypeStatus)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.PackagingTypeName)

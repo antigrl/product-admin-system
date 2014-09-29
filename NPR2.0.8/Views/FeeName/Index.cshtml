@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NPR2._0._8.Models.FeeName>
+﻿@model IEnumerable<NPRModels.FeeName>
 
 @{
     ViewBag.Title = "Fee Name Index";
@@ -9,6 +9,14 @@
 <div class="left-half-content">
     <p>
         @Html.ActionLink("Create New Fee Name", "Create")
+        @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+        {
+            <span class="float-right">@Html.ActionLink("View Active Fee Names", "Index")</span>
+        }
+        else
+        {
+            <span class="float-right">@Html.ActionLink("View Archived Fee Names", "ArchivedIndex")</span>
+        }
     </p>
     <table class="index-table">
         <tr>
@@ -32,7 +40,7 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.FeeNameID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.FeeNameID })
+                    @Html.ActionLink("Archive", "Archive", new { id = item.FeeNameID })
                 </td>
             </tr>
         }

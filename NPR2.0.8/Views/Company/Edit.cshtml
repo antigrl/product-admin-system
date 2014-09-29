@@ -1,6 +1,6 @@
-﻿@model NPR2._0._8.Models.Company
+﻿@model NPRModels.Company
 @using NPR2._0._8.Helpers;
-@using NPR2._0._8.Models;
+@using NPRModels;
 
 @{
     ViewBag.Title = "Edit Company";
@@ -156,7 +156,7 @@
                         <th>Type</th>
                         <th></th>
                     </tr>
-                    @foreach(var fee in Model.Fees.OrderBy(f => f.FeeName.FeeNameName))
+                    @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(f => f.FeeName.FeeNameName))
                     {
                         <tr>
                             <td>
@@ -171,7 +171,7 @@
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null) |
-                                @Html.ActionLink("Delete", "Delete", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null)
+                                @Html.ActionLink("Archive", "Archive", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null)
                             </td>
                         </tr>
                     }
@@ -188,7 +188,7 @@
                         <th>Name</th>
                         <th></th>
                     </tr>
-                    @foreach(var tier in Model.PricingTiers)
+                    @foreach (var tier in Model.PricingTiers.Where(p => p.PricingTierStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.PricingTierLevel))
                     {
                         <tr>
                             <td>
@@ -214,7 +214,7 @@
                             </td>
                             <td>
                                 @Html.ActionLink("Edit", "Edit", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = tier.PricingTierID }, null) |
-                                @Html.ActionLink("Delete", "Delete", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = tier.PricingTierID }, null)
+                                @Html.ActionLink("Archive", "Archive", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = tier.PricingTierID }, null)
                             </td>
                         </tr>
                     }
@@ -228,10 +228,10 @@
                 <table class="index-table">
                     <tr>
                         <th>Name</th>
-                        <th>Starting Date</th>
+                        <th>Created On Date</th>
                         <th></th>
                     </tr>
-                    @foreach(var campaign in Model.Campaigns.Where(c => c.CampaignStatus != "Archived"))
+                    @foreach (var campaign in Model.Campaigns.Where(c => c.CampaignStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(c => c.CampaignCreatedOnDate))
                     {
                         <tr>
                             <td>

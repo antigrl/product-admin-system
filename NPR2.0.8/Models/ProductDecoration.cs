@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NPR2._0._8.Models
+namespace NPRModels
 {
     using System;
     using System.Collections.Generic;
@@ -32,9 +32,10 @@ namespace NPR2._0._8.Models
         public string DecorationEmbroideryStitchCount { get; set; }
         public string DecorationEmbroideryColorWay { get; set; }
         public int ProductID { get; set; }
+        public string DecorationStatus { get; set; }
     
+        public virtual ICollection<AuditTrail> AuditTrails { get; set; }
         public virtual DecorationMethod DecorationMethod { get; set; }
         public virtual Product Product { get; set; }
-        public virtual ICollection<AuditTrail> AuditTrails { get; set; }
     }
 }

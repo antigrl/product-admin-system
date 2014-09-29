@@ -5,15 +5,17 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NPR2._0._8.Models;
+using NPRModels;
 using NPR2._0._8.Helpers;
 using NPR2._0._8.Mailers;
+using NPRModels;
 
 namespace NPR2._0._8.Controllers
 {
     public class CampaignController : Controller
     {
-        private Entities db = new Entities();
+        private NPREntities db = new NPREntities();
+        private string archived = MyExtensions.GetEnumDescription(Status.Archived);
 
         private IUserMailer _userMailer = new UserMailer();
         public IUserMailer UserMailer
@@ -28,8 +30,8 @@ namespace NPR2._0._8.Controllers
         {
             ViewBag.TitleMessage = "Active";
             var campaigns = db.Campaigns.Include(c => c.Company)
-                                        .Where(c => c.CampaignStatus != "Archived" &&
-                                                    c.Company.CompanyStatus != "Archived");
+                                        .Where(c => c.CampaignStatus != archived &&
+                                                    c.Company.CompanyStatus != archived);
             return View(campaigns.ToList());
         }
 
@@ -39,8 +41,8 @@ namespace NPR2._0._8.Controllers
         {
             ViewBag.TitleMessage = "Archived";
             var campaigns = db.Campaigns.Include(c => c.Company)
-                                        .Where(c => c.CampaignStatus == "Archived" ||
-                                                    c.Company.CompanyStatus == "Archived");
+                                        .Where(c => c.CampaignStatus == archived ||
+                                                    c.Company.CompanyStatus == archived);
             return View("Index", campaigns.ToList());
         }
 
@@ -51,9 +53,11 @@ namespace NPR2._0._8.Controllers
             ViewBag.ReturnUrl = returnUrl;
             // Create New Campaign to get Constructor Values and set Created By
             Campaign campaign = new Campaign();
-            campaign.CampaignCreatedBy = User.Identity.Name.ToString();
+            campaign.OnCreate(User.Identity.Name.ToString());
 
-            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != "Archived"), "CompanyID", "CompanyName");
+            string archived = MyExtensions.GetEnumDescription(Status.Archived);
+
+            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != archived), "CompanyID", "CompanyName");
 
             return View(campaign);
         }
@@ -66,6 +70,10 @@ namespace NPR2._0._8.Controllers
         {
             if(ModelState.IsValid)
             {
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, campaign, campaign.CampaignID, "Create");
+                db.AuditTrails.Add(audit);
+
                 db.Campaigns.Add(campaign);
                 db.SaveChanges();
 
@@ -76,7 +84,7 @@ namespace NPR2._0._8.Controllers
                 return Redirect(returnUrl);
             }
 
-            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != "Archived"), "CompanyID", "CompanyName", campaign.CompanyID);
+            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != archived), "CompanyID", "CompanyName", campaign.CompanyID);
             return View(campaign);
         }
 
@@ -90,7 +98,8 @@ namespace NPR2._0._8.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != "Archived"), "CompanyID", "CompanyName", campaign.CompanyID);
+
+            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != archived), "CompanyID", "CompanyName", campaign.CompanyID);
             return View(campaign);
         }
 
@@ -102,27 +111,38 @@ namespace NPR2._0._8.Controllers
         {
             if(ModelState.IsValid)
             {
-                db.Entry(campaign).State = EntityState.Modified;
-                db.SaveChanges();
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, campaign, campaign.CampaignID, "Edit");
+                db.AuditTrails.Add(audit);
 
                 // Send Emails
                 #region SendEmails
-                List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(campaign.CampaignStatus);
-                var urlBuilder = Request.Url.AbsoluteUri;
-
-                if(sendEmailTos != null && sendEmailTos.Count > 0)
+                // Check if the status is changed
+                if (db.Campaigns.Where(c => c.CampaignID == campaign.CampaignID).FirstOrDefault().CampaignStatus != campaign.CampaignStatus)
                 {
-                    UserMailer.SendStatusUpdate(sendEmailTos, "Company Updated by: " + User.Identity.Name, urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, null).Send();
+                    List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(campaign.CampaignStatus);
+                    var urlBuilder = Request.Url.AbsoluteUri;
+
+                    if (sendEmailTos != null && sendEmailTos.Count > 0)
+                    {
+                        UserMailer.SendStatusUpdate(sendEmailTos, "Company Updated by: " + User.Identity.Name, urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, null).Send();
+                    }
                 }
                 #endregion
 
+                // Save entry into DB
+                db.Entry(campaign).State = EntityState.Modified;
+                db.SaveChanges();
+                
                 if(returnUrl == null)
                 {
                     return RedirectToAction("Index");
                 }
+
                 return Redirect(returnUrl);
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != "Archived"), "CompanyID", "CompanyName", campaign.CompanyID);
+
+            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != archived), "CompanyID", "CompanyName", campaign.CompanyID);
             return View(campaign);
         }
 
@@ -135,17 +155,17 @@ namespace NPR2._0._8.Controllers
 
             // Name Lists
             string type = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount);
-            ViewBag.DollarFeeNameList = db.FeeNames.Where(f => f.FeeNameType == type)
+            ViewBag.DollarFeeNameList = db.FeeNames.Where(f => f.FeeNameType == type && f.FeeNameStatus == archived)
                                                     .OrderBy(f => f.FeeNameName)
                                                     .Select(f => f.FeeNameName)
                                                     .ToList();
             type = MyExtensions.GetEnumDescription(FeeTypeList.Amortized);
-            ViewBag.AmortizedFeeNameList = db.FeeNames.Where(f => f.FeeNameType == type)
+            ViewBag.AmortizedFeeNameList = db.FeeNames.Where(f => f.FeeNameType == type && f.FeeNameStatus == archived)
                                                     .OrderBy(f => f.FeeNameName)
                                                     .Select(f => f.FeeNameName)
                                                     .ToList();
             type = MyExtensions.GetEnumDescription(FeeTypeList.Percent);
-            ViewBag.PercentFeeNameList = db.FeeNames.Where(f => f.FeeNameType == type)
+            ViewBag.PercentFeeNameList = db.FeeNames.Where(f => f.FeeNameType == type && f.FeeNameStatus == archived)
                                                     .OrderBy(f => f.FeeNameName)
                                                     .Select(f => f.FeeNameName)
                                                     .ToList();
@@ -188,7 +208,7 @@ namespace NPR2._0._8.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != "Archived"), "CompanyID", "CompanyName", campaign.CompanyID);
+            ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != archived), "CompanyID", "CompanyName", campaign.CompanyID);
             return View(campaign);
         }
 
@@ -214,7 +234,11 @@ namespace NPR2._0._8.Controllers
             Campaign campaign = db.Campaigns.Find(id);
 
             // TODO: Set status to disabled/hidden and no longer show
-            campaign.CampaignStatus = "Archived";
+            campaign.CampaignStatus = MyExtensions.GetEnumDescription(Status.Archived);
+
+            // Add Audit Entry 
+            AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, campaign, campaign.CampaignID, "Archive");
+            db.AuditTrails.Add(audit);
 
             db.Entry(campaign).State = EntityState.Modified;
             db.SaveChanges();

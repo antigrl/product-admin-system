@@ -5,14 +5,16 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NPR2._0._8.Models;
+using NPRModels;
 using NPR2._0._8.Helpers;
+using NPRModels;
 
 namespace NPR2._0._8.Controllers
 {
     public class ProductSellPriceController : Controller
     {
-        private Entities db = new Entities();
+        private NPREntities db = new NPREntities();
+        private string archived = MyExtensions.GetEnumDescription(Status.Archived);
 
         //
         // GET: /ProductSellPrice/
@@ -20,9 +22,10 @@ namespace NPR2._0._8.Controllers
         {
             ViewBag.TitleMessage = "Active";
             var productsellprices = db.ProductSellPrices.Include(p => p.Product)
-                                        .Where(p => p.Product.ProductStatus != "Archived" && 
-                                                    p.Product.Campaign.CampaignStatus != "Archived" &&
-                                                    p.Product.Campaign.Company.CompanyStatus != "Archived");
+                                        .Where(p => p.SellPriceStatus != archived &&
+                                                    p.Product.ProductStatus != archived &&
+                                                    p.Product.Campaign.CampaignStatus != archived &&
+                                                    p.Product.Campaign.Company.CompanyStatus != archived);
             return View(productsellprices.ToList());
         }
 
@@ -32,9 +35,10 @@ namespace NPR2._0._8.Controllers
         {
             ViewBag.TitleMessage = "Archived";
             var productsellprices = db.ProductSellPrices.Include(p => p.Product)
-                                        .Where(p => p.Product.ProductStatus == "Archived" ||
-                                                    p.Product.Campaign.CampaignStatus == "Archived" ||
-                                                    p.Product.Campaign.Company.CompanyStatus == "Archived");
+                                        .Where(p => p.SellPriceStatus == archived ||
+                                                    p.Product.ProductStatus == archived ||
+                                                    p.Product.Campaign.CampaignStatus == archived ||
+                                                    p.Product.Campaign.Company.CompanyStatus == archived);
             return View("Index", productsellprices.ToList());
         }
 
@@ -42,11 +46,16 @@ namespace NPR2._0._8.Controllers
         // GET: /ProductSellPrice/Create
         public ActionResult Create()
         {
-            var list = db.Products.Where(p => p.ProductStatus != "Archived" &&
-                                                p.Campaign.CampaignStatus != "Archived" &&
-                                                p.Campaign.Company.CompanyStatus != "Archived");
+            var list = db.Products.Where(p => p.ProductStatus != archived &&
+                                                p.Campaign.CampaignStatus != archived &&
+                                                p.Campaign.Company.CompanyStatus != archived);
             ViewBag.ProductID = new SelectList(list, "ProductID", "ProductName");
-            return View();
+            
+            // Generate Decoration method for member initialization
+            ProductSellPrice productSellPrice = new ProductSellPrice();
+            productSellPrice.OnCreate();
+
+            return View(productSellPrice);
         }
 
         //
@@ -62,9 +71,9 @@ namespace NPR2._0._8.Controllers
                 return RedirectToAction("Index");
             }
 
-            var list = db.Products.Where(p => p.ProductStatus != "Archived" &&
-                                                p.Campaign.CampaignStatus != "Archived" &&
-                                                p.Campaign.Company.CompanyStatus != "Archived");
+            var list = db.Products.Where(p => p.ProductStatus != archived &&
+                                                p.Campaign.CampaignStatus != archived &&
+                                                p.Campaign.Company.CompanyStatus != archived);
             ViewBag.ProductID = new SelectList(list, "ProductID", "ProductName", productsellprice.ProductID);
             return View(productsellprice);
         }
@@ -79,9 +88,9 @@ namespace NPR2._0._8.Controllers
                 return HttpNotFound();
             }
 
-            var list = db.Products.Where(p => p.ProductStatus != "Archived" &&
-                                                p.Campaign.CampaignStatus != "Archived" &&
-                                                p.Campaign.Company.CompanyStatus != "Archived");
+            var list = db.Products.Where(p => p.ProductStatus != archived &&
+                                                p.Campaign.CampaignStatus != archived &&
+                                                p.Campaign.Company.CompanyStatus != archived);
             ViewBag.ProductID = new SelectList(list, "ProductID", "ProductName", productsellprice.ProductID);
             return View(productsellprice);
         }
@@ -99,16 +108,16 @@ namespace NPR2._0._8.Controllers
                 return RedirectToAction("Index");
             }
 
-            var list = db.Products.Where(p => p.ProductStatus != "Archived" &&
-                                                p.Campaign.CampaignStatus != "Archived" &&
-                                                p.Campaign.Company.CompanyStatus != "Archived");
+            var list = db.Products.Where(p => p.ProductStatus != archived &&
+                                                p.Campaign.CampaignStatus != archived &&
+                                                p.Campaign.Company.CompanyStatus != archived);
             ViewBag.ProductID = new SelectList(list, "ProductID", "ProductName", productsellprice.ProductID);
             return View(productsellprice);
         }
 
         //
-        // GET: /ProductSellPrice/Delete/5
-        public ActionResult Delete(int id = 0)
+        // GET: /ProductSellPrice/Archive/5
+        public ActionResult Archive(int id = 0)
         {
             ProductSellPrice productsellprice = db.ProductSellPrices.Find(id);
             if (productsellprice == null)
@@ -119,13 +128,14 @@ namespace NPR2._0._8.Controllers
         }
 
         //
-        // POST: /ProductSellPrice/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: /ProductSellPrice/Archive/5
+        [HttpPost, ActionName("Archive")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult ArchiveConfirmed(int id)
         {
             ProductSellPrice productsellprice = db.ProductSellPrices.Find(id);
-            db.ProductSellPrices.Remove(productsellprice);
+            productsellprice.SellPriceStatus = MyExtensions.GetEnumDescription(Status.Archived);
+            db.Entry(productsellprice).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

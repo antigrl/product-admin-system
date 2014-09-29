@@ -1,6 +1,6 @@
-﻿@model NPR2._0._8.Models.ProductSellPrice
+﻿@model NPRModels.ProductSellPrice
 @using NPR2._0._8.Helpers
-@using NPR2._0._8.Models
+@using NPRModels
 
 <div class="sell-prices">
     @using(Html.BeginCollectionItem("ProductSellPrices"))
@@ -21,7 +21,7 @@
                 <span>
                     @Html.ActionLink("Add New Sell Price Fee", "Create", "Fee", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), ProductSellPriceID = Model.SellPriceID }, null)
                 </span>
-                @foreach(var fee in Model.Fees)
+                @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
                 {
                     if(fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
                     {
@@ -67,6 +67,7 @@
             @Html.HiddenFor(model => model.SellPriceName)
             @Html.HiddenFor(model => model.SellPriceMarginDollarAmount)
             @Html.HiddenFor(model => model.SellPriceMarginPercent)
+            @Html.HiddenFor(model => model.SellPriceStatus)
         </div>
     }
 </div>

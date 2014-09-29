@@ -1,12 +1,13 @@
-﻿@model NPR2._0._8.Models.ProductDecoration
+﻿@model NPRModels.ProductDecoration
 @using NPR2._0._8.Helpers;
-@using NPR2._0._8.Models;
+@using NPRModels;
 
 <div class="product-decoration editor-row">
     @using(Html.BeginCollectionItem("ProductDecorations"))
     {
         @Html.HiddenFor(model => model.DecorationID)
         @Html.HiddenFor(model => model.ProductID)
+        @Html.HiddenFor(model => model.DecorationStatus)
         <div class="left-third">
             <div class="editor-label">
                 @Html.LabelForRequired(model => model.DecorationName)

@@ -1,13 +1,16 @@
-﻿@model NPR2._0._8.Models.PricingTier
+﻿@model NPRModels.PricingTier
 @using NPR2._0._8.Helpers;
+@using NPRModels;
+;
 
 @{
     ViewBag.Title = "Edit Pricing Tier";
+    string archived = MyExtensions.GetEnumDescription(Status.Archived);
 }
 
 <h2>Edit Pricing Tier</h2>
 
-@using(Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -16,6 +19,7 @@
         <legend>PricingTier</legend>
 
         @Html.HiddenFor(model => model.PricingTierID)
+        @Html.HiddenFor(model => model.PricingTierStatus)
 
         <div class="editor-label">
             @Html.LabelForRequired(model => model.PricingTierName)
@@ -61,7 +65,7 @@
                     <th>Type</th>
                     <th></th>
                 </tr>
-                @foreach(var fee in Model.Fees)
+                @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != archived))
                 {
                     <tr>
                         <td>
@@ -76,7 +80,7 @@
                         </td>
                         <td>
                             @Html.ActionLink("Edit", "Edit", "Fee", new { ReturnUrl = Url.Action("Edit", "PricingTier", new { id = Model.PricingTierID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null) |
-                            @Html.ActionLink("Delete", "Delete", "Fee", new { ReturnUrl = Url.Action("Edit", "PricingTier", new { id = Model.PricingTierID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null)
+                            @Html.ActionLink("Archive", "Archive", "Fee", new { ReturnUrl = Url.Action("Edit", "PricingTier", new { id = Model.PricingTierID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null)
                         </td>
                     </tr>
                 }

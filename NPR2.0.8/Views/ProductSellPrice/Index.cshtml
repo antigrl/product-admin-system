@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NPR2._0._8.Models.ProductSellPrice>
+﻿@model IEnumerable<NPRModels.ProductSellPrice>
 
 @{
     ViewBag.Title = "Sell Price Index";
@@ -63,7 +63,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.SellPriceID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.SellPriceID })
+            @Html.ActionLink("Archive", "Archive", new { id = item.SellPriceID })
         </td>
     </tr>
 }

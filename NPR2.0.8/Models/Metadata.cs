@@ -5,17 +5,22 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace NPR2._0._8.Models
+namespace NPRModels
 {
+    public class AuditTrailMetadata
+    {
+        [DisplayName("Time Stamp")]
+        public object AuditTrailTimeStamp { get; set; }
+
+        [DisplayName("User")]
+        public object AuditTrailUserName { get; set; }
+
+        [DisplayName("Commet")]
+        public object AuditTrailComment{ get; set; }
+    }
+
     public class CampaignMetadata
     {
-        public CampaignMetadata()
-        {
-            // Non-Generated 
-            this.CampaignCreatedOnDate = DateTime.Now;
-            this.CampaignStatus = MyExtensions.GetEnumDescription(Status.Pending_Approval);
-        }
-
         [HiddenInput]
         [DisplayName("Campaign #")]
         public object CampaignID { get; set; }
@@ -72,14 +77,26 @@ namespace NPR2._0._8.Models
         public object CampaignCreatedOnDate { get; set; }
     }
 
+    public class CategoryMetadata
+    {
+        [DisplayName("Category Name")]
+        [StringLength(150)]
+        [Required]
+        public object CategoryName { get; set; }
+
+        [DisplayName("Category Type")]
+        [StringLength(150)]
+        [Required]
+        public object CategoryType { get; set; }
+
+        [DisplayName("Status")]
+        [StringLength(150)]
+        [Required]
+        public object CategoryStatus { get; set; }
+    }
+
     public class CompanyMetadata
     {
-        public CompanyMetadata()
-        {
-            // Non-Generated 
-            this.CompanyStatus = MyExtensions.GetEnumDescription(Status.Pending_Approval);
-        }
-
         [DisplayName("Company Name")]
         [StringLength(150)]
         [Required]
@@ -159,6 +176,11 @@ namespace NPR2._0._8.Models
         [StringLength(150)]
         [Required]
         public object DecorationMethodName { get; set; }
+
+        [DisplayName("Status")]
+        [StringLength(150)]
+        [Required]
+        public object DecorationMethodStatus { get; set; }
     }
 
     public class FeeMetadata
@@ -200,7 +222,11 @@ namespace NPR2._0._8.Models
 
         [DisplayName("Fee Dollar Value")]
         public object FeeDollarAmount { get; set; }
-
+        
+        [DisplayName("Status")]
+        [StringLength(150)]
+        [Required]
+        public object FeeStatus { get; set; }
 
         public object ProductID { get; set; }
         public object ProductSellPriceID { get; set; }
@@ -216,6 +242,11 @@ namespace NPR2._0._8.Models
         [DisplayName("Fee Type")]
         [StringLength(150)]
         public object FeeNameType { get; set; }
+
+        [DisplayName("Status")]
+        [StringLength(150)]
+        [Required]
+        public object FeeNameStatus { get; set; }
     }
 
     public class PackagingTypeMetadata
@@ -224,6 +255,11 @@ namespace NPR2._0._8.Models
         [StringLength(150)]
         [Required]
         public object PackagingTypeName { get; set; }
+
+        [DisplayName("Status")]
+        [StringLength(150)]
+        [Required]
+        public object PackagingTypeStatus { get; set; }
     }
 
     public class PricingTierMetadata
@@ -236,6 +272,11 @@ namespace NPR2._0._8.Models
         [DisplayName("Tier Level")]
         [Required]
         public object PricingTierLevel { get; set; }
+
+        [DisplayName("Status")]
+        [StringLength(150)]
+        [Required]
+        public object PricingTierStatus { get; set; }
     }
 
     public class ProductMetadata
@@ -265,10 +306,6 @@ namespace NPR2._0._8.Models
         [Required]
         public object ProductStatus { get; set; }
 
-        [DisplayName("Category")]
-        [StringLength(150)]
-        public object ProductCategory { get; set; }
-
         [DisplayName("Unit of Measure")]
         [StringLength(150)]
         [Required]
@@ -288,6 +325,7 @@ namespace NPR2._0._8.Models
 
         [DisplayName("Selected Colors")]
         [StringLength(150)]
+        [Required]
         public object ProductSelectedColors { get; set; }
 
         [DisplayName("Presentation Sell")]
@@ -296,10 +334,10 @@ namespace NPR2._0._8.Models
         [DisplayName("Quote Number")]
         public object ProductQuoteNumber { get; set; }
 
-        [DisplayName("Sales Analysis")]
+        [DisplayName("Sales History")]
         [DataType(DataType.MultilineText)]
         [StringLength(4000)]
-        public object ProductSalesAnalysis { get; set; }
+        public object ProductSalesHistory { get; set; }
 
         [DisplayName("Vendor Name")]
         [Required]
@@ -386,6 +424,13 @@ namespace NPR2._0._8.Models
 
         [DisplayName("Campaign")]
         public object CampaignID { get; set; }
+
+        [DisplayName("Major Category")]
+        [Required]
+        public object MajorCategoryID { get; set; }
+
+        [DisplayName("Minor Category")]
+        public object MinorCategoryID { get; set; }
     }
 
     public class ProductDecorationMetadata
@@ -439,6 +484,11 @@ namespace NPR2._0._8.Models
         [DisplayName("Color Way")]
         [StringLength(150)]
         public object DecorationEmbroideryColorWay { get; set; }
+
+        [DisplayName("Status")]
+        [StringLength(150)]
+        [Required]
+        public object DecorationStatus { get; set; }
     }
 
     public class ProductSellPriceMetadata
@@ -463,6 +513,11 @@ namespace NPR2._0._8.Models
         [DisplayName("Final Sell Price Amount")]
         [Required]
         public object SellPriceFinalAmount { get; set; }
+
+        [DisplayName("Status")]
+        [StringLength(150)]
+        [Required]
+        public object SellPriceStatus { get; set; }
     }
 
     public class ProductUpchargeMetadata
@@ -481,6 +536,11 @@ namespace NPR2._0._8.Models
 
         [DisplayName("Upcharge Total Cost")]
         public object UpchargeTotalCost { get; set; }
+
+        [DisplayName("Status")]
+        [StringLength(150)]
+        [Required]
+        public object UpchargeStatus { get; set; }
     }
 
     public class UpchargeSellPriceMetadata
@@ -500,6 +560,11 @@ namespace NPR2._0._8.Models
 
         [DisplayName("Upcharge Sell Price Locked?")]
         public object UpchargeSellPriceLocked { get; set; }
+
+        [DisplayName("Status")]
+        [StringLength(150)]
+        [Required]
+        public object UpchargeSellPriceStatus { get; set; }
     }
 
     public class VendorNameMetadata
@@ -508,6 +573,11 @@ namespace NPR2._0._8.Models
         [StringLength(150)]
         [Required]
         public object VendorNameName { get; set; }
+
+        [DisplayName("Status")]
+        [StringLength(150)]
+        [Required]
+        public object VendorNameStatus { get; set; }
     }
 
     public class VendorTypeMetadata
@@ -516,5 +586,10 @@ namespace NPR2._0._8.Models
         [StringLength(150)]
         [Required]
         public object VendorTypeName { get; set; }
+
+        [DisplayName("Status")]
+        [StringLength(150)]
+        [Required]
+        public object VendorTypeStatus { get; set; }
     }
 }

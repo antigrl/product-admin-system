@@ -1,5 +1,5 @@
-﻿@model NPR2._0._8.Models.Campaign
-@using NPR2._0._8.Models;
+﻿@model NPRModels.Campaign
+@using NPRModels;
 @using NPR2._0._8.Helpers;
 
 @{
@@ -78,42 +78,8 @@
         </div>
 
         <div class="right-half-content">
-            @{  /* NOTE/TODO: Hidden for Phase 1 
             <div>
-                <h4>Campaign Fees</h4>
-                <span class="right-content">
-                    @Html.ActionLink("Create New Fee", "Create", "Fee", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID }), CampaignID = Model.CampaignID }, null)
-                </span>
-                <table class="index-table">
-                    <tr>
-                        <th>Fee Name</th>
-                        <th>Type</th>
-                        <th></th>
-                    </tr>
-                    @foreach(var fee in Model.Fees)
-                    {
-                        <tr>
-                            <td>
-                                <div class="editor-label">
-                                    @Html.DisplayFor(model => fee.FeeName.FeeNameName)
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    @Html.DisplayFor(model => fee.FeeType)
-                                </div>
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", "Fee", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID }), id = fee.FeeID }, null) |
-                                @Html.ActionLink("Delete", "Delete", "Fee", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID }), id = fee.FeeID }, null)
-                            </td>
-                        </tr>
-                    }
-                </table>
-            </div>
-            */  }
-            <div>
-                <h4>Product List | Count: @Model.Products.Where(p => p.ProductStatus != "Archived" &&  p.Campaign.CampaignStatus != "Archived" && p.Campaign.Company.CompanyStatus != "Archived").Count()</h4>
+                <h4>Product List | Count: @Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).Count()</h4>
                 <span class="right-content">
                     @Html.ActionLink("Create New Product", "Create", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), CampaignID = Model.CampaignID }, null)
                 </span>
@@ -124,7 +90,7 @@
                         <th>Status</th>
                         <th></th>
                     </tr>
-                    @foreach(var product in Model.Products.Where(p => p.ProductStatus != "Archived" &&  p.Campaign.CampaignStatus != "Archived" && p.Campaign.Company.CompanyStatus != "Archived"))
+                    @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)))
                     {
                         <tr>
                             <td>

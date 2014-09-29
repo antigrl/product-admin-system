@@ -1,4 +1,4 @@
-﻿@model NPR2._0._8.Models.Product
+﻿@model NPRModels.Product
 
 @{
     ViewBag.Title = "Edit Product";
@@ -7,8 +7,9 @@
 <h2>
     Edit Product #@Html.DisplayFor(model => model.ProductID) 
     <span class="campaign-company-title">
-        Campaign: @Html.DisplayFor(model => model.Campaign.CampaignName)         
-        Company: @Html.DisplayFor(model => model.Campaign.Company.CompanyName)
+        <b>Campaign:</b> @Html.DisplayFor(model => model.Campaign.CampaignName)       
+        <br />  
+        <b>Company:</b> @Html.DisplayFor(model => model.Campaign.Company.CompanyName)
     </span>
 </h2>
 
@@ -26,7 +27,7 @@
 
         <p style="float: right;">
             <button type="submit" formaction="@Url.Action("SaveAndCalculateSellPrice", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Calculate Price</button>
-            <input type="submit" value="Close /  Cancel" />
+            <input type="submit" value="Close" />
         </p>
     </fieldset>
 }

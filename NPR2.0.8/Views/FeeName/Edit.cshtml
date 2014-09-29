@@ -1,6 +1,6 @@
-﻿@model NPR2._0._8.Models.FeeName
+﻿@model NPRModels.FeeName
 @using NPR2._0._8.Helpers;
-@using NPR2._0._8.Models;
+@using NPRModels;
 
 @{
     ViewBag.Title = "Edit Fee Name";
@@ -8,7 +8,7 @@
 
 <h2>Edit Fee Name</h2>
 
-@using(Html.BeginForm())
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -17,6 +17,7 @@
         <legend>FeeName</legend>
 
         @Html.HiddenFor(model => model.FeeNameID)
+        @Html.HiddenFor(model => model.FeeNameStatus)
 
         <div class="editor-label">
             @Html.LabelForRequired(model => model.FeeNameName)

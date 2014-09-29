@@ -1,14 +1,15 @@
-﻿@model NPR2._0._8.Models.Fee
+﻿@model NPRModels.Fee
 @using NPR2._0._8.Helpers;
 
 <div class="sell-price-row">
-    @using(Html.BeginCollectionItem("Fees"))
+    @using (Html.BeginCollectionItem("Fees"))
     {
         <div class="editor-label">
             <label>@Html.DisplayFor(model => model.FeeName.FeeNameName):</label>
             @Html.HiddenFor(model => model.FeeNameID)
             @Html.HiddenFor(model => model.FeeID)
             @Html.HiddenFor(model => model.ProductSellPriceID)
+            @Html.HiddenFor(model => model.FeeStatus)
             <span class="fee-type">
                 @Html.HiddenFor(model => model.FeeType)
             </span>

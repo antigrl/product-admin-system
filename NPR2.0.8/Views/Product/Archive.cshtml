@@ -1,4 +1,4 @@
-﻿@model NPR2._0._8.Models.Product
+﻿@model NPRModels.Product
 
 @{
     ViewBag.Title = "Archive Product";
@@ -32,10 +32,24 @@
     </div>
 
     <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductCategory)
+        @Html.DisplayNameFor(model => model.Category.CategoryName)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.ProductCategory)
+        @Html.DisplayFor(model => model.Category.CategoryName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Category1.CategoryName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Category1.CategoryName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PackagingType.PackagingTypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PackagingType.PackagingTypeName)
     </div>
 
     <div class="display-label">

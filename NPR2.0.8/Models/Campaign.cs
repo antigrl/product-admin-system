@@ -7,9 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NPR2._0._8.Models
+namespace NPRModels
 {
-    using NPR2._0._8.Helpers;
     using System;
     using System.Collections.Generic;
     
@@ -17,13 +16,9 @@ namespace NPR2._0._8.Models
     {
         public Campaign()
         {
+            this.AuditTrails = new HashSet<AuditTrail>();
             this.Fees = new HashSet<Fee>();
             this.Products = new HashSet<Product>();
-            this.AuditTrails = new HashSet<AuditTrail>();
-
-            // Non-Generated 
-            this.CampaignCreatedOnDate = DateTime.Now;
-            this.CampaignStatus = MyExtensions.GetEnumDescription(Status.Pending_Approval);
         }
     
         public int CampaignID { get; set; }
@@ -39,9 +34,9 @@ namespace NPR2._0._8.Models
         public string CampaignCreatedBy { get; set; }
         public System.DateTime CampaignCreatedOnDate { get; set; }
     
+        public virtual ICollection<AuditTrail> AuditTrails { get; set; }
         public virtual Company Company { get; set; }
         public virtual ICollection<Fee> Fees { get; set; }
         public virtual ICollection<Product> Products { get; set; }
-        public virtual ICollection<AuditTrail> AuditTrails { get; set; }
     }
 }

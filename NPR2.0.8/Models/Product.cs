@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NPR2._0._8.Models
+namespace NPRModels
 {
     using System;
     using System.Collections.Generic;
@@ -16,11 +16,11 @@ namespace NPR2._0._8.Models
     {
         public Product()
         {
+            this.AuditTrails = new HashSet<AuditTrail>();
             this.Fees = new HashSet<Fee>();
             this.ProductDecorations = new HashSet<ProductDecoration>();
             this.ProductSellPrices = new HashSet<ProductSellPrice>();
             this.ProductUpcharges = new HashSet<ProductUpcharge>();
-            this.AuditTrails = new HashSet<AuditTrail>();
         }
     
         public int ProductID { get; set; }
@@ -29,7 +29,6 @@ namespace NPR2._0._8.Models
         public string ProductImageType { get; set; }
         public string ProductDescription { get; set; }
         public string ProductStatus { get; set; }
-        public string ProductCategory { get; set; }
         public string ProductUnitOfMeasure { get; set; }
         public int PackagingTypeID { get; set; }
         public string ProductReplacementItemNumber { get; set; }
@@ -37,7 +36,7 @@ namespace NPR2._0._8.Models
         public string ProductSelectedColors { get; set; }
         public Nullable<decimal> ProductPresentationSell { get; set; }
         public string ProductQuoteNumber { get; set; }
-        public string ProductSalesAnalysis { get; set; }
+        public string ProductSalesHistory { get; set; }
         public int VendorNameID { get; set; }
         public Nullable<int> VendorTypeID { get; set; }
         public string ProductVendorLeadTime { get; set; }
@@ -59,8 +58,13 @@ namespace NPR2._0._8.Models
         public string ProductInventoryBuyerComments { get; set; }
         public string ProductMentorComments { get; set; }
         public int CampaignID { get; set; }
+        public int MajorCategoryID { get; set; }
+        public Nullable<int> MinorCategoryID { get; set; }
     
+        public virtual ICollection<AuditTrail> AuditTrails { get; set; }
         public virtual Campaign Campaign { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual Category Category1 { get; set; }
         public virtual ICollection<Fee> Fees { get; set; }
         public virtual PackagingType PackagingType { get; set; }
         public virtual VendorName VendorName { get; set; }
@@ -68,6 +72,5 @@ namespace NPR2._0._8.Models
         public virtual ICollection<ProductDecoration> ProductDecorations { get; set; }
         public virtual ICollection<ProductSellPrice> ProductSellPrices { get; set; }
         public virtual ICollection<ProductUpcharge> ProductUpcharges { get; set; }
-        public virtual ICollection<AuditTrail> AuditTrails { get; set; }
     }
 }

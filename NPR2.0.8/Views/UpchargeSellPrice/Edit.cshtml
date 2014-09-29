@@ -1,4 +1,4 @@
-﻿@model NPR2._0._8.Models.UpchargeSellPrice
+﻿@model NPRModels.UpchargeSellPrice
 @using NPR2._0._8.Helpers;
 
 @{
@@ -7,7 +7,8 @@
 
 <h2>Edit Upcharge Sell Price</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -15,6 +16,7 @@
         <legend>UpchargeSellPrice</legend>
 
         @Html.HiddenFor(model => model.UpchargeSellPriceID)
+        @Html.HiddenFor(model => model.UpchargeSellPriceStatus)
 
         <div class="editor-label">
             @Html.LabelForRequired(model => model.UpchargeSellPriceName)

@@ -5,22 +5,26 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NPR2._0._8.Models;
+using NPRModels;
+using NPR2._0._8.Helpers;
+using NPRModels;
 
 namespace NPR2._0._8.Controllers
 {
     public class UpchargeSellPriceController : Controller
     {
-        private Entities db = new Entities();
+        private NPREntities db = new NPREntities();
+        private string archived = MyExtensions.GetEnumDescription(Status.Archived);
 
         //
         // GET: /UpchargeSellPrice/
         public ActionResult Index()
         {
             var upchargesellprices = db.UpchargeSellPrices.Include(u => u.ProductUpcharge)
-                                                        .Where(u => u.ProductUpcharge.Product.ProductStatus != "Archived" &&
-                                                                    u.ProductUpcharge.Product.Campaign.CampaignStatus != "Archived" &&
-                                                                    u.ProductUpcharge.Product.Campaign.Company.CompanyStatus != "Archived");
+                                                        .Where(u => u.UpchargeSellPriceStatus != archived &&
+                                                                    u.ProductUpcharge.Product.ProductStatus != archived &&
+                                                                    u.ProductUpcharge.Product.Campaign.CampaignStatus != archived &&
+                                                                    u.ProductUpcharge.Product.Campaign.Company.CompanyStatus != archived);
             return View(upchargesellprices.ToList());
         }
 
@@ -30,9 +34,10 @@ namespace NPR2._0._8.Controllers
         {
             ViewBag.TitleMessage = "Archived";
             var upchargesellprices = db.UpchargeSellPrices.Include(u => u.ProductUpcharge)
-                                                        .Where(u => u.ProductUpcharge.Product.ProductStatus == "Archived" ||
-                                                                    u.ProductUpcharge.Product.Campaign.CampaignStatus == "Archived" ||
-                                                                    u.ProductUpcharge.Product.Campaign.Company.CompanyStatus == "Archived");
+                                                        .Where(u => u.UpchargeSellPriceStatus == archived ||
+                                                                    u.ProductUpcharge.Product.ProductStatus == archived ||
+                                                                    u.ProductUpcharge.Product.Campaign.CampaignStatus == archived ||
+                                                                    u.ProductUpcharge.Product.Campaign.Company.CompanyStatus == archived);
             return View("Index", upchargesellprices.ToList());
         }
 
@@ -41,7 +46,12 @@ namespace NPR2._0._8.Controllers
         public ActionResult Create()
         {
             ViewBag.UpchargeID = new SelectList(db.ProductUpcharges, "UpchargeID", "UpchargeName");
-            return View();
+
+            // Generate Decoration method for member initialization
+            UpchargeSellPrice upchargeSellPrice = new UpchargeSellPrice();
+            upchargeSellPrice .OnCreate();
+
+            return View(upchargeSellPrice);
         }
 
         //
@@ -57,7 +67,7 @@ namespace NPR2._0._8.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UpchargeID = new SelectList(db.ProductUpcharges, "UpchargeID", "UpchargeName", upchargesellprice.UpchargeID);
+            ViewBag.UpchargeID = new SelectList(db.ProductUpcharges.Where(p => p.UpchargeStatus != archived), "UpchargeID", "UpchargeName", upchargesellprice.UpchargeID);
             return View(upchargesellprice);
         }
 
@@ -70,7 +80,7 @@ namespace NPR2._0._8.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UpchargeID = new SelectList(db.ProductUpcharges, "UpchargeID", "UpchargeName", upchargesellprice.UpchargeID);
+            ViewBag.UpchargeID = new SelectList(db.ProductUpcharges.Where(p => p.UpchargeStatus != archived), "UpchargeID", "UpchargeName", upchargesellprice.UpchargeID);
             return View(upchargesellprice);
         }
 
@@ -86,13 +96,13 @@ namespace NPR2._0._8.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.UpchargeID = new SelectList(db.ProductUpcharges, "UpchargeID", "UpchargeName", upchargesellprice.UpchargeID);
+            ViewBag.UpchargeID = new SelectList(db.ProductUpcharges.Where(p => p.UpchargeStatus != archived), "UpchargeID", "UpchargeName", upchargesellprice.UpchargeID);
             return View(upchargesellprice);
         }
 
         //
-        // GET: /UpchargeSellPrice/Delete/5
-        public ActionResult Delete(int id = 0)
+        // GET: /UpchargeSellPrice/Archive/5
+        public ActionResult Archive(int id = 0)
         {
             UpchargeSellPrice upchargesellprice = db.UpchargeSellPrices.Find(id);
             if(upchargesellprice == null)
@@ -103,13 +113,15 @@ namespace NPR2._0._8.Controllers
         }
 
         //
-        // POST: /UpchargeSellPrice/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: /UpchargeSellPrice/Archive/5
+        [HttpPost, ActionName("Archive")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult ArchiveConfirmed(int id)
         {
             UpchargeSellPrice upchargesellprice = db.UpchargeSellPrices.Find(id);
-            db.UpchargeSellPrices.Remove(upchargesellprice);
+            upchargesellprice.UpchargeSellPriceStatus = MyExtensions.GetEnumDescription(Status.Archived);
+
+            db.Entry(upchargesellprice).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

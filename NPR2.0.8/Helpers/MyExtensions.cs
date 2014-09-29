@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NPR2._0._8.Models;
+using NPRModels;
 using System.Reflection;
 using System.ComponentModel;
 
@@ -54,7 +54,8 @@ namespace NPR2._0._8.Helpers
             {
                 emailToList.Add(EmailTo.Mentor);
             }
-            else if(objectStatus == MyExtensions.GetEnumDescription(Status.Send_To_Inventory_Buyers))
+            else if(objectStatus == MyExtensions.GetEnumDescription(Status.Send_To_Inventory_Buyers) ||
+                        objectStatus == MyExtensions.GetEnumDescription(Status.Mentor_Approved))
             {
                 emailToList.Add(EmailTo.Inventory_Buyers);
             }

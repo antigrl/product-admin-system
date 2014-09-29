@@ -1,5 +1,5 @@
 using Mvc.Mailer;
-using NPR2._0._8.Models;
+using NPRModels;
 using System.Collections.Generic;
 
 namespace NPR2._0._8.Mailers

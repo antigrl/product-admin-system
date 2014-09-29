@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NPR2._0._8.Models
+namespace NPRModels
 {
     using System;
     using System.Collections.Generic;
@@ -16,14 +16,15 @@ namespace NPR2._0._8.Models
     {
         public PackagingType()
         {
-            this.Products = new HashSet<Product>();
             this.AuditTrails = new HashSet<AuditTrail>();
+            this.Products = new HashSet<Product>();
         }
     
         public int PackagingTypeID { get; set; }
         public string PackagingTypeName { get; set; }
+        public string PackagingTypeStatus { get; set; }
     
-        public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<AuditTrail> AuditTrails { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }
