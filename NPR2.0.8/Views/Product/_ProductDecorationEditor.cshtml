@@ -3,7 +3,7 @@
 @using NPRModels;
 
 <div class="product-decoration editor-row">
-    @using(Html.BeginCollectionItem("ProductDecorations"))
+    @using (Html.BeginCollectionItem("ProductDecorations"))
     {
         @Html.HiddenFor(model => model.DecorationID)
         @Html.HiddenFor(model => model.ProductID)
@@ -27,7 +27,7 @@
                 @Html.LabelForRequired(model => model.DecorationMethodID, "DecorationMethod")
             </div>
             <div class="editor-field">
-                @if(Model.DecorationMethodID == 0)
+                @if (Model.DecorationMethodID == 0)
                 {
                     @Html.DropDownList("DecorationMethodID", ViewBag.DecorationMethods as SelectList, String.Empty)
                 }
@@ -84,9 +84,9 @@
                 @Html.EditorFor(model => model.DecorationEmbroideryColorWay)
                 @Html.ValidationMessageFor(model => model.DecorationEmbroideryColorWay)
             </div>
-            <div class="float-right">
-                <button type="button" class="delete-row">Remove Decoration</button>
-            </div>
+        </div>
+        <div class="float-right">
+            <button type="button" class="delete-row">Remove Decoration</button>
         </div>
     }
 </div>
