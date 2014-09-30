@@ -1,6 +1,461 @@
+/********************
+*    GCDI Styles    *
+********************/
+/* Default Overrides */
 @import url("//fonts.googleapis.com/css?family=Lato:300,400,700");
 @import url("//weloveiconfonts.com/api/?family=fontawesome");
 @import url("//weloveiconfonts.com/api/?family=entypo");
+.display-label {
+  font-weight: bold;
+  padding-top: 5px; }
+
+.display-field {
+  padding-left: 5px; }
+
+.aside-main {
+  padding: 0px;
+  background: none;
+  font-weight: bold; }
+
+.text-box {
+  margin: 0px;
+  padding: 5px; }
+
+.editor-field {
+  margin: 0px 0 0px 160px;
+  padding: 4px;
+  text-align: right;
+  min-height: 31px; }
+  .editor-field textarea {
+    max-width: 100%;
+    height: 110px; }
+
+label {
+  font-size: 1em;
+  float: left;
+  text-align: right;
+  padding-top: 9px; }
+
+select {
+  width: 100%;
+  font-size: .85em;
+  padding: 5px;
+  margin-top: 0px; }
+
+/* Comment Sections */
+.comments {
+  background-color: #DDD;
+  padding: 0px 5px 0px 5px; }
+  .comments .editor-label {
+    padding: 0px;
+    margin: 0px;
+    float: left; }
+  .comments .editor-field {
+    padding: 0px;
+    margin: 0px;
+    max-width: 235px; }
+  .comments table {
+    width: 100%; }
+  .comments th {
+    text-align: center; }
+    .comments th label {
+      float: none;
+      text-align: center; }
+  .comments td {
+    padding: 5px; }
+
+.comment-info {
+  background-color: #FFF;
+  border: 1px solid black;
+  margin-top: 3px; }
+  .comment-info .editor-label {
+    float: left;
+    display: inline-block;
+    width: 100%; }
+    .comment-info .editor-label label {
+      text-align: center;
+      width: 100%;
+      display: inline-block; }
+  .comment-info .editor-field {
+    display: inline-block;
+    width: 99%;
+    margin: 0px;
+    padding: 0px; }
+
+.comment-container {
+  width: 50%;
+  float: left;
+  text-align: center; }
+
+/* Table Styles */
+.index-table {
+  width: 100%; }
+  .index-table th {
+    border: 1px solid #E0E0E0;
+    background-color: #7C211E;
+    font-size: 1.2em;
+    color: white;
+    padding: 5px 5px 5px 0px; }
+  .index-table tr {
+    font-size: .9em; }
+    .index-table tr:nth-child(odd) {
+      background-color: #FFF; }
+    .index-table tr:nth-child(even) {
+      background-color: #DDD; }
+  .index-table ul {
+    margin: 0px;
+    padding-left: 20px; }
+
+.table-wrapper {
+  border-left: 7px solid black;
+  border-right: 7px solid black;
+  margin: 0px;
+  padding: 0px; }
+  .table-wrapper table {
+    margin: 0px;
+    padding: 0px; }
+
+.report-view-table {
+  text-align: center; }
+  .report-view-table th {
+    border: 1px solid #E0E0E0;
+    background-color: #7C211E;
+    font-size: 1em;
+    color: white;
+    white-space: nowrap;
+    padding: 3px;
+    border-bottom: 4px solid black; }
+  .report-view-table thead .fees {
+    background-color: #260d54;
+    white-space: normal; }
+  .report-view-table tbody .fees {
+    border: 1px solid black;
+    background-color: #AAA; }
+  .report-view-table tbody tr:nth-child(odd) .fees {
+    background-color: #EEE; }
+  .report-view-table tr {
+    font-size: .9em; }
+    .report-view-table tr:nth-child(odd) {
+      background-color: #FFF; }
+    .report-view-table tr:nth-child(even) {
+      background-color: #DDD; }
+  .report-view-table ul {
+    margin: 0px;
+    padding-left: 20px; }
+  .report-view-table td {
+    padding: 0px; }
+
+.presentation-view-table th {
+  font-size: 1em;
+  text-align: center; }
+.presentation-view-table tr {
+  border-bottom: 2px solid black; }
+
+.links {
+  background-color: #efeeef !important; }
+
+/* Positioning Styles*/
+.left-content {
+  float: left;
+  width: 58%; }
+
+.right-content {
+  float: right;
+  width: 40%; }
+
+.full-content {
+  float: left;
+  width: 100%; }
+
+.left-half-content {
+  float: left;
+  width: 50%; }
+
+.right-half-content {
+  float: right;
+  width: 50%; }
+
+/* Product Page */
+.product-info {
+  background-color: #CCC;
+  border: 1px solid black; }
+
+.general-info {
+  background-color: #DDD;
+  border: 1px solid black;
+  padding: 5px; }
+
+.vendor-info {
+  background-color: #CCC;
+  border: 1px solid black;
+  padding: 5px; }
+
+.product-image {
+  background-color: #FFF; }
+  .product-image input[type="file"] {
+    width: 100%;
+    margin: 0px;
+    padding: 0px; }
+  .product-image .image {
+    text-align: center; }
+    .product-image .image img {
+      max-height: 125px;
+      max-width: 475px; }
+
+/* Product Price Styles*/
+.price-info {
+  background-color: #EEE;
+  border: 1px solid black; }
+  .price-info:first-child {
+    width: 100%; }
+
+.dolar-amount .editor-field .text-box {
+  margin-left: 160px; }
+
+.cost-info {
+  margin-bottom: 5px;
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
+  background-color: green;
+  font-size: large !important; }
+
+.company-fees {
+  background-color: white;
+  font-size: .8em; }
+  .company-fees a {
+    display: none; }
+  .company-fees table {
+    width: 100%; }
+    .company-fees table td {
+      padding: 0px 5px 0px 0px; }
+
+.fees .text-input {
+  width: 160px; }
+.fees .editor-row .validation-summary-errors ul {
+  margin: 0px; }
+.fees .editor-field {
+  margin: 0px 0px 0px 245px; }
+.fees .single-line {
+  width: 24px; }
+
+.dollar-value, .percent-dollar-value {
+  width: 52px; }
+
+.percent-value {
+  width: 45px; }
+
+.dollar-fee-info {
+  border: 1px dashed black;
+  background-color: #c8c8c8; }
+
+.amortized-fee-info {
+  border: 1px dashed black;
+  background-color: #c8c8c8; }
+  .amortized-fee-info span {
+    text-align: right; }
+  .amortized-fee-info select {
+    width: 215px; }
+
+.amortized .editor-field {
+  margin: 0px 0px 0px 245px; }
+
+.upcharge-fee-info {
+  border: 1px dashed black;
+  background-color: #d7d7d7; }
+
+.percent-fee-info {
+  border: 1px dotted black;
+  background-color: #e2e2e2; }
+  .percent-fee-info select {
+    width: 175px; }
+  .percent-fee-info .radio {
+    text-align: left;
+    float: left;
+    font-size: .8em;
+    padding-top: 3px; }
+  .percent-fee-info .percent-span {
+    float: left;
+    margin-left: 15px; }
+  .percent-fee-info .radio input[type="radio"] {
+    width: 10px; }
+
+.compounded {
+  border: 1px dashed black;
+  background-color: #ccc; }
+
+.editor-row {
+  background-color: white;
+  margin: 1px;
+  border: 2px dotted black;
+  width: 99%; }
+  .editor-row .editor-label {
+    padding: 5px 2px 5px 3px;
+    float: left; }
+  .editor-row p {
+    margin: 10px 0px; }
+
+.fees .delete-row {
+  width: 19px;
+  padding: 0px 0px 3px 0px;
+  margin: 7px 0px 0px 5px;
+  float: left;
+  border-radius: 8px; }
+
+input[type="radio"] {
+  width: auto;
+  margin: 0px;
+  padding: 0px; }
+input[type="text"] {
+  margin: 0px; }
+
+.single-line, .multi-line {
+  width: 95%; }
+
+.decoration-logo {
+  max-width: 200px;
+  max-height: 200px; }
+
+.sell-price-info .sell-prices .sell-price {
+  border: 2px solid black;
+  padding: 5px;
+  margin: 2px;
+  float: left;
+  width: 97%; }
+.sell-price-info .sell-prices .final-sell-price {
+  border: 2px solid black;
+  border-top: 0px;
+  padding: 0px 5px 0px 5px;
+  margin: -2px 2px 2px 2px;
+  float: right;
+  min-width: 48%;
+  text-align: right; }
+.sell-price-info .margin-alert {
+  color: red;
+  border: 1px solid red;
+  background-color: white;
+  padding: 2px;
+  font-size: large;
+  border-radius: 10px;
+  text-align: center;
+  display: none; }
+
+.sell-prices {
+  width: 120% !important; }
+
+.sell-price .left-content {
+  float: left;
+  width: 35%; }
+.sell-price .right-content {
+  float: left;
+  width: 65%; }
+
+.site-title a {
+  background: url(../Images/logo.jpg) no-repeat !important;
+  padding-left: 210px; }
+
+.upcharge-info {
+  background-color: white;
+  float: right;
+  border: 2px dashed black;
+  width: 14%; }
+
+.upcharge {
+  border: 2px dotted black;
+  background-color: #c8c8c8; }
+  .upcharge .editor-label {
+    width: 40px;
+    padding: 5px;
+    float: left; }
+  .upcharge .editor-field {
+    margin: 0px; }
+  .upcharge p {
+    margin: 10px 0px; }
+  .upcharge .dollar-value {
+    width: 50px; }
+  .upcharge .delete-upcharge {
+    font-size: .9em; }
+
+label {
+  font-size: .85em; }
+
+input, textarea {
+  font-size: 1em; }
+
+.product-left-content {
+  float: left;
+  width: 36%; }
+
+.product-right-content {
+  float: left;
+  width: 49%; }
+
+.product-decoration-info {
+  border: 1px solid black;
+  border-top: 2px;
+  border-bottom: 2px;
+  background-color: lightslategray;
+  margin-top: 3px; }
+  .product-decoration-info h4 {
+    margin: 0px;
+    padding: 5px 0px 0px 5px; }
+  .product-decoration-info button {
+    border-radius: 4px; }
+
+.product-decorations .editor-field {
+  margin: 0px 0px 0px 105px; }
+.product-decorations .product-decoration {
+  border: 1px dotted black;
+  margin: 2px;
+  padding: 2px;
+  background-color: aliceblue;
+  float: left;
+  width: 99%; }
+
+.left-third {
+  float: left;
+  min-width: 32.8%;
+  max-width: 32.8%;
+  border: 1px solid black;
+  margin-right: 2px;
+  background-color: #EFEFEF; }
+
+.left-two-thirds {
+  float: left;
+  width: 66.66%; }
+
+.dollar-amount-fee, .amortized-fee, .percent-fee {
+  display: none; }
+
+.fee-connection-info {
+  border: 1px solid black;
+  padding: 2px; }
+
+.inherited button {
+  border-color: #260d54; }
+
+.toggle-fee {
+  text-align: center; }
+
+.sell-price-row {
+  margin-top: 1px; }
+  .sell-price-row .editor-label label:nth-of-type(2) {
+    position: absolute;
+    margin-top: 25px;
+    padding: 0px; }
+  .sell-price-row .editor-field {
+    margin: 0px 0px 0px 155px; }
+
+.field-validation-error {
+  font-size: small; }
+
+.campaign-company-title {
+  font-size: smaller;
+  float: right;
+  font-weight: normal; }
+
+.top-margin {
+  margin-top: 35px; }
+
 * {
   margin: 0;
   padding: 0;
@@ -81,8 +536,7 @@ main {
     background: #fff;
     overflow: hidden; }
     .flex-grid > section:hover {
-      border: 1px solid #bbb;
-      cursor: pointer; }
+      border: 1px solid #bbb; }
     .flex-grid > section:last-child {
       margin-right: 0; }
     .flex-grid > section.seamless {
@@ -206,6 +660,12 @@ main {
       padding: 10px;
       font-size: 12px;
       border-top: 1px solid #ddd; }
+
+.truncate {
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis; }
 
 nav.main {
   width: 250px;

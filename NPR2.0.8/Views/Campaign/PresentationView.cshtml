@@ -2,28 +2,29 @@
 @using NPR2._0._8.Helpers;
 @using NPRModels;
 @{
-    ViewBag.Title = "Presentation View";
-    string archived = MyExtensions.GetEnumDescription(Status.Archived);
-    int count = Model.Products.Where(p => p.ProductStatus != archived).Count();
+ViewBag.Title = "Presentation View";
+string archived = MyExtensions.GetEnumDescription(Status.Archived);
+int count = Model.Products.Where(p => p.ProductStatus != archived).Count();
 }
 
 <h2>Campaign Presentation View - @Html.ActionLink("Back to Campaign", "Edit", new { id = Model.CampaignID })</h2>
-<div>
-    <h3 class="float-left">
+<section>
+    <h3>
         @Html.DisplayNameFor(model => model.CampaignName): @Html.DisplayFor(model => model.CampaignName)
         <br />
         @Html.DisplayNameFor(model => model.Company.CompanyName): @Html.DisplayFor(model => model.Company.CompanyName)
     </h3>
-    <h3 class="float-right">
+    <h3>
         @Html.DisplayNameFor(model => model.CampaignProductCount): @Html.DisplayFor(model => model.CampaignProductCount)
         <br />
         Actual Product Count: @count
     </h3>
+
 </div>
-<table id="tblExport" class="presentation-view-table index-table">
-    <tbody>
-        @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.Category.CategoryName))
-        {
+
+
+    <table id="tblExport">
+        <thead>
             <tr>
                 <th>NPR ID</th>
                 <th>Name</th>
@@ -33,30 +34,30 @@
                 <th>Description</th>
                 @foreach (var pricingTier in Model.Company.PricingTiers.Where(p => p.PricingTierStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.PricingTierLevel))
                 {
-                    <th>@pricingTier.PricingTierName.Replace(Model.Company.CompanyName, "").Replace("/", "/ ")</th>
-                }
-                <th>Notes:</th>
-            </tr>
-            <tr>
-                <td>@product.ProductID</td>
-                <td>@Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null) </td>
-                <td class="product-image">
-                    <div class="image">
-                        @if (product.ProductImage != null)
-                        {
-                            <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
-                        }
-                    </div>
-                </td>
-                <td>@product.Category.CategoryName</td>
-                <td>@product.ProductCountryOfOrigin</td>
-                <td>@product.ProductDescription</td>
-                @foreach (var sellPrice in product.ProductSellPrices.OrderBy(s => s.SellPriceLevel))
-                {
-                    <td>@sellPrice.SellPriceFinalAmount.ToString("c")</td>
-                }
-                <td></td>
-            </tr>
+                <th>@pricingTier.PricingTierName.Replace(Model.Company.CompanyName, "").Replace("/", "/ ")</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.Category.CategoryName))
+        {
+        <tr>
+            <td>@product.ProductID</td>
+            <td>@Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null) </td>
+            <td class="product-image">
+                <div class="image">
+                    <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
+                </div>
+            </td>
+            <td>@product.Category.CategoryName</td>
+            <td>@product.ProductCountryOfOrigin</td>
+            <td class="truncate">@product.ProductDescription</td>
+            @foreach (var sellPrice in product.ProductSellPrices.OrderBy(s => s.SellPriceLevel))
+            {
+            <td>@sellPrice.SellPriceFinalAmount.ToString("c")</td>
         }
-    </tbody>
-</table>
+    </tr>
+}
+</tbody>
+    </table>
+</section>

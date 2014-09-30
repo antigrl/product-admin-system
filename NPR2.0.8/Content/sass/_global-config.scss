@@ -101,7 +101,6 @@ main {
     overflow: hidden;
     &:hover {
       border: 1px solid #bbb;
-      cursor: pointer;
     }
     &:last-child {
       margin-right: 0;
@@ -260,4 +259,11 @@ main {
       }
     }
   }
+}
+
+.truncate {
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
