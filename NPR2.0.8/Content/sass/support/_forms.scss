@@ -1,0 +1,47 @@
+$headHeight: 50px;
+$searchHeight: 30px;
+$searchButtonWidth: 30px;
+$searchInputWidth: 150px;
+$searchBgColor: #eee;
+.s-f {
+  float:right;
+  height:$headHeight;
+  padding-top: ($headHeight - $searchHeight) / 2;
+  padding-right: ($headHeight - $searchHeight) / 2;
+  .s-w {
+    display: block;
+    background: inherit;
+    overflow:hidden;
+    height: $searchHeight;
+    border-radius: 5px;
+
+    .s-b,
+    .s-i {
+      height: $searchHeight;
+      border:0;
+      margin:0; padding:0;
+      background: transparent;
+      outline:none;
+    }
+    .s-b {
+      width: $searchButtonWidth;
+      height: $searchHeight;
+      transition: all .6s ease;
+      background: inherit;
+      color: #eee;
+      .search-exp & {
+        background: $searchBgColor;
+        color: #c9c9c9;
+      }
+    }
+    .s-i {
+      transition: width .6s ease;
+      width: 0;
+      background: $searchBgColor;
+      color: #666;
+      .search-exp & {
+        width: $searchInputWidth;
+      }
+    }
+  }
+}
