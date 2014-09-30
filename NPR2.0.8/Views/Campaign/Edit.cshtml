@@ -6,7 +6,7 @@
     ViewBag.Title = "Edit Campaign";
 }
 
-<h2>Edit Campaign </h2>
+<h2>Edit Campaign - @Html.ActionLink("Presentation View", "PresentationView", new { id=Model.CampaignID})</h2>
 
 @using(Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
 {

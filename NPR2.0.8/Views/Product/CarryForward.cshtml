@@ -1,299 +1,34 @@
 ﻿@model NPRModels.Product
+@using NPR2._0._8.Helpers;
 
 @{
     ViewBag.Title = "CarryForward";
 }
 
-<h2>CarryForward</h2>
+<h2>Carry Forward Product #@Html.DisplayFor(model => model.ProductName)
+</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
         <legend>Product</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductName)
-            @Html.ValidationMessageFor(model => model.ProductName)
-        </div>
+        @Html.HiddenFor(model => model.ProductID)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.ProductImageType)
+            @Html.LabelForRequired(model => model.CampaignID, "Campaign")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ProductImageType)
-            @Html.ValidationMessageFor(model => model.ProductImageType)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductDescription)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductDescription)
-            @Html.ValidationMessageFor(model => model.ProductDescription)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductStatus)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductStatus)
-            @Html.ValidationMessageFor(model => model.ProductStatus)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductUnitOfMeasure)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductUnitOfMeasure)
-            @Html.ValidationMessageFor(model => model.ProductUnitOfMeasure)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PackagingTypeID)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PackagingTypeID)
-            @Html.ValidationMessageFor(model => model.PackagingTypeID)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductReplacementItemNumber)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductReplacementItemNumber)
-            @Html.ValidationMessageFor(model => model.ProductReplacementItemNumber)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductSelectedSizes)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductSelectedSizes)
-            @Html.ValidationMessageFor(model => model.ProductSelectedSizes)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductSelectedColors)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductSelectedColors)
-            @Html.ValidationMessageFor(model => model.ProductSelectedColors)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductPresentationSell)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductPresentationSell)
-            @Html.ValidationMessageFor(model => model.ProductPresentationSell)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductQuoteNumber)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductQuoteNumber)
-            @Html.ValidationMessageFor(model => model.ProductQuoteNumber)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductSalesHistory)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductSalesHistory)
-            @Html.ValidationMessageFor(model => model.ProductSalesHistory)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.VendorNameID)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.VendorNameID)
-            @Html.ValidationMessageFor(model => model.VendorNameID)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.VendorTypeID)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.VendorTypeID)
-            @Html.ValidationMessageFor(model => model.VendorTypeID)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductVendorLeadTime)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductVendorLeadTime)
-            @Html.ValidationMessageFor(model => model.ProductVendorLeadTime)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductVendorMinimumOrder)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductVendorMinimumOrder)
-            @Html.ValidationMessageFor(model => model.ProductVendorMinimumOrder)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductCountryOfOrigin)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductCountryOfOrigin)
-            @Html.ValidationMessageFor(model => model.ProductCountryOfOrigin)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductHarmonizedCode)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductHarmonizedCode)
-            @Html.ValidationMessageFor(model => model.ProductHarmonizedCode)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductInitialOrderQuantity)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductInitialOrderQuantity)
-            @Html.ValidationMessageFor(model => model.ProductInitialOrderQuantity)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductVendorItemNumber)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductVendorItemNumber)
-            @Html.ValidationMessageFor(model => model.ProductVendorItemNumber)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductAnnualSalesProjection)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductAnnualSalesProjection)
-            @Html.ValidationMessageFor(model => model.ProductAnnualSalesProjection)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductGatewayCDIMinumumOrder)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductGatewayCDIMinumumOrder)
-            @Html.ValidationMessageFor(model => model.ProductGatewayCDIMinumumOrder)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductCost)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductCost)
-            @Html.ValidationMessageFor(model => model.ProductCost)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductNetCost)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductNetCost)
-            @Html.ValidationMessageFor(model => model.ProductNetCost)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductTotalCost)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductTotalCost)
-            @Html.ValidationMessageFor(model => model.ProductTotalCost)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductLandedCost)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductLandedCost)
-            @Html.ValidationMessageFor(model => model.ProductLandedCost)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductGatewayCDISKU)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductGatewayCDISKU)
-            @Html.ValidationMessageFor(model => model.ProductGatewayCDISKU)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductItemEDP)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductItemEDP)
-            @Html.ValidationMessageFor(model => model.ProductItemEDP)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductAccountManagerComments)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductAccountManagerComments)
-            @Html.ValidationMessageFor(model => model.ProductAccountManagerComments)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductMerchandiserComments)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductMerchandiserComments)
-            @Html.ValidationMessageFor(model => model.ProductMerchandiserComments)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductInventoryBuyerComments)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductInventoryBuyerComments)
-            @Html.ValidationMessageFor(model => model.ProductInventoryBuyerComments)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProductMentorComments)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ProductMentorComments)
-            @Html.ValidationMessageFor(model => model.ProductMentorComments)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.CampaignID)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CampaignID)
+            @Html.DropDownList("CampaignID", ViewBag.Campaigns as SelectList, String.Empty)
             @Html.ValidationMessageFor(model => model.CampaignID)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.MajorCategoryID)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.MajorCategoryID)
-            @Html.ValidationMessageFor(model => model.MajorCategoryID)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.MinorCategoryID)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.MinorCategoryID)
-            @Html.ValidationMessageFor(model => model.MinorCategoryID)
-        </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Save" />
         </p>
     </fieldset>
 }
