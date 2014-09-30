@@ -20,6 +20,9 @@
       </header>
     </div>
 
+    <ul>
+      <li>@Html.ActionLink("Create New Campaign", "Create")</li>
+    </ul>
   </nav>
 <!--   <header>
     <div class="content-wrapper">
@@ -59,13 +62,11 @@
     </div>
   </main>
   <footer class="collapsed">
+      <p>&copy; @DateTime.Now.Year - GatewayCDI - NPR</p>
 
+      </footer>
 
-        <p>&copy; @DateTime.Now.Year - GatewayCDI - NPR</p>
-
-  </footer>
-
-  @Scripts.Render("~/bundles/npr")
-  @RenderSection("scripts", required: false)
-</body>
-</html>
+      @Scripts.Render("~/bundles/npr")
+      @RenderSection("scripts", required: false)
+    </body>
+    </html>
