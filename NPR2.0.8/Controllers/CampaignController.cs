@@ -147,6 +147,21 @@ namespace NPR2._0._8.Controllers
         }
 
         //
+        // GET: /Campaign/PresentationView/5
+        public ActionResult PresentationView(string returnUrl, int id = 0)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            Campaign campaign = db.Campaigns.Find(id);
+
+            if (campaign == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(campaign);
+        }
+
+        //
         // GET: /Campaign/ReportView/5
         public ActionResult ReportView(string returnUrl, int id = 0)
         {
@@ -155,17 +170,17 @@ namespace NPR2._0._8.Controllers
 
             // Name Lists
             string type = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount);
-            ViewBag.DollarFeeNameList = db.FeeNames.Where(f => f.FeeNameType == type && f.FeeNameStatus == archived)
+            ViewBag.DollarFeeNameList = db.FeeNames.Where(f => f.FeeNameType == type && f.FeeNameStatus != archived)
                                                     .OrderBy(f => f.FeeNameName)
                                                     .Select(f => f.FeeNameName)
                                                     .ToList();
             type = MyExtensions.GetEnumDescription(FeeTypeList.Amortized);
-            ViewBag.AmortizedFeeNameList = db.FeeNames.Where(f => f.FeeNameType == type && f.FeeNameStatus == archived)
+            ViewBag.AmortizedFeeNameList = db.FeeNames.Where(f => f.FeeNameType == type && f.FeeNameStatus != archived)
                                                     .OrderBy(f => f.FeeNameName)
                                                     .Select(f => f.FeeNameName)
                                                     .ToList();
             type = MyExtensions.GetEnumDescription(FeeTypeList.Percent);
-            ViewBag.PercentFeeNameList = db.FeeNames.Where(f => f.FeeNameType == type && f.FeeNameStatus == archived)
+            ViewBag.PercentFeeNameList = db.FeeNames.Where(f => f.FeeNameType == type && f.FeeNameStatus != archived)
                                                     .OrderBy(f => f.FeeNameName)
                                                     .Select(f => f.FeeNameName)
                                                     .ToList();

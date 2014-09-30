@@ -3,6 +3,8 @@
 @using NPRModels;
 @{
     ViewBag.Title = "Report View";
+    string archived = MyExtensions.GetEnumDescription(Status.Archived);
+    int count = Model.Products.Where(p => p.ProductStatus != archived).Count();
 }
 
 <h2>Campaign Report View</h2>
@@ -17,7 +19,7 @@
     <h3 class="float-right">
         @Html.DisplayNameFor(model => model.CampaignProductCount): @Html.DisplayFor(model => model.CampaignProductCount)
         <br />
-        Actual Product Count: @Html.DisplayFor(model => model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).Count()))
+        Actual Product Count: @count
     </h3>
 </div>
 <table id="tblExport" class="report-view-table">

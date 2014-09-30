@@ -26,8 +26,8 @@
         @Html.Partial("_EditorData")
 
         <p style="float: right;">
-            <button type="submit" formaction="@Url.Action("SaveAndCalculateSellPrice", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Calculate Price</button>
-            <input type="submit" value="Close" />
+            <button type="submit" formaction="@Url.Action("SaveAndClose", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Close</button>
+            <input type="submit" value="Cancel" />
         </p>
     </fieldset>
 }

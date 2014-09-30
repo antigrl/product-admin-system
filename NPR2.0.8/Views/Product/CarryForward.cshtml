@@ -1,0 +1,42 @@
+﻿@model NPRModels.Product
+@using NPR2._0._8.Helpers;
+
+@{
+    ViewBag.Title = "CarryForward";
+}
+
+<h2>Carry Forward Product #@Html.DisplayFor(model => model.ProductName)
+</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Product</legend>
+
+        @Html.HiddenFor(model => model.ProductID)
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.CampaignID, "Campaign")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CampaignID", ViewBag.Campaigns as SelectList, String.Empty)
+            @Html.ValidationMessageFor(model => model.CampaignID)
+        </div>
+
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

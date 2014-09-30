@@ -494,6 +494,197 @@ namespace NPR2._0._8.Controllers
         }
 
         //
+        // POST: /Product/SaveAndCalculateSellPrice/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaveAndClose(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, string returnUrl)
+        {
+            // Sets Viewbag data for dropdowns
+            SetViewBagData(returnUrl, product);
+
+            if (ModelState.IsValid)
+            {
+                Helpers.FeeCalculator newCalculator = new Helpers.FeeCalculator(product);
+                try
+                {
+                    newCalculator.ComputeAllProductPrices();
+                }
+                catch (Exception ex)
+                {
+                    Console.Write("ProductController.cs SaveAndCalculateSellPrice() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
+                }
+
+                int index = -100;
+                foreach (var fee in product.Fees)
+                {
+                    // IF it's a new fee
+                    if (fee.FeeID <= 0)
+                    {
+                        fee.FeeID = index;
+                        index++;
+                    }
+                }
+
+                db.Entry(product).State = EntityState.Modified;
+
+                // Remove Fees
+                var Fees = product.Fees.ToList();
+                foreach (var fee in db.Fees.Where(p => p.ProductID == product.ProductID))
+                {
+                    if (!Fees.Contains(fee))
+                    {
+                        fee.FeeStatus = MyExtensions.GetEnumDescription(Status.Archived);
+                        db.Entry(fee).State = EntityState.Modified; ;
+                    }
+                }
+
+                // Add/Update Fees
+                foreach (var fee in product.Fees)
+                {
+                    // IF it's a new fee
+                    if (fee.FeeID <= 0)
+                    {
+                        // Create a new Fee
+                        db.Fees.Add(fee);
+                    }
+                    else
+                    {
+                        // Else update existing Fee
+                        db.Entry(fee).State = EntityState.Modified;
+                    }
+                }
+                // update  SellPriceFees
+                foreach (var sellPrice in product.ProductSellPrices)
+                {
+                    // Update sellprice 
+                    db.Entry(sellPrice).State = EntityState.Modified;
+
+                    //TODO: add/update/remove SellPriceFees
+                    foreach (var fee in sellPrice.Fees)
+                    {
+                        if (fee.FeeID <= 0)
+                        {
+                            db.Fees.Add(fee);
+                        }
+                        else
+                        {
+                            db.Entry(fee).State = EntityState.Modified;
+                        }
+                    }
+                }
+
+                // update Upcharges
+                foreach (var upcharge in product.ProductUpcharges)
+                {
+                    // Update Upcharge
+                    db.Entry(upcharge).State = EntityState.Modified;
+
+                    //TODO: add/update/remove SellPriceFees
+                    foreach (var upchargeSellPrice in upcharge.UpchargeSellPrices)
+                    {
+                        if (upchargeSellPrice.UpchargeSellPriceID <= 0)
+                        {
+                            db.UpchargeSellPrices.Add(upchargeSellPrice);
+                        }
+                        else
+                        {
+                            db.Entry(upchargeSellPrice).State = EntityState.Modified;
+                        }
+
+                    }
+                }
+                // Decorations
+                // Remove
+                var decorations = product.ProductDecorations.ToList();
+                foreach (var decoration in db.ProductDecorations.Where(p => p.ProductID == product.ProductID))
+                {
+                    if (!decorations.Contains(decoration))
+                    {
+                        decoration.DecorationStatus = MyExtensions.GetEnumDescription(Status.Archived);
+                        db.Entry(decoration).State = EntityState.Modified;
+                    }
+                }
+
+                // Add/Update
+                foreach (var decoration in product.ProductDecorations)
+                {
+                    if (DecorationImage != null && DecorationImage.ContentLength > 0)
+                    {
+                        byte[] imageBinaryData = new byte[DecorationImage.ContentLength];
+                        int readresult = DecorationImage.InputStream.Read(imageBinaryData, 0, DecorationImage.ContentLength);
+                        decoration.DecorationImage = imageBinaryData;
+                        decoration.DecorationImageType = DecorationImage.ContentType;
+                    }
+
+                    // IF it's a new fee
+                    if (decoration.DecorationID <= 0)
+                    {
+                        // Create a new Fee
+                        db.ProductDecorations.Add(decoration);
+                    }
+                    else
+                    {
+                        // Else update existing Fee
+                        db.Entry(decoration).State = EntityState.Modified;
+                    }
+                }
+
+                if (ProductImage != null && ProductImage.ContentLength > 0)
+                {
+                    byte[] imageBinaryData = new byte[ProductImage.ContentLength];
+                    int readresult = ProductImage.InputStream.Read(imageBinaryData, 0, ProductImage.ContentLength);
+                    product.ProductImage = imageBinaryData;
+                    product.ProductImageType = ProductImage.ContentType;
+                }
+
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Save and Calculate Prices");
+                db.AuditTrails.Add(audit);
+
+                // Send Emails
+                #region SendEmails
+                // Check previous status 
+                if (db.Products.Where(p => p.ProductID == product.ProductID).FirstOrDefault().ProductStatus != product.ProductStatus)
+                {
+                    List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(product.ProductStatus);
+                    var urlBuilder = new System.UriBuilder(Request.Url.AbsoluteUri) { Path = Url.Action("Edit", "Product") + "/" + product.ProductID, Query = null, };
+                    var campaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID).FirstOrDefault();
+                    if (sendEmailTos != null && sendEmailTos.Count > 0)
+                    {
+                        UserMailer.SendStatusUpdate(sendEmailTos, "Product Updated by: " + User.Identity.Name, urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, product).Send();
+                    }
+                }
+                #endregion
+
+                db.SaveChanges();
+                
+                if (returnUrl == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                return Redirect(returnUrl);
+            }
+            else
+            {
+                int count = 0;
+                foreach (var modelStateVal in ModelState.Values)
+                {
+                    foreach (var error in modelStateVal.Errors)
+                    {
+                        var errorMessage = error.ErrorMessage;
+                        var exception = error.Exception;
+                        // You may log the errors if you want
+                    }
+                    count++;
+                }
+            }
+            // Error
+            product.Campaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID)
+                                            .FirstOrDefault();
+            return View("Edit", product);
+        }
+
+        //
         // GET: /Product/Archive/5
         public ActionResult Archive(string returnUrl, int id = 0)
         {
