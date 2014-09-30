@@ -1,3 +1,8 @@
 *.cache
 *.suo
 *.pdb
+.sass-cache
+NPR2.0.8.Tests/bin
+NPR2.0.8.Tests/obj
+NPR2.0.8/bin/
+NPR2.0.8/obj/
