@@ -34,6 +34,12 @@ body {
 
 a {
   cursor: pointer;
+  color: $darkblue;
+  &:hover,
+  &:active,
+  &:focus {
+    color: $darkerblue;
+  }
 }
 
 ul {
@@ -215,28 +221,6 @@ main {
     }
     .sub-content {
       padding-left: 12px;
-    }
-  }
-  li {
-    position: relative;
-    margin: 0 0 10px;
-    padding: 0 0 0 25px;
-    &:before {
-      content: '\f00c';
-      font: normal 16px FontAwesome;
-      top: 2px;
-      left: 0;
-      color: #5b5;
-    }
-    &.error {
-      color: #EC5A55;
-      &:before {
-        content: '\2715';
-        font: normal 24px Entypo;
-        top: -4px;
-        left: 2px;
-        color: #EC5A55;
-      }
     }
   }
   table {

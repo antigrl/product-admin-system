@@ -1,0 +1,71 @@
+@media print {
+  body {
+    background-color: #fff; }
+
+  nav, .print {
+    display: none; }
+
+  main.collapsed,
+  footer.collapsed {
+    width: 100%;
+    margin-left: 0px;
+    padding: 0; }
+
+  .presentation-container,
+  .presentation-items {
+    flex-wrap: wrap; }
+    .presentation-container .headings,
+    .presentation-items .headings {
+      display: none; }
+    .presentation-container section:nth-child(1),
+    .presentation-items section:nth-child(1) {
+      visibility: hidden;
+      flex-grow: 0; }
+    .presentation-container section:nth-child(2),
+    .presentation-items section:nth-child(2) {
+      flex: 2;
+      flex-grow: 2;
+      order: 2; }
+    .presentation-container section:nth-child(3),
+    .presentation-items section:nth-child(3) {
+      flex: 1;
+      flex-grow: 3;
+      order: 1; }
+    .presentation-container section:nth-child(4),
+    .presentation-items section:nth-child(4) {
+      visibility: hidden;
+      flex-grow: 0; }
+    .presentation-container section:nth-child(5),
+    .presentation-items section:nth-child(5) {
+      visibility: hidden;
+      flex-grow: 0; }
+    .presentation-container section:nth-child(6),
+    .presentation-items section:nth-child(6) {
+      flex: 3;
+      flex-grow: 2;
+      order: 2; }
+    .presentation-container section:nth-child(7),
+    .presentation-items section:nth-child(7) {
+      visibility: hidden;
+      flex-grow: 0; }
+    .presentation-container section:nth-child(8),
+    .presentation-items section:nth-child(8) {
+      flex: 4;
+      flex-grow: 1;
+      order: 3; }
+    .presentation-container section:nth-child(9),
+    .presentation-items section:nth-child(9) {
+      flex: 5;
+      flex-grow: 1;
+      order: 3; }
+    .presentation-container section:nth-child(10),
+    .presentation-items section:nth-child(10) {
+      visibility: visible;
+      flex: 6;
+      flex-grow: 3; }
+    .presentation-container section:nth-child(11),
+    .presentation-items section:nth-child(11) {
+      visibility: visible;
+      flex: 7;
+      flex-grow: 3;
+      order: 4; } }

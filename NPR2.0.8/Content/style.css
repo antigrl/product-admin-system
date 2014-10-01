@@ -1,10 +1,17 @@
+@import url("//fonts.googleapis.com/css?family=Lato:300,400,700");
+@import url("//weloveiconfonts.com/api/?family=fontawesome");
+@import url("//weloveiconfonts.com/api/?family=entypo");
+.presentation-container, .presentation-items {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex; }
+
 /********************
 *    GCDI Styles    *
 ********************/
 /* Default Overrides */
-@import url("//fonts.googleapis.com/css?family=Lato:300,400,700");
-@import url("//weloveiconfonts.com/api/?family=fontawesome");
-@import url("//weloveiconfonts.com/api/?family=entypo");
 .display-label {
   font-weight: bold;
   padding-top: 5px; }
@@ -479,7 +486,10 @@ body {
   flex-direction: column; }
 
 a {
-  cursor: pointer; }
+  cursor: pointer;
+  color: #5e6d81; }
+  a:hover, a:active, a:focus {
+    color: #323a45; }
 
 ul {
   list-style: none; }
@@ -628,24 +638,6 @@ main {
       color: #555; }
     .flex-grid .account .sub-content {
       padding-left: 12px; }
-  .flex-grid li {
-    position: relative;
-    margin: 0 0 10px;
-    padding: 0 0 0 25px; }
-    .flex-grid li:before {
-      content: '\f00c';
-      font: normal 16px FontAwesome;
-      top: 2px;
-      left: 0;
-      color: #5b5; }
-    .flex-grid li.error {
-      color: #EC5A55; }
-      .flex-grid li.error:before {
-        content: '\2715';
-        font: normal 24px Entypo;
-        top: -4px;
-        left: 2px;
-        color: #EC5A55; }
   .flex-grid table {
     width: 100%;
     border-collapse: collapse; }
@@ -806,3 +798,127 @@ footer {
       font-size: 13px; }
       footer nav a:hover {
         color: #333; }
+
+/* On the flex container */
+.presentation-container, .presentation-items {
+  align-content: space-around;
+  text-align: center; }
+  .presentation-container section.headings, .presentation-items section.headings {
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 10px; }
+  .presentation-container section:nth-child(1), .presentation-items section:nth-child(1) {
+    flex: 1; }
+  .presentation-container section:nth-child(2), .presentation-items section:nth-child(2) {
+    flex: 2;
+    flex-grow: 2; }
+  .presentation-container section:nth-child(3), .presentation-items section:nth-child(3) {
+    flex: 3;
+    flex-grow: 3; }
+  .presentation-container section:nth-child(4), .presentation-items section:nth-child(4) {
+    flex: 4;
+    flex-grow: 2; }
+  .presentation-container section:nth-child(5), .presentation-items section:nth-child(5) {
+    flex: 5;
+    flex-grow: 2; }
+  .presentation-container section:nth-child(6), .presentation-items section:nth-child(6) {
+    flex: 6;
+    flex-grow: 4; }
+  .presentation-container section:nth-child(7), .presentation-items section:nth-child(7) {
+    flex: 7;
+    flex-grow: 3; }
+  .presentation-container section:nth-child(8), .presentation-items section:nth-child(8) {
+    flex: 8;
+    flex-grow: 1; }
+  .presentation-container section:nth-child(9), .presentation-items section:nth-child(9) {
+    flex: 9;
+    flex-grow: 1; }
+  .presentation-container section:nth-child(10), .presentation-items section:nth-child(10) {
+    flex: 10;
+    flex-grow: 0;
+    visibility: hidden; }
+  .presentation-container section:nth-child(11), .presentation-items section:nth-child(11) {
+    flex: 11;
+    flex-grow: 0;
+    visibility: hidden; }
+
+.presentation-items {
+  border-top: 1px solid #5e6d81; }
+  .presentation-items section {
+    padding: 10px 0; }
+  .presentation-items .line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: verical; }
+
+@media print {
+  body {
+    background-color: #fff; }
+
+  nav, .print {
+    display: none; }
+
+  main.collapsed,
+  footer.collapsed {
+    width: 100%;
+    margin-left: 0px;
+    padding: 0; }
+
+  .presentation-container, .presentation-items,
+  .presentation-items {
+    flex-wrap: wrap; }
+    .presentation-container .headings, .presentation-items .headings,
+    .presentation-items .headings {
+      display: none; }
+    .presentation-container section:nth-child(1), .presentation-items section:nth-child(1),
+    .presentation-items section:nth-child(1) {
+      visibility: hidden;
+      flex-grow: 0; }
+    .presentation-container section:nth-child(2), .presentation-items section:nth-child(2),
+    .presentation-items section:nth-child(2) {
+      flex: 2;
+      flex-grow: 2;
+      order: 2; }
+    .presentation-container section:nth-child(3), .presentation-items section:nth-child(3),
+    .presentation-items section:nth-child(3) {
+      flex: 1;
+      flex-grow: 3;
+      order: 1; }
+    .presentation-container section:nth-child(4), .presentation-items section:nth-child(4),
+    .presentation-items section:nth-child(4) {
+      visibility: hidden;
+      flex-grow: 0; }
+    .presentation-container section:nth-child(5), .presentation-items section:nth-child(5),
+    .presentation-items section:nth-child(5) {
+      visibility: hidden;
+      flex-grow: 0; }
+    .presentation-container section:nth-child(6), .presentation-items section:nth-child(6),
+    .presentation-items section:nth-child(6) {
+      flex: 3;
+      flex-grow: 2;
+      order: 2; }
+    .presentation-container section:nth-child(7), .presentation-items section:nth-child(7),
+    .presentation-items section:nth-child(7) {
+      visibility: hidden;
+      flex-grow: 0; }
+    .presentation-container section:nth-child(8), .presentation-items section:nth-child(8),
+    .presentation-items section:nth-child(8) {
+      flex: 4;
+      flex-grow: 1;
+      order: 3; }
+    .presentation-container section:nth-child(9), .presentation-items section:nth-child(9),
+    .presentation-items section:nth-child(9) {
+      flex: 5;
+      flex-grow: 1;
+      order: 3; }
+    .presentation-container section:nth-child(10), .presentation-items section:nth-child(10),
+    .presentation-items section:nth-child(10) {
+      visibility: visible;
+      flex: 6;
+      flex-grow: 3; }
+    .presentation-container section:nth-child(11), .presentation-items section:nth-child(11),
+    .presentation-items section:nth-child(11) {
+      visibility: visible;
+      flex: 7;
+      flex-grow: 3;
+      order: 4; } }

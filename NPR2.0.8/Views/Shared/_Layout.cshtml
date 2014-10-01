@@ -24,6 +24,7 @@
       <li>@Html.ActionLink("Create New Campaign", "Create")</li>
     </ul>
   </nav>
+<<<<<<< HEAD
 <!--   <header>
     <div class="content-wrapper">
       <div class="float-left">
@@ -36,6 +37,43 @@
         <section id="login">
           Hello, <span class="username"></span>!
         </section>
+=======
+
+<!--     <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">
+                    @Html.ActionLink("NPR System", "Index", "Home")
+                    <sub>Usability Testing</sub>
+                </p>
+            </div>
+            <div class="float-right">
+                <section id="login">
+                    Hello, <span class="username">@User.Identity.Name</span>!
+                </section>
+                <nav>
+                    <ul id="menu">
+                        <li>@Html.ActionLink("Companies", "Index", "Company")</li>
+                        <li>@Html.ActionLink("Campaigns", "Index", "Campaign")</li>
+                        @if(User.Identity.Name.ToLower().Contains("john.grabanski") ||
+                                User.Identity.Name.ToLower().Contains("rhonda.viviano") ||
+                                User.Identity.Name.ToLower().Contains("jaime.keller") ||
+                                User.Identity.Name.ToLower().Contains("reid.binns") ||
+                                User.Identity.Name.ToLower().Contains("susan.kowelman") ||
+                                User.Identity.Name.ToLower().Contains("kim.walta"))
+                        {
+                            <li>@Html.ActionLink("Admin Links", "AdminLinks", "Home")</li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
+      </header> -->
+      <main class="collapsed">
+        @RenderBody()
+      </main>
+      <footer class="collapsed">
+>>>>>>> trying to get flex box to change on print
         <nav>
           <ul id="menu">
             <li>@Html.ActionLink("Companies", "Index", "Company")</li>

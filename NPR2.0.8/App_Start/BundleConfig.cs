@@ -30,7 +30,8 @@ namespace NPR2._0._8
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/style.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                        "~/Content/style.css"));
 
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
