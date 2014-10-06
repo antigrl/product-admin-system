@@ -46,7 +46,7 @@
                     @Html.HiddenFor(model => model.ProductImageType)
                 </div>
                 <div class="image">
-                    @if(Model != null)
+                    @if(Model != null && Model.ProductImage != null)
                     {
                         <img src="@Url.Action("Show", "Product", new { id = Model.ProductID })" />
                     }
