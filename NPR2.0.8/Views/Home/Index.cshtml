@@ -1,20 +1,25 @@
 ﻿
-<ol class="round">
-  <li class="one">
-    <h5>Company</h5>
+<div class="flex-grid">
+  <section>
     @Html.ActionLink("Company List", "Index", "Company")
-  </li>
+  </section>
 
-  <li class="two">
-    <h5>Campaign</h5>
+  <section>
     @Html.ActionLink("Campaign List", "Index", "Campaign")
-  </li>
-</ol>
+  </section>
 
-
-<ol class="round">
-  <li class="one">
-    <h5>Vendor Names</h5>
+  <section>
     @Html.ActionLink("Vendor Name List", "Index", "VendorName")
-  </li>
-</ol>
+  </section>
+  <section>
+    @if(User.Identity.Name.ToLower().Contains("john.grabanski") ||
+    User.Identity.Name.ToLower().Contains("rhonda.viviano") ||
+    User.Identity.Name.ToLower().Contains("jaime.keller") ||
+    User.Identity.Name.ToLower().Contains("reid.binns") ||
+    User.Identity.Name.ToLower().Contains("susan.kowelman") ||
+    User.Identity.Name.ToLower().Contains("kim.walta"))
+    {
+    @Html.ActionLink("Admin Links", "AdminLinks", "Home")
+  }
+</section>
+</div>

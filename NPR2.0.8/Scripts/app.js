@@ -25,12 +25,3 @@ $(function () {
     }, 410);
   });
 });
-
-app.directive('name', [function () {
-  return {
-    restrict: 'EAC',
-    link: function (scope, elm, attrs) {
-      scope.$watch(attrs.)
-    }
-  };
-}])

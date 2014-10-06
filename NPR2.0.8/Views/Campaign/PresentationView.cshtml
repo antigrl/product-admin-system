@@ -32,35 +32,36 @@ int count = Model.Products.Where(p => p.ProductStatus != archived).Count();
       @foreach (var pricingTier in Model.Company.PricingTiers.Where(p => p.PricingTierStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.PricingTierLevel))
       {
       <section class="headings">@pricingTier.PricingTierName.Replace(Model.Company.CompanyName, "").Replace("/", "/ ")</section>
-    }
+      }
       <section class="headings">Approved</section>
       <section class="headings">Notes</section>
-  </div>
+    </div>
 
 </div>
 
 
 
-  @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.Category.CategoryName))
-  {
-  <div class="presentation-items">
-    <section>@product.ProductID</section>
-    <section>@Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null) </section>
-    <section class="product-image">
-      <div class="image">
-        <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
-      </div>
-    </section>
-    <section>@product.Category.CategoryName</section>
-    <section>@product.ProductCountryOfOrigin</section>
-    <section class="line-clamp">@product.ProductDescription</section>
-    @foreach (var sellPrice in product.ProductSellPrices.OrderBy(s => s.SellPriceLevel))
+    @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.Category.CategoryName))
     {
-    <section>@sellPrice.SellPriceFinalAmount.ToString("c")</section>
+    <div class="presentation-items">
+      <section>@product.ProductID</section>
+      <section>@Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null) </section>
+      <section class="product-image">
+        <div class="image">
+          <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
+        </div>
+      </section>
+      <section>@product.Category.CategoryName</section>
+      <section>@product.ProductCountryOfOrigin</section>
+      <section class="line-clamp">@product.ProductDescription</section>
+      @foreach (var sellPrice in product.ProductSellPrices.OrderBy(s => s.SellPriceLevel))
+      {
+      <section>@sellPrice.SellPriceFinalAmount.ToString("c")</section>
+      }
+      <section></section>
+      <section></section>
+    </div>
     }
-    <section></section>
-    <section></section>
-</div>
-}
 
-</section>
+  </section>
+</div>
