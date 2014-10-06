@@ -2,7 +2,6 @@
 .presentation-container {
   @extend %flexbox;
   align-content: space-around;
-  text-align: center;
   flex-direction: row;
   section {
     &.headings {
