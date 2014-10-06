@@ -802,7 +802,8 @@ footer {
 /* On the flex container */
 .presentation-container, .presentation-items {
   align-content: space-around;
-  text-align: center; }
+  text-align: center;
+  flex-direction: row; }
   .presentation-container section.headings, .presentation-items section.headings {
     font-size: 16px;
     font-weight: bold;

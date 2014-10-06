@@ -3,6 +3,7 @@
   @extend %flexbox;
   align-content: space-around;
   text-align: center;
+  flex-direction: row;
   section {
     &.headings {
       font-size: 16px;
