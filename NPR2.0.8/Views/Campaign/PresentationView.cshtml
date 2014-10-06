@@ -21,29 +21,31 @@
     </h3>
 </div>
 <table id="tblExport" class="presentation-view-table index-table">
-    <thead>
-        <tr>
-            <th>NPR ID</th>
-            <th>Name</th>
-            <th>Image</th>
-            <th>Major Category</th>
-            <th>Country Of Origin</th>
-            <th>Description</th>
-            @foreach (var pricingTier in Model.Company.PricingTiers.Where(p => p.PricingTierStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.PricingTierLevel))
-            {
-                <th>@pricingTier.PricingTierName.Replace(Model.Company.CompanyName, "").Replace("/", "/ ")</th>
-            }
-        </tr>
-    </thead>
     <tbody>
         @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.Category.CategoryName))
         {
+            <tr>
+                <th>NPR ID</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Major Category</th>
+                <th>Country Of Origin</th>
+                <th>Description</th>
+                @foreach (var pricingTier in Model.Company.PricingTiers.Where(p => p.PricingTierStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.PricingTierLevel))
+                {
+                    <th>@pricingTier.PricingTierName.Replace(Model.Company.CompanyName, "").Replace("/", "/ ")</th>
+                }
+                <th>Notes:</th>
+            </tr>
             <tr>
                 <td>@product.ProductID</td>
                 <td>@Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null) </td>
                 <td class="product-image">
                     <div class="image">
-                        <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
+                        @if (product.ProductImage != null)
+                        {
+                            <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
+                        }
                     </div>
                 </td>
                 <td>@product.Category.CategoryName</td>
@@ -53,6 +55,7 @@
                 {
                     <td>@sellPrice.SellPriceFinalAmount.ToString("c")</td>
                 }
+                <td></td>
             </tr>
         }
     </tbody>
