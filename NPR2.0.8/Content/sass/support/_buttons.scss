@@ -33,7 +33,7 @@
   padding: 10px 20px;
   cursor: pointer;
 }
-.green {
+.green { // Save
   background-color: #1fbba6;
   color: #fff;
   font-size: 16px;
@@ -48,7 +48,7 @@
   }
 }
 
-.dark-blue {
+.dark-blue { // Cancel
   background-color: #34495e;
   color: #fff;
   &:hover {
