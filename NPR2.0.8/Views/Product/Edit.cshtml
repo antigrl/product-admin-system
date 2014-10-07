@@ -13,7 +13,9 @@ ViewBag.Title = "Edit Product";
   </h1>
 </div>
 
-Editing Product #@Html.DisplayFor(model => model.ProductID)
+<h3>
+  Editing Product #@Html.DisplayFor(model => model.ProductID)
+</h3>
 
 
 @using(Html.BeginForm("Close", "Product", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data" }))

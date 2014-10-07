@@ -71,9 +71,13 @@ main {
       text-transform: uppercase;
       .heading-info {
         float: right;
+        margin: 25px 0 0 30px;
+        padding-left: 30px;
+        line-height: 30px;
         text-transform: none;
         font-size: 16px;
-        margin-left: 30px;
+        border-left: 1px solid #ccc;
+
       }
     }
   }

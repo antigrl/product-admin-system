@@ -4,18 +4,18 @@
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   border-color:$dark-bg !important;
   border-width:2px;
-  @include background-image(linear-gradient($bg, $bg 5%, $dark-bg));
+  background: linear-gradient($bg, $bg 5%, $dark-bg);
   &:hover,
   &:focus,
   &:active{
     background-color: $bg;
-    @include background-image(linear-gradient($bg, $bg));
-    @include opacity(0.95);
-    @include box-shadow(0 1px 1px rgba( 0, 0, 0, .1));
+    background: linear-gradient($bg, $bg);
+    opacity: 0.95;
+    box-shadow: 0 1px 1px rgba( 0, 0, 0, .1);
     border-color:$darker-bg !important;
-    @include transition(.25s);
+    transition: .25s;
   }
-  @include box-shadow(0 1px 0 rgba(255, 255, 255, 0.0) inset);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.0) inset;
 }
 .disabled:hover{
   opacity: 0.6 !important;
@@ -32,7 +32,7 @@
   letter-spacing: 1px;
   &:hover {
     background-color: darken($orange, 10%);
-    @include transition(.25s);
+    transition: .25s;
   }
 }
 

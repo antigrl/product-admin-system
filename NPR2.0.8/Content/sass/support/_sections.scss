@@ -24,7 +24,7 @@
         background:$midnight-blue;
         &:hover{
           background:$wet-asphalt;
-          @include transition(.25s);
+          transition: .25s;
         }
         a{
           color:#fff;
@@ -34,7 +34,7 @@
     &:hover{
       .title{
         background:$turquoise;
-        @include transition(.25s);
+        transition: .25s;
         a{
           color:#fff;
         }
