@@ -8,31 +8,25 @@ ViewBag.Title = "Edit Product";
   <h1>
     @Html.DisplayFor(model => model.Campaign.Company.CompanyName)
     <div class="heading-info">
+      <strong>Editing Product:</strong> @Html.DisplayFor(model => model.ProductID)
+    </div>
+    <div class="heading-info">
       <strong>Campaign:</strong> @Html.DisplayFor(model => model.Campaign.CampaignName)
     </div>
   </h1>
 </div>
 
-<h3>
-  Editing Product #@Html.DisplayFor(model => model.ProductID)
-</h3>
-
-
 @using(Html.BeginForm("Close", "Product", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
   @Html.AntiForgeryToken()
   @Html.ValidationSummary(true)
-
-
-
   @Html.HiddenFor(model => model.ProductID)
-
   @Html.Partial("_EditorData")
 
-  <p style="float: right;">
-    <button type="submit" formaction="@Url.Action("SaveAndClose", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Close</button>
-    <input type="submit" value="Cancel" />
-  </p>
+
+  <button type="submit" class="button green" formaction="@Url.Action("SaveAndClose", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save &amp; Close</button>
+
+  <input type="submit" class="button dark-blue" value="Cancel" />
 
 }
 

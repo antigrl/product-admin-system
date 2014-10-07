@@ -21,9 +21,45 @@
   opacity: 0.6 !important;
 }
 .button {
-  @include button-effect();
+  padding: 10px 15px;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 1.4;
+  border: none;
+  border-radius: 4px;
+  -webkit-transition: border .25s linear, color .25s linear, background-color .25s linear;
+  transition: border .25s linear, color .25s linear, background-color .25s linear;
+  -webkit-font-smoothing: subpixel-antialiased;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.green {
+  background-color: #1fbba6;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+  &:hover {
+    background-color: #48c9b0;
+    border-color: #48c9b0;
+  }
+  &:active {
+    background: #16a085;
+    border-color: #16a085;
+  }
 }
 
+.dark-blue {
+  background-color: #34495e;
+  color: #fff;
+  &:hover {
+    background-color: #415b76;
+    border-color: #415b76;
+  }
+  &:active {
+    background-color: #2c3e50;
+    border-color: #2c3e50;
+  }
+}
 .orange {
   background-color: $orange;
   border-color: none;
