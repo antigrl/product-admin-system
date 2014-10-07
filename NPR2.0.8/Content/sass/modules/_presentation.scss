@@ -22,7 +22,6 @@
     &:nth-child(3) { // Category
       flex: 3;
       flex-grow: 4;
-      border-right: 1px solid #ccc;
     }
     &:nth-child(4) { // Country
       flex: 4;
@@ -53,12 +52,17 @@
   margin-bottom: 30px;
   section {
     padding: 10px 0;
-  }
+        &:nth-child(3) { // Category
+          flex: 3;
+          flex-grow: 4;
+          border-right: 1px solid #ccc;
+        }
+      }
 
-  .line-clamp {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: verical;
-  }
-}
+      .line-clamp {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: verical;
+      }
+    }
 

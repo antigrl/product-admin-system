@@ -394,6 +394,10 @@ footer {
   margin-bottom: 30px; }
   .presentation-items section {
     padding: 10px 0; }
+    .presentation-items section:nth-child(3) {
+      flex: 3;
+      flex-grow: 4;
+      border-right: 1px solid #ccc; }
   .presentation-items .line-clamp {
     display: -webkit-box;
     -webkit-line-clamp: 3;

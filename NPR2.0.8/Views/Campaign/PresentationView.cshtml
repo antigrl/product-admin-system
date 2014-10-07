@@ -32,7 +32,7 @@ List<PricingTier> pricingTiers = Model.Company.PricingTiers.Where(p => p.Pricing
       <section class="headings">@Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)</section>
       <section class="headings">@product.Category.CategoryName</section>
       <section class="headings">@product.ProductCountryOfOrigin</section>
-      <section class="headings">Notes</section>
+      <section class="headings"></section>
 
 <<<<<<< HEAD
 </div>
