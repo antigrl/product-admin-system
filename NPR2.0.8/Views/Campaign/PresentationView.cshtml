@@ -5,63 +5,71 @@
 ViewBag.Title = "Presentation View";
 string archived = MyExtensions.GetEnumDescription(Status.Archived);
 int count = Model.Products.Where(p => p.ProductStatus != archived).Count();
+List<PricingTier> pricingTiers = Model.Company.PricingTiers.Where(p => p.PricingTierStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.PricingTierLevel).ToList();
 }
-
 <div class="print">
   <h2>Campaign Presentation View - @Html.ActionLink("Back to Campaign", "Edit", new { id = Model.CampaignID })</h2>
-  <h4>
-    @Html.DisplayNameFor(model => model.CampaignName): @Html.DisplayFor(model => model.CampaignName)
-    <br />
-    @Html.DisplayNameFor(model => model.Company.CompanyName): @Html.DisplayFor(model => model.Company.CompanyName)
-  </h4>
-  <h4>
-    @Html.DisplayNameFor(model => model.CampaignProductCount): @Html.DisplayFor(model => model.CampaignProductCount)
-    <br />
-    Actual Product Count: @count
-  </h4>
+  <div>
+    <h3 class="float-left">
+      @Html.DisplayNameFor(model => model.CampaignName): @Html.DisplayFor(model => model.CampaignName)
+      <br />
+      @Html.DisplayNameFor(model => model.Company.CompanyName): @Html.DisplayFor(model => model.Company.CompanyName)
+    </h3>
+    <h3 class="float-right">
+      @Html.DisplayNameFor(model => model.CampaignProductCount): @Html.DisplayFor(model => model.CampaignProductCount)
+      <br />
+      Actual Product Count: @count
+    </h3>
+  </div>
 </div>
 <div class="flex-grid">
-  <section>
-    <div class="presentation-container">
-      <section class="headings">NPR ID</section>
-      <section class="headings">Name</section>
-      <section class="headings">Image</section>
-      <section class="headings">Major Category</section>
-      <section class="headings">Country</section>
-      <section class="headings">Description</section>
-      @foreach (var pricingTier in Model.Company.PricingTiers.Where(p => p.PricingTierStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.PricingTierLevel))
-      {
-      <section class="headings">@pricingTier.PricingTierName.Replace(Model.Company.CompanyName, "").Replace("/", "/ ")</section>
-      }
-      <section class="headings">Approved</section>
-      <section class="headings">Notes</section>
-    </div>
+  <section id="tblExport">
+    @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.Category.CategoryName))
+    {
 
+    <div class="presentation-container">
+      <section class="headings">NPR ID - @product.ProductID</section>
+      <section class="headings">@Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)</section>
+      <section class="headings">@product.Category.CategoryName</section>
+      <section class="headings">@product.ProductCountryOfOrigin</section>
+      <section class="headings">Notes</section>
+
+<<<<<<< HEAD
 </div>
 
 
 
     @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.Category.CategoryName))
     {
+=======
+    </div>
+>>>>>>> aligning presentation table and print view
     <div class="presentation-items">
-      <section>@product.ProductID</section>
-      <section>@Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null) </section>
       <section class="product-image">
         <div class="image">
+          @if (product.ProductImage != null)
+          {
           <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
-        </div>
-      </section>
-      <section>@product.Category.CategoryName</section>
-      <section>@product.ProductCountryOfOrigin</section>
-      <section class="line-clamp">@product.ProductDescription</section>
-      @foreach (var sellPrice in product.ProductSellPrices.OrderBy(s => s.SellPriceLevel))
-      {
-      <section>@sellPrice.SellPriceFinalAmount.ToString("c")</section>
-      }
-      <section></section>
-      <section></section>
-    </div>
+        }
+      </div>
+    </section>
+    <section>@product.ProductDescription</section>
+    <section>
+      @{
+      List<ProductSellPrice> sellPrices = product.ProductSellPrices.OrderBy(s => s.SellPriceLevel).ToList();
     }
-
+    @for (int index = 0; index < sellPrices.Count; index++)
+    {
+    <ul>
+      <li><strong>@pricingTiers[index].PricingTierName.Replace(Model.Company.CompanyName, "").Replace("/", "/ "): </strong>
+        @sellPrices[index].SellPriceFinalAmount.ToString("c")</li>
+      </ul>
+    }
   </section>
+  <section></section>
+  <section></section>
 </div>
+}
+</section>
+</div>
+

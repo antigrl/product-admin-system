@@ -1,58 +1,48 @@
 /* On the flex container */
 .presentation-container {
   @extend %flexbox;
-  align-content: space-around;
   flex-direction: row;
+  border: 1px solid #ccc;
+  padding: 10px;
   section {
     &.headings {
       font-size: 16px;
       font-weight: bold;
-      padding-bottom: 10px;
     }
-    &:nth-child(1) { // ID
+    &:nth-child(1) { // Image
       flex: 1;
+      flex-grow: 3;
     }
-    &:nth-child(2) { // Name
+    &:nth-child(2) { // Name & Description
       flex: 2;
-      flex-grow: 2;
+      flex-grow: 6;
+      max-height: 100px;
+      overflow: hidden;
     }
-    &:nth-child(3) { // Image
+    &:nth-child(3) { // Category
       flex: 3;
-      flex-grow: 3;
-    }
-    &:nth-child(4) { // Category
-      flex: 4;
-      flex-grow: 2;
-    }
-    &:nth-child(5) { // Country
-      flex: 5;
-      flex-grow: 2;
-    }
-    &:nth-child(6) { // Description
-      flex: 6;
       flex-grow: 4;
+      border-right: 1px solid #ccc;
     }
-    &:nth-child(7) { // Employee/Corportate
-      flex: 7;
+    &:nth-child(4) { // Country
+      flex: 4;
       flex-grow: 3;
     }
-    &:nth-child(8) { // Deader
+    &:nth-child(5) { // Employee/Corportate
+      flex: 5;
+      flex-grow: 3;
+    }
+    &:nth-child(6) { // Dealer
+      flex: 6;
+      flex-grow: 2;
+    }
+    &:nth-child(7) { // Retail
+      flex: 7;
+      flex-grow: 2;
+    }
+    &:nth-child(8) { //Notes
       flex: 8;
-      flex-grow: 1;
-    }
-    &:nth-child(9) { // Retail
-      flex: 9;
-      flex-grow: 1;
-    }
-    &:nth-child(10) { //Notes
-      flex: 10;
-      flex-grow: 0;
-      visibility: hidden;
-    }
-    &:nth-child(11) { // Approved
-      flex: 11;
-      flex-grow: 0;
-      visibility: hidden;
+      flex-grow: 8;
     }
   }
 }
@@ -60,6 +50,7 @@
 .presentation-items {
   @extend .presentation-container;
   border-top: 1px solid $darkblue;
+  margin-bottom: 30px;
   section {
     padding: 10px 0;
   }
@@ -70,3 +61,4 @@
     -webkit-box-orient: verical;
   }
 }
+

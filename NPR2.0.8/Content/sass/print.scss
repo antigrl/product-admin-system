@@ -2,73 +2,23 @@
   body {
     background-color: #fff;
   }
-  nav, .print {
-    display: none;
-  }
-  main.collapsed,
-  footer.collapsed {
-    width: 100%;
-    margin-left: 0px ;
+  main {
     padding: 0;
   }
-  .presentation-container,
-  .presentation-items {
-    flex-wrap: wrap;
-    .headings { display: none; }
-    section {
-      &:nth-child(1) { // ID
-        visibility: hidden;
-        flex-grow: 0;
-      }
-      &:nth-child(2) { // Name
-        flex: 2;
-        flex-grow: 2;
-        order: 2;
-      }
-      &:nth-child(3) { // Image
-        flex: 1;
-        flex-grow: 3;
-        order: 1;
-      }
-      &:nth-child(4) { //Category
-        visibility: hidden;
-        flex-grow: 0;
-      }
-      &:nth-child(5) { //Country
-        visibility: hidden;
-        flex-grow: 0;
-      }
-      &:nth-child(6) { // Description
-        flex: 3;
-        flex-grow: 2;
-        order: 2;
-      }
-      &:nth-child(7) { // Employee/Corporate
-        visibility: hidden;
-        flex-grow: 0;
-      }
-      &:nth-child(8) { // Dealer
-        flex: 4;
-        flex-grow: 1;
-        order: 3;
-      }
-      &:nth-child(9) { // Retail
-        flex: 5;
-        flex-grow: 1;
-        order: 3;
-      }
-      &:nth-child(10) { // Notes
-        visibility: visible;
-        flex: 6;
-        flex-grow: 3;
-
-      }
-      &:nth-child(11) { // Approved
-        visibility: visible;
-        flex: 7;
-        flex-grow: 3;
-        order: 4;
-      }
+  nav, .print, nav.main.collapsed {
+    display: none;
+    width: 0;
+  }
+  .flex-grid > section {
+    border: none;
+    padding: 0;
+    &:hover {
+      border: none;
     }
   }
+  main,
+  main.collapsed {
+    margin: 0;
+  }
+
 }

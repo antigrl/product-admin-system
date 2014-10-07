@@ -31,7 +31,8 @@ namespace NPR2._0._8
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                        "~/Content/style.css"));
+                        "~/Content/style.css",
+                        "~/Content/print.css"));
 
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
