@@ -8,20 +8,34 @@ int count = Model.Products.Where(p => p.ProductStatus != archived).Count();
 List<PricingTier> pricingTiers = Model.Company.PricingTiers.Where(p => p.PricingTierStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.PricingTierLevel).ToList();
 }
 <div class="print">
-  <h2>Campaign Presentation View - @Html.ActionLink("Back to Campaign", "Edit", new { id = Model.CampaignID })</h2>
-  <div>
-    <h3 class="float-left">
-      @Html.DisplayNameFor(model => model.CampaignName): @Html.DisplayFor(model => model.CampaignName)
-      <br />
-      @Html.DisplayNameFor(model => model.Company.CompanyName): @Html.DisplayFor(model => model.Company.CompanyName)
-    </h3>
-    <h3 class="float-right">
-      @Html.DisplayNameFor(model => model.CampaignProductCount): @Html.DisplayFor(model => model.CampaignProductCount)
-      <br />
-      Actual Product Count: @count
-    </h3>
+
+  <div class="heading">
+    <h1>
+      @Html.DisplayFor(model => model.Company.CompanyName)
+      <div class="heading-info">
+        <strong>@Html.DisplayNameFor(model => model.CampaignName):</strong> @Html.DisplayFor(model => model.CampaignName)
+      </div>
+    </h1>
+  </div>
+  <div class="flex-grid">
+    <section class="seamless">
+     @Html.ActionLink("Campaign View", "Edit", new { id = Model.CampaignID })
+    </section>
+
+    <section class="seamless">
+      <span>
+        @Html.DisplayFor(model => model.CampaignProductCount)
+      </span>
+      <h3>@Html.DisplayNameFor(model => model.CampaignProductCount)</h3>
+    </section>
+
+    <section class="seamless">
+      <span>@count</span>
+      <h3>Actual Product Count</h3>
+    </section>
   </div>
 </div>
+
 <div class="flex-grid">
   <section id="tblExport">
     @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.Category.CategoryName))
