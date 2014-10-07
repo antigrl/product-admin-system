@@ -15,8 +15,7 @@
 .product-image .image {
   text-align: center; }
   .product-image .image img {
-    max-height: 125px;
-    max-width: 475px; }
+    max-height: 125px; }
 
 * {
   margin: 0;
@@ -390,7 +389,7 @@ footer {
     flex-grow: 8; }
 
 .presentation-items {
-  border-top: 1px solid #5e6d81;
+  border-bottom: 1px solid #5e6d81;
   margin-bottom: 30px; }
   .presentation-items section {
     padding: 10px 0; }

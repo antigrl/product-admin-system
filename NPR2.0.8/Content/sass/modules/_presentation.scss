@@ -48,7 +48,7 @@
 
 .presentation-items {
   @extend .presentation-container;
-  border-top: 1px solid $darkblue;
+  border-bottom: 1px solid $darkblue;
   margin-bottom: 30px;
   section {
     padding: 10px 0;

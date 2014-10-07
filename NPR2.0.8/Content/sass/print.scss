@@ -1,13 +1,19 @@
 @media print {
   body {
     background-color: #fff;
+    width: 100%;
+    font-size: 12px;
   }
   main {
     padding: 0;
   }
-  nav, .print, nav.main.collapsed {
+  nav, .print, footer {
     display: none;
     width: 0;
+  }
+  .flex-grid {
+    margin-left: -50px;
+
   }
   .flex-grid > section {
     border: none;
@@ -16,9 +22,22 @@
       border: none;
     }
   }
-  main,
-  main.collapsed {
-    margin: 0;
+  .presentation-items {
+    margin-bottom: 0;
+    padding: 0;
+  }
+
+  section.headings,
+  section {
+    font-size: 12px !important;
+  }
+
+
+  .image {
+    text-align: left;
+    img {
+      max-height: 60px !important;
+    }
   }
 
 }
