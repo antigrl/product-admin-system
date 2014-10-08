@@ -43,8 +43,10 @@ namespace NPR2._0._8.Controllers
 
         //
         // GET: /Company/Create
-        public ActionResult Create()
+        public ActionResult Create(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
+
             // Generate Company for member initialization
             Company company = new Company();
             company.OnCreate();
@@ -56,7 +58,7 @@ namespace NPR2._0._8.Controllers
         // POST: /Company/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Exclude = "CompanyImage")]Company company, HttpPostedFileBase CompanyImage)
+        public ActionResult Create([Bind(Exclude = "CompanyImage")]Company company, HttpPostedFileBase CompanyImage, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +76,12 @@ namespace NPR2._0._8.Controllers
 
                 db.Companies.Add(company);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                if (returnUrl == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                return Redirect(returnUrl);
             }
 
             return View(company);

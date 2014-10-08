@@ -7,7 +7,7 @@
 <h2>@ViewBag.TitleMessage Company Index</h2>
 
 <p>
-    @Html.ActionLink("Create New Company", "Create")
+    @Html.ActionLink("Create New Company", "Create", "Company", new object { }, null)
     @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
     {
         <span class="float-right">@Html.ActionLink("View Active Companies", "Index")</span>

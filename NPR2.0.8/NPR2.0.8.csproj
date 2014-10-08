@@ -449,6 +449,8 @@
     <Content Include="Views\AuditTrail\Details.cshtml" />
     <Content Include="Views\Product\CarryForward.cshtml" />
     <Content Include="Views\Campaign\PresentationView.cshtml" />
+    <Content Include="Views\Company\_CompanyList.cshtml" />
+    <Content Include="Views\Campaign\_CampaignList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
