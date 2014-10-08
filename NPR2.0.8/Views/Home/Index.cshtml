@@ -1,34 +1,23 @@
-﻿@using NPRModels;
-@using NPR2._0._8.Helpers;
-@{
-    ViewBag.Title = "Home Page";
-}
-@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>@ViewBag.Title.</h1>
-                <h2>@ViewBag.Message</h2>
-            </hgroup>
-        </div>
-    </section>
-}
-<div class="left-content">
-    @if (ViewBag.Companies != null)
-    {
-        Html.RenderPartial("~/Views/Company/_CompanyList.cshtml", (IEnumerable<Company>)ViewBag.Companies);
-    }
+﻿<div class="left-half-content">
+    <h3>Basic Links</h3>
+    <ol class="round">
+        <li class="one">
+            <h5>Company</h5>
+            @Html.ActionLink("Company List", "Index", "Company")
+        </li>
+
+        <li class="two">
+            <h5>Campaign</h5>
+            @Html.ActionLink("Campaign List", "Index", "Campaign")
+        </li>
+    </ol>
 </div>
-<div class="right-content">
+<div class="right-half-content">
     <h3>Drop Down Lists</h3>
     <ol class="round">
         <li class="one">
             <h5>Vendor Names</h5>
             @Html.ActionLink("Vendor Name List", "Index", "VendorName")
-        </li>
-        <li class="two">
-            <h5>Fee Names</h5>
-            @Html.ActionLink("Fee Name List", "Index", "FeeName")
         </li>
     </ol>
 </div>

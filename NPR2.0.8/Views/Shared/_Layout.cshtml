@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,3 +58,83 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+=======
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="nprApp">
+<head>
+  <meta charset="utf-8" />
+  <title>@ViewBag.Title - NPR</title>
+  <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+  <meta name="viewport" content="width=device-width" />
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  @Styles.Render("~/Content/css")
+  @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+  <nav class="collapsed main">
+    <a class="open"></a>
+
+    <div>
+      <header>
+        <img src="Content/themes/base/images/logo.png" alt="" class="thumb">
+        <span>@User.Identity.Name</span>
+      </header>
+    </div>
+<!--     <ul>
+      <li class="section">Navigation</li>
+      <li>Company</li>
+      <li>Campaign</li>
+      <li>Vendors</li>
+    </ul> -->
+
+  </nav>
+<!--   <header>
+    <div class="content-wrapper">
+      <div class="float-left">
+        <p class="site-title">
+          @Html.ActionLink("NPR System", "Index", "Home")
+          <sub>Usability Testing</sub>
+        </p>
+      </div>
+      <div class="float-right">
+        <section id="login">
+          Hello, <span class="username"></span>!
+        </section>
+        <nav>
+          <ul id="menu">
+            <li>@Html.ActionLink("Companies", "Index", "Company")</li>
+            <li>@Html.ActionLink("Campaigns", "Index", "Campaign")</li>
+            @if(User.Identity.Name.ToLower().Contains("john.grabanski") ||
+            User.Identity.Name.ToLower().Contains("rhonda.viviano") ||
+            User.Identity.Name.ToLower().Contains("jaime.keller") ||
+            User.Identity.Name.ToLower().Contains("reid.binns") ||
+            User.Identity.Name.ToLower().Contains("susan.kowelman"))
+            {
+            <li>@Html.ActionLink("Admin Links", "AdminLinks", "Home")</li>
+          }
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header> -->
+  <main class="collapsed">
+
+
+    <div id="body" class="flex-grid">
+      <section class="aligner">
+        @RenderBody()
+      </section>
+    </div>
+  </main>
+  <footer class="collapsed">
+
+
+        <p>&copy; @DateTime.Now.Year - GatewayCDI - NPR</p>
+
+  </footer>
+
+  @Scripts.Render("~/bundles/npr")
+  @RenderSection("scripts", required: false)
+</body>
+</html>
+>>>>>>> adding rest of styles and fixing angular
