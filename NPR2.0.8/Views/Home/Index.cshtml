@@ -1,51 +1,28 @@
-﻿
-<!-- <div class="flex-grid">
-  <section>
-    @Html.ActionLink("Company List", "Index", "Company")
-  </section>
-
-  <section>
-    @Html.ActionLink("Campaign List", "Index", "Campaign")
-  </section>
-
-  <section>
-    @Html.ActionLink("Vendor Name List", "Index", "VendorName")
-  </section>
-  <section>
-    @if(User.Identity.Name.ToLower().Contains("john.grabanski") ||
-    User.Identity.Name.ToLower().Contains("rhonda.viviano") ||
-    User.Identity.Name.ToLower().Contains("jaime.keller") ||
-    User.Identity.Name.ToLower().Contains("reid.binns") ||
-    User.Identity.Name.ToLower().Contains("susan.kowelman") ||
-    User.Identity.Name.ToLower().Contains("kim.walta"))
-    {
-    @Html.ActionLink("Admin Links", "AdminLinks", "Home")
-  }
-</section>
-</div> -->
-
-@using NPRModels;
+﻿@using NPRModels;
 @using NPR2._0._8.Helpers;
 @{
-    ViewBag.Title = "Home Page";
+ViewBag.Title = "Home Page";
 }
 
-<div class="left-content">
-    @if (ViewBag.Companies != null)
-    {
-        Html.RenderPartial("~/Views/Company/_CompanyList.cshtml", (IEnumerable<Company>)ViewBag.Companies);
+  <div class="flex-grid">
+    <section>
+      @if (ViewBag.Companies != null)
+      {
+      Html.RenderPartial("~/Views/Company/_CompanyList.cshtml", (IEnumerable<Company>)ViewBag.Companies);
     }
-</div>
-<div class="right-content">
+  </section>
+
+  <section>
     <h3>Drop Down Lists</h3>
     <ol class="round">
-        <li class="one">
-            <h5>Vendor Names</h5>
-            @Html.ActionLink("Vendor Name List", "Index", "VendorName")
-        </li>
-        <li class="two">
-            <h5>Fee Names</h5>
-            @Html.ActionLink("Fee Name List", "Index", "FeeName")
-        </li>
+      <li class="one">
+        <h5>Vendor Names</h5>
+        @Html.ActionLink("Vendor Name List", "Index", "VendorName")
+      </li>
+      <li class="two">
+        <h5>Fee Names</h5>
+        @Html.ActionLink("Fee Name List", "Index", "FeeName")
+      </li>
     </ol>
+  </section>
 </div>
