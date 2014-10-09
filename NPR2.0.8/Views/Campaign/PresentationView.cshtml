@@ -42,48 +42,41 @@ List<PricingTier> pricingTiers = Model.Company.PricingTiers.Where(p => p.Pricing
     {
 
     <div class="presentation-container">
-      <section class="headings">NPR ID - @product.ProductID</section>
-      <section class="headings">@Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)</section>
-      <section class="headings">@product.Category.CategoryName</section>
-      <section class="headings">@product.ProductCountryOfOrigin</section>
-      <section class="headings"></section>
-
-<<<<<<< HEAD
-</div>
+      <div class="headings">NPR ID - @product.ProductID</div>
+      <div class="headings">@Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)</div>
+      <div class="headings">@product.Category.CategoryName</div>
+      <div class="headings">@product.ProductCountryOfOrigin</div>
+      <div class="headings"></div>
 
 
-
-    @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.Category.CategoryName))
-    {
-=======
     </div>
->>>>>>> aligning presentation table and print view
+
     <div class="presentation-items">
-      <section class="product-image">
+      <div class="product-image">
         <div class="image">
           @if (product.ProductImage != null)
           {
           <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
+          }
+        </div>
+      </div>
+      <div>@product.ProductDescription</div>
+      <div>
+        @{
+        List<ProductSellPrice> sellPrices = product.ProductSellPrices.OrderBy(s => s.SellPriceLevel).ToList();
+        }
+        @for (int index = 0; index < sellPrices.Count; index++)
+        {
+        <ul>
+          <li><strong>@pricingTiers[index].PricingTierName.Replace(Model.Company.CompanyName, "").Replace("/", "/ "): </strong>
+            @sellPrices[index].SellPriceFinalAmount.ToString("c")</li>
+          </ul>
         }
       </div>
-    </section>
-    <section>@product.ProductDescription</section>
-    <section>
-      @{
-      List<ProductSellPrice> sellPrices = product.ProductSellPrices.OrderBy(s => s.SellPriceLevel).ToList();
+      <div></div>
+      <div></div>
+    </div>
     }
-    @for (int index = 0; index < sellPrices.Count; index++)
-    {
-    <ul>
-      <li><strong>@pricingTiers[index].PricingTierName.Replace(Model.Company.CompanyName, "").Replace("/", "/ "): </strong>
-        @sellPrices[index].SellPriceFinalAmount.ToString("c")</li>
-      </ul>
-    }
-  </section>
-  <section></section>
-  <section></section>
-</div>
-}
 </section>
 </div>
 

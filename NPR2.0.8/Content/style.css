@@ -35,9 +35,7 @@ body {
   position: relative;
   background: #f5f5f5;
   font: 15px Lato, sans-serif;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column; }
+  min-height: 100vh; }
 
 a {
   cursor: pointer;
@@ -56,7 +54,8 @@ main {
   padding: 25px;
   margin-left: 250px;
   padding-bottom: 85px;
-  transition: all .4s ease-in-out; }
+  transition: all .4s ease-in-out;
+  flex-direction: column; }
   main .heading {
     height: 80px;
     margin: -25px -25px 25px -25px;
@@ -98,9 +97,12 @@ main {
 .flot-x-axis div {
   white-space: nowrap; }
 
-.flex-grid {
-  display: flex; }
-  .flex-grid > section {
+.flex-grid, .flex-grid-client {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  height: auto; }
+  .flex-grid > section, .flex-grid-client > section {
     flex: 1;
     margin: 0 20px 20px 0;
     padding: 10px;
@@ -109,24 +111,24 @@ main {
     border-top-right-radius: 5px;
     background: #fff;
     overflow: hidden; }
-    .flex-grid > section:hover {
+    .flex-grid > section:hover, .flex-grid-client > section:hover {
       border: 1px solid #bbb; }
-    .flex-grid > section:last-child {
+    .flex-grid > section:last-child, .flex-grid-client > section:last-child {
       margin-right: 0; }
-    .flex-grid > section.seamless {
+    .flex-grid > section.seamless, .flex-grid-client > section.seamless {
       border: none;
       background: transparent;
       text-align: center;
       position: relative;
       border-radius: 2px; }
-      .flex-grid > section.seamless h3 {
+      .flex-grid > section.seamless h3, .flex-grid-client > section.seamless h3 {
         font-size: 14px;
         font-weight: normal;
         margin-top: 8px; }
-      .flex-grid > section.seamless span {
+      .flex-grid > section.seamless span, .flex-grid-client > section.seamless span {
         font-size: 34px;
         color: #62a9dd; }
-      .flex-grid > section.seamless a {
+      .flex-grid > section.seamless a, .flex-grid-client > section.seamless a {
         top: 0;
         left: 0;
         right: 0;
@@ -142,14 +144,14 @@ main {
         border: 1px solid #DDD;
         background: rgba(255, 255, 255, 0.9);
         transition: .15s opacity ease-in-out; }
-        .flex-grid > section.seamless a span {
+        .flex-grid > section.seamless a span, .flex-grid-client > section.seamless a span {
           font-size: 30px;
           position: relative;
           top: 3px;
           color: #666; }
-      .flex-grid > section.seamless:hover a {
+      .flex-grid > section.seamless:hover a, .flex-grid-client > section.seamless:hover a {
         opacity: 1; }
-  .flex-grid h2 {
+  .flex-grid h2, .flex-grid-client h2 {
     margin: -10px;
     margin-bottom: 15px;
     padding: 10px 15px 9px;
@@ -157,42 +159,42 @@ main {
     color: #444;
     font-family: Arial, sans-serif;
     border-bottom: 1px solid #ddd; }
-  .flex-grid .chart {
+  .flex-grid .chart, .flex-grid-client .chart {
     position: relative;
     width: 100%;
     height: 200px; }
-  .flex-grid .top-jobs h2 {
+  .flex-grid .top-jobs h2, .flex-grid-client .top-jobs h2 {
     margin-bottom: 0; }
-  .flex-grid .top-jobs table {
+  .flex-grid .top-jobs table, .flex-grid-client .top-jobs table {
     table-layout: fixed; }
-  .flex-grid .top-jobs thead td {
+  .flex-grid .top-jobs thead td, .flex-grid-client .top-jobs thead td {
     color: #2986CA; }
-    .flex-grid .top-jobs thead td:nth-child(2) {
+    .flex-grid .top-jobs thead td:nth-child(2), .flex-grid-client .top-jobs thead td:nth-child(2) {
       width: 75px; }
-  .flex-grid .top-jobs td {
+  .flex-grid .top-jobs td, .flex-grid-client .top-jobs td {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; }
-  .flex-grid .top-jobs tbody td:nth-child(2) {
+  .flex-grid .top-jobs tbody td:nth-child(2), .flex-grid-client .top-jobs tbody td:nth-child(2) {
     font-weight: bold;
     font-family: Arial, sans-serif; }
-  .flex-grid .status-log li {
+  .flex-grid .status-log li, .flex-grid-client .status-log li {
     font-size: 14px;
     margin-bottom: 12px;
     overflow: hidden;
     position: relative;
     white-space: nowrap;
     text-overflow: ellipsis; }
-  .flex-grid .account {
+  .flex-grid .account, .flex-grid-client .account {
     font-size: 13px; }
-    .flex-grid .account .field {
+    .flex-grid .account .field, .flex-grid-client .account .field {
       color: #2CA784;
       font-size: 14px;
       margin-left: 10px;
       font-weight: bold; }
-    .flex-grid .account span {
+    .flex-grid .account span, .flex-grid-client .account span {
       line-height: 22px; }
-    .flex-grid .account h3.title {
+    .flex-grid .account h3.title, .flex-grid-client .account h3.title {
       margin: 8px 0 2px 10px;
       display: block;
       padding: 0;
@@ -200,22 +202,25 @@ main {
       font-family: Arial, sans-serif;
       font-size: 14px;
       color: #555; }
-    .flex-grid .account .sub-content {
+    .flex-grid .account .sub-content, .flex-grid-client .account .sub-content {
       padding-left: 12px; }
-  .flex-grid table {
+  .flex-grid table, .flex-grid-client table {
     width: 100%;
     border-collapse: collapse; }
-    .flex-grid table thead td {
+    .flex-grid table thead td, .flex-grid-client table thead td {
       color: #555;
       padding: 10px;
       font-size: 14px;
       font-weight: bold; }
-    .flex-grid table tbody tr:nth-child(odd) {
+    .flex-grid table tbody tr:nth-child(odd), .flex-grid-client table tbody tr:nth-child(odd) {
       background: #f9f9f9; }
-    .flex-grid table tbody td {
+    .flex-grid table tbody td, .flex-grid-client table tbody td {
       padding: 10px;
       font-size: 12px;
       border-top: 1px solid #ddd; }
+
+.flex-grid-client > section {
+  flex: 0; }
 
 .truncate {
   width: 250px;
@@ -368,42 +373,42 @@ footer {
   flex-direction: row;
   border: 1px solid #ccc;
   padding: 10px; }
-  .presentation-container section.headings, .presentation-items section.headings {
+  .presentation-container div.headings, .presentation-items div.headings {
     font-size: 16px;
     font-weight: bold; }
-  .presentation-container section:nth-child(1), .presentation-items section:nth-child(1) {
+  .presentation-container div:nth-child(1), .presentation-items div:nth-child(1) {
     flex: 1;
     flex-grow: 3; }
-  .presentation-container section:nth-child(2), .presentation-items section:nth-child(2) {
+  .presentation-container div:nth-child(2), .presentation-items div:nth-child(2) {
     flex: 2;
     flex-grow: 6;
     max-height: 100px;
     overflow: hidden; }
-  .presentation-container section:nth-child(3), .presentation-items section:nth-child(3) {
+  .presentation-container div:nth-child(3), .presentation-items div:nth-child(3) {
     flex: 3;
     flex-grow: 4; }
-  .presentation-container section:nth-child(4), .presentation-items section:nth-child(4) {
+  .presentation-container div:nth-child(4), .presentation-items div:nth-child(4) {
     flex: 4;
     flex-grow: 3; }
-  .presentation-container section:nth-child(5), .presentation-items section:nth-child(5) {
+  .presentation-container div:nth-child(5), .presentation-items div:nth-child(5) {
     flex: 5;
     flex-grow: 3; }
-  .presentation-container section:nth-child(6), .presentation-items section:nth-child(6) {
+  .presentation-container div:nth-child(6), .presentation-items div:nth-child(6) {
     flex: 6;
     flex-grow: 2; }
-  .presentation-container section:nth-child(7), .presentation-items section:nth-child(7) {
+  .presentation-container div:nth-child(7), .presentation-items div:nth-child(7) {
     flex: 7;
     flex-grow: 2; }
-  .presentation-container section:nth-child(8), .presentation-items section:nth-child(8) {
+  .presentation-container div:nth-child(8), .presentation-items div:nth-child(8) {
     flex: 8;
     flex-grow: 8; }
 
 .presentation-items {
   border-bottom: 1px solid #5e6d81;
   margin-bottom: 30px; }
-  .presentation-items section {
+  .presentation-items div {
     padding: 10px 0; }
-    .presentation-items section:nth-child(3) {
+    .presentation-items div:nth-child(3) {
       flex: 3;
       flex-grow: 4;
       border-right: 1px solid #ccc; }
@@ -411,6 +416,9 @@ footer {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: verical; }
+
+.clients {
+  min-width: 48%; }
 
 .disabled:hover {
   opacity: 0.6 !important; }

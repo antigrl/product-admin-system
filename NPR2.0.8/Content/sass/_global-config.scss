@@ -27,9 +27,8 @@ body {
   font: 15px Lato, sans-serif;
 
   // Sticky footer
-  display: flex;
   min-height: 100vh;
-  flex-direction: column;
+  // flex-direction: column;
 }
 
 a {
@@ -57,6 +56,7 @@ main {
   margin-left: 250px;
   padding-bottom: 85px;
   transition: all .4s ease-in-out;
+  flex-direction: column;
   .heading {
     height: 80px;
     margin: -25px -25px 25px -25px;
@@ -107,8 +107,11 @@ main {
   white-space: nowrap;
 }
 
-.flex-grid {
+.flex-grid, .flex-grid-client {
   display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  height: auto;
   > section {
     flex: 1;
     margin: 0 20px 20px 0;
@@ -258,6 +261,11 @@ main {
   }
 }
 
+.flex-grid-client {
+  > section {
+    flex: 0;
+  }
+}
 .truncate {
   width: 250px;
   height: 250px;

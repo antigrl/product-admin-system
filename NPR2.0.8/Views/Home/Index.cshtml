@@ -4,25 +4,10 @@
 ViewBag.Title = "Home Page";
 }
 
-  <div class="flex-grid">
-    <section>
-      @if (ViewBag.Companies != null)
-      {
+ <div class="flex-grid-client">
+
+    @if (ViewBag.Companies != null)
+    {
       Html.RenderPartial("~/Views/Company/_CompanyList.cshtml", (IEnumerable<Company>)ViewBag.Companies);
     }
-  </section>
-
-  <section>
-    <h3>Drop Down Lists</h3>
-    <ol class="round">
-      <li class="one">
-        <h5>Vendor Names</h5>
-        @Html.ActionLink("Vendor Name List", "Index", "VendorName")
-      </li>
-      <li class="two">
-        <h5>Fee Names</h5>
-        @Html.ActionLink("Fee Name List", "Index", "FeeName")
-      </li>
-    </ol>
-  </section>
 </div>
