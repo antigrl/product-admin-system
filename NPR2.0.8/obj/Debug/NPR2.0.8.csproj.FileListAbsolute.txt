@@ -65,3 +65,4 @@ C:\Users\Kim.Walta\Desktop\repos\npr2.0.8\NPR2.0.8\bin\zh-Hans\System.Spatial.re
 C:\Users\Kim.Walta\Desktop\repos\npr2.0.8\NPR2.0.8\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\Kim.Walta\Desktop\repos\npr2.0.8\NPR2.0.8\obj\Debug\NPR2.0.8.dll
 C:\Users\Kim.Walta\Desktop\repos\npr2.0.8\NPR2.0.8\obj\Debug\NPR2.0.8.pdb
+C:\Users\Kim.Walta\Desktop\repos\npr2.0.8\NPR2.0.8\obj\Debug\NPR2.0.8.csprojResolveAssemblyReference.cache

@@ -2234,7 +2234,8 @@ nav.main {
       content: '\f053';
       font: normal 20px FontAwesome;
       top: 28px;
-      right: 15px; }
+      right: 15px;
+      color: #fff; }
   nav.main a.open {
     height: 0;
     display: block;
