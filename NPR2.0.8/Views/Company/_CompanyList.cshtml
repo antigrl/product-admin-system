@@ -7,16 +7,16 @@
 {
     <section class="clients">
         <h2>
-                  <div class="image">
-            @if (item != null && item.CompanyImage != null)
-            {
-                <img src="@Url.Action("Show", "Company", new { id = item.CompanyID })" />
-            }
-        </div>
-            @Html.ActionLink("Edit", "Edit", "Company", new { id = item.CompanyID }, null)
+            <div class="image">
+                @if (item != null && item.CompanyImage != null)
+                {
+                    <img src="@Url.Action("Show", "Company", new { id = item.CompanyID })" />
+                }
+            </div>
+                @Html.ActionLink("Edit", "Edit", "Company", new { id = item.CompanyID }, null)
         </h2>
         <p>
-            @Html.ActionLink(string.Format("Create New {0} Campaign", item.CompanyName), "Create", "Campaign", new { ReturnUrl = Url.Action("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }), CompanyID = item.CompanyID }, null)
+            <button class="button orange">@Html.ActionLink(string.Format(" Campaign", item.CompanyName), "Create", "Campaign", new { ReturnUrl = Url.Action("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }), CompanyID = item.CompanyID }, null)</button>
         </p>
 
             @{

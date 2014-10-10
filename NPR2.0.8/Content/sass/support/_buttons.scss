@@ -32,6 +32,10 @@
   -webkit-font-smoothing: subpixel-antialiased;
   padding: 10px 20px;
   cursor: pointer;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 .green { // Save
   background-color: #1fbba6;
@@ -62,12 +66,10 @@
 }
 .orange {
   background-color: $orange;
-  border-color: none;
-  border: 0;
+  border-color: $orange;
   color: #fff;
-  letter-spacing: 1px;
   &:hover {
-    background-color: darken($orange, 10%);
+    background-color: lighten($orange, 10%);
     transition: .25s;
   }
 }
