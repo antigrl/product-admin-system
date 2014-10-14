@@ -2293,13 +2293,13 @@ nav.main {
     font: normal 20px FontAwesome;
     -webkit-font-smoothing: antialiased; }
   nav.main ul li:nth-child(2) a:before {
-    content: '\F009'; }
+    content: '\F0b1'; }
   nav.main ul li:nth-child(3) a:before {
-    content: '\F007'; }
+    content: '\F135'; }
   nav.main ul li:nth-child(4) a:before {
-    content: '\F013'; }
+    content: '\F1b3'; }
   nav.main ul li:nth-child(5) a:before {
-    content: '\F190'; }
+    content: '\F0d6'; }
   nav.main.collapsed {
     width: 50px; }
     nav.main.collapsed a.open {
