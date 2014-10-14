@@ -3,175 +3,147 @@
 @using NPR2._0._8.Helpers;
 
 @{
-    ViewBag.Title = "Edit Campaign";
+ViewBag.Title = "Edit Campaign";
 }
 
-<h2>Edit Campaign - @Html.ActionLink("Presentation View", "PresentationView", new { id=Model.CampaignID})</h2>
 
+
+<div class="heading">
+  <h1>@Html.DisplayFor(model => model.Company.CompanyName)
+    <div class="heading-info">
+      <strong>Campaign Name:</strong> @Html.DisplayFor(model => model.CampaignName)
+    </div>
+  </h1>
+</div>
+
+<!-- Link and information -->
+<div class="flex-grid">
+  <section class="seamless">
+    @Html.ActionLink("Presentation View", "PresentationView", new { id = Model.CampaignID })
+  </section>
+  <section class="seamless">
+    <span>@Html.EditorFor(model => model.CampaignCreatedBy)</span>
+    @Html.ValidationMessageFor(model => model.CampaignCreatedBy)
+    <h3>@Html.LabelForRequired(model => model.CampaignCreatedBy)</h3>
+  </section>
+  <section class="seamless">
+    <span>@Html.EditorFor(model => model.CampaignCreatedOnDate)</span>
+    @Html.ValidationMessageFor(model => model.CampaignCreatedOnDate)
+    <h3>@Html.LabelForRequired(model => model.CampaignCreatedOnDate)</h3>
+  </section>
+</div>
 @using(Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
 {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+  @Html.AntiForgeryToken()
+  @Html.ValidationSummary(true)
+  <div class="flex-grid">
+    <article class="edit-campaign">
 
-    <fieldset>
-        <legend>Campaign</legend>
+      <div class="controls">
+        @Html.LabelForRequired(model => model.CampaignName)
+        @Html.ValidationMessageFor(model => model.CampaignName)
+        @Html.HiddenFor(model => model.CampaignID)
+        @Html.TextBoxFor(model => model.CampaignName, new { @class = "floatLabel" })
+      </div>
+      <div class="controls">
+        @Html.LabelForRequired(model => model.CampaignReason)
+        @Html.ValidationMessageFor(model => model.CampaignReason)
+        @Html.TextBoxFor(model => model.CampaignReason, new { @class = "floatLabel" })
+      </div>
+      <div class="controls">
+        @Html.LabelForRequired(model => model.CampaignProductCount)
+        @Html.ValidationMessageFor(model => model.CampaignProductCount)
+        @Html.TextBoxFor(model => model.CampaignProductCount, new { @class = "floatLabel" })
+      </div>
+      <div class="controls">
+        @Html.LabelForRequired(model => model.CampaignStatus)
+        @Html.ValidationMessageFor(model => model.CampaignStatus)
 
-        <div class="left-half-content">
-            @Html.HiddenFor(model => model.CampaignID)
+        @Html.DropDownListFor(model => model.CampaignStatus, MyExtensions.GetGenericEnumDropDown<Status>(), "", new { @class="floatLabel"})
+      </div>
+    </article>
+    <article>
 
-            <div class="editor-label">
-                @Html.LabelForRequired(model => model.CampaignName)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.CampaignName)
-                @Html.ValidationMessageFor(model => model.CampaignName)
-            </div>
+      <article class="controls">
+        @Html.LabelForRequired(model => model.CampaignAccountManagerComments)
+        @Html.ValidationMessageFor(model => model.CampaignAccountManagerComments)
+        @Html.TextBoxFor(model => model.CampaignAccountManagerComments)
+      </article>
+      <article class="controls">
+        @Html.LabelForRequired(model => model.CampaignMerchandiserComments)
+        @Html.ValidationMessageFor(model => model.CampaignMerchandiserComments)
+        @Html.TextBoxFor(model => model.CampaignMerchandiserComments)
+      </article>
+      <article class="controls">
+        @Html.LabelForRequired(model => model.CampaignInventoryBuyerComments)
+        @Html.ValidationMessageFor(model => model.CampaignInventoryBuyerComments)
+        @Html.TextBoxFor(model => model.CampaignInventoryBuyerComments)
+      </article>
+      <article class="controls">
+        @Html.LabelForRequired(model => model.CampaignMentorComments)
+        @Html.ValidationMessageFor(model => model.CampaignMentorComments)
+        @Html.TextBoxFor(model => model.CampaignMentorComments)
+      </article>
+    </article>
+  </div>
 
-            <div class="editor-label">
-                @Html.LabelForRequired(model => model.CompanyID, "Company")
-            </div>
-            <div class="editor-field">
-                <span>@Html.DisplayFor(model => model.Company.CompanyName)</span>
-                @Html.HiddenFor(model => model.CompanyID)
-                @Html.ValidationMessageFor(model => model.CompanyID)
-            </div>
+  <div class="flex-grid">
 
-            <div class="editor-label">
-                @Html.LabelForRequired(model => model.CampaignReason)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.CampaignReason)
-                @Html.ValidationMessageFor(model => model.CampaignReason)
-            </div>
 
-            <div class="editor-label">
-                @Html.LabelForRequired(model => model.CampaignProductCount)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.CampaignProductCount)
-                @Html.ValidationMessageFor(model => model.CampaignProductCount)
-            </div>
+    <p>
+      <input type="submit" value="Save" />
+    </p>
+  </div>
 
-            <div class="editor-label">
-                @Html.LabelForRequired(model => model.CampaignStatus)
-            </div>
-            <div class="editor-field">
-                @Html.DropDownListFor(model => model.CampaignStatus, MyExtensions.GetGenericEnumDropDown<Status>(), "")
-                @Html.ValidationMessageFor(model => model.CampaignStatus)
-            </div>
+  <div class="flex-grid">
+    <h4>Product List | Count: @Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).Count()</h4>
 
-            <div class="editor-label">
-                @Html.LabelForRequired(model => model.CampaignCreatedBy)
-            </div>
-            <div class="editor-field">
-                <span>@Html.EditorFor(model => model.CampaignCreatedBy)</span>
-                @Html.ValidationMessageFor(model => model.CampaignCreatedBy)
-            </div>
+    <span class="right-content">
+      @Html.ActionLink("Create New Product", "Create", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), CampaignID = Model.CampaignID }, null)
+    </span>
 
-            <div class="editor-label">
-                @Html.LabelForRequired(model => model.CampaignCreatedOnDate)
-            </div>
-            <div class="editor-field">
-                <span>@Html.EditorFor(model => model.CampaignCreatedOnDate)</span>
-                @Html.ValidationMessageFor(model => model.CampaignCreatedOnDate)
-            </div>
-        </div>
+    <table class="index-table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+      @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)))
+      {
+      <tr>
+        <td>
+          <div class="controls">
+            @Html.DisplayFor(model => product.ProductID)
+          </div>
+        </td>
+        <td>
+          <div class="controls">
+            @Html.DisplayFor(model => product.ProductName)
+          </div>
+        </td>
+        <td>
+          <div>
+            @Html.DisplayFor(model => product.ProductStatus)
+          </div>
+        </td>
+        <td>
+          @Html.ActionLink("Edit", "Edit", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID}, null) |
+          @Html.ActionLink("Archive", "Archive", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)
+        </td>
+      </tr>
+    }
+  </table>
+</div>
 
-        <div class="right-half-content">
-            <div>
-                <h4>Product List | Count: @Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).Count()</h4>
-                <span class="right-content">
-                    @Html.ActionLink("Create New Product", "Create", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), CampaignID = Model.CampaignID }, null)
-                </span>
-                <table class="index-table">
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Status</th>
-                        <th></th>
-                    </tr>
-                    @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)))
-                    {
-                        <tr>
-                            <td>
-                                <div class="editor-label">
-                                    @Html.DisplayFor(model => product.ProductID)
-                                </div>
-                            </td>
-                            <td>
-                                <div class="editor-label">
-                                    @Html.DisplayFor(model => product.ProductName)
-                                </div>
-                            </td>
-                            <td>
-                                <div>
-                                    @Html.DisplayFor(model => product.ProductStatus)
-                                </div>
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID}, null) |
-                                @Html.ActionLink("Archive", "Archive", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)
-                            </td>
-                        </tr>
-                    }
-                </table>
-            </div>
-        </div>
 
-        <div class="full-content">
-            <div class="comments">
-                <h3>Campaign Comments</h3>
-                <table>
-                    <tr>
-                        <th>
-                            @Html.LabelForRequired(model => model.CampaignAccountManagerComments)
-                        </th>
-                        <th>
-                            @Html.LabelForRequired(model => model.CampaignMerchandiserComments)</th>
-                        <th>
-                            @Html.LabelForRequired(model => model.CampaignInventoryBuyerComments)</th>
-                        <th>
-                            @Html.LabelForRequired(model => model.CampaignMentorComments)</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="editor-field">
-                                @Html.EditorFor(model => model.CampaignAccountManagerComments)
-                                @Html.ValidationMessageFor(model => model.CampaignAccountManagerComments)
-                            </div>
-                        </td>
-                        <td>
-                            <div class="editor-field">
-                                @Html.EditorFor(model => model.CampaignMerchandiserComments)
-                                @Html.ValidationMessageFor(model => model.CampaignMerchandiserComments)
-                            </div>
-                        </td>
-                        <td>
-                            <div class="editor-field">
-                                @Html.EditorFor(model => model.CampaignInventoryBuyerComments)
-                                @Html.ValidationMessageFor(model => model.CampaignInventoryBuyerComments)
-                            </div>
-                        </td>
-                        <td>
-                            <div class="editor-field">
-                                @Html.EditorFor(model => model.CampaignMentorComments)
-                                @Html.ValidationMessageFor(model => model.CampaignMentorComments)
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <p>
-                <input type="submit" value="Save" />
-            </p>
-        </div>
-    </fieldset>
+
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+  @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {
-    
+
 }
