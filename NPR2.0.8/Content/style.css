@@ -419,19 +419,30 @@ footer {
 
 .clients {
   min-width: 47.9%; }
-  .clients .edit {
-    position: relative;
+  .clients h2 {
+    margin-bottom: 0;
+    border-bottom: 0;
+    padding-bottom: 0; }
+  .clients .company-logo {
+    display: inline-block;
+    vertical-align: middle; }
+  .clients .add-campaign {
+    text-decoration: none;
+    display: inline-block;
     float: right;
-    color: #fff; }
-    .clients .edit:before {
+    margin-bottom: 10px; }
+  .clients .edit-company {
+    position: relative;
+    float: right; }
+    .clients .edit-company:before {
       content: '';
       position: absolute;
       right: -10px;
       top: -10px;
-      border-top: 50px solid #323a45;
+      border-top: 50px solid #eaedf1;
       border-left: 50px solid transparent; }
-    .clients .edit i:before {
-      top: -1px;
+    .clients .edit-company i:before {
+      top: -2px;
       left: -10px; }
 
 .disabled:hover {

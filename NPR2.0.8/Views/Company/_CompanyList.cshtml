@@ -6,20 +6,23 @@
 @foreach (var item in Model)
 {
   <section class="clients">
-      <a class="edit" href="@Url.Action("Edit", "Company", new { id = item.CompanyID }, null)"><i class="fa fa-edit"></i></a>
+
+    <a class="edit-company" href="@Url.Action("Edit", "Company", new { id = item.CompanyID }, null)">
+      <i class="fa fa-edit"></i>
+    </a>
+
 
     <h2>
-      <div class="image">
+      <div class="company-logo">
         @if (item != null && item.CompanyImage != null)
         {
         <img src="@Url.Action("Show", "Company", new { id = item.CompanyID })" />
-      }
-    </div>
-
-  </h2>
-  <p>
-    <button class="button orange">@Html.ActionLink(string.Format(" Campaign", item.CompanyName), "Create", "Campaign", new { ReturnUrl = Url.Action("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }), CompanyID = item.CompanyID }, null)</button>
-  </p>
+        }
+      </div>
+      <a class="button orange add-campaign" href="@Url.Action("Create", "Campaign", new { ReturnURL = Url.Action("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }), CompanyID = item.CompanyID}, null)">
+        Add Campaign
+      </a>
+    </h2>
 
   @{
   Html.RenderPartial("~/Views/Campaign/_CampaignList.cshtml", (IEnumerable<Campaign>)item.Campaigns.Where(c => c.CampaignStatus != MyExtensions.GetEnumDescription(Status.Archived)));

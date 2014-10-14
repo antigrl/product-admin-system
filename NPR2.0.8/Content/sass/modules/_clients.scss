@@ -1,19 +1,35 @@
 .clients {
   min-width: 47.9%;
-  .edit {
+
+  h2 {
+    margin-bottom: 0;
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+  .company-logo {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .add-campaign {
+    text-decoration: none;
+    display: inline-block;
+    float: right;
+    margin-bottom: 10px;
+  }
+  // Edit Company
+  .edit-company {
     position: relative;
     float: right;
-    color: #fff;
     &:before {
       content: '';
-      position:absolute;
+      position: absolute;
       right: -10px;
       top: -10px;
-      border-top: 50px solid $darkerblue;
+      border-top: 50px solid $lightergray;
       border-left: 50px solid transparent;
     }
     i:before {
-      top: -1px;
+      top: -2px;
       left: -10px;
     }
   }
