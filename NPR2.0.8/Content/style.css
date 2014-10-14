@@ -445,6 +445,14 @@ footer {
       top: -2px;
       left: -10px; }
 
+.campaign-status {
+  background: #d1f5e0;
+  border-radius: 3px;
+  padding: 3px 1px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 10px; }
+
 .disabled:hover {
   opacity: 0.6 !important; }
 
