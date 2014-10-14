@@ -419,6 +419,20 @@ footer {
 
 .clients {
   min-width: 47.9%; }
+  .clients .edit {
+    position: relative;
+    float: right;
+    color: #fff; }
+    .clients .edit:before {
+      content: '';
+      position: absolute;
+      right: -10px;
+      top: -10px;
+      border-top: 50px solid #323a45;
+      border-left: 50px solid transparent; }
+    .clients .edit i:before {
+      top: -1px;
+      left: -10px; }
 
 .disabled:hover {
   opacity: 0.6 !important; }
