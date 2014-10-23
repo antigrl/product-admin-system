@@ -129,10 +129,13 @@ nav.main {
       height: 50px;
     }
     header {
-      padding: 0;
-      height: 55px;
-      img.thumb {
+
+      span.thumb {
         margin: 10px 7px;
+        background-image: url('themes/base/images/logo.png');
+        display: block;
+        width: 26px;
+        height: 32px;
       }
     }
     ul li {

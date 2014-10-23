@@ -332,11 +332,12 @@ nav.main {
     width: 50px; }
     nav.main.collapsed a.open {
       height: 50px; }
-    nav.main.collapsed header {
-      padding: 0;
-      height: 55px; }
-      nav.main.collapsed header img.thumb {
-        margin: 10px 7px; }
+    nav.main.collapsed header span.thumb {
+      margin: 10px 7px;
+      background-image: url("themes/base/images/logo.png");
+      display: block;
+      width: 26px;
+      height: 32px; }
     nav.main.collapsed ul li:hover {
       width: 250px;
       position: relative;
