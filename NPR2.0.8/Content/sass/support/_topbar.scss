@@ -26,7 +26,6 @@ nav.main {
       margin: 0 10px 0 0;
       vertical-align: middle;
       transition: all .4s ease-in-out;
-      border-radius: 50%;
     }
     a:before {
       content: '\f053';
@@ -96,15 +95,18 @@ nav.main {
     }
     li {
       &:nth-child(2) a:before {
-        content: '\F0b1';
+        content: '\F015';
       }
       &:nth-child(3) a:before {
-        content: '\F135';
+        content: '\F0b1';
       }
       &:nth-child(4) a:before {
-        content: '\F1b3';
+        content: '\F135';
       }
       &:nth-child(5) a:before {
+        content: '\F1b3';
+      }
+      &:nth-child(6) a:before {
         content: '\F0d6';
       }
     }

@@ -16,13 +16,13 @@
     <div>
       <header>
         <a></a>
-        <a href="/NPR2.0.8"></a>
-        <span class="thumb"></span>
-<!--         <span>@User.Identity.Name</span> -->
+        <img src="Content/themes/base/images/logo.png" class="thumb">
+        <span>@User.Identity.Name</span>
       </header>
     </div>
     <ul>
       <li class="section"><span>Navigation</span></li>
+      <li>@Html.ActionLink("Home", "Index", "Home")</li>
       <li>@Html.ActionLink("Create New Company", "Create", "Company", new { ReturnUrl = Url.Action("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }) }, null)</li>
       <li>@Html.ActionLink("Create New Campaign", "Create")</li>
       <li>@Html.ActionLink("Vendor Name List", "Index", "VendorName")</li>

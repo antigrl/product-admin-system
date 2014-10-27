@@ -26,7 +26,6 @@ nav.main {
       margin: 0 10px 0 0;
       vertical-align: middle;
       transition: all .4s ease-in-out;
-      border-radius: 50%;
     }
     a:before {
       content: '\f053';
@@ -95,7 +94,10 @@ nav.main {
     }
     li {
       &:nth-child(1) a:before {
-        content: '\F601';
+        content: 'F015';
+      }
+      &:nth-child(2) a:before {
+        content: 'F601'
       }
       &:nth-child(3) a:before {
         content: '\1F4C8';
@@ -112,13 +114,13 @@ nav.main {
       &:nth-child(7) a:before {
         content: '\21C6';
       }
-      &:nth-child(9) a:before {
+      &:nth-child(8) a:before {
         content: ' \2753';
       }
-      &:nth-child(10) a:before {
+      &:nth-child(9) a:before {
         content: '\2692';
       }
-      &:nth-child(11) a:before {
+      &:nth-child(10) a:before {
         content: '\E715';
       }
     }
@@ -127,16 +129,6 @@ nav.main {
     width: 50px;
     a.open {
       height: 50px;
-    }
-    header {
-
-      span.thumb {
-        margin: 10px 7px;
-        background-image: url('themes/base/images/logo.png');
-        display: block;
-        width: 26px;
-        height: 32px;
-      }
     }
     ul li {
       &:hover {
