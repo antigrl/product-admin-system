@@ -1,12 +1,14 @@
-@import "flexbox";
-@import "variables";
-@import "orig";
-@import "global-config";
-@import "modules/top-nav";
-@import "modules/footer";
-@import "modules/presentation";
-@import "modules/clients";
-@import "modules/campaigns";
+@import "flexbox",
+        "variables",
+        "orig",
+        "global-config",
+        "modules/top-nav",
+        "modules/footer",
+        "modules/presentation",
+        "modules/clients",
+        "modules/campaigns",
+        "modules/tabs";
+
 
 @import "support/buttons",
         "support/font-awesome",
