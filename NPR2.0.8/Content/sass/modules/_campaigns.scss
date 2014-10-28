@@ -8,6 +8,33 @@
 }
 
 .edit-campaign {
-  padding-right: 40px;
+  .form-heading {
+    cursor: pointer;
+    &:before {
+      content: '\F106';
+      font: bold 20px FontAwesome;
+      margin-left: 155px;
+    }
+  }
+  .campaign-toggle {
+    .input-left {
+      padding-right: 40px;
+    }
+  }
+
 }
+
+.campaign-list {
+  tr:nth-child(1) {
+    background: #fff !important;
+    text-align: left;
+    th {
+      padding-left: 10px;
+      padding-bottom: 10px;
+      font-size: 18px;
+    }
+  }
+}
+
+
 

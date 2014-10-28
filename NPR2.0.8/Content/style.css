@@ -17,6 +17,9 @@
   .product-image .image img {
     max-height: 125px; }
 
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important; }
+
 * {
   margin: 0;
   padding: 0;
@@ -451,8 +454,22 @@ footer {
   text-transform: uppercase;
   font-size: 10px; }
 
-.edit-campaign {
+.edit-campaign .form-heading {
+  cursor: pointer; }
+  .edit-campaign .form-heading:before {
+    content: '\F106';
+    font: bold 20px FontAwesome;
+    margin-left: 155px; }
+.edit-campaign .campaign-toggle .input-left {
   padding-right: 40px; }
+
+.campaign-list tr:nth-child(1) {
+  background: #fff !important;
+  text-align: left; }
+  .campaign-list tr:nth-child(1) th {
+    padding-left: 10px;
+    padding-bottom: 10px;
+    font-size: 18px; }
 
 .disabled:hover {
   opacity: 0.6 !important; }
@@ -2135,7 +2152,8 @@ h2.form-heading {
   color: #506982;
   border-bottom: 1px solid #506982;
   padding-bottom: 3px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  width: 100%; }
 
 .controls {
   text-align: left;
