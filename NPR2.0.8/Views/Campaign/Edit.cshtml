@@ -103,13 +103,16 @@ ViewBag.Title = "Edit Campaign";
   <div class="flex-grid">
 
     <section>
-      <table class="campaign-list">
+      <table datatable="" class="campaign-list">
+        <thead>
         <tr>
           <th>ID</th>
           <th>Name</th>
           <th>Status</th>
           <th></th>
         </tr>
+      </thead>
+      <tbody>
         @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)))
         {
         <tr>
@@ -134,6 +137,7 @@ ViewBag.Title = "Edit Campaign";
           </td>
         </tr>
       }
+    </tbody>
     </table>
   </section>
 </div>

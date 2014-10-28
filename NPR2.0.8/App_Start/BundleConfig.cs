@@ -9,12 +9,14 @@ namespace NPR2._0._8
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/npr").Include(
-                        "~/Scripts/jquery-{version}.js",
+                        "~/Content/bower_components/jquery/dist/jquery.js",
                         "~/Scripts/jquery-ui-{version}.js",
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*",
-                        "~/Scripts/angular.js",
+                        "~/Content/bower_components/datatables/media/js/jquery.dataTables.js",
+                        "~/Content/bower_components/angular/angular.js",
                         "~/Scripts/jquery.throttledresize.js",
+                        "~/Content/bower_components/angular-datatables/dist/angular-datatables.js",
                         "~/Scripts/NPR.js",
                         "~/Scripts/app.js"));
 

@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('nprApp', []);
+var app = angular.module('nprApp', ['datatables']);
 
 
 // Side nav expansion
