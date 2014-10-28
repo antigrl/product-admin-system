@@ -1,0 +1,14 @@
+.fee-filter {
+  @extend .controls;
+  @extend .seamless;
+  align-items: baseline;
+  text-align: left !important;
+  span {
+    color: red !important;
+    font-size: 14px !important;
+  }
+  .button {
+    margin-top: 5px;
+  }
+}
+

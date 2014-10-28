@@ -120,20 +120,20 @@ main {
       border: 1px solid #bbb; }
     .flex-grid > section:last-child, .flex-grid-client > section:last-child {
       margin-right: 0; }
-    .flex-grid > section.seamless, .flex-grid-client > section.seamless {
+    .flex-grid > section.seamless, .flex-grid > section.fee-filter, .flex-grid-client > section.seamless, .flex-grid-client > section.fee-filter {
       border: none;
       background: transparent;
       text-align: center;
       position: relative;
       border-radius: 2px; }
-      .flex-grid > section.seamless h3, .flex-grid-client > section.seamless h3 {
+      .flex-grid > section.seamless h3, .flex-grid > section.fee-filter h3, .flex-grid-client > section.seamless h3, .flex-grid-client > section.fee-filter h3 {
         font-size: 14px;
         font-weight: normal;
         margin-top: 8px; }
-      .flex-grid > section.seamless span, .flex-grid-client > section.seamless span {
+      .flex-grid > section.seamless span, .flex-grid > section.fee-filter span, .flex-grid-client > section.seamless span, .flex-grid-client > section.fee-filter span {
         font-size: 34px;
         color: #62a9dd; }
-      .flex-grid > section.seamless a, .flex-grid-client > section.seamless a {
+      .flex-grid > section.seamless a, .flex-grid > section.fee-filter a, .flex-grid-client > section.seamless a, .flex-grid-client > section.fee-filter a {
         top: 0;
         left: 0;
         right: 0;
@@ -149,12 +149,12 @@ main {
         border: 1px solid #DDD;
         background: rgba(255, 255, 255, 0.9);
         transition: .15s opacity ease-in-out; }
-        .flex-grid > section.seamless a span, .flex-grid-client > section.seamless a span {
+        .flex-grid > section.seamless a span, .flex-grid > section.fee-filter a span, .flex-grid-client > section.seamless a span, .flex-grid-client > section.fee-filter a span {
           font-size: 30px;
           position: relative;
           top: 3px;
           color: #666; }
-      .flex-grid > section.seamless:hover a, .flex-grid-client > section.seamless:hover a {
+      .flex-grid > section.seamless:hover a, .flex-grid > section.fee-filter:hover a, .flex-grid-client > section.seamless:hover a, .flex-grid-client > section.fee-filter:hover a {
         opacity: 1; }
   .flex-grid h2, .flex-grid-client h2 {
     margin: -10px;
@@ -515,7 +515,8 @@ table.dataTable thead .sorting_asc,
 table.dataTable thead .sorting_desc,
 table.dataTable thead .sorting {
   cursor: pointer;
-  *cursor: hand; }
+  *cursor: hand;
+  text-align: left; }
 
 table.dataTable thead .sorting {
   background: url("../Images/sort_both.png") no-repeat center right; }
@@ -780,14 +781,7 @@ table.dataTable td {
   zoom: 1; }
 
 .dataTables_wrapper .dataTables_length {
-  float: left; }
-
-.dataTables_wrapper .dataTables_filter {
-  float: right;
-  text-align: right; }
-
-.dataTables_wrapper .dataTables_filter input {
-  margin-left: 0.5em; }
+  display: none; }
 
 .dataTables_wrapper .dataTables_info {
   clear: both;
@@ -946,6 +940,83 @@ table.dataTable td {
 
   .dataTables_wrapper .dataTables_filter {
     margin-top: 0.5em; } }
+input[type="search"] {
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #c6c6c6;
+  width: 100%;
+  margin-bottom: 18px;
+  color: #888;
+  font-family: 'Lato', 'sans-serif';
+  font-size: 16px;
+  font-weight: 300;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: all .3s; }
+  input[type="search"]:focus, input[type="search"]:hover {
+    outline: none;
+    border-color: #9FB1C1; }
+    input[type="search"]:focus + label, input[type="search"]:hover + label {
+      color: #077ABC;
+      cursor: text; }
+
+.dataTables_filter label {
+  text-align: left;
+  position: relative; }
+  .dataTables_filter label input[type="text"],
+  .dataTables_filter label input[type="email"],
+  .dataTables_filter label input[type="tel"],
+  .dataTables_filter label textarea,
+  .dataTables_filter label button,
+  .dataTables_filter label select {
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #c6c6c6;
+    width: 100%;
+    margin-bottom: 18px;
+    color: #888;
+    font-family: 'Lato', 'sans-serif';
+    font-size: 16px;
+    font-weight: 300;
+    background-color: #fff;
+    border-radius: 2px;
+    transition: all .3s; }
+    .dataTables_filter label input[type="text"]:focus, .dataTables_filter label input[type="text"]:hover,
+    .dataTables_filter label input[type="email"]:focus,
+    .dataTables_filter label input[type="email"]:hover,
+    .dataTables_filter label input[type="tel"]:focus,
+    .dataTables_filter label input[type="tel"]:hover,
+    .dataTables_filter label textarea:focus,
+    .dataTables_filter label textarea:hover,
+    .dataTables_filter label button:focus,
+    .dataTables_filter label button:hover,
+    .dataTables_filter label select:focus,
+    .dataTables_filter label select:hover {
+      outline: none;
+      border-color: #9FB1C1; }
+      .dataTables_filter label input[type="text"]:focus + label, .dataTables_filter label input[type="text"]:hover + label,
+      .dataTables_filter label input[type="email"]:focus + label,
+      .dataTables_filter label input[type="email"]:hover + label,
+      .dataTables_filter label input[type="tel"]:focus + label,
+      .dataTables_filter label input[type="tel"]:hover + label,
+      .dataTables_filter label textarea:focus + label,
+      .dataTables_filter label textarea:hover + label,
+      .dataTables_filter label button:focus + label,
+      .dataTables_filter label button:hover + label,
+      .dataTables_filter label select:focus + label,
+      .dataTables_filter label select:hover + label {
+        color: #077ABC;
+        cursor: text; }
+
+.fee-filter {
+  align-items: baseline;
+  text-align: left !important; }
+  .fee-filter span {
+    color: red !important;
+    font-size: 14px !important; }
+  .fee-filter .button {
+    margin-top: 5px; }
+
 .disabled:hover {
   opacity: 0.6 !important; }
 
@@ -2630,15 +2701,20 @@ h2.form-heading {
   margin-bottom: 20px;
   width: 100%; }
 
-.controls {
+.controls, .fee-filter {
   text-align: left;
   position: relative; }
-  .controls input[type="text"],
+  .controls input[type="text"], .fee-filter input[type="text"],
   .controls input[type="email"],
+  .fee-filter input[type="email"],
   .controls input[type="tel"],
+  .fee-filter input[type="tel"],
   .controls textarea,
+  .fee-filter textarea,
   .controls button,
-  .controls select {
+  .fee-filter button,
+  .controls select,
+  .fee-filter select {
     padding: 12px;
     font-size: 14px;
     border: 1px solid #c6c6c6;
@@ -2651,41 +2727,61 @@ h2.form-heading {
     background-color: #fff;
     border-radius: 2px;
     transition: all .3s; }
-    .controls input[type="text"]:focus, .controls input[type="text"]:hover,
+    .controls input[type="text"]:focus, .fee-filter input[type="text"]:focus, .controls input[type="text"]:hover, .fee-filter input[type="text"]:hover,
     .controls input[type="email"]:focus,
+    .fee-filter input[type="email"]:focus,
     .controls input[type="email"]:hover,
+    .fee-filter input[type="email"]:hover,
     .controls input[type="tel"]:focus,
+    .fee-filter input[type="tel"]:focus,
     .controls input[type="tel"]:hover,
+    .fee-filter input[type="tel"]:hover,
     .controls textarea:focus,
+    .fee-filter textarea:focus,
     .controls textarea:hover,
+    .fee-filter textarea:hover,
     .controls button:focus,
+    .fee-filter button:focus,
     .controls button:hover,
+    .fee-filter button:hover,
     .controls select:focus,
-    .controls select:hover {
+    .fee-filter select:focus,
+    .controls select:hover,
+    .fee-filter select:hover {
       outline: none;
       border-color: #9fb1c1; }
-      .controls input[type="text"]:focus + label, .controls input[type="text"]:hover + label,
+      .controls input[type="text"]:focus + label, .fee-filter input[type="text"]:focus + label, .controls input[type="text"]:hover + label, .fee-filter input[type="text"]:hover + label,
       .controls input[type="email"]:focus + label,
+      .fee-filter input[type="email"]:focus + label,
       .controls input[type="email"]:hover + label,
+      .fee-filter input[type="email"]:hover + label,
       .controls input[type="tel"]:focus + label,
+      .fee-filter input[type="tel"]:focus + label,
       .controls input[type="tel"]:hover + label,
+      .fee-filter input[type="tel"]:hover + label,
       .controls textarea:focus + label,
+      .fee-filter textarea:focus + label,
       .controls textarea:hover + label,
+      .fee-filter textarea:hover + label,
       .controls button:focus + label,
+      .fee-filter button:focus + label,
       .controls button:hover + label,
+      .fee-filter button:hover + label,
       .controls select:focus + label,
-      .controls select:hover + label {
+      .fee-filter select:focus + label,
+      .controls select:hover + label,
+      .fee-filter select:hover + label {
         color: #077abc;
         cursor: text; }
-  .controls .fa-sort {
+  .controls .fa-sort, .fee-filter .fa-sort {
     position: absolute;
     right: 10px;
     top: 7px;
     color: #999; }
-  .controls select {
+  .controls select, .fee-filter select {
     appearance: none;
     cursor: pointer; }
-  .controls label {
+  .controls label, .fee-filter label {
     color: #555;
     font-size: 16px;
     display: inline-block;
@@ -2693,13 +2789,13 @@ h2.form-heading {
     font-weight: 400;
     background-color: rgba(255, 255, 255, 0);
     transition: color .3s, top .3s, background-color .8s; }
-  .controls button {
+  .controls button, .fee-filter button {
     cursor: pointer;
     background-color: #07b3a1;
     border: none;
     color: #fff;
     padding: 12px 0; }
-    .controls button:hover {
+    .controls button:hover, .fee-filter button:hover {
       background-color: #08ccb7; }
 
 .field-validation-error {

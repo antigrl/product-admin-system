@@ -19,3 +19,7 @@ $(function () {
 app.controller('toggleController', function($scope) {
   $scope.campaignToggle = false;
 });
+
+app.run(function (DTDefaultOptions) {
+  DTDefaultOptions.setDisplayLength(20);
+});
