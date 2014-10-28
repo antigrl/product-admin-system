@@ -454,61 +454,6 @@ footer {
 .edit-campaign {
   padding-right: 40px; }
 
-.nav {
-  margin-bottom: 0;
-  padding-left: 0;
-  list-style: none; }
-  .nav > li {
-    position: relative;
-    display: block; }
-    .nav > li > a {
-      position: relative;
-      display: block;
-      padding: 10px; }
-      .nav > li > a:hover, .nav > li > a:focus {
-        text-decoration: none;
-        background-color: #000; }
-    .nav > li.disabled > a {
-      color: #fff; }
-      .nav > li.disabled > a:hover, .nav > li.disabled > a:focus {
-        color: #fff;
-        text-decoration: none;
-        background-color: transparent;
-        cursor: not-allowed; }
-
-.nav-tabs {
-  border: 1px solid #9ea7b3; }
-  .nav-tabs > li {
-    float: left;
-    line-height: 29px;
-    font-size: rem(12px);
-    border-right: 1px solid #9ea7b3;
-    transition: all .3s ease-in-out; }
-    .nav-tabs > li > a {
-      line-height: 16px / 2;
-      border: 1px solid transparent;
-      border-radius: 3px 3px 0 0; }
-      .nav-tabs > li > a:hover {
-        background: #000;
-        color: white;
-        text-decoration: none; }
-    .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-      color: #fff;
-      background-color: #000;
-      border-bottom-color: transparent;
-      cursor: default; }
-
-.tab-content {
-  border: 1px solid #9ea7b3;
-  padding: 10px; }
-  .tab-content > .tab-pane {
-    display: none; }
-  .tab-content > .ng-show {
-    display: block; }
-    .tab-content > .ng-show ul {
-      list-style-type: disc;
-      margin-left: 1em; }
-
 .disabled:hover {
   opacity: 0.6 !important; }
 

@@ -9,7 +9,7 @@
 
     > a {
       position: relative;
-      display: block;
+      display: flex;
       padding: 10px;
       &:hover,
       &:focus {
@@ -64,15 +64,16 @@
   }
 }
 
+
 .tab-content {
   border: 1px solid $lightgray;
   padding: 10px;
+  display: flex;
   > .tab-pane {
-    display: none;
+    display: flex;
   }
   > .ng-show {
-    display: block;
-
+    display: flex;
     ul {
       list-style-type: disc;
       margin-left: 1em;
