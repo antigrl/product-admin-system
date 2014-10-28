@@ -39,11 +39,11 @@ ViewBag.Title = "Edit Campaign";
     </section>
   </div>
 
-  <div class="flex-grid edit-campaign" ng-controller="toggleController">
+  <div class="edit-campaign" ng-controller="toggleController">
 
       <h2 ng-click="campaignToggle = !campaignToggle" class="form-heading">Edit Campaign</h2>
 
-    <div class="campaign-toggle" ng-show="campaignToggle" ng-cloak>
+    <div class="flex-grid campaign-toggle" ng-show="campaignToggle" ng-cloak>
       <article class="input-left">
         <div class="controls">
           @Html.LabelForRequired(model => model.CampaignName)
@@ -68,7 +68,7 @@ ViewBag.Title = "Edit Campaign";
           @Html.DropDownListFor(model => model.CampaignStatus, MyExtensions.GetGenericEnumDropDown<Status>(), "", new { @class="floatLabel"})
         </div>
       </article>
-      <article>
+      <article class="input-right">
         <article class="controls">
           @Html.LabelForRequired(model => model.CampaignAccountManagerComments)
           @Html.ValidationMessageFor(model => model.CampaignAccountManagerComments)

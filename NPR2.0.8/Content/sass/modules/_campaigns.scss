@@ -11,14 +11,21 @@
   .form-heading {
     cursor: pointer;
     &:before {
-      content: '\F106';
-      font: bold 20px FontAwesome;
-      margin-left: 155px;
+      content: '\F044';
+      font: normal 16px FontAwesome;
+      margin-left: 150px;
+      color: red;
+      margin-bottom: -15px;
     }
   }
   .campaign-toggle {
     .input-left {
       padding-right: 40px;
+      flex: 1;
+    }
+    .input-right {
+      flex: 1;
+      justify-content: flex-start;
     }
   }
 

@@ -457,11 +457,17 @@ footer {
 .edit-campaign .form-heading {
   cursor: pointer; }
   .edit-campaign .form-heading:before {
-    content: '\F106';
-    font: bold 20px FontAwesome;
-    margin-left: 155px; }
+    content: '\F044';
+    font: normal 16px FontAwesome;
+    margin-left: 150px;
+    color: red;
+    margin-bottom: -15px; }
 .edit-campaign .campaign-toggle .input-left {
-  padding-right: 40px; }
+  padding-right: 40px;
+  flex: 1; }
+.edit-campaign .campaign-toggle .input-right {
+  flex: 1;
+  justify-content: flex-start; }
 
 .campaign-list tr:nth-child(1) {
   background: #fff !important;
@@ -2226,6 +2232,9 @@ h2.form-heading {
     padding: 12px 0; }
     .controls button:hover {
       background-color: #08ccb7; }
+
+.field-validation-error {
+  color: red; }
 
 .panel.callout {
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0) inset; }
