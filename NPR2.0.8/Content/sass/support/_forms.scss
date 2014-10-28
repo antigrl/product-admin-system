@@ -89,3 +89,15 @@ h2.form-heading{
 .field-validation-error {
   color: red;
 }
+
+.form-list {
+    tr:nth-child(1) {
+    background: #fff !important;
+    text-align: left;
+    th {
+      padding-left: 10px;
+      padding-bottom: 10px;
+      font-size: 18px;
+    }
+  }
+}

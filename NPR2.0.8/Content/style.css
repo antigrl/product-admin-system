@@ -2705,6 +2705,14 @@ h2.form-heading {
 .field-validation-error {
   color: red; }
 
+.form-list tr:nth-child(1) {
+  background: #fff !important;
+  text-align: left; }
+  .form-list tr:nth-child(1) th {
+    padding-left: 10px;
+    padding-bottom: 10px;
+    font-size: 18px; }
+
 .panel.callout {
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0) inset; }
 
