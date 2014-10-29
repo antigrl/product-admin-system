@@ -37,6 +37,10 @@ body {
   // flex-direction: column;
 }
 
+// #body {
+//   padding: 25px;
+// }
+
 a {
   cursor: pointer;
   color: $darkblue;
@@ -65,7 +69,7 @@ main {
   flex-direction: column;
   .heading {
     height: 80px;
-    margin: -25px -25px 25px -25px;
+    margin: -25px;
     padding: 0 25px;
     line-height: 76px;
     border-bottom: 1px solid #EEE;
@@ -281,3 +285,13 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.top-wrapper {
+  margin: 25px -25px 25px -25px;
+  background-color: $heading;
+  padding: 25px;
+  padding-bottom: 50px;
+
+}
+
+
