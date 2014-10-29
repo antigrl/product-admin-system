@@ -2889,19 +2889,6 @@ h2.form-heading {
     color: #fff;
     transition: .25s; }
 
-.sub-nav dt {
-  font-weight: bold; }
-
-.sub-nav dd.active a:hover {
-  background-color: #3498db; }
-
-.sub-nav dt a:hover,
-.sub-nav dd a:hover {
-  background-color: #1abc9c;
-  border-color: #1abc9c;
-  color: white;
-  transition: background 0.2s ease-out, border-color 0.2s ease-out, color 0.2s ease-out; }
-
 .sub-nav {
   padding: 10px 0;
   margin-bottom: -80px; }

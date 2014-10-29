@@ -17,24 +17,33 @@ List<PricingTier> pricingTiers = Model.Company.PricingTiers.Where(p => p.Pricing
       </div>
     </h1>
   </div>
-  <div class="flex-grid">
-    <section class="seamless">
-     @Html.ActionLink("Campaign View", "Edit", new { id = Model.CampaignID })
-    </section>
+  <div class="top-wrapper">
+    <div class="flex-grid">
 
-    <section class="seamless">
-      <span>
-        @Html.DisplayFor(model => model.CampaignProductCount)
-      </span>
-      <h3>@Html.DisplayNameFor(model => model.CampaignProductCount)</h3>
-    </section>
+      <section class="seamless">
+        <span>
+          @Html.DisplayFor(model => model.CampaignProductCount)
+        </span>
+        <h3>@Html.DisplayNameFor(model => model.CampaignProductCount)</h3>
+      </section>
 
-    <section class="seamless">
-      <span>@count</span>
-      <h3>Actual Product Count</h3>
-    </section>
+      <section class="seamless">
+        <span>@count</span>
+        <h3>Actual Product Count</h3>
+      </section>
+    </div>
+
+    <div class="flex-grid">
+      <nav class="sub-nav">
+        @Html.ActionLink("Edit Campaign", "Edit", "Campaign", new { id = Model.CampaignID})
+
+        @Html.ActionLink("Campaign View", "Edit", new { id = Model.CampaignID })
+        @Html.ActionLink("Presentation View", "PresentationView", new { id = Model.CampaignID })
+      </nav>
+    </div>
   </div>
-</div>
+
+</div><!-- /Hide from print -->
 
 <div class="flex-grid">
   <section id="tblExport">
@@ -57,26 +66,26 @@ List<PricingTier> pricingTiers = Model.Company.PricingTiers.Where(p => p.Pricing
           @if (product.ProductImage != null)
           {
           <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
-          }
-        </div>
-      </div>
-      <div>@product.ProductDescription</div>
-      <div>
-        @{
-        List<ProductSellPrice> sellPrices = product.ProductSellPrices.OrderBy(s => s.SellPriceLevel).ToList();
-        }
-        @for (int index = 0; index < sellPrices.Count; index++)
-        {
-        <ul>
-          <li><strong>@pricingTiers[index].PricingTierName.Replace(Model.Company.CompanyName, "").Replace("/", "/ "): </strong>
-            @sellPrices[index].SellPriceFinalAmount.ToString("c")</li>
-          </ul>
         }
       </div>
-      <div></div>
-      <div></div>
     </div>
+    <div>@product.ProductDescription</div>
+    <div>
+      @{
+      List<ProductSellPrice> sellPrices = product.ProductSellPrices.OrderBy(s => s.SellPriceLevel).ToList();
     }
+    @for (int index = 0; index < sellPrices.Count; index++)
+    {
+    <ul>
+      <li><strong>@pricingTiers[index].PricingTierName.Replace(Model.Company.CompanyName, "").Replace("/", "/ "): </strong>
+        @sellPrices[index].SellPriceFinalAmount.ToString("c")</li>
+      </ul>
+    }
+  </div>
+  <div></div>
+  <div></div>
+</div>
+}
 </section>
 </div>
 

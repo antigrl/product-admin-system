@@ -10,7 +10,7 @@ ViewBag.Title = "Edit Campaign";
 {
   @Html.AntiForgeryToken()
   @Html.ValidationSummary(true)
-
+  @Html.HiddenFor(model => model.CompanyID)
   <div class="heading">
     <h1>@Html.DisplayFor(model => model.Company.CompanyName)
       <div class="heading-info">

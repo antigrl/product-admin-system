@@ -1,22 +1,3 @@
-.sub-nav dt{
-  font-weight: bold;
-}
-.sub-nav dd.active a:hover{
-  background-color: $primary-color;
-}
-.sub-nav dt a,
-.sub-nav dd a{
-
-
-}
-.sub-nav dt a:hover,
-.sub-nav dd a:hover {
-  background-color: $turquoise;
-  border-color: $turquoise;
-  color: white;
-  transition: background 0.2s ease-out, border-color 0.2s ease-out, color 0.2s ease-out;
-}
-
 .sub-nav {
   padding: 10px 0;
   margin-bottom: -80px;
