@@ -1,8 +1,8 @@
 .sub-nav {
   padding: 10px 0;
   margin-bottom: -80px;
-
-  a {
+  li {
+    display: inline-block;
     text-decoration: none;
     padding-bottom: 20px;
 
@@ -14,6 +14,9 @@
     &:hover, &:active, &.active {
       color: $linkcolor;
       border-bottom: 4px solid $blue;
+    }
+    a {
+      text-decoration: none;
     }
   }
 }

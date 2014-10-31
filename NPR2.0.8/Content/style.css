@@ -15,7 +15,8 @@
 .product-image .image {
   text-align: center; }
   .product-image .image img {
-    max-height: 125px; }
+    max-height: 100px;
+    max-width: 100px; }
 
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important; }
@@ -375,14 +376,20 @@ footer {
       footer nav a:hover {
         color: #333; }
 
-/* On the flex container */
+#tblExport {
+  background-color: transparent;
+  border: 0;
+  padding: 0; }
+
 .presentation-container, .presentation-items {
   flex-direction: row;
   border: 1px solid #ccc;
-  padding: 10px; }
+  padding: 5px;
+  background-color: #fff;
+  font-size: 12px !important;
+  height: 40px; }
   .presentation-container div.headings, .presentation-items div.headings {
-    font-size: 16px;
-    font-weight: bold; }
+    font-size: 12px; }
   .presentation-container div:nth-child(1), .presentation-items div:nth-child(1) {
     flex: 1;
     flex-grow: 3; }
@@ -412,7 +419,9 @@ footer {
 
 .presentation-items {
   border-bottom: 1px solid #5e6d81;
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  background-color: #fff;
+  height: 150px; }
   .presentation-items div {
     padding: 10px 0; }
     .presentation-items div:nth-child(3) {
@@ -2892,7 +2901,8 @@ h2.form-heading {
 .sub-nav {
   padding: 10px 0;
   margin-bottom: -80px; }
-  .sub-nav a {
+  .sub-nav li {
+    display: inline-block;
     text-decoration: none;
     padding-bottom: 20px;
     margin-right: 30px;
@@ -2900,9 +2910,11 @@ h2.form-heading {
     font-weight: bold;
     font-size: 14px;
     color: #94a0b1; }
-    .sub-nav a:hover, .sub-nav a:active, .sub-nav a.active {
+    .sub-nav li:hover, .sub-nav li:active, .sub-nav li.active {
       color: #5e6d81;
       border-bottom: 4px solid #077abc; }
+    .sub-nav li a {
+      text-decoration: none; }
 
 nav.main {
   width: 250px;

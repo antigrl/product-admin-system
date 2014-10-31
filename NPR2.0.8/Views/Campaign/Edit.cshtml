@@ -39,9 +39,10 @@ ViewBag.Title = "Edit Campaign";
 
     <div class="flex-grid">
       <nav class="sub-nav">
-        @Html.ActionLink("Edit Campaign", "Edit", "Campaign", new { id = Model.CampaignID})
-        @Html.ActionLink("Campaign View", "Edit", new { id = Model.CampaignID })
-        @Html.ActionLink("Presentation View", "PresentationView", new { id = Model.CampaignID })
+        <ul>
+          <li class="active">@Html.ActionLink("Products", "Edit", new { id = Model.CampaignID })</li>
+          <li>@Html.ActionLink("Presentation View", "PresentationView", new { id = Model.CampaignID })</li>
+        </ul>
       </nav>
     </div>
   </div>

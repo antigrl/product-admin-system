@@ -1,13 +1,21 @@
-/* On the flex container */
+#tblExport {
+  background-color: transparent;
+  border: 0;
+  padding: 0;
+}
+
+
 .presentation-container {
   @extend %flexbox;
   flex-direction: row;
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 5px;
+  background-color: #fff;
+  font-size: 12px !important;
+  height: 40px;
   div {
     &.headings {
-      font-size: 16px;
-      font-weight: bold;
+      font-size: 12px;
     }
     &:nth-child(1) { // Image
       flex: 1;
@@ -50,6 +58,8 @@
   @extend .presentation-container;
   border-bottom: 1px solid $darkblue;
   margin-bottom: 30px;
+  background-color: #fff;
+  height: 150px;
   div {
     padding: 10px 0;
     &:nth-child(3) { // Category

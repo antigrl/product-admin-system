@@ -35,10 +35,10 @@ List<PricingTier> pricingTiers = Model.Company.PricingTiers.Where(p => p.Pricing
 
     <div class="flex-grid">
       <nav class="sub-nav">
-        @Html.ActionLink("Edit Campaign", "Edit", "Campaign", new { id = Model.CampaignID})
-
-        @Html.ActionLink("Campaign View", "Edit", new { id = Model.CampaignID })
-        @Html.ActionLink("Presentation View", "PresentationView", new { id = Model.CampaignID })
+        <ul>
+          <li>@Html.ActionLink("Campaign View", "Edit", new { id = Model.CampaignID })</li>
+          <li class="active">@Html.ActionLink("Presentation View", "PresentationView", new { id = Model.CampaignID })</li>
+        </ul>
       </nav>
     </div>
   </div>
@@ -73,14 +73,14 @@ List<PricingTier> pricingTiers = Model.Company.PricingTiers.Where(p => p.Pricing
     <div>
       @{
       List<ProductSellPrice> sellPrices = product.ProductSellPrices.OrderBy(s => s.SellPriceLevel).ToList();
-    }
-    @for (int index = 0; index < sellPrices.Count; index++)
-    {
-    <ul>
-      <li><strong>@pricingTiers[index].PricingTierName.Replace(Model.Company.CompanyName, "").Replace("/", "/ "): </strong>
-        @sellPrices[index].SellPriceFinalAmount.ToString("c")</li>
-      </ul>
-    }
+      }
+      @for (int index = 0; index < sellPrices.Count; index++)
+      {
+      <ul>
+        <li><strong>@pricingTiers[index].PricingTierName.Replace(Model.Company.CompanyName, "").Replace("/", "/ "): </strong>
+          @sellPrices[index].SellPriceFinalAmount.ToString("c")</li>
+        </ul>
+      }
   </div>
   <div></div>
   <div></div>
