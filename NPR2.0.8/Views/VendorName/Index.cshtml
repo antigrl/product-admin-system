@@ -4,29 +4,31 @@
     ViewBag.Title = "Vendor Name Index";
 }
 
-<h2>Vendor Name Index</h2>
-
-<div class="left-half-content">
-    <p>
-        @Html.ActionLink("Create New Vendor Name", "Create")
+<div class="heading">
+    <h1>Vendor Name Index
         @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
         {
-            <span class="float-right">@Html.ActionLink("View Active Vendor Names", "Index")</span>
+            <div class="heading-info">@Html.ActionLink("View Active Vendor Names", "Index")</div>
         }
         else
         {
-            <span class="float-right">@Html.ActionLink("View Archived Vendor Names", "ArchivedIndex")</span>
+            <div class="heading-info">@Html.ActionLink("View Archived Vendor Names", "ArchivedIndex")</div>
         }
-    </p>
-    <table class="index-table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.VendorNameName)
-            </th>
-            <th></th>
-        </tr>
+        <div class="heading-info">@Html.ActionLink("Create New Vendor Name", "Create")</div>
+    </h1>
+</div>
 
-        @foreach(var item in Model)
+<div class="flex-grid">
+    <section>
+        <table datatable="">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.VendorNameName)</th>
+                    <th>Modify</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
         {
             <tr>
                 <td>
@@ -38,6 +40,7 @@
                 </td>
             </tr>
         }
-
-    </table>
+            </tbody>
+        </table>
+    </section>
 </div>

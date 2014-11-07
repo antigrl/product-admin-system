@@ -451,6 +451,7 @@
     <Content Include="Views\Campaign\PresentationView.cshtml" />
     <Content Include="Views\Company\_CompanyList.cshtml" />
     <Content Include="Views\Campaign\_CampaignList.cshtml" />
+    <Content Include="Views\FeeName\_CreateOnIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -486,7 +487,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

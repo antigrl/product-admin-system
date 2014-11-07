@@ -1,0 +1,28 @@
+﻿@model NPRModels.FeeName
+@using NPR2._0._8.Helpers;
+@using NPRModels;
+
+@using (Html.BeginForm("Create", "FeeName", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.FeeNameStatus)
+
+    <div class="flex-grid">
+        <section class="fee-filter">
+            @Html.LabelForRequired(model => model.FeeNameName)
+            @Html.ValidationMessageFor(model => model.FeeNameName)
+            @Html.EditorFor(model => model.FeeNameName, new { @class = "floatLabel" })
+        </section>
+        <section class="fee-filter">
+            @Html.LabelForRequired(model => model.FeeNameType)
+            @Html.ValidationMessageFor(model => model.FeeNameType)
+            @Html.DropDownListFor(model => model.FeeNameType, MyExtensions.GetGenericEnumDropDown<FeeTypeList>(), "")
+        </section>
+        <section class="fee-filter">
+            @Html.HiddenFor(model => model.FeeNameStatus)
+            <input type="submit" class="button green" value="Add Fee" />
+        </section>
+    </div>
+}

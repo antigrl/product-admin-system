@@ -1,100 +1,84 @@
 ﻿@model NPRModels.Campaign
 
 @{
-    ViewBag.Title = "Archive Campaign";
+ViewBag.Title = "Archive Campaign";
 }
+<div class="heading">
+    <h1>
+        Archive Campaign
+    </h1>
+</div>
 
-<h2>Archive Campaign</h2>
+<div class="flex-grid">
+    <section class="info-list">
+        <h2>Are you sure you want to archive this Campaign?</h2>
 
-<h3>Are you sure you want to archive this Campaign?</h3>
-<fieldset>
-    <legend>Campaign</legend>
+        @Html.HiddenFor(model => model.CampaignStatus, new { Value = "Disabled" })
 
-    @Html.HiddenFor(model => model.CampaignStatus, new { Value = "Disabled" })
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.CampaignName)</strong><br>
+            @Html.DisplayFor(model => model.CampaignName)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.CampaignName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CampaignName)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.Company.CompanyName)</strong><br>
+            @Html.DisplayFor(model => model.Company.CompanyName)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Company.CompanyName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Company.CompanyName)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.CampaignReason)</strong><br>
+            @Html.DisplayFor(model => model.CampaignReason)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.CampaignReason)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CampaignReason)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.CampaignProductCount)</strong><br>
+            @Html.DisplayFor(model => model.CampaignProductCount)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.CampaignProductCount)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CampaignProductCount)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.CampaignAccountManagerComments)</strong><br>
+            @Html.DisplayFor(model => model.CampaignAccountManagerComments)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.CampaignAccountManagerComments)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CampaignAccountManagerComments)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.CampaignMerchandiserComments)</strong><br>
+            @Html.DisplayFor(model => model.CampaignMerchandiserComments)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.CampaignMerchandiserComments)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CampaignMerchandiserComments)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.CampaignInventoryBuyerComments)</strong><br>
+            @Html.DisplayFor(model => model.CampaignInventoryBuyerComments)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.CampaignInventoryBuyerComments)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CampaignInventoryBuyerComments)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.CampaignMentorComments)</strong><br>
+            @Html.DisplayFor(model => model.CampaignMentorComments)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.CampaignMentorComments)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CampaignMentorComments)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.CampaignStatus)</strong><br>
+            @Html.DisplayFor(model => model.CampaignStatus)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.CampaignStatus)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CampaignStatus)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.CampaignCreatedBy)</strong><br>
+            @Html.DisplayFor(model => model.CampaignCreatedBy)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.CampaignCreatedBy)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CampaignCreatedBy)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.CampaignCreatedOnDate)</strong><br>
+            @Html.DisplayFor(model => model.CampaignCreatedOnDate)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.CampaignCreatedOnDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CampaignCreatedOnDate)
-    </div>
-</fieldset>
-@using(Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
-{
-    @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Archive" />
-        |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-}
+        @using(Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+        {
+        @Html.AntiForgeryToken()
+        <p>
+            <input type="submit" class="button green" value="Archive" />
+            |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+
+</section>
+</div>

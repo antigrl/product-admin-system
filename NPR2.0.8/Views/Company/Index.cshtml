@@ -3,68 +3,78 @@
 @{
     ViewBag.Title = "Company Index";
 }
+<div class="heading">
+    <h1>@ViewBag.TitleMessage Company Index
 
-<h2>@ViewBag.TitleMessage Company Index</h2>
+        @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+        {
+            <div class="heading-info">@Html.ActionLink("View Active Companies", "Index")</div>
+        }
+        else
+        {
+            <div class="heading-info">@Html.ActionLink("View Archived Companies", "ArchivedIndex")</div>
+        }
+        <div class="heading-info">@Html.ActionLink("Create New Company", "Create", "Company", new object { }, null)</div>
+    </h1>
 
-<p>
-    @Html.ActionLink("Create New Company", "Create", "Company", new object { }, null)
-    @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
-    {
-        <span class="float-right">@Html.ActionLink("View Active Companies", "Index")</span>
-    }
-    else
-    {
-        <span class="float-right">@Html.ActionLink("View Archived Companies", "ArchivedIndex")</span>
-    }
-</p>
-<table class="index-table company-table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyDivisionNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyContactName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyAccountManagerName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyMentorName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyStatus)
-        </th>
-        <th></th>
-    </tr>
+</div>
 
-    @foreach(var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyDivisionNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyContactName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyAccountManagerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyMentorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyStatus)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.CompanyID })
-                @* TODO: Add Archive for admins*@
-            </td>
-        </tr>
-    }
-</table>
+<div class="flex-grid">
+    <section>
+
+        <table class="index-table company-table" datatable="">
+            <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompanyName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompanyDivisionNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompanyContactName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompanyAccountManagerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompanyMentorName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CompanyStatus)
+                </th>
+                <th>Modify</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyDivisionNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyContactName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyAccountManagerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyMentorName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CompanyStatus)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CompanyID })
+                        @* TODO: Add Archive for admins*@
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </section>
+</div>

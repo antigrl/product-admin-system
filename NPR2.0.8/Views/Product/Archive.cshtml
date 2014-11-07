@@ -3,215 +3,163 @@
 @{
     ViewBag.Title = "Archive Product";
 }
+<div class="heading">
+    <h1>Archive Product</h1>
+</div>
 
-<h2>Archive Product</h2>
+<div class="flex-grid">
+    <section class="info-list">
 
-<h3>Are you sure you want to archive this Product?</h3>
-<fieldset>
-    <legend>Product</legend>
+<h2>Are you sure you want to archive this Product?</h2>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductName)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductName)</strong><br>
         @Html.DisplayFor(model => model.ProductName)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductDescription)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductDescription)</strong><br>
         @Html.DisplayFor(model => model.ProductDescription)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductStatus)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductStatus)</strong><br>
         @Html.DisplayFor(model => model.ProductStatus)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Category.CategoryName)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.Category.CategoryName)</strong><br>
         @Html.DisplayFor(model => model.Category.CategoryName)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Category1.CategoryName)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.Category1.CategoryName)</strong><br>
         @Html.DisplayFor(model => model.Category1.CategoryName)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.PackagingType.PackagingTypeName)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.PackagingType.PackagingTypeName)</strong><br>
         @Html.DisplayFor(model => model.PackagingType.PackagingTypeName)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductUnitOfMeasure)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductUnitOfMeasure)</strong><br>
         @Html.DisplayFor(model => model.ProductUnitOfMeasure)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.PackagingType.PackagingTypeName)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.PackagingType.PackagingTypeName)</strong><br>
         @Html.DisplayFor(model => model.PackagingType.PackagingTypeName)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductReplacementItemNumber)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductReplacementItemNumber)</strong><br>
         @Html.DisplayFor(model => model.ProductReplacementItemNumber)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductPresentationSell)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductPresentationSell)</strong><br>
         @Html.DisplayFor(model => model.ProductPresentationSell)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.VendorName.VendorNameName)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.VendorName.VendorNameName)</strong><br>
         @Html.DisplayFor(model => model.VendorName.VendorNameName)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.VendorType.VendorTypeName)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.VendorType.VendorTypeName)</strong><br>
         @Html.DisplayFor(model => model.VendorType.VendorTypeName)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductVendorLeadTime)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductVendorLeadTime)</strong><br>
         @Html.DisplayFor(model => model.ProductVendorLeadTime)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductVendorMinimumOrder)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductVendorMinimumOrder)</strong><br>
         @Html.DisplayFor(model => model.ProductVendorMinimumOrder)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductCountryOfOrigin)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductCountryOfOrigin)</strong><br>
         @Html.DisplayFor(model => model.ProductCountryOfOrigin)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductHarmonizedCode)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductHarmonizedCode)</strong><br>
         @Html.DisplayFor(model => model.ProductHarmonizedCode)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductInitialOrderQuantity)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductInitialOrderQuantity)</strong><br>
         @Html.DisplayFor(model => model.ProductInitialOrderQuantity)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductVendorItemNumber)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductVendorItemNumber)</strong><br>
         @Html.DisplayFor(model => model.ProductVendorItemNumber)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductAnnualSalesProjection)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductAnnualSalesProjection)</strong><br>
         @Html.DisplayFor(model => model.ProductAnnualSalesProjection)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductCost)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductCost)</strong><br>
         @Html.DisplayFor(model => model.ProductCost)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductNetCost)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductNetCost)</strong><br>
         @Html.DisplayFor(model => model.ProductNetCost)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductTotalCost)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductTotalCost)</strong><br>
         @Html.DisplayFor(model => model.ProductTotalCost)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductGatewayCDISKU)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductGatewayCDISKU)</strong><br>
         @Html.DisplayFor(model => model.ProductGatewayCDISKU)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductAccountManagerComments)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductAccountManagerComments)</strong><br>
         @Html.DisplayFor(model => model.ProductAccountManagerComments)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductMerchandiserComments)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductMerchandiserComments)</strong><br>
         @Html.DisplayFor(model => model.ProductMerchandiserComments)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductInventoryBuyerComments)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductInventoryBuyerComments)</strong><br>
         @Html.DisplayFor(model => model.ProductInventoryBuyerComments)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductMentorComments)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductMentorComments)</strong><br>
         @Html.DisplayFor(model => model.ProductMentorComments)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Campaign.CampaignName)
-    </div>
-    <div class="display-field">
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.Campaign.CampaignName)</strong><br>
         @Html.DisplayFor(model => model.Campaign.CampaignName)
     </div>
-</fieldset>
+
 @using(Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
 {
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Archive" />
+        <input type="submit" class="button green" value="Archive" />
         |
         @Html.ActionLink("Back to List", "Index")
     </p>
 }
+</section>
+</div>

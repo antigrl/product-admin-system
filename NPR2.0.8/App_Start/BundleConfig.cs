@@ -9,11 +9,16 @@ namespace NPR2._0._8
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/npr").Include(
-                        "~/Scripts/jquery-{version}.js",
+                        "~/Content/bower_components/jquery/dist/jquery.js",
                         "~/Scripts/jquery-ui-{version}.js",
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*",
-                        "~/Scripts/NPR.js"));
+                        "~/Content/bower_components/datatables/media/js/jquery.dataTables.js",
+                        "~/Content/bower_components/angular/angular.js",
+                        "~/Scripts/jquery.throttledresize.js",
+                        "~/Content/bower_components/angular-datatables/dist/angular-datatables.js",
+                        "~/Scripts/NPR.js",
+                        "~/Scripts/app.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
@@ -30,8 +35,10 @@ namespace NPR2._0._8
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css",
-                        "~/Content/main.css"));
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                        "~/Content/style.css",
+                        "~/Content/print.css"));
+
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
