@@ -169,6 +169,8 @@ main {
     color: #444;
     font-family: Arial, sans-serif;
     border-bottom: 1px solid #ddd; }
+    .flex-grid h2 span, .flex-grid-client h2 span {
+      float: right; }
   .flex-grid .chart, .flex-grid-client .chart {
     position: relative;
     width: 100%;

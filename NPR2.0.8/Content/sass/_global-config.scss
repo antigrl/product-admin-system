@@ -192,6 +192,9 @@ main {
     color: #444;
     font-family: Arial, sans-serif;
     border-bottom: 1px solid #ddd;
+    span {
+      float: right;
+    }
   }
   .chart {
     position: relative;
