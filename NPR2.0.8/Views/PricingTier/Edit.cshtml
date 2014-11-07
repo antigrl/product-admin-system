@@ -50,7 +50,7 @@
             <input type="submit" value="Save" />
         </p>
         <div>
-            @Html.ActionLink("Back to Pricing Tier List", "Index")
+            @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
         </div>
     </fieldset>
     <div class="right-content">

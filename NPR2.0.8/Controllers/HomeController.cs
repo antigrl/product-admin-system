@@ -42,5 +42,14 @@ namespace NPR2._0._8.Controllers
 
             return View();
         }
+
+        public ActionResult Back(string returnUrl)
+        {
+            if (returnUrl == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return Redirect(returnUrl);
+        }
     }
 }

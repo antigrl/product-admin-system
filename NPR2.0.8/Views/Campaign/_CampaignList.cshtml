@@ -5,6 +5,7 @@
 <table class="index-table">
     @foreach (var item in Model)
     {
+        string returnLink = Url.Action("Index", "Home", new { id = item.CompanyID, ReturnUrl = ViewBag.ReturnUrl });
         <tr>
             <td>
                 <div class="editor-label">
@@ -22,8 +23,8 @@
                 </div>
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", "Campaign", new { ReturnUrl = Url.Action("Index", "Home", new { id = item.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = item.CampaignID }, null) |
-                @Html.ActionLink("Archive", "Archive", "Campaign", new { ReturnUrl = Url.Action("Index", "Home", new { id = item.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = item.CampaignID }, null)
+                @Html.ActionLink("Edit", "Edit", "Campaign", new { ReturnUrl = returnLink, id = item.CampaignID }, null) |
+                @Html.ActionLink("Archive", "Archive", "Campaign", new { ReturnUrl = returnLink, id = item.CampaignID }, null)
             </td>
         </tr>
     }

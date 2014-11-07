@@ -6,7 +6,7 @@
     ViewBag.Title = "Edit Company";
 }
 
-@using (Html.BeginForm("Edit", "Company", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Edit", "Company", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -100,7 +100,7 @@
             </div>
             <div class="controls">
                 <input type="submit" class="button green" value="Save" />
-                | @Html.ActionLink("Back to Company List", "Index")
+                | @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl}, null)
             </div>
         </article>
     </div>
