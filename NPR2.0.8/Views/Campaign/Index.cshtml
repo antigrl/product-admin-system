@@ -4,44 +4,49 @@
 ViewBag.Title = "Campaign Index";
 }
 
-<h2>@ViewBag.TitleMessage Campaign Index</h2>
+<div class="heading">
+  <h1>@ViewBag.TitleMessage Campaign Index
 
-<p>
-  @Html.ActionLink("Create New Campaign", "Create")
-  @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+
+    @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+    {
+    <div class="heading-info">@Html.ActionLink("View Active Campaigns", "Index")</div>
+  }
+  else
   {
-  <span class="float-right">@Html.ActionLink("View Active Campaigns", "Index")</span>
+  <div class="heading-info">@Html.ActionLink("View Archived Campaigns", "ArchivedIndex")</div>
 }
-else
-{
-  <span class="float-right">@Html.ActionLink("View Archived Campaigns", "ArchivedIndex")</span>
-}
-</p>
+<div class="heading-info">@Html.ActionLink("Create New Campaign", "Create")</div>
+</h1>
+</div>
+
 <div class="flex-grid">
   <section>
-    <table>
-      <tr>
-        <th>
-          @Html.DisplayNameFor(model => model.CampaignName)
-        </th>
-        <th>
-          @Html.DisplayNameFor(model => model.Company.CompanyName)
-        </th>
-        <th>
-          @Html.DisplayNameFor(model => model.CampaignReason)
-        </th>
-        <th>
-          @Html.DisplayNameFor(model => model.CampaignCreatedBy)
-        </th>
-        <th>
-          @Html.DisplayNameFor(model => model.CampaignCreatedOnDate)
-        </th>
-        <th>
-          @Html.DisplayNameFor(model => model.CampaignStatus)
-        </th>
-        <th></th>
-      </tr>
-
+    <table datatable="">
+      <thead>
+        <tr>
+          <th>
+            @Html.DisplayNameFor(model => model.CampaignName)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Company.CompanyName)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CampaignReason)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CampaignCreatedBy)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CampaignCreatedOnDate)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CampaignStatus)
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
       @foreach(var item in Model)
       {
       <tr>
@@ -68,8 +73,9 @@ else
           @Html.ActionLink("Archive", "Archive", new { id = item.CampaignID })
         </td>
       </tr>
-      }
-    </table>
+    }
+    </tbody>
+  </table>
 
-  </section>
+</section>
 </div>

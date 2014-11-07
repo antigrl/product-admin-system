@@ -241,6 +241,9 @@ main {
   padding: 25px;
   padding-bottom: 50px; }
 
+.info-list .controls, .info-list .fee-filter {
+  margin-bottom: 15px; }
+
 nav.main {
   width: 250px;
   background: #3B4854;
@@ -478,12 +481,6 @@ footer {
     margin-left: 150px;
     color: red;
     margin-bottom: -15px; }
-.edit-campaign .campaign-toggle .input-left {
-  padding-right: 40px;
-  flex: 1; }
-.edit-campaign .campaign-toggle .input-right {
-  flex: 1;
-  justify-content: flex-start; }
 
 .campaign-list tr:nth-child(1) {
   background: #fff !important;
@@ -2721,6 +2718,10 @@ h2.form-heading {
   text-align: left;
   position: relative; }
   .controls input[type="text"], .fee-filter input[type="text"],
+  .controls input[type="file"],
+  .fee-filter input[type="file"],
+  .controls input[type="url"],
+  .fee-filter input[type="url"],
   .controls input[type="email"],
   .fee-filter input[type="email"],
   .controls input[type="tel"],
@@ -2744,6 +2745,14 @@ h2.form-heading {
     border-radius: 2px;
     transition: all .3s; }
     .controls input[type="text"]:focus, .fee-filter input[type="text"]:focus, .controls input[type="text"]:hover, .fee-filter input[type="text"]:hover,
+    .controls input[type="file"]:focus,
+    .fee-filter input[type="file"]:focus,
+    .controls input[type="file"]:hover,
+    .fee-filter input[type="file"]:hover,
+    .controls input[type="url"]:focus,
+    .fee-filter input[type="url"]:focus,
+    .controls input[type="url"]:hover,
+    .fee-filter input[type="url"]:hover,
     .controls input[type="email"]:focus,
     .fee-filter input[type="email"]:focus,
     .controls input[type="email"]:hover,
@@ -2767,6 +2776,14 @@ h2.form-heading {
       outline: none;
       border-color: #9fb1c1; }
       .controls input[type="text"]:focus + label, .fee-filter input[type="text"]:focus + label, .controls input[type="text"]:hover + label, .fee-filter input[type="text"]:hover + label,
+      .controls input[type="file"]:focus + label,
+      .fee-filter input[type="file"]:focus + label,
+      .controls input[type="file"]:hover + label,
+      .fee-filter input[type="file"]:hover + label,
+      .controls input[type="url"]:focus + label,
+      .fee-filter input[type="url"]:focus + label,
+      .controls input[type="url"]:hover + label,
+      .fee-filter input[type="url"]:hover + label,
       .controls input[type="email"]:focus + label,
       .fee-filter input[type="email"]:focus + label,
       .controls input[type="email"]:hover + label,
@@ -2824,6 +2841,14 @@ h2.form-heading {
     padding-left: 10px;
     padding-bottom: 10px;
     font-size: 18px; }
+
+.input-left {
+  padding-right: 40px;
+  flex: 1; }
+
+.input-right {
+  flex: 1;
+  justify-content: flex-start; }
 
 .panel.callout {
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0) inset; }

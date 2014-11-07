@@ -25,6 +25,8 @@ h2.form-heading{
   text-align: left;
   position: relative;
   input[type="text"],
+  input[type="file"],
+  input[type="url"],
   input[type="email"],
   input[type="tel"],
   textarea,
@@ -39,7 +41,7 @@ h2.form-heading{
     font-family: 'Lato', 'sans-serif';
     font-size: 16px;
     font-weight: 300;
-     background-color: #fff;
+    background-color: #fff;
     border-radius: 2px;
     transition: all .3s;
 
@@ -48,7 +50,7 @@ h2.form-heading{
       border-color: $border-focus;
       + label{
         color: $blue;
-          cursor: text;
+        cursor: text;
       }
     }
   }
@@ -91,7 +93,7 @@ h2.form-heading{
 }
 
 .form-list {
-    tr:nth-child(1) {
+  tr:nth-child(1) {
     background: #fff !important;
     text-align: left;
     th {
@@ -100,4 +102,13 @@ h2.form-heading{
       font-size: 18px;
     }
   }
+}
+
+.input-left {
+  padding-right: 40px;
+  flex: 1;
+}
+.input-right {
+  flex: 1;
+  justify-content: flex-start;
 }

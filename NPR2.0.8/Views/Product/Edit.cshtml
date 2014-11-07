@@ -8,10 +8,10 @@ ViewBag.Title = "Edit Product";
   <h1>
     @Html.DisplayFor(model => model.Campaign.Company.CompanyName)
     <div class="heading-info">
-      <strong>Editing Product:</strong> @Html.DisplayFor(model => model.ProductID)
+      <strong>Editing Product</strong> @Html.DisplayFor(model => model.ProductID)
     </div>
     <div class="heading-info">
-      <strong>Campaign:</strong> @Html.DisplayFor(model => model.Campaign.CampaignName)
+      <strong>Campaign</strong> @Html.DisplayFor(model => model.Campaign.CampaignName)
     </div>
   </h1>
 </div>
@@ -26,13 +26,10 @@ ViewBag.Title = "Edit Product";
 
   <button type="submit" class="button green" formaction="@Url.Action("SaveAndClose", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save &amp; Close</button>
 
-  <input type="submit" class="button dark-blue" value="Cancel" />
+  <input type="submit" class="button dark-blue" value="Cancel" /> @Html.ActionLink("Back to List", "Index")
 
 }
 
-<div>
-  @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
 @Scripts.Render("~/bundles/jqueryval")

@@ -20,13 +20,6 @@ ViewBag.Title = "Create Campaign";
         </h1>
     </div>
 
-    <div class="top-wrapper">
-        <div class="flex-grid">
-            <section class="seamless">
-
-            </section>
-        </div>
-    </div>
 
     <div class="flex-grid">
         <article class="input-left">
@@ -44,40 +37,40 @@ ViewBag.Title = "Create Campaign";
                 @Html.DropDownList("CompanyID", String.Empty)
                 @Html.ValidationMessageFor(model => model.CompanyID)
             </div>
-        }
-        else
-        {
-        <div class="controls">
-            @Html.DisplayFor(model => model.Company.CompanyName)
-        </div>
-        @Html.HiddenFor(model => model.CompanyID)
-    }
+            }
+            else
+            {
+            <div class="controls">
+                @Html.DisplayFor(model => model.Company.CompanyName)
+            </div>
+            @Html.HiddenFor(model => model.CompanyID)
+            }
 
-    <div class="controls">
-       @Html.LabelForRequired(model => model.CampaignReason)
-       @Html.ValidationMessageFor(model => model.CampaignReason)
-       @Html.EditorFor(model => model.CampaignReason, new { @class = "floatLabel" } )
-   </div>
-   <div class="controls">
-    @Html.LabelForRequired(model => model.CampaignProductCount)
-    @Html.ValidationMessageFor(model => model.CampaignProductCount)
-    @Html.EditorFor(model => model.CampaignProductCount, new { @class = "floatLabel" } )
-</div>
-<div class="controls">
-    @Html.LabelForRequired(model => model.CampaignStatus)
-    @Html.DisplayFor(model => model.CampaignStatus)
-    @Html.HiddenFor(model => model.CampaignStatus, new { Value = MyExtensions.GetEnumDescription(Status.New) })
-</div>
-<div class="controls">
-    @Html.LabelForRequired(model => model.CampaignCreatedBy)
-    @Html.ValidationMessageFor(model => model.CampaignCreatedBy)
-    @Html.EditorFor(model => model.CampaignCreatedBy, new { @class = "floatLabel" } )
-</div>
-<div class="controls">
-    @Html.LabelForRequired(model => model.CampaignCreatedOnDate)
-    @Html.ValidationMessageFor(model => model.CampaignCreatedOnDate)
-    @Html.EditorFor(model => model.CampaignCreatedOnDate, new { @class = "floatLabel" } )
-</div>
+            <div class="controls">
+               @Html.LabelForRequired(model => model.CampaignReason)
+               @Html.ValidationMessageFor(model => model.CampaignReason)
+               @Html.EditorFor(model => model.CampaignReason, new { @class = "floatLabel" } )
+           </div>
+           <div class="controls">
+            @Html.LabelForRequired(model => model.CampaignProductCount)
+            @Html.ValidationMessageFor(model => model.CampaignProductCount)
+            @Html.EditorFor(model => model.CampaignProductCount, new { @class = "floatLabel" } )
+            </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CampaignStatus)
+                @Html.DisplayFor(model => model.CampaignStatus)
+                @Html.HiddenFor(model => model.CampaignStatus, new { Value = MyExtensions.GetEnumDescription(Status.New) })
+            </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CampaignCreatedBy)
+                @Html.ValidationMessageFor(model => model.CampaignCreatedBy)
+                @Html.EditorFor(model => model.CampaignCreatedBy, new { @class = "floatLabel" } )
+            </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CampaignCreatedOnDate)
+                @Html.ValidationMessageFor(model => model.CampaignCreatedOnDate)
+                @Html.EditorFor(model => model.CampaignCreatedOnDate, new { @class = "floatLabel" } )
+            </div>
 </article>
 
 <article class="input-right">
@@ -102,7 +95,7 @@ ViewBag.Title = "Create Campaign";
         @Html.EditorFor(model => model.CampaignMentorComments, new { @class = "floatLabel" } )
     </div>
     <div class="controls">
-        <input type="submit" value="Create" />
+        <input type="submit" class="button green" value="Create" />
     </div>
 </article>
 </div>

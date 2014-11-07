@@ -4,112 +4,89 @@
 @{
     ViewBag.Title = "Create Company";
 }
+<div class="heading">
+    <h1>Create Company</h1>
+</div>
 
-<h2>Create Company</h2>
+<div class="flex-grid">
+    <section>
 
 @using (Html.BeginForm("Create", "Company", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset class="left-half-content">
-        <legend>Company</legend>
-        
         @Html.HiddenFor(model => model.CompanyStatus)
 
-        <div class="editor-label">
+        <div class="controls">
             @Html.LabelForRequired(model => model.CompanyName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyName)
             @Html.ValidationMessageFor(model => model.CompanyName)
+            @Html.EditorFor(model => model.CompanyName)
         </div>
 
-        <div class="editor-label">
+        <div class="controls">
             @Html.LabelForRequired(model => model.CompanyDivisionNumber)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyDivisionNumber)
             @Html.ValidationMessageFor(model => model.CompanyDivisionNumber)
+            @Html.EditorFor(model => model.CompanyDivisionNumber)
         </div>
 
-        <div class="editor-label">
+        <div class="controls">
             @Html.LabelForRequired(model => model.CompanyDefaultMargin)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyDefaultMargin)
             @Html.ValidationMessageFor(model => model.CompanyDefaultMargin)
+            @Html.EditorFor(model => model.CompanyDefaultMargin)
         </div>
 
-        <div class="editor-label">
+        <div class="controls">
             @Html.LabelForRequired(model => model.CompanyContactName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyContactName)
             @Html.ValidationMessageFor(model => model.CompanyContactName)
+            @Html.EditorFor(model => model.CompanyContactName)
         </div>
 
-        <div class="editor-label">
+        <div class="controls">
             @Html.LabelForRequired(model => model.CompanyContactEmail)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyContactEmail)
             @Html.ValidationMessageFor(model => model.CompanyContactEmail)
+            @Html.EditorFor(model => model.CompanyContactEmail)
         </div>
 
-        <div class="editor-label">
+        <div class="controls">
             @Html.LabelForRequired(model => model.CompanyAccountManagerName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyAccountManagerName)
             @Html.ValidationMessageFor(model => model.CompanyAccountManagerName)
+            @Html.EditorFor(model => model.CompanyAccountManagerName)
         </div>
 
-        <div class="editor-label">
+        <div class="controls">
             @Html.LabelForRequired(model => model.CompanyAccountManagerEmail)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyAccountManagerEmail)
             @Html.ValidationMessageFor(model => model.CompanyAccountManagerEmail)
+            @Html.EditorFor(model => model.CompanyAccountManagerEmail)
         </div>
 
-        <div class="editor-label">
+        <div class="controls">
             @Html.LabelForRequired(model => model.CompanyMentorName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyMentorName)
             @Html.ValidationMessageFor(model => model.CompanyMentorName)
+            @Html.EditorFor(model => model.CompanyMentorName)
         </div>
 
-        <div class="editor-label">
+        <div class="controls">
             @Html.LabelForRequired(model => model.CompanyMentorEmail)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyMentorEmail)
             @Html.ValidationMessageFor(model => model.CompanyMentorEmail)
+            @Html.EditorFor(model => model.CompanyMentorEmail)
         </div>
 
-        <div class="editor-label">
+        <div class="controls">
             @Html.LabelForRequired(model => model.CompanyLocation)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyLocation)
             @Html.ValidationMessageFor(model => model.CompanyLocation)
+            @Html.EditorFor(model => model.CompanyLocation)
         </div>
 
-        <div class="editor-label">
+        <div class="controls">
             @Html.LabelForRequired(model => model.CompanyUrl)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.CompanyUrl)
             @Html.ValidationMessageFor(model => model.CompanyUrl)
+            @Html.EditorFor(model => model.CompanyUrl)
         </div>
 
-        <div class="company-image">
-            <div class="editor-label">
+
+            <div class="controls">
                 @Html.LabelForRequired(model => model.CompanyImage)
-            </div>
-            <div class="editor-field">
                 <input type="file" name="CompanyImage" id="CompanyImage" />
             </div>
             <div class="image">
@@ -119,26 +96,25 @@
                 }
                 @Html.ValidationMessageFor(model => model.CompanyImage)
             </div>
-        </div>
 
-        <div class="editor-label">
+
+        <div class="controls">
             @Html.LabelForRequired(model => model.CompanyAdditionalDetails)
-        </div>
-        <div class="editor-field">
             @Html.EditorFor(model => model.CompanyAdditionalDetails)
             @Html.ValidationMessageFor(model => model.CompanyAdditionalDetails)
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" class="button green" value="Create" /> | @Html.ActionLink("Back to Company List", "Index")
         </p>
-        <div>
-            @Html.ActionLink("Back to Company List", "Index")
-        </div>
-    </fieldset>
+
+
 }
 
 
 @section Scripts {
 
 }
+
+</section>
+</div>
