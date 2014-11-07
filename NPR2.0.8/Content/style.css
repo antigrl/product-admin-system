@@ -66,7 +66,8 @@ main {
     padding: 0 25px;
     line-height: 76px;
     border-bottom: 1px solid #EEE;
-    background: #fafafa; }
+    background: #fafafa;
+    margin-bottom: 25px; }
     main .heading h1 {
       float: left;
       font-size: 28px;
@@ -235,7 +236,7 @@ main {
   text-overflow: ellipsis; }
 
 .top-wrapper {
-  margin: 25px -25px 25px -25px;
+  margin: -25px -25px 25px -25px;
   background-color: #fafafa;
   padding: 25px;
   padding-bottom: 50px; }

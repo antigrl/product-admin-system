@@ -1,38 +1,41 @@
 ﻿@model NPRModels.VendorName
 
 @{
-    ViewBag.Title = "Edit Vendor Name";
+ViewBag.Title = "Edit Vendor Name";
 }
+<div class="heading">
+    <h1>Edit Vendor Name</h1>
+</div>
+<div class="flex-grid">
+    <section>
 
-<h2>Edit Vendor Name</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
 
-    <fieldset class="left-half-content">
-        <legend>VendorName</legend>
+        @using (Html.BeginForm())
+        {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-        @Html.HiddenFor(model => model.VendorNameID)
-        @Html.HiddenFor(model => model.VendorNameStatus)
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.VendorNameName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.VendorNameName)
-            @Html.ValidationMessageFor(model => model.VendorNameName)
-        </div>
 
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-        <div>
-            @Html.ActionLink("Back to Vendor Name List", "Index")
-        </div>
-    </fieldset>
+            @Html.HiddenFor(model => model.VendorNameID)
+            @Html.HiddenFor(model => model.VendorNameStatus)
+
+            <div class="controls">
+                @Html.LabelFor(model => model.VendorNameName)
+                @Html.ValidationMessageFor(model => model.VendorNameName)
+                @Html.EditorFor(model => model.VendorNameName)
+            </div>
+            <p>
+                <input type="submit" class="button green" value="Save" /> | @Html.ActionLink("Back to Vendor Name List", "Index")
+            </p>
+
+
+
+
+    }
+
+    @section Scripts {
 }
-
-@section Scripts {
-}
+    </section>
+</div>
