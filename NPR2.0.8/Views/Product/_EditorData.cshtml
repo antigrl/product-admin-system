@@ -12,49 +12,51 @@
       @Html.ValidationMessageFor(model => model.CampaignID)
       @Html.DropDownList("CampaignID", ViewBag.Campaigns as SelectList, String.Empty)
     </div>
-  }
-  else
-  {
-  @Html.HiddenFor(model => model.CampaignID)
-}
+    }
+    else
+    {
+    @Html.HiddenFor(model => model.CampaignID)
+    }
 
-@if(Model != null)
-{
-  <div class="controls">
-    @Html.LabelForRequired(model => model.ProductStatus)
-    @Html.ValidationMessageFor(model => model.ProductStatus)
-    @Html.DropDownListFor(model => model.ProductStatus, MyExtensions.GetGenericEnumDropDown<Status>(), "")
-  </div>
-}
-else
-{
-  @Html.HiddenFor(model => model.ProductStatus, new { Value = MyExtensions.GetEnumDescription(Status.New) })
-  @Html.ValidationMessageFor(model => model.ProductStatus)
-}
-
-<div class="product-image">
-  <div class="controls">
-    @Html.LabelForRequired(model => model.ProductImage)
-
-    <input type="file" name="ProductImage" id="ProductImage" />
-    @Html.HiddenFor(model => model.ProductImage)
-    @Html.HiddenFor(model => model.ProductImageType)
-  </div>
-  <div class="image">
     @if(Model != null)
     {
-    <img src="@Url.Action("Show", "Product", new { id = Model.ProductID })" />
-  }
-  @Html.ValidationMessageFor(model => model.ProductImage)
-</div>
-</div>
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductSalesHistory)
-  @Html.ValidationMessageFor(model => model.ProductSalesHistory)
-  @Html.EditorFor(model => model.ProductSalesHistory)
-</div>
-<section>
-  <div class="right-half-content">
+      <div class="controls">
+        @Html.LabelForRequired(model => model.ProductStatus)
+        @Html.ValidationMessageFor(model => model.ProductStatus)
+        @Html.DropDownListFor(model => model.ProductStatus, MyExtensions.GetGenericEnumDropDown<Status>(), "")
+      </div>
+    }
+    else
+    {
+      @Html.HiddenFor(model => model.ProductStatus, new { Value = MyExtensions.GetEnumDescription(Status.New) })
+      @Html.ValidationMessageFor(model => model.ProductStatus)
+    }
+
+  <div class="product-image">
+    <div class="controls">
+      @Html.LabelForRequired(model => model.ProductImage)
+
+      <input type="file" name="ProductImage" id="ProductImage" />
+      @Html.HiddenFor(model => model.ProductImage)
+      @Html.HiddenFor(model => model.ProductImageType)
+    </div>
+    <div class="image">
+      @if(Model != null)
+      {
+      <img src="@Url.Action("Show", "Product", new { id = Model.ProductID })" />
+      }
+      @Html.ValidationMessageFor(model => model.ProductImage)
+    </div>
+  </div>
+  <div class="controls">
+    @Html.LabelForRequired(model => model.ProductSalesHistory)
+    @Html.ValidationMessageFor(model => model.ProductSalesHistory)
+    <div class="sales-textarea">
+    @Html.EditorFor(model => model.ProductSalesHistory)
+  </div>
+  </div>
+</section>
+  <section>
     <div class="controls">
       @Html.LabelForRequired(model => model.ProductName)
       @Html.ValidationMessageFor(model => model.ProductName)
@@ -106,10 +108,12 @@ else
   @Html.EditorFor(model => model.ProductItemEDP)
 
 </div>
+</section>
 </div>
-</div>
-<div class="product-left-content">
-  <div class="general-info">
+
+<div class="flex-grid">
+
+  <article class="input-left">
     <div class="controls">
       @Html.LabelForRequired(model => model.ProductUnitOfMeasure)
 
@@ -128,103 +132,104 @@ else
     @Html.DropDownList("PackagingTypeID", ViewBag.PackagingTypes as SelectList)
   }
   @Html.ValidationMessageFor(model => model.PackagingTypeID)
-</div>
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductReplacementItemNumber)
-  @Html.EditorFor(model => model.ProductReplacementItemNumber)
-  @Html.ValidationMessageFor(model => model.ProductReplacementItemNumber)
-</div>
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductPresentationSell)
-  @Html.EditorFor(model => model.ProductPresentationSell)
-  @Html.ValidationMessageFor(model => model.ProductPresentationSell)
-</div>
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductQuoteNumber)
-  @Html.EditorFor(model => model.ProductQuoteNumber)
-  @Html.ValidationMessageFor(model => model.ProductQuoteNumber)
-</div>
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductSelectedColors)
-  @Html.EditorFor(model => model.ProductSelectedColors)
-  @Html.ValidationMessageFor(model => model.ProductSelectedColors)
-</div>
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductSelectedSizes)
-  @Html.EditorFor(model => model.ProductSelectedSizes)
-  @Html.ValidationMessageFor(model => model.ProductSelectedSizes)
-</div>
-</div>
-<div class="vendor-info">
+    </div>
+    <div class="controls">
+      @Html.LabelForRequired(model => model.ProductReplacementItemNumber)
+      @Html.EditorFor(model => model.ProductReplacementItemNumber)
+      @Html.ValidationMessageFor(model => model.ProductReplacementItemNumber)
+    </div>
+    <div class="controls">
+      @Html.LabelForRequired(model => model.ProductPresentationSell)
+      @Html.EditorFor(model => model.ProductPresentationSell)
+      @Html.ValidationMessageFor(model => model.ProductPresentationSell)
+    </div>
+    <div class="controls">
+      @Html.LabelForRequired(model => model.ProductQuoteNumber)
+      @Html.EditorFor(model => model.ProductQuoteNumber)
+      @Html.ValidationMessageFor(model => model.ProductQuoteNumber)
+    </div>
+    <div class="controls">
+      @Html.LabelForRequired(model => model.ProductSelectedColors)
+      @Html.EditorFor(model => model.ProductSelectedColors)
+      @Html.ValidationMessageFor(model => model.ProductSelectedColors)
+    </div>
+    <div class="controls">
+      @Html.LabelForRequired(model => model.ProductSelectedSizes)
+      @Html.EditorFor(model => model.ProductSelectedSizes)
+      @Html.ValidationMessageFor(model => model.ProductSelectedSizes)
+    </div>
+  </article>
+  <article class="input-right">
+
+    <div class="controls">
+      @Html.LabelForRequired(model => model.VendorNameID, "VendorName")
+
+      @if(Model == null)
+      {
+      @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList, String.Empty)
+    }
+    else
+    {
+    @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList)
+  }
+  @Html.ValidationMessageFor(model => model.VendorNameID)
+  </div>
 
   <div class="controls">
-    @Html.LabelForRequired(model => model.VendorNameID, "VendorName")
-
-    @if(Model == null)
+    @Html.LabelForRequired(model => model.VendorTypeID, "VendorType")
+    @if(Model == null || Model.VendorTypeID == null)
     {
-    @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList, String.Empty)
+    @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList, String.Empty)
   }
   else
   {
-  @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList)
-}
-@Html.ValidationMessageFor(model => model.VendorNameID)
-</div>
+    @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList)
+  }
+  @Html.ValidationMessageFor(model => model.VendorTypeID)
+  </div>
 
-<div class="controls">
-  @Html.LabelForRequired(model => model.VendorTypeID, "VendorType")
-  @if(Model == null || Model.VendorTypeID == null)
-  {
-  @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList, String.Empty)
-}
-else
-{
-  @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList)
-}
-@Html.ValidationMessageFor(model => model.VendorTypeID)
-</div>
+  <div class="controls">
+    @Html.LabelForRequired(model => model.ProductVendorLeadTime)
+    @Html.ValidationMessageFor(model => model.ProductVendorLeadTime)
+    @Html.EditorFor(model => model.ProductVendorLeadTime)
+  </div>
+  <div class="controls">
+    @Html.LabelForRequired(model => model.ProductVendorMinimumOrder)
+    @Html.ValidationMessageFor(model => model.ProductVendorMinimumOrder)
+    @Html.EditorFor(model => model.ProductVendorMinimumOrder)
+  </div>
+  <div class="controls">
+    @Html.LabelForRequired(model => model.ProductCountryOfOrigin)
+    @Html.ValidationMessageFor(model => model.ProductCountryOfOrigin)
+    @Html.EditorFor(model => model.ProductCountryOfOrigin)
+  </div>
+  <div class="controls">
+    @Html.LabelForRequired(model => model.ProductHarmonizedCode)
+    @Html.ValidationMessageFor(model => model.ProductHarmonizedCode)
+    @Html.EditorFor(model => model.ProductHarmonizedCode)
+  </div>
+  <div class="controls">
+    @Html.LabelForRequired(model => model.ProductInitialOrderQuantity)
+    @Html.ValidationMessageFor(model => model.ProductInitialOrderQuantity)
+    @Html.EditorFor(model => model.ProductInitialOrderQuantity)
+  </div>
+  <div class="controls">
+    @Html.LabelForRequired(model => model.ProductVendorItemNumber)
+    @Html.ValidationMessageFor(model => model.ProductVendorItemNumber)
+    @Html.EditorFor(model => model.ProductVendorItemNumber)
+  </div>
+  <div class="controls">
+    @Html.LabelForRequired(model => model.ProductAnnualSalesProjection)
+    @Html.ValidationMessageFor(model => model.ProductAnnualSalesProjection)
+    @Html.EditorFor(model => model.ProductAnnualSalesProjection)
+  </div>
+  <div class="controls">
+    @Html.LabelForRequired(model => model.ProductGatewayCDIMinumumOrder)
+    @Html.ValidationMessageFor(model => model.ProductGatewayCDIMinumumOrder)
+    @Html.EditorFor(model => model.ProductGatewayCDIMinumumOrder)
+  </div>
+</article>
 
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductVendorLeadTime)
-  @Html.ValidationMessageFor(model => model.ProductVendorLeadTime)
-  @Html.EditorFor(model => model.ProductVendorLeadTime)
-</div>
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductVendorMinimumOrder)
-  @Html.ValidationMessageFor(model => model.ProductVendorMinimumOrder)
-  @Html.EditorFor(model => model.ProductVendorMinimumOrder)
-</div>
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductCountryOfOrigin)
-  @Html.ValidationMessageFor(model => model.ProductCountryOfOrigin)
-  @Html.EditorFor(model => model.ProductCountryOfOrigin)
-</div>
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductHarmonizedCode)
-  @Html.ValidationMessageFor(model => model.ProductHarmonizedCode)
-  @Html.EditorFor(model => model.ProductHarmonizedCode)
-</div>
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductInitialOrderQuantity)
-  @Html.ValidationMessageFor(model => model.ProductInitialOrderQuantity)
-  @Html.EditorFor(model => model.ProductInitialOrderQuantity)
-</div>
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductVendorItemNumber)
-  @Html.ValidationMessageFor(model => model.ProductVendorItemNumber)
-  @Html.EditorFor(model => model.ProductVendorItemNumber)
-</div>
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductAnnualSalesProjection)
-  @Html.ValidationMessageFor(model => model.ProductAnnualSalesProjection)
-  @Html.EditorFor(model => model.ProductAnnualSalesProjection)
-</div>
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductGatewayCDIMinumumOrder)
-  @Html.ValidationMessageFor(model => model.ProductGatewayCDIMinumumOrder)
-  @Html.EditorFor(model => model.ProductGatewayCDIMinumumOrder)
-</div>
-</div>
 </div>
 <div class="flex-grid">
   <section>
@@ -232,8 +237,18 @@ else
 {
   <div class="product-right-content">
     <div class="price-info">
-      <div class="toggle-fee">
-        <button type="button" class="toggle-company-fees">Show/Hide Company Fee Section</button>
+      <div class="edit-product" ng-controller="toggleController">
+        <h2 ng-click="productToggle = !productToggle" class="form-heading">Company Fee Section<i class="fa fa-pencil-square-o"></i></h2>
+        <div ng-show="productToggle" ng-clock>
+          <div class="cost-info">
+            <div class="controls">
+              @Html.LabelForRequired(model => model.ProductCost)
+              @Html.ValidationMessageFor(model => model.ProductCost)
+              @Html.TextBoxFor(model => model.ProductCost, new { @class = "dollar-value" })
+            </div>
+          </div>
+        </div>
+
       </div>
       <div class="company-fees">
         <strong>Add Default Fees</strong>
@@ -242,6 +257,7 @@ else
             <tr>
               <th>Dollar Fees</th>
               <th>Percent Fees</th>
+              <th>Amortized Fees</th>
             </tr>
           </thead>
           <tbody>
@@ -278,11 +294,7 @@ else
                   </div>
                 }
               </td>
-              </tr>
-              <tr>
-                <th>Amortized Fees</th>
-              </tr>
-              <tr>
+
                 <td>
                   @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized)).OrderBy(f => f.FeeName.FeeNameName))
                   {
@@ -299,13 +311,7 @@ else
         </table>
       </div>
 
-<div class="cost-info">
-  <div class="controls">
-    @Html.LabelForRequired(model => model.ProductCost)
-    @Html.ValidationMessageFor(model => model.ProductCost)
-    @Html.TextBoxFor(model => model.ProductCost, new { @class = "dollar-value" })
-  </div>
-</div>
+
 <div class="flex-grid">
   <section>
     <div class="dollar-fee-info">
@@ -321,8 +327,7 @@ else
       @Html.ActionLink("Add Dollar Fee", "BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) }, new { @class = "add-item" })
     </div>
   </section>
-</div>
-<div class="flex-grid">
+
   <section>
     <div class="amortized-fee-info">
       <div class="fees add-target">
@@ -337,15 +342,13 @@ else
     @Html.ActionLink("Add Amortized Fee", "BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) }, new { @class = "add-item" })
   </div>
 
-</section>
-</div>
 
 <div class="controls">
   @Html.LabelForRequired(model => model.ProductNetCost)
   @Html.ValidationMessageFor(model => model.ProductNetCost)
   @Html.DisplayFor(model => model.ProductNetCost, new { @class = "dollar-value" })
 </div>
-<div class="flex-grid">
+</section>
   <section>
     <div class="percent-fee-info">
       <div class="fees add-target">

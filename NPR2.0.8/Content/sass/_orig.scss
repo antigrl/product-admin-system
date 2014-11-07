@@ -505,10 +505,9 @@
 //   width: 36%;
 // }
 
-// .product-right-content {
-//   float: left;
-//   width: 49%;
-// }
+.product-right-content {
+  flex-grow: 3;
+}
 
 // .product-decoration-info {
 //   border: 1px solid black;

@@ -112,3 +112,11 @@ h2.form-heading{
   flex: 1;
   justify-content: flex-start;
 }
+
+.controls {
+  .sales-textarea {
+    textarea {
+      height: 230px;
+    }
+  }
+}

@@ -18,6 +18,7 @@ $(function () {
 // Toggle Edit Campaign field
 app.controller('toggleController', function($scope) {
   $scope.campaignToggle = false;
+  $scope.campaignToggle = false;
 });
 
 app.run(function (DTDefaultOptions) {

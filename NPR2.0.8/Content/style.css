@@ -18,6 +18,9 @@
     max-height: 100px;
     max-width: 100px; }
 
+.product-right-content {
+  flex-grow: 3; }
+
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important; }
 
@@ -1029,6 +1032,14 @@ input[type="search"] {
     font-size: 14px !important; }
   .fee-filter .button {
     margin-top: 30px; }
+
+.edit-product .form-heading {
+  cursor: pointer; }
+  .edit-product .form-heading .fa {
+    position: absolute;
+    color: red;
+    margin-top: 0px;
+    margin-left: 10px; }
 
 .disabled:hover {
   opacity: 0.6 !important; }
@@ -2849,6 +2860,9 @@ h2.form-heading {
 .input-right {
   flex: 1;
   justify-content: flex-start; }
+
+.controls .sales-textarea textarea, .fee-filter .sales-textarea textarea {
+  height: 230px; }
 
 .panel.callout {
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0) inset; }
