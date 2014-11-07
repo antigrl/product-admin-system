@@ -2,52 +2,78 @@
 @using NPR2._0._8.Helpers;
 
 @{
-    ViewBag.Title = "Create Company";
+ViewBag.Title = "Create Company";
 }
-<div class="heading">
-    <h1>Create Company</h1>
-</div>
 
-<div class="flex-grid">
-    <section>
 
 @using (Html.BeginForm("Create", "Company", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    <div class="heading">
+        <h1>Create Company</h1>
+    </div>
+
+    <div class="flex-grid">
+
 
         @Html.HiddenFor(model => model.CompanyStatus)
+        <article class="input-left">
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyName)
+                @Html.ValidationMessageFor(model => model.CompanyName)
+                @Html.EditorFor(model => model.CompanyName)
+            </div>
 
-        <div class="controls">
-            @Html.LabelForRequired(model => model.CompanyName)
-            @Html.ValidationMessageFor(model => model.CompanyName)
-            @Html.EditorFor(model => model.CompanyName)
-        </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyDivisionNumber)
+                @Html.ValidationMessageFor(model => model.CompanyDivisionNumber)
+                @Html.EditorFor(model => model.CompanyDivisionNumber)
+            </div>
 
-        <div class="controls">
-            @Html.LabelForRequired(model => model.CompanyDivisionNumber)
-            @Html.ValidationMessageFor(model => model.CompanyDivisionNumber)
-            @Html.EditorFor(model => model.CompanyDivisionNumber)
-        </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyDefaultMargin)
+                @Html.ValidationMessageFor(model => model.CompanyDefaultMargin)
+                @Html.EditorFor(model => model.CompanyDefaultMargin)
+            </div>
 
-        <div class="controls">
-            @Html.LabelForRequired(model => model.CompanyDefaultMargin)
-            @Html.ValidationMessageFor(model => model.CompanyDefaultMargin)
-            @Html.EditorFor(model => model.CompanyDefaultMargin)
-        </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyContactName)
+                @Html.ValidationMessageFor(model => model.CompanyContactName)
+                @Html.EditorFor(model => model.CompanyContactName)
+            </div>
 
-        <div class="controls">
-            @Html.LabelForRequired(model => model.CompanyContactName)
-            @Html.ValidationMessageFor(model => model.CompanyContactName)
-            @Html.EditorFor(model => model.CompanyContactName)
-        </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyContactEmail)
+                @Html.ValidationMessageFor(model => model.CompanyContactEmail)
+                @Html.EditorFor(model => model.CompanyContactEmail)
+            </div>
 
-        <div class="controls">
-            @Html.LabelForRequired(model => model.CompanyContactEmail)
-            @Html.ValidationMessageFor(model => model.CompanyContactEmail)
-            @Html.EditorFor(model => model.CompanyContactEmail)
-        </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyLocation)
+                @Html.ValidationMessageFor(model => model.CompanyLocation)
+                @Html.EditorFor(model => model.CompanyLocation)
+            </div>
 
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyUrl)
+                @Html.ValidationMessageFor(model => model.CompanyUrl)
+                @Html.EditorFor(model => model.CompanyUrl)
+            </div>
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyImage)
+                <input type="file" name="CompanyImage" id="CompanyImage" />
+            </div>
+            <div class="image">
+                @if(Model != null)
+                {
+                <img src="@Url.Action("Show", "Company", new { id = Model.CompanyID })" />
+                }
+                @Html.ValidationMessageFor(model => model.CompanyImage)
+            </div>
+    </article>
+    <article class="input-right">
         <div class="controls">
             @Html.LabelForRequired(model => model.CompanyAccountManagerName)
             @Html.ValidationMessageFor(model => model.CompanyAccountManagerName)
@@ -72,30 +98,6 @@
             @Html.EditorFor(model => model.CompanyMentorEmail)
         </div>
 
-        <div class="controls">
-            @Html.LabelForRequired(model => model.CompanyLocation)
-            @Html.ValidationMessageFor(model => model.CompanyLocation)
-            @Html.EditorFor(model => model.CompanyLocation)
-        </div>
-
-        <div class="controls">
-            @Html.LabelForRequired(model => model.CompanyUrl)
-            @Html.ValidationMessageFor(model => model.CompanyUrl)
-            @Html.EditorFor(model => model.CompanyUrl)
-        </div>
-
-
-            <div class="controls">
-                @Html.LabelForRequired(model => model.CompanyImage)
-                <input type="file" name="CompanyImage" id="CompanyImage" />
-            </div>
-            <div class="image">
-                @if(Model != null)
-                {
-                    <img src="@Url.Action("Show", "Company", new { id = Model.CompanyID })" />
-                }
-                @Html.ValidationMessageFor(model => model.CompanyImage)
-            </div>
 
 
         <div class="controls">
@@ -107,8 +109,8 @@
         <p>
             <input type="submit" class="button green" value="Create" /> | @Html.ActionLink("Back to Company List", "Index")
         </p>
-
-
+    </article>
+</div>
 }
 
 
@@ -116,5 +118,4 @@
 
 }
 
-</section>
-</div>
+
