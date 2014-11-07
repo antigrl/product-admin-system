@@ -36,7 +36,7 @@ List<PricingTier> pricingTiers = Model.Company.PricingTiers.Where(p => p.Pricing
     <div class="flex-grid">
       <nav class="sub-nav">
         <ul>
-          <li>@Html.ActionLink("Campaign View", "Edit", new { id = Model.CampaignID })</li>
+          <li>@Html.ActionLink("Products", "Edit", new { id = Model.CampaignID })</li>
           <li class="active">@Html.ActionLink("Presentation View", "PresentationView", new { id = Model.CampaignID })</li>
         </ul>
       </nav>
