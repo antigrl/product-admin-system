@@ -8,12 +8,9 @@ C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NP
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\Mvc.Mailer.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\Newtonsoft.Json.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\NPR2.0.8.dll
-C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Net.Http.Formatting.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Spatial.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Web.Helpers.dll
-C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Web.Http.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Web.Http.OData.dll
-C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Web.Http.WebHost.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Web.Mvc.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Web.Razor.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Web.WebPages.Deployment.dll
@@ -23,10 +20,7 @@ C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NP
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Web.Optimization.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\NPR2.0.8.pdb
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\Newtonsoft.Json.xml
-C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Web.Helpers.xml
-C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Web.Http.xml
-C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Web.Http.WebHost.xml
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Web.Mvc.xml
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Web.Razor.xml
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8.Tests\bin\Debug\System.Web.WebPages.xml

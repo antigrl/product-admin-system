@@ -105,6 +105,8 @@ namespace NPR2._0._8.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Company company, HttpPostedFileBase CompanyImage)
         {
+            string preSaveStatus = db.Companies.Where(c => c.CompanyID == company.CompanyID).Select(c => c.CompanyStatus).FirstOrDefault();
+
             if (ModelState.IsValid)
             {
                 if (CompanyImage != null && CompanyImage.ContentLength > 0)
@@ -122,7 +124,7 @@ namespace NPR2._0._8.Controllers
                 // Send Emails
                 #region SendEmails
                 // Check previous status 
-                if (db.Companies.Where(c => c.CompanyID == company.CompanyID).FirstOrDefault().CompanyStatus != company.CompanyStatus)
+                if (preSaveStatus != company.CompanyStatus)
                 {
                     List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(company.CompanyStatus);
                     var urlBuilder = Request.Url.AbsoluteUri;

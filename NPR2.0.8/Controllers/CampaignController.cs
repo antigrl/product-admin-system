@@ -108,6 +108,8 @@ namespace NPR2._0._8.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Campaign campaign, string returnUrl)
         {
+            string preSaveStatus = db.Campaigns.Where(c => c.CampaignID == campaign.CampaignID).Select(c => c.CampaignStatus).FirstOrDefault();
+
             if(ModelState.IsValid)
             {
                 // Add Audit Entry 
@@ -117,7 +119,7 @@ namespace NPR2._0._8.Controllers
                 // Send Emails
                 #region SendEmails
                 // Check if the status is changed
-                if (db.Campaigns.Where(c => c.CampaignID == campaign.CampaignID).FirstOrDefault().CampaignStatus != campaign.CampaignStatus)
+                if (preSaveStatus != campaign.CampaignStatus)
                 {
                     List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(campaign.CampaignStatus);
                     var urlBuilder = Request.Url.AbsoluteUri;

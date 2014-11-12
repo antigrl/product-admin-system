@@ -158,6 +158,7 @@ namespace NPR2._0._8.Controllers
         {
             // Sets Viewbag data for dropdowns
             SetViewBagData(returnUrl, product);
+            string preSaveStatus = db.Products.Where(p => p.ProductID == product.ProductID).Select(p => p.ProductStatus).FirstOrDefault();
 
             if(ModelState.IsValid)
             {
@@ -301,7 +302,7 @@ namespace NPR2._0._8.Controllers
                 // Send Emails
                 #region SendEmails
                 // Check previous status 
-                if (db.Products.Where(p => p.ProductID == product.ProductID).FirstOrDefault().ProductStatus != product.ProductStatus)
+                if (preSaveStatus != product.ProductStatus)
                 {
                     List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(product.ProductStatus);
                     var urlBuilder = new System.UriBuilder(Request.Url.AbsoluteUri) { Path = Url.Action("Edit", "Product") + "/" + product.ProductID, Query = null, };
@@ -346,6 +347,7 @@ namespace NPR2._0._8.Controllers
         {
             // Sets Viewbag data for dropdowns
             SetViewBagData(returnUrl, product);
+            string preSaveStatus = db.Products.Where(p => p.ProductID == product.ProductID).Select(p => p.ProductStatus).FirstOrDefault();
 
             if(ModelState.IsValid)
             {
@@ -472,6 +474,21 @@ namespace NPR2._0._8.Controllers
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Save and Calculate Margin");
                 db.AuditTrails.Add(audit);
 
+                // Send Emails
+                #region SendEmails
+                // Check previous status 
+                if (preSaveStatus != product.ProductStatus)
+                {
+                    List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(product.ProductStatus);
+                    var urlBuilder = new System.UriBuilder(Request.Url.AbsoluteUri) { Path = Url.Action("Edit", "Product") + "/" + product.ProductID, Query = null, };
+                    var campaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID).FirstOrDefault();
+                    if (sendEmailTos != null && sendEmailTos.Count > 0)
+                    {
+                        UserMailer.SendStatusUpdate(sendEmailTos, "Product Updated by: " + User.Identity.Name, urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, product).Send();
+                    }
+                }
+                #endregion
+
                 db.SaveChanges();
                 return RedirectToAction("Edit", new { id = product.ProductID, ReturnUrl = returnUrl });
             }
@@ -501,6 +518,7 @@ namespace NPR2._0._8.Controllers
         {
             // Sets Viewbag data for dropdowns
             SetViewBagData(returnUrl, product);
+            string preSaveStatus = db.Products.Where(p => p.ProductID == product.ProductID).Select(p => p.ProductStatus).FirstOrDefault();
 
             if (ModelState.IsValid)
             {
@@ -644,7 +662,7 @@ namespace NPR2._0._8.Controllers
                 // Send Emails
                 #region SendEmails
                 // Check previous status 
-                if (db.Products.Where(p => p.ProductID == product.ProductID).FirstOrDefault().ProductStatus != product.ProductStatus)
+                if (preSaveStatus != product.ProductStatus)
                 {
                     List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(product.ProductStatus);
                     var urlBuilder = new System.UriBuilder(Request.Url.AbsoluteUri) { Path = Url.Action("Edit", "Product") + "/" + product.ProductID, Query = null, };
