@@ -5,7 +5,6 @@
 ViewBag.Title = "Presentation View";
 string archived = MyExtensions.GetEnumDescription(Status.Archived);
 int count = Model.Products.Where(p => p.ProductStatus != archived).Count();
-List<PricingTier> pricingTiers = Model.Company.PricingTiers.Where(p => p.PricingTierStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.PricingTierLevel).ToList();
 }
 <div class="print">
 
@@ -77,7 +76,7 @@ List<PricingTier> pricingTiers = Model.Company.PricingTiers.Where(p => p.Pricing
       @for (int index = 0; index < sellPrices.Count; index++)
       {
       <ul>
-        <li><strong>@pricingTiers[index].PricingTierName.Replace(Model.Company.CompanyName, "").Replace("/", "/ "): </strong>
+        <li><strong>@sellPrices[index].SellPriceName.Replace(Model.Company.CompanyName, "").Replace("/", "/ "): </strong>
           @sellPrices[index].SellPriceFinalAmount.ToString("c")</li>
         </ul>
       }
