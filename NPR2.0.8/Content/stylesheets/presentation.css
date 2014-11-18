@@ -1,28 +1,10 @@
-/* Neat 1.7.0
- * http://neat.bourbon.io
- * Copyright 2012-2014 thoughtbot, inc.
- * MIT License */
-/* line 2, ../sass/neat/grid/_box-sizing.scss */
-html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-/* line 7, ../sass/neat/grid/_box-sizing.scss */
-*, *:before, *:after {
-  -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
-  box-sizing: inherit;
-}
-
-/* line 4, ../sass/presentation.scss */
+/* line 1, ../sass/presentation.scss */
 .index-table {
   border: 1px solid #000;
   height: 112px;
 }
 
-/* line 9, ../sass/presentation.scss */
+/* line 6, ../sass/presentation.scss */
 table {
   margin: 0;
   table-layout: fixed;
@@ -30,17 +12,17 @@ table {
   box-sizing: border-box;
 }
 
-/* line 15, ../sass/presentation.scss */
+/* line 12, ../sass/presentation.scss */
 table.floats:nth-child(odd) {
   float: right;
 }
 
-/* line 18, ../sass/presentation.scss */
+/* line 15, ../sass/presentation.scss */
 table.floats:nth-child(even) {
   float: left;
 }
 
-/* line 21, ../sass/presentation.scss */
+/* line 18, ../sass/presentation.scss */
 table.floats:nth-child(10),
 table.floats:nth-child(11),
 table.floats:nth-child(18),
@@ -52,35 +34,35 @@ table.floats:nth-child(35) {
   margin-bottom: 200px;
 }
 
-/* line 33, ../sass/presentation.scss */
+/* line 30, ../sass/presentation.scss */
 td {
   padding: 0;
 }
 
-/* line 38, ../sass/presentation.scss */
+/* line 35, ../sass/presentation.scss */
 .image-container {
   width: 112px;
   height: 112px;
   border-right: 1px solid #000;
 }
 
-/* line 43, ../sass/presentation.scss */
+/* line 40, ../sass/presentation.scss */
 .name-container {
   height: 18px;
   width: 204px;
   overflow: hidden;
 }
 
-/* line 48, ../sass/presentation.scss */
+/* line 45, ../sass/presentation.scss */
 .icon-container {
   width: 156px;
 }
-/* line 50, ../sass/presentation.scss */
+/* line 47, ../sass/presentation.scss */
 .icon-container img {
   margin: 5px;
 }
 
-/* line 54, ../sass/presentation.scss */
+/* line 51, ../sass/presentation.scss */
 .description-container {
   width: 204px;
   height: 75px;
@@ -88,32 +70,32 @@ td {
   border: none;
 }
 
-/* line 61, ../sass/presentation.scss */
+/* line 58, ../sass/presentation.scss */
 .price-tiers {
   width: 78px;
 }
-/* line 63, ../sass/presentation.scss */
+/* line 60, ../sass/presentation.scss */
 .price-tiers ul {
   margin: 0;
   padding: 0;
 }
-/* line 64, ../sass/presentation.scss */
+/* line 61, ../sass/presentation.scss */
 .price-tiers li {
   list-style: none;
 }
 
-/* line 67, ../sass/presentation.scss */
+/* line 64, ../sass/presentation.scss */
 .questions-container {
   width: 78px;
 }
 
-/* line 71, ../sass/presentation.scss */
+/* line 68, ../sass/presentation.scss */
 .country-container {
   width: 204px;
   overflow: hidden;
 }
 
-/* line 76, ../sass/presentation.scss */
+/* line 73, ../sass/presentation.scss */
 .moq-container {
   width: 156px;
 }
@@ -122,13 +104,13 @@ td {
   @page {
     margin: .4in .2in .2in .2in;
   }
-  /* line 84, ../sass/presentation.scss */
+  /* line 81, ../sass/presentation.scss */
   body {
     background-color: #fff;
     width: 100%;
   }
 
-  /* line 89, ../sass/presentation.scss */
+  /* line 86, ../sass/presentation.scss */
   .site-title, h2, h3, header {
     display: none;
   }
