@@ -6,6 +6,7 @@
     string archived = MyExtensions.GetEnumDescription(Status.Archived);
     int count = Model.Products.Where(p => p.ProductStatus != archived).Count();
 }
+<link rel="stylesheet" href="../Content/stylesheets/presentation.css">
 
 <h2>Campaign Presentation View - @Html.ActionLink("Back to Campaign", "Edit", new { id = Model.CampaignID })</h2>
 <div>
