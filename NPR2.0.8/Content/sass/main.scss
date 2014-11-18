@@ -275,11 +275,13 @@ select {
 
     .product-image .image {
         text-align: center;
+        max-height: 100px;
+        max-width: 100px;
     }
 
         .product-image .image img {
-            max-height: 125px;
-            max-width: 475px;
+            max-height: 100px;
+            max-width: 100px;
         }
 
 /* Product Price Styles*/
