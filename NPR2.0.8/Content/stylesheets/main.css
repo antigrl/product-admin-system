@@ -1,0 +1,760 @@
+/********************
+*    GCDI Styles    *
+********************/
+/* Default Overrides */
+/* line 5, ../sass/main.scss */
+.display-label {
+  font-weight: bold;
+  padding-top: 5px;
+}
+
+/* line 10, ../sass/main.scss */
+.display-field {
+  padding-left: 5px;
+}
+
+/* line 14, ../sass/main.scss */
+.aside-main {
+  padding: 0px;
+  background: none;
+  font-weight: bold;
+}
+
+/* line 20, ../sass/main.scss */
+.text-box {
+  margin: 0px;
+  padding: 5px;
+}
+
+/* line 25, ../sass/main.scss */
+.editor-field {
+  margin: 0px 0 0px 160px;
+  padding: 4px;
+  text-align: right;
+  min-height: 31px;
+}
+
+/* line 32, ../sass/main.scss */
+.editor-field textarea {
+  max-width: 100%;
+  height: 110px;
+}
+
+/* line 37, ../sass/main.scss */
+label {
+  font-size: 1em;
+  float: left;
+  text-align: right;
+  padding-top: 9px;
+}
+
+/* line 44, ../sass/main.scss */
+select {
+  width: 100%;
+  font-size: .85em;
+  padding: 5px;
+  margin-top: 0px;
+}
+
+/* Comment Sections */
+/* line 52, ../sass/main.scss */
+.comments {
+  background-color: #DDD;
+  padding: 0px 5px 0px 5px;
+}
+
+/* line 57, ../sass/main.scss */
+.comments .editor-label {
+  padding: 0px;
+  margin: 0px;
+  float: left;
+}
+
+/* line 63, ../sass/main.scss */
+.comments .editor-field {
+  padding: 0px;
+  margin: 0px;
+  max-width: 235px;
+}
+
+/* line 69, ../sass/main.scss */
+.comments table {
+  width: 100%;
+}
+
+/* line 73, ../sass/main.scss */
+.comments th {
+  text-align: center;
+}
+
+/* line 77, ../sass/main.scss */
+.comments th label {
+  float: none;
+  text-align: center;
+}
+
+/* line 82, ../sass/main.scss */
+.comments td {
+  padding: 5px;
+}
+
+/* line 87, ../sass/main.scss */
+.comment-info {
+  background-color: #FFF;
+  border: 1px solid black;
+  margin-top: 3px;
+}
+
+/* line 93, ../sass/main.scss */
+.comment-info .editor-label {
+  float: left;
+  display: inline-block;
+  width: 100%;
+}
+
+/* line 99, ../sass/main.scss */
+.comment-info .editor-label label {
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+}
+
+/* line 105, ../sass/main.scss */
+.comment-info .editor-field {
+  display: inline-block;
+  width: 99%;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* line 113, ../sass/main.scss */
+.comment-container {
+  width: 50%;
+  float: left;
+  text-align: center;
+}
+
+/* Table Styles */
+/* line 120, ../sass/main.scss */
+.index-table {
+  width: 100%;
+}
+
+/* line 124, ../sass/main.scss */
+.index-table th {
+  border: 1px solid #E0E0E0;
+  background-color: #7C211E;
+  font-size: 1.2em;
+  color: white;
+  padding: 5px 5px 5px 0px;
+}
+
+/* line 132, ../sass/main.scss */
+.index-table tr {
+  font-size: .9em;
+}
+
+/* line 136, ../sass/main.scss */
+.index-table tr:nth-child(odd) {
+  background-color: #FFF;
+}
+
+/* line 140, ../sass/main.scss */
+.index-table tr:nth-child(even) {
+  background-color: #DDD;
+}
+
+/* line 144, ../sass/main.scss */
+.index-table ul {
+  margin: 0px;
+  padding-left: 20px;
+}
+
+/* line 149, ../sass/main.scss */
+.table-wrapper {
+  border-left: 7px solid black;
+  border-right: 7px solid black;
+}
+
+/* line 154, ../sass/main.scss */
+.table-wrapper, .table-wrapper table {
+  margin: 0px;
+  padding: 0px;
+}
+
+/* line 159, ../sass/main.scss */
+.report-view-table {
+  text-align: center;
+}
+
+/* line 163, ../sass/main.scss */
+.report-view-table th {
+  border: 1px solid #E0E0E0;
+  background-color: #7C211E;
+  font-size: 1em;
+  color: white;
+  white-space: nowrap;
+  padding: 3px;
+  border-bottom: 4px solid black;
+}
+
+/* line 173, ../sass/main.scss */
+.report-view-table thead .fees {
+  background-color: #260d54;
+  white-space: normal;
+}
+
+/* line 178, ../sass/main.scss */
+.report-view-table tbody .fees {
+  border: 1px solid black;
+  background-color: #AAA;
+}
+
+/* line 183, ../sass/main.scss */
+.report-view-table tbody tr:nth-child(odd) .fees {
+  background-color: #EEE;
+}
+
+/* line 187, ../sass/main.scss */
+.report-view-table tr {
+  font-size: .9em;
+}
+
+/* line 191, ../sass/main.scss */
+.report-view-table tr:nth-child(odd) {
+  background-color: #FFF;
+}
+
+/* line 195, ../sass/main.scss */
+.report-view-table tr:nth-child(even) {
+  background-color: #DDD;
+}
+
+/* line 199, ../sass/main.scss */
+.report-view-table ul {
+  margin: 0px;
+  padding-left: 20px;
+}
+
+/* line 204, ../sass/main.scss */
+.report-view-table td {
+  padding: 0px;
+}
+
+/* line 208, ../sass/main.scss */
+.presentation-view-table th {
+  font-size: 1em;
+  text-align: center;
+}
+
+/* line 213, ../sass/main.scss */
+.presentation-view-table tr {
+  border-bottom: 2px solid black;
+}
+
+/* line 217, ../sass/main.scss */
+.links {
+  background-color: #efeeef !important;
+}
+
+/* Positioning Styles*/
+/* line 222, ../sass/main.scss */
+.left-content {
+  float: left;
+  width: 58%;
+}
+
+/* line 227, ../sass/main.scss */
+.right-content {
+  float: right;
+  width: 40%;
+}
+
+/* line 232, ../sass/main.scss */
+.full-content {
+  float: left;
+  width: 100%;
+}
+
+/* line 237, ../sass/main.scss */
+.left-half-content {
+  float: left;
+  width: 50%;
+}
+
+/* line 242, ../sass/main.scss */
+.right-half-content {
+  float: right;
+  width: 50%;
+}
+
+/* Product Page */
+/* line 248, ../sass/main.scss */
+.product-info {
+  background-color: #CCC;
+  border: 1px solid black;
+}
+
+/* line 253, ../sass/main.scss */
+.general-info {
+  background-color: #DDD;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+/* line 259, ../sass/main.scss */
+.vendor-info {
+  background-color: #CCC;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+/* line 265, ../sass/main.scss */
+.product-image {
+  background-color: #FFF;
+  border: 1px solid black;
+}
+
+/* line 270, ../sass/main.scss */
+.product-image input[type="file"] {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* line 276, ../sass/main.scss */
+.product-image .image {
+  text-align: center;
+}
+
+/* line 280, ../sass/main.scss */
+.product-image .image img {
+  max-height: 125px;
+  max-width: 475px;
+}
+
+/* Product Price Styles*/
+/* line 286, ../sass/main.scss */
+.price-info {
+  background-color: #EEE;
+  border: 1px solid black;
+}
+
+/* line 291, ../sass/main.scss */
+.price-info:first-child {
+  width: 100%;
+}
+
+/* line 295, ../sass/main.scss */
+.dolar-amount .editor-field .text-box {
+  margin-left: 160px;
+}
+
+/* line 299, ../sass/main.scss */
+.cost-info {
+  margin-bottom: 5px;
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
+  background-color: green;
+  font-size: large !important;
+}
+
+/* line 307, ../sass/main.scss */
+.company-fees {
+  background-color: white;
+  font-size: .8em;
+}
+
+/* line 312, ../sass/main.scss */
+.company-fees a {
+  display: none;
+}
+
+/* line 316, ../sass/main.scss */
+.company-fees table {
+  width: 100%;
+}
+
+/* line 320, ../sass/main.scss */
+.company-fees table td {
+  padding: 0px 5px 0px 0px;
+}
+
+/* line 324, ../sass/main.scss */
+.fees .text-input {
+  width: 160px;
+}
+
+/* line 328, ../sass/main.scss */
+.fees .editor-row .validation-summary-errors ul {
+  margin: 0px;
+}
+
+/* line 332, ../sass/main.scss */
+.fees .editor-field {
+  margin: 0px 0px 0px 245px;
+}
+
+/* line 336, ../sass/main.scss */
+.fees .single-line {
+  width: 24px;
+}
+
+/* line 340, ../sass/main.scss */
+.dollar-value, .percent-dollar-value {
+  width: 52px;
+}
+
+/* line 344, ../sass/main.scss */
+.percent-value {
+  width: 45px;
+}
+
+/* line 348, ../sass/main.scss */
+.dollar-fee-info {
+  border: 1px dashed black;
+  background-color: #c8c8c8;
+}
+
+/* line 353, ../sass/main.scss */
+.amortized-fee-info {
+  border: 1px dashed black;
+  background-color: #c8c8c8;
+}
+
+/* line 358, ../sass/main.scss */
+.amortized-fee-info span {
+  text-align: right;
+}
+
+/* line 362, ../sass/main.scss */
+.amortized-fee-info select {
+  width: 215px;
+}
+
+/* line 366, ../sass/main.scss */
+.amortized .editor-field {
+  margin: 0px 0px 0px 245px;
+}
+
+/* line 370, ../sass/main.scss */
+.upcharge-fee-info {
+  border: 1px dashed black;
+  background-color: #d7d7d7;
+}
+
+/* line 375, ../sass/main.scss */
+.percent-fee-info {
+  border: 1px dotted black;
+  background-color: #e2e2e2;
+}
+
+/* line 380, ../sass/main.scss */
+.percent-fee-info select {
+  width: 175px;
+}
+
+/* line 384, ../sass/main.scss */
+.percent-fee-info .radio {
+  text-align: left;
+  float: left;
+  font-size: .8em;
+  padding-top: 3px;
+}
+
+/* line 391, ../sass/main.scss */
+.percent-fee-info .percent-span {
+  float: left;
+  margin-left: 15px;
+}
+
+/* line 396, ../sass/main.scss */
+.percent-fee-info .radio input[type="radio"] {
+  width: 10px;
+}
+
+/* line 400, ../sass/main.scss */
+.compounded {
+  border: 1px dashed black;
+  background-color: #ccc;
+}
+
+/* line 405, ../sass/main.scss */
+.editor-row {
+  background-color: white;
+  margin: 1px;
+  border: 2px dotted black;
+  width: 99%;
+}
+
+/* line 412, ../sass/main.scss */
+.editor-row .editor-label {
+  padding: 5px 2px 5px 3px;
+  float: left;
+}
+
+/* line 417, ../sass/main.scss */
+.editor-row p {
+  margin: 10px 0px;
+}
+
+/* line 421, ../sass/main.scss */
+.fees .delete-row {
+  width: 19px;
+  padding: 0px 0px 3px 0px;
+  margin: 7px 0px 0px 5px;
+  float: left;
+  border-radius: 8px;
+}
+
+/* line 429, ../sass/main.scss */
+input[type="radio"] {
+  width: auto;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* line 435, ../sass/main.scss */
+input[type="text"] {
+  margin: 0px;
+}
+
+/* line 439, ../sass/main.scss */
+.single-line {
+  width: 95%;
+}
+
+/* line 443, ../sass/main.scss */
+.multi-line {
+  width: 95%;
+}
+
+/* line 447, ../sass/main.scss */
+.decoration-logo {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+/* line 452, ../sass/main.scss */
+.sell-price-info .sell-prices .sell-price {
+  border: 2px solid black;
+  padding: 5px;
+  margin: 2px;
+  float: left;
+  width: 97%;
+}
+
+/* line 460, ../sass/main.scss */
+.sell-price-info .sell-prices .final-sell-price {
+  border: 2px solid black;
+  border-top: 0px;
+  padding: 0px 5px 0px 5px;
+  margin: -2px 2px 2px 2px;
+  float: right;
+  min-width: 48%;
+  text-align: right;
+}
+
+/* line 470, ../sass/main.scss */
+.sell-price-info .margin-alert {
+  color: red;
+  border: 1px solid red;
+  background-color: white;
+  padding: 2px;
+  font-size: large;
+  border-radius: 10px;
+  text-align: center;
+  display: none;
+}
+
+/* line 481, ../sass/main.scss */
+.sell-prices {
+  width: 120% !important;
+}
+
+/* line 485, ../sass/main.scss */
+.sell-price .left-content {
+  float: left;
+  width: 35%;
+}
+
+/* line 490, ../sass/main.scss */
+.sell-price .right-content {
+  float: left;
+  width: 65%;
+}
+
+/* line 495, ../sass/main.scss */
+.site-title a {
+  background: url(../Images/logo.jpg) no-repeat !important;
+  padding-left: 210px;
+}
+
+/* line 500, ../sass/main.scss */
+.upcharge-info {
+  background-color: white;
+  float: right;
+  border: 2px dashed black;
+  width: 14%;
+}
+
+/* line 507, ../sass/main.scss */
+.upcharge {
+  border: 2px dotted black;
+  background-color: #c8c8c8;
+}
+
+/* line 512, ../sass/main.scss */
+.upcharge .editor-label {
+  width: 40px;
+  padding: 5px;
+  float: left;
+}
+
+/* line 518, ../sass/main.scss */
+.upcharge .editor-field {
+  margin: 0px;
+}
+
+/* line 522, ../sass/main.scss */
+.upcharge p {
+  margin: 10px 0px;
+}
+
+/* line 526, ../sass/main.scss */
+.upcharge .dollar-value {
+  width: 50px;
+}
+
+/* line 530, ../sass/main.scss */
+.upcharge .delete-upcharge {
+  font-size: .9em;
+}
+
+/* line 534, ../sass/main.scss */
+label {
+  font-size: .85em;
+}
+
+/* line 538, ../sass/main.scss */
+input, textarea {
+  font-size: 1em;
+}
+
+/* line 542, ../sass/main.scss */
+.product-left-content {
+  float: left;
+  width: 36%;
+}
+
+/* line 547, ../sass/main.scss */
+.product-right-content {
+  float: left;
+  width: 49%;
+}
+
+/* line 552, ../sass/main.scss */
+.product-decoration-info {
+  border: 1px solid black;
+  border-top: 2px;
+  border-bottom: 2px;
+  background-color: lightslategray;
+  margin-top: 3px;
+}
+
+/* line 560, ../sass/main.scss */
+.product-decoration-info h4 {
+  margin: 0px;
+  padding: 5px 0px 0px 5px;
+}
+
+/* line 565, ../sass/main.scss */
+.product-decoration-info button {
+  border-radius: 4px;
+}
+
+/* line 569, ../sass/main.scss */
+.product-decorations .editor-field {
+  margin: 0px 0px 0px 105px;
+}
+
+/* line 573, ../sass/main.scss */
+.product-decorations .product-decoration {
+  border: 1px dotted black;
+  margin: 2px;
+  padding: 2px;
+  background-color: aliceblue;
+  float: left;
+  width: 99%;
+}
+
+/* line 582, ../sass/main.scss */
+.left-third {
+  float: left;
+  min-width: 32.8%;
+  max-width: 32.8%;
+  border: 1px solid black;
+  margin-right: 2px;
+  background-color: #EFEFEF;
+}
+
+/* line 591, ../sass/main.scss */
+.left-two-thirds {
+  float: left;
+  width: 66.66%;
+}
+
+/* line 596, ../sass/main.scss */
+.dollar-amount-fee, .amortized-fee, .percent-fee {
+  display: none;
+}
+
+/* line 600, ../sass/main.scss */
+.fee-connection-info {
+  border: 1px solid black;
+  padding: 2px;
+}
+
+/* line 605, ../sass/main.scss */
+.inherited button {
+  border-color: #260d54;
+}
+
+/* line 609, ../sass/main.scss */
+.toggle-fee {
+  text-align: center;
+}
+
+/* line 613, ../sass/main.scss */
+.sell-price-row {
+  margin-top: 1px;
+}
+
+/* line 617, ../sass/main.scss */
+.sell-price-row .editor-label label:nth-of-type(2) {
+  position: absolute;
+  margin-top: 25px;
+  padding: 0px;
+}
+
+/* line 623, ../sass/main.scss */
+.sell-price-row .editor-field {
+  margin: 0px 0px 0px 155px;
+}
+
+/* line 627, ../sass/main.scss */
+.field-validation-error {
+  font-size: small;
+}
+
+/* line 631, ../sass/main.scss */
+.campaign-company-title {
+  font-size: smaller;
+  float: right;
+  font-weight: normal;
+}
+
+/* line 637, ../sass/main.scss */
+.top-margin {
+  margin-top: 35px;
+}
