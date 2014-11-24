@@ -39,12 +39,6 @@ td {
 
 .icon-container {
   width: 156px; }
-  .icon-container ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none; }
-    .icon-container ul li {
-      display: inline-block; }
   .icon-container img {
     margin: 5px; }
 

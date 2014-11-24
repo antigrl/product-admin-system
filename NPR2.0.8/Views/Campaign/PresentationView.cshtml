@@ -46,10 +46,20 @@ int count = Model.Products.Where(p => p.ProductStatus != archived).Count();
         </td>
         <td style="border-left: 1px solid #000;">
           <div class="icon-container">
-            <img src="~/Images/dishwasher-icon.png" alt="">
-            <img src="~/Images/leaf-icon.png" alt="">
-            <img src="~/Images/recycle-icon.png" alt="">
-            <img src="~/Images/flag-icon.png" alt="">
+            <ul>
+              <li class="dish" style="display: none;">
+                <img src="~/Images/dishwasher-icon.png" alt="">
+              </li>
+              <li class="eco" style="display: none;">
+                <img src="~/Images/leaf-icon.png" alt="">
+              </li>
+              <li class="rec" style="display: none;">
+                <img src="~/Images/recycle-icon.png" alt="">
+              </li>
+              <li  class="usa" style="display: none;">
+                <img src="~/Images/flag-icon.png" alt="">
+              </li>
+            </ul>
         </div>
         </td>
       </tr>
