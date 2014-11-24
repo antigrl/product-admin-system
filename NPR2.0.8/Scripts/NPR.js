@@ -327,6 +327,18 @@ function ShowFeeInputBasedOnType()
         });
 }
 });
+$('.description-container').html(function (i,t) {
+    return t.replace('[eco]', '<span class="hidden">[eco]</span>');
+});
+$('.description-container').html(function (i,t) {
+    return t.replace('[recycle]', '<span class="hidden">[recycle]</span>');
+});
+$('.description-container').html(function (i,t) {
+    return t.replace('[dish]', '<span class="hidden">[dish]</span>');
+});
+$('.description-container').html(function (i,t) {
+    return t.replace('[usa]', '<span class="hidden">[usa]</span>');
+});
 
 $('table td div.description-container:contains("[eco]")').each(function () {
     $(this).parent().parent().parent().parent().prev().find('.icon-container .eco').show();
@@ -340,6 +352,7 @@ $('table td div.description-container:contains("[recycle]")').each(function () {
 $('table td div.description-container:contains("[usa]")').each(function () {
     $(this).parent().parent().parent().parent().prev().find('.icon-container .usa').show();
 });
+
 
 
 

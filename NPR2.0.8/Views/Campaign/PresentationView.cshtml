@@ -23,90 +23,93 @@ int count = Model.Products.Where(p => p.ProductStatus != archived).Count();
     Actual Product Count: @count
   </h3>
 </div>
+
 @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.Category.CategoryName))
 {
-<table class="presentation-view-table index-table floats">
-<tbody>
-  <tr>
-    <td class="product-image image-container">
-      <div class="image">
-        @if (product.ProductImage != null)
-        {
-        <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
-      }
-    </div>
-  </td>
-  <td>
-    <table>
+
+  <table class="index-table">
+    <tbody>
       <tr>
-        <td>
-          <div class="name-container">
-            @Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)
-          </div>
-        </td>
-        <td style="border-left: 1px solid #000;">
-          <div class="icon-container">
-            <ul>
-              <li class="dish" style="display: none;">
-                <img src="~/Images/dishwasher-icon.png" alt="">
-              </li>
-              <li class="eco" style="display: none;">
-                <img src="~/Images/leaf-icon.png" alt="">
-              </li>
-              <li class="rec" style="display: none;">
-                <img src="~/Images/recycle-icon.png" alt="">
-              </li>
-              <li  class="usa" style="display: none;">
-                <img src="~/Images/flag-icon.png" alt="">
-              </li>
-            </ul>
+        <td class="product-image image-container">
+          <div class="image">
+            @if (product.ProductImage != null)
+            {
+            <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
+          }
         </div>
-        </td>
-      </tr>
-    </table>
-    <table>
-      <tr>
-        <td style="border-top: 1px solid #000;">
-          <div class="description-container">
-            @product.ProductDescription
-          </div>
-        </td>
-        <td style="border-top: 1px solid #000; border-left: 1px solid #000">
-          <div class="price-tiers">
-            <ul>
-              @foreach (var sellPrice in product.ProductSellPrices.OrderBy(s => s.SellPriceLevel))
-              {
-                <li>@sellPrice.SellPriceFinalAmount.ToString("c")</li>
-              }
-            </ul>
-          </div>
-        </td>
+      </td>
+      <td>
+        <table>
+          <tr>
+            <td>
+              <div class="name-container">
+                @Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)
+              </div>
+            </td>
+            <td style="border-left: 1px solid #000;">
+              <div class="icon-container">
+                <ul>
+                  <li class="dish" style="display: none;">
+                    <img src="~/Images/dishwasher-icon.png" alt="">
+                  </li>
+                  <li class="eco" style="display: none;">
+                    <img src="~/Images/leaf-icon.png" alt="">
+                  </li>
+                  <li class="rec" style="display: none;">
+                    <img src="~/Images/recycle-icon.png" alt="">
+                  </li>
+                  <li  class="usa" style="display: none;">
+                    <img src="~/Images/flag-icon.png" alt="">
+                  </li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <table>
+          <tr>
+            <td style="border-top: 1px solid #000;">
+              <div class="description-container">
+                @product.ProductDescription
+              </div>
+            </td>
+            <td style="border-top: 1px solid #000; border-left: 1px solid #000">
+              <div class="price-tiers">
+                <ul>
+                  @foreach (var sellPrice in product.ProductSellPrices.OrderBy(s => s.SellPriceLevel))
+                  {
+                  <li>@sellPrice.SellPriceFinalAmount.ToString("c")</li>
+                }
+              </ul>
+            </div>
+          </td>
 
-        <td style="border-top: 1px solid #000; border-left: 1px solid #000">
-          <div class="questions-container">
-            YES<br>NO<br>MAYBE<br>
-          </div>
-        </td>
-      </tr>
-    </table>
-    <table>
-      <tr>
+          <td style="border-top: 1px solid #000; border-left: 1px solid #000">
+            <div class="questions-container">
+              YES<br>NO<br>MAYBE<br>
+            </div>
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
 
-        <td style="border-top: 1px solid #000; border-right: 1px solid #000">
-          <div class="country-container">
-            Made in @product.ProductCountryOfOrigin
-          </div>
-        </td>
-        <td style="border-top: 1px solid #000;">
-          <div class="moq-container">
-            MOQ:
-          </div>
-        </td>
-      </tr>
-    </table>
-  </td>
-</tr>
+          <td style="border-top: 1px solid #000; border-right: 1px solid #000">
+            <div class="country-container">
+              Made in @product.ProductCountryOfOrigin
+            </div>
+          </td>
+          <td style="border-top: 1px solid #000;">
+            <div class="moq-container">
+              MOQ:
+            </div>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
 
 </tbody>
 </table>
+
 }

@@ -8,24 +8,17 @@ table {
   text-align: center;
   box-sizing: border-box; }
 
-table.floats:nth-child(odd) {
+table.index-table:nth-child(odd) {
   float: right; }
 
-table.floats:nth-child(even) {
+table.index-table:nth-child(even) {
   float: left; }
-
-table.floats:nth-child(10),
-table.floats:nth-child(11),
-table.floats:nth-child(18),
-table.floats:nth-child(19),
-table.floats:nth-child(26),
-table.floats:nth-child(27),
-table.floats:nth-child(34),
-table.floats:nth-child(35) {
-  margin-bottom: 200px; }
 
 td {
   padding: 0; }
+
+.hidden {
+  display: none; }
 
 .image-container {
   width: 112px;
@@ -38,15 +31,15 @@ td {
   overflow: hidden; }
 
 .icon-container {
-  width: 156px; }
+  width: 156px;
+  height: 18px;
+  padding: 5px 0; }
   .icon-container ul {
     margin: 0;
     padding: 0;
     list-style-type: none; }
     .icon-container ul li {
       display: inline-block; }
-  .icon-container img {
-    margin: 5px; }
 
 .description-container {
   width: 204px;
