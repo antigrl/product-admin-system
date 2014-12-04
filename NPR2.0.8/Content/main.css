@@ -607,6 +607,10 @@ input, textarea {
     text-align: center;
 }
 
+.align-center {
+    text-align: center;
+}
+
 .sell-price-row {
     margin-top: 1px;
 }

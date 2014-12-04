@@ -38,6 +38,112 @@
         </h3>
     </div>
 </div>
+@foreach (var majorCategory in ViewBag.MajorCategoryList)
+{
+    productCount = 0;
+    <div>
+        <h2 class="align-center">@majorCategory</h2>
+        @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory).OrderBy(p => p.Category1))
+        {
+            productCount++;
+            <table class="index-table">
+                <tbody>
+                    <tr>
+                        <td class="product-image image-container">
+                            <div class="image">
+                                @if (product.ProductImage != null)
+                                {
+                                    <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
+                                }
+                            </div>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div class="name-container">
+                                            @Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)
+                                        </div>
+                                    </td>
+                                    <td style="border-left: 1px solid #000;">
+                                        <div class="icon-container">
+                                            <ul>
+                                                <li class="dish" style="display: none;">
+                                                    <img src="~/Images/dishwasher-icon.png" alt="">
+                                                </li>
+                                                <li class="eco" style="display: none;">
+                                                    <img src="~/Images/leaf-icon.png" alt="">
+                                                </li>
+                                                <li class="rec" style="display: none;">
+                                                    <img src="~/Images/recycle-icon.png" alt="">
+                                                </li>
+                                                <li class="usa" style="display: none;">
+                                                    <img src="~/Images/flag-icon.png" alt="">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td style="border-top: 1px solid #000;">
+                                        <div class="description-container">
+                                            @product.ProductDescription
+                                        </div>
+                                    </td>
+                                    <td style="border-top: 1px solid #000; border-left: 1px solid #000">
+                                        <div class="price-tiers">
+                                            <ul>
+                                                @foreach (var sellPrice in product.ProductSellPrices.OrderBy(s => s.SellPriceLevel))
+                                                {
+                                                    <li class="Tier_@sellPrice.SellPriceLevel">@sellPrice.SellPriceFinalAmount.ToString("c")</li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </td>
+
+                                    <td style="border-top: 1px solid #000; border-left: 1px solid #000">
+                                        <div class="questions-container">
+                                            YES<br>
+                                            NO<br>
+                                            MAYBE<br>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td style="border-top: 1px solid #000; border-right: 1px solid #000">
+                                        <div class="country-container">
+                                            Made in @product.ProductCountryOfOrigin
+                                        </div>
+                                    </td>
+                                    <td style="border-top: 1px solid #000;">
+                                        <div class="moq-container">
+                                            MOQ: @product.ProductVendorMinimumOrder
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            if (productCount % 8 == 0)
+            { 
+                <div class="page_break">
+                    &nbsp;
+                </div>
+            }
+        }
+    </div>
+    <div class="page_break">
+        &nbsp;
+    </div>
+}
+<br />
+<h1>all categories</h1>
 @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.Category.CategoryName))
 {
     productCount++;
@@ -125,10 +231,10 @@
             </tr>
         </tbody>
     </table>    
-    if (productCount % 8 == 0)
-    { 
-        <div class="page_break">
-            &nbsp;
-        </div>
-    }
+                                        if (productCount % 8 == 0)
+                                        { 
+    <div class="page_break">
+        &nbsp;
+    </div>
+                                        }
 }

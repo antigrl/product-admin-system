@@ -154,6 +154,10 @@ namespace NPR2._0._8.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             Campaign campaign = db.Campaigns.Find(id);
+            string type = MyExtensions.GetEnumDescription(CategoryTypeList.MAJOR);
+            ViewBag.MajorCategoryList = db.Categories.Where(c => c.CategoryStatus != archived && c.CategoryType == type).Select(c => c.CategoryName).ToList();
+            type = MyExtensions.GetEnumDescription(CategoryTypeList.MINOR);
+            ViewBag.MinorCategoryList = db.Categories.Where(c => c.CategoryStatus != archived && c.CategoryType == type).Select(c => c.CategoryName).ToList();
 
             if (campaign == null)
             {
