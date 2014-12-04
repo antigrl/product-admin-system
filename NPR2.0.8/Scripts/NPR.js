@@ -183,6 +183,11 @@ $(".toggle-company-fees").click(function ()
 {
     $(".company-fees").toggle();
 });
+    
+$(".pricing-tier-checkbox").change(function () {
+    var value = $(this).val();
+    $("." + value).toggle();
+});
 
 $("form").submit(function ()
 {

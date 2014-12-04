@@ -119,11 +119,10 @@ select {
 
 /* Table Styles */
 .index-table {
-    width: 50%;
+    width: 100%;
 }
 
     .index-table th {
-
         background-color: #7C211E;
         font-size: 1.2em;
         color: white;
@@ -143,10 +142,9 @@ select {
         }
 
     .index-table ul {
-
     }
-    .index-table td {
 
+    .index-table td {
     }
 
 .table-wrapper {
@@ -209,11 +207,9 @@ select {
     }
 
 .presentation-view-table th {
-
 }
 
 .presentation-view-table tr {
-
 }
 
 .links {

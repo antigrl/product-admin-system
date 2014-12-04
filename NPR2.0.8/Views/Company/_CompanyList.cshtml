@@ -7,23 +7,16 @@
 </p>
 @foreach (var item in Model)
 {
-    <div class="left-half-content">
+    <div class="full-content">
         <h2>
             @Html.ActionLink(Html.DisplayFor(modelItem => item.CompanyName) + " [" + Html.DisplayFor(modelItem => item.CompanyDivisionNumber) + "]", "Edit", "Company", new { id = item.CompanyID }, null)
         </h2>
         <p>
             @Html.ActionLink(string.Format("Create New {0} Campaign", item.CompanyName), "Create", "Campaign", new { ReturnUrl = Url.Action("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }), CompanyID = item.CompanyID }, null)
         </p>
-    </div>
-    <div class="right-half-content">
-
-        <div class="image">
-            @if (item != null && item.CompanyImage != null)
-            {
-                <img src="@Url.Action("Show", "Company", new { id = item.CompanyID })" />
-            }
-        </div>
-    </div>
+        @{
             Html.RenderPartial("~/Views/Campaign/_CampaignList.cshtml", (IEnumerable<Campaign>)item.Campaigns.Where(c => c.CampaignStatus != MyExtensions.GetEnumDescription(Status.Archived)));
+        }
+    </div>
     <hr />
 }
