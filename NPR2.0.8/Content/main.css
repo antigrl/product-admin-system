@@ -119,7 +119,7 @@ select {
 
 /* Table Styles */
 .index-table {
-    width: 50%;
+    width: 100%;
 }
 
     .index-table th {
