@@ -37,28 +37,28 @@
                 });
             }
         });
-    }
+}
 
-    var ajaxFormSubmit = function ()
-    {
-        var $form = $(this);
+var ajaxFormSubmit = function ()
+{
+    var $form = $(this);
 
-        var options = {
-            url: $form.attr("action"),
-            type: $form.attr("method"),
-            data: $form.serialize()
-        };
-
-        $.ajax(options).done(function (data)
-        {
-            var $target = $($form.attr("data-npr-target"));
-            $target.replaceWith(data);
-        });
-
-        return false;
+    var options = {
+        url: $form.attr("action"),
+        type: $form.attr("method"),
+        data: $form.serialize()
     };
 
-    $("form[data-npr-ajax='true']").submit(ajaxFormSubmit);
+    $.ajax(options).done(function (data)
+    {
+        var $target = $($form.attr("data-npr-target"));
+        $target.replaceWith(data);
+    });
+
+    return false;
+};
+
+$("form[data-npr-ajax='true']").submit(ajaxFormSubmit);
 
     // Add Fee row to the page [currently only does one at a time]v
     $(".add-item").click(function ()
@@ -84,11 +84,11 @@
         var $feeRow = $(this).closest(".editor-row");
         var companyFee;
 
-        // Check if inherited: 
+        // Check if inherited:
         var isInherited = $feeRow.find(".is-inherited input").val();
         if (isInherited == "True")
         {
-            // Editor Row Data 
+            // Editor Row Data
             var inheritedFeeID = $feeRow.find(".inherited-id input").val();
 
             $(".existing-fee-checkbox").each(function ()
@@ -174,31 +174,31 @@
         }
     });
 
-    $("#FeeType").change(function ()
-    {
-        ShowFeeInputBasedOnType();
-    });
-
-    $(".toggle-company-fees").click(function ()
-    {
-        $(".company-fees").toggle();
-    });
-
-    $("form").submit(function ()
-    {
-        if ($(this).valid())
-        {
-            $(this).find("input[type='submit']").attr('disabled', true);
-            return true;
-        }
-    });
-    
-    DisabledInheritedFees();
-    HideDropdownsForForeignKeyValues();
+$("#FeeType").change(function ()
+{
     ShowFeeInputBasedOnType();
+});
 
-    function ShowFeeInputBasedOnType()
+$(".toggle-company-fees").click(function ()
+{
+    $(".company-fees").toggle();
+});
+
+$("form").submit(function ()
+{
+    if ($(this).valid())
     {
+        $(this).find("input[type='submit']").attr('disabled', true);
+        return true;
+    }
+});
+
+DisabledInheritedFees();
+HideDropdownsForForeignKeyValues();
+ShowFeeInputBasedOnType();
+
+function ShowFeeInputBasedOnType()
+{
         // Hide all options [for Fee Create Page]
         $(".dollar-amount-fee").hide();
         $(".amortized-fee").hide();
@@ -227,65 +227,65 @@
             $(".productsellprice-data").hide();
         }
             // For if campaign is selected
-        else if ($("#CampaignID option:selected").val() > 0)
-        {
-            $("#CampaignID option:not(:selected)").each(function ()
+            else if ($("#CampaignID option:selected").val() > 0)
             {
-                $(this).prop("disabled", "disabled");
-            });
+                $("#CampaignID option:not(:selected)").each(function ()
+                {
+                    $(this).prop("disabled", "disabled");
+                });
 
-            $(".company-data").hide();
-            $(".campaign-data").show();
-            $(".pricingtier-data").hide();
-            $(".product-data").hide();
-            $(".productsellprice-data").hide();
-        }
+                $(".company-data").hide();
+                $(".campaign-data").show();
+                $(".pricingtier-data").hide();
+                $(".product-data").hide();
+                $(".productsellprice-data").hide();
+            }
             // For if pricingTier is selected
-        else if ($("#PricingTierID option:selected").val() > 0)
-        {
-            $("#PricingTierID option:not(:selected)").each(function ()
+            else if ($("#PricingTierID option:selected").val() > 0)
             {
-                $(this).prop("disabled", "disabled");
-            });
+                $("#PricingTierID option:not(:selected)").each(function ()
+                {
+                    $(this).prop("disabled", "disabled");
+                });
 
-            $(".company-data").hide();
-            $(".campaign-data").hide();
-            $(".pricingtier-data").show();
-            $(".product-data").hide();
-            $(".productsellprice-data").hide();
-        }
+                $(".company-data").hide();
+                $(".campaign-data").hide();
+                $(".pricingtier-data").show();
+                $(".product-data").hide();
+                $(".productsellprice-data").hide();
+            }
             // For if prouct is selected
-        else if ($("#ProductID option:selected").val() > 0)
-        {
-            $("#ProductID option:not(:selected)").each(function ()
+            else if ($("#ProductID option:selected").val() > 0)
             {
-                $(this).prop("disabled", "disabled");
-            });
+                $("#ProductID option:not(:selected)").each(function ()
+                {
+                    $(this).prop("disabled", "disabled");
+                });
 
-            $(".company-data").hide();
-            $(".campaign-data").hide();
-            $(".pricingtier-data").hide();
-            $(".product-data").show();
-            $(".productsellprice-data").hide();
-        }
+                $(".company-data").hide();
+                $(".campaign-data").hide();
+                $(".pricingtier-data").hide();
+                $(".product-data").show();
+                $(".productsellprice-data").hide();
+            }
             // For if prouctSellPrice is selected
-        else if ($("#ProductSellPriceID option:selected").val() > 0)
-        {
-            $("#ProductSellPriceID option:not(:selected)").each(function ()
+            else if ($("#ProductSellPriceID option:selected").val() > 0)
             {
-                $(this).prop("disabled", "disabled");
-            });
+                $("#ProductSellPriceID option:not(:selected)").each(function ()
+                {
+                    $(this).prop("disabled", "disabled");
+                });
 
-            $(".company-data").hide();
-            $(".campaign-data").hide();
-            $(".pricingtier-data").hide();
-            $(".product-data").hide();
-            $(".productsellprice-data").show();
+                $(".company-data").hide();
+                $(".campaign-data").hide();
+                $(".pricingtier-data").hide();
+                $(".product-data").hide();
+                $(".productsellprice-data").show();
+            }
         }
-    }
 
-    function DisabledInheritedFees()
-    {
+        function DisabledInheritedFees()
+        {
         // Loop though all fee rows
         $(".fees .editor-row").each(function ()
         {
@@ -296,7 +296,7 @@
                 // Add Inherited Class
                 $(this).addClass("inherited");
 
-                // Disable all not selected options if inherited 
+                // Disable all not selected options if inherited
                 $(this).find("select option:not(:selected)").each(function ()
                 {
                     $(this).prop("disabled", "disabled");
@@ -325,5 +325,36 @@
                 });
             }
         });
-    }
+}
 });
+$('.description-container').html(function (i,t) {
+    return t.replace('[eco]', '<span class="hidden">[eco]</span>');
+});
+$('.description-container').html(function (i,t) {
+    return t.replace('[recycle]', '<span class="hidden">[recycle]</span>');
+});
+$('.description-container').html(function (i,t) {
+    return t.replace('[dish]', '<span class="hidden">[dish]</span>');
+});
+$('.description-container').html(function (i,t) {
+    return t.replace('[usa]', '<span class="hidden">[usa]</span>');
+});
+
+$('table td div.description-container:contains("[eco]")').each(function () {
+    $(this).parent().parent().parent().parent().prev().find('.icon-container .eco').show();
+});
+$('table td div.description-container:contains("[dish]")').each(function () {
+    $(this).parent().parent().parent().parent().prev().find('.icon-container .dish').show();
+});
+$('table td div.description-container:contains("[recycle]")').each(function () {
+    $(this).parent().parent().parent().parent().prev().find('.icon-container .rec').show();
+});
+$('table td div.description-container:contains("[usa]")').each(function () {
+    $(this).parent().parent().parent().parent().prev().find('.icon-container .usa').show();
+});
+
+
+
+
+
+

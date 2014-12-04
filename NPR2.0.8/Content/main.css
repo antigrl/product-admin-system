@@ -119,11 +119,11 @@ select {
 
 /* Table Styles */
 .index-table {
-    width: 100%;
+    width: 50%;
 }
 
     .index-table th {
-        border: 1px solid #E0E0E0;
+
         background-color: #7C211E;
         font-size: 1.2em;
         color: white;
@@ -135,16 +135,18 @@ select {
     }
 
         .index-table tr:nth-child(odd) {
-            background-color: #FFF;
+            background-color: #fff;
         }
 
         .index-table tr:nth-child(even) {
-            background-color: #DDD;
+            background-color: #fff;
         }
 
     .index-table ul {
-        margin: 0px;
-        padding-left: 20px;
+
+    }
+    .index-table td {
+
     }
 
 .table-wrapper {
@@ -207,12 +209,11 @@ select {
     }
 
 .presentation-view-table th {
-    font-size: 1em;
-    text-align: center;
+
 }
 
 .presentation-view-table tr {
-    border-bottom: 2px solid black;
+
 }
 
 .links {
@@ -265,7 +266,6 @@ select {
 
 .product-image {
     background-color: #FFF;
-    border: 1px solid black;
 }
 
     .product-image input[type="file"] {
@@ -279,8 +279,8 @@ select {
     }
 
         .product-image .image img {
-            max-height: 125px;
-            max-width: 475px;
+            max-height: 100px;
+            max-width: 100px;
         }
 
 /* Product Price Styles*/

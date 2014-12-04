@@ -1,0 +1,78 @@
+.index-table {
+  border: 1px solid #000;
+  height: 112px; }
+
+table {
+  margin: 0;
+  table-layout: fixed;
+  text-align: center;
+  box-sizing: border-box; }
+
+table.index-table:nth-child(odd) {
+  float: right; }
+
+table.index-table:nth-child(even) {
+  float: left; }
+
+td {
+  padding: 0; }
+
+.hidden {
+  display: none; }
+
+.image-container {
+  width: 112px;
+  height: 112px;
+  border-right: 1px solid #000; }
+
+.name-container {
+  height: 18px;
+  width: 204px;
+  overflow: hidden; }
+
+.icon-container {
+  width: 156px;
+  height: 18px;
+  padding: 5px 0; }
+  .icon-container ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+    .icon-container ul li {
+      display: inline-block; }
+
+.description-container {
+  width: 204px;
+  height: 75px;
+  overflow: hidden;
+  border: none; }
+
+.price-tiers {
+  width: 78px; }
+  .price-tiers ul {
+    margin: 0;
+    padding: 0; }
+  .price-tiers li {
+    list-style: none; }
+
+.questions-container {
+  width: 78px; }
+
+.country-container {
+  width: 204px;
+  overflow: hidden; }
+
+.moq-container {
+  width: 156px; }
+
+@media print {
+  @page {
+    margin: .4in .2in .2in .2in; }
+  body {
+    background-color: #fff;
+    width: 100%; }
+
+  .site-title, h2, h3, header {
+    display: none; } }
+
+/*# sourceMappingURL=presentation.css.map */
