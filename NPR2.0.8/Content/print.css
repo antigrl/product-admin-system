@@ -3,7 +3,11 @@
         page-break-after: always;
         break-after: page;
     }
-    .header, .footer {
+    .presentation-header, .header, .footer {
         display: none;
+    }
+    .page_break_avoid {
+        page-break-after: avoid;
+        break-after: avoid;
     }
 }

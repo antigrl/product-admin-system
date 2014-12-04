@@ -1,8 +1,7 @@
 .index-table {
     width:50%;
   border: 1px solid #000;
-  height: 112px;
-  width: 50% !important; }
+  height: 112px; }
 
 table {
   margin: 0;
@@ -74,7 +73,7 @@ td {
     background-color: #fff;
     width: 100%; }
 
-  .site-title, h2, h3, header {
+  .site-title, header {
     display: none; } }
 
 /*# sourceMappingURL=presentation.css.map */

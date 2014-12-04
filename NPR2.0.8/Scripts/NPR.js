@@ -189,6 +189,15 @@ $(".pricing-tier-checkbox").change(function () {
     $("." + value).toggle();
 });
 
+$(".major-catgory-checkbox").change(function () {
+    var value = $(this).val();
+    if($(this).attr("checked"))
+    {
+        $("." + value).toggle();
+    }
+    $("." + value).toggle();
+});
+
 $("form").submit(function ()
 {
     if ($(this).valid())

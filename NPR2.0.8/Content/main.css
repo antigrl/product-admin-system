@@ -638,3 +638,20 @@ input, textarea {
 .top-margin {
     margin-top: 35px;
 }
+
+/* Presentation View Styles*/
+.presentation-header {
+    
+}
+.presentation-header .left-third{
+    border:none;    
+}
+
+    .presentation-header ul li {
+        list-style: none;
+    }
+    .presentation-header .category-checkboxes {
+        height: 150px; 
+        overflow-x:hidden;
+        overflow-y:scroll;
+    }
