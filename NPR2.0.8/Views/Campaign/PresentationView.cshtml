@@ -146,12 +146,13 @@
                     </tr>
                 </tbody>
             </table>
-                                                if (productCount % 8 == 0)
-                                                { 
+            if (productCount % 8 == 0)
+            { 
             <div class="page_break">
                 &nbsp;
+                <div class="page_number"></div>
             </div>
-                                                }
+            }
         }
 
         @{
@@ -160,12 +161,13 @@
         {
                 
             <table class="index-table">
-                &nbsp;
+                <div style="display: none;">data</div>
             </table>
         }
         }
         <div class="page_break">
             &nbsp;
+            <div class="page_number"></div>
         </div>
     </div>
 }

@@ -2,12 +2,14 @@
     .page_break {
         page-break-after: always;
         break-after: page;
+        display: table;
     }
-    .presentation-header, .header, .footer {
+
+        .page_break .page_number {
+            display: table-footer-group;
+        }
+
+    .presentation-header, .header, .footer, footer {
         display: none;
-    }
-    .page_break_avoid {
-        page-break-after: avoid;
-        break-after: avoid;
     }
 }

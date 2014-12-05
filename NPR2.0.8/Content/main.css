@@ -641,17 +641,34 @@ input, textarea {
 
 /* Presentation View Styles*/
 .presentation-header {
-    
 }
-.presentation-header .left-third{
-    border:none;    
-}
+
+    .presentation-header input[type=number] {
+        width: 40px;
+        margin-left: 10px;
+    }
+
+    .presentation-header .left-third {
+        border: none;
+    }
 
     .presentation-header ul li {
         list-style: none;
     }
+
     .presentation-header .category-checkboxes {
-        height: 150px; 
-        overflow-x:hidden;
-        overflow-y:scroll;
+        height: 150px;
+        overflow-x: hidden;
+        overflow-y: scroll;
     }
+
+.major-category {
+}
+
+    .major-category h2 {
+        margin-bottom: 3px;
+    }
+
+.page_number {
+    display: none;
+}
