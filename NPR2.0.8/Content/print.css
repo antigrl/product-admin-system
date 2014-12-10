@@ -5,9 +5,6 @@
         display: table;
     }
 
-        .page_break .page_number {
-            display: table-footer-group;
-        }
 
     .presentation-header, .header, .footer, footer {
         display: none;

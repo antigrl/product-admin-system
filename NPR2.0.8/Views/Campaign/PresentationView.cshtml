@@ -147,11 +147,12 @@
                 </tbody>
             </table>
             if (productCount % 8 == 0)
-            { 
+            {
             <div class="page_break">
                 &nbsp;
-                <div class="page_number"></div>
+
             </div>
+            <div class="page_number"><span></span></div>
             }
         }
 
@@ -159,7 +160,7 @@
         // if the product count is not even add an empty box
         if (productCount % 2 != 0)
         {
-                
+
             <table class="index-table">
                 <div style="display: none;">data</div>
             </table>
@@ -167,7 +168,8 @@
         }
         <div class="page_break">
             &nbsp;
-            <div class="page_number"></div>
+
         </div>
+        <div class="page_number"><span></span></div>
     </div>
 }

@@ -72,10 +72,13 @@ td {
     break-after: page;
     display: table; }
 
-  .page_break .page_number {
-    display: table-footer-group; }
+  .page_number {
+    display: block;
+    position: relative;
+    text-align: center;
+    margin-top: -35px; }
 
-  .presentation-header, .header, .footer, footer {
+  header, .presentation-header, .header, .footer, footer {
     display: none; } }
 
 /*# sourceMappingURL=presentation.css.map */

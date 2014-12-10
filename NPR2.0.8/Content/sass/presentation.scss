@@ -17,12 +17,6 @@ table.index-table:nth-child(even) {
   float: left;
 }
 
-
-// .presentation-block:nth-of-type(8),
-// .presentation-block:nth-of-type(19) {
-//   page-break-after: always;
-// }
-
 td {
   padding: 0;
 }
@@ -79,17 +73,23 @@ td {
 }
 
 @media print {
-    .page_break {
-        page-break-after: always;
-        break-after: page;
-        display: table;
-    }
 
-        .page_break .page_number {
-            display: table-footer-group;
-        }
+  .page_break {
+    page-break-after: always;
+    break-after: page;
+    display: table;
+  }
 
-    .presentation-header, .header, .footer, footer {
-        display: none;
-    }
+   .page_number {
+    display: block;
+    position: relative;
+    text-align: center;
+    margin-top: -35px;
+
+  }
+
+
+  header, .presentation-header, .header, .footer, footer {
+    display: none;
+  }
 }

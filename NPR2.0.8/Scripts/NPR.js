@@ -173,7 +173,7 @@
     $(".starting-page-number").keyup(function () {
         ShowPrintNumbers();
     });
-    
+
     ShowPrintNumbers();
     // End Presentation view functions
 
@@ -190,7 +190,7 @@
 
     function ShowPrintNumbers() {
         var startingPageNumber = $(".starting-page-number").val();
-        $(".page_number").each(function () {
+        $(".page_number span").each(function () {
             $(this).text("Page " + startingPageNumber);
             startingPageNumber++;
         });
