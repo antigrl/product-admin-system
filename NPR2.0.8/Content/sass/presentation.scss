@@ -79,17 +79,17 @@ td {
 }
 
 @media print {
-  @page {
-    margin: .4in .2in .2in .2in;
-  }
-  body {
-    background-color: #fff;
-    width: 100%;
-  }
+    .page_break {
+        page-break-after: always;
+        break-after: page;
+        display: table;
+    }
 
-  .site-title, h2, h3, header {
-    display: none;
-  }
+        .page_break .page_number {
+            display: table-footer-group;
+        }
 
-
+    .presentation-header, .header, .footer, footer {
+        display: none;
+    }
 }
