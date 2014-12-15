@@ -1,0 +1,103 @@
+﻿@model NPRModels.Fee
+@using NPRModels;
+@using PAS.Helpers;
+
+@{
+    ViewBag.Title = "Edit Fee";
+}
+
+<h2>Edit Fee</h2>
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="left-half-content">
+        <legend>Fee</legend>
+
+        @Html.HiddenFor(model => model.FeeID)
+        @Html.HiddenFor(model => model.FeeStatus)
+        @Html.HiddenFor(model => model.FeeInherited)
+        @Html.HiddenFor(model => model.FeeInheritedFeeID)
+        
+        @Html.HiddenFor(model => model.CampaignID)
+        @Html.HiddenFor(model => model.CompanyID)
+        @Html.HiddenFor(model => model.PricingTierID)
+        @Html.HiddenFor(model => model.ProductID)
+        @Html.HiddenFor(model => model.ProductSellPriceID)
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.FeeType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.FeeType, MyExtensions.GetGenericEnumDropDown<FeeTypeList>(), "")
+            @Html.ValidationMessageFor(model => model.FeeType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.FeeNameID, "FeeName")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("FeeNameID", String.Empty)
+            @Html.ValidationMessageFor(model => model.FeeNameID)
+        </div>
+
+        <div class="amortized-fee">
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.FeeAmortizedCharge)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.FeeAmortizedCharge)
+                @Html.ValidationMessageFor(model => model.FeeAmortizedCharge)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.FeeAmortizedType)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.FeeAmortizedType, MyExtensions.GetGenericEnumDropDown<AmortizedTypeList>(), "")
+                @Html.ValidationMessageFor(model => model.FeeAmortizedType)
+            </div>
+        </div>
+
+        <div class="percent-fee">
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.FeePercent)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.FeePercent)
+                @Html.ValidationMessageFor(model => model.FeePercent)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.FeePercentType)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.FeePercentType, MyExtensions.GetGenericEnumDropDown<PercentTypeList>(), "")
+                @Html.ValidationMessageFor(model => model.FeePercentType)
+            </div>
+        </div>
+
+        <div class="dollar-amount-fee">
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.FeeDollarAmount)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.FeeDollarAmount)
+                @Html.ValidationMessageFor(model => model.FeeDollarAmount)
+            </div>
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+        <div>
+            @Html.ActionLink("Back to Fee List", "Index")
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+
+}

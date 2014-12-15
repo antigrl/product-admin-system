@@ -1,0 +1,265 @@
+﻿@model NPRModels.Company
+@using PAS.Helpers;
+@using NPRModels;
+
+@{
+    ViewBag.Title = "Edit Company";
+}
+
+<h2>Edit Company</h2>
+<div class="full-content">
+    @using(Html.BeginForm("Edit", "Company", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset class="left-half-content">
+            <legend>Company</legend>
+
+            @Html.HiddenFor(model => model.CompanyID)
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CompanyName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CompanyName)
+                @Html.ValidationMessageFor(model => model.CompanyName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CompanyStatus)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.CompanyStatus, MyExtensions.GetGenericEnumDropDown<Status>(), "")
+                @Html.ValidationMessageFor(model => model.CompanyStatus)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CompanyDivisionNumber)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CompanyDivisionNumber)
+                @Html.ValidationMessageFor(model => model.CompanyDivisionNumber)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CompanyDefaultMargin)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CompanyDefaultMargin)
+                @Html.ValidationMessageFor(model => model.CompanyDefaultMargin)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CompanyContactName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CompanyContactName)
+                @Html.ValidationMessageFor(model => model.CompanyContactName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CompanyContactEmail)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CompanyContactEmail)
+                @Html.ValidationMessageFor(model => model.CompanyContactEmail)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CompanyAccountManagerName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CompanyAccountManagerName)
+                @Html.ValidationMessageFor(model => model.CompanyAccountManagerName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CompanyAccountManagerEmail)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CompanyAccountManagerEmail)
+                @Html.ValidationMessageFor(model => model.CompanyAccountManagerEmail)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CompanyMentorName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CompanyMentorName)
+                @Html.ValidationMessageFor(model => model.CompanyMentorName)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CompanyMentorEmail)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CompanyMentorEmail)
+                @Html.ValidationMessageFor(model => model.CompanyMentorEmail)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CompanyLocation)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CompanyLocation)
+                @Html.ValidationMessageFor(model => model.CompanyLocation)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CompanyUrl)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CompanyUrl)
+                @Html.ValidationMessageFor(model => model.CompanyUrl)
+            </div>
+
+            <div class="company-image">
+                <div class="editor-label">
+                    @Html.LabelForRequired(model => model.CompanyImage)
+                </div>
+                <div class="editor-field">
+                    <input type="file" name="CompanyImage" id="CompanyImage" />
+                    @Html.HiddenFor(model => model.CompanyImage)
+                    @Html.HiddenFor(model => model.CompanyImageType)
+                </div>
+                <div class="image">
+                    @if(Model != null && Model.CompanyImage != null)
+                    {
+                        <img src="@Url.Action("Show", "Company", new { id = Model.CompanyID })" />
+                    }
+                    @Html.ValidationMessageFor(model => model.CompanyImage)
+                </div>
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.CompanyAdditionalDetails)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.CompanyAdditionalDetails)
+                @Html.ValidationMessageFor(model => model.CompanyAdditionalDetails)
+            </div>
+
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+        <div class="right-content">
+            <div>
+                <h4>Company Fees</h4>
+                <span class="right-content">
+                    @Html.ActionLink("Create New Fee", "Create", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), CompanyID = Model.CompanyID }, null)
+                </span>
+                <table class="index-table">
+                    <tr>
+                        <th>Fee Name</th>
+                        <th>Type</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(f => f.FeeName.FeeNameName))
+                    {
+                        <tr>
+                            <td>
+                                <div class="editor-label">
+                                    @Html.DisplayFor(model => fee.FeeName.FeeNameName)
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DisplayFor(model => fee.FeeType)
+                                </div>
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null) |
+                                @Html.ActionLink("Archive", "Archive", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="pricing-tiers">
+                <h4>Pricing Tiers</h4>
+                <span class="right-content">
+                    @Html.ActionLink("Create New Pricing Tier", "Create", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), CompanyID = Model.CompanyID }, null)
+                </span>
+                <table class="index-table">
+                    <tr>
+                        <th>Level</th>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var tier in Model.PricingTiers.Where(p => p.PricingTierStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.PricingTierLevel))
+                    {
+                        <tr>
+                            <td>
+                                <div class="editor-label">
+                                    @Html.DisplayFor(model => tier.PricingTierLevel)
+                                </div>
+                            </td>
+                            <td>
+                                <b>
+                                    @Html.DisplayFor(model => tier.PricingTierName)
+                                </b>
+                                <div>
+                                    <div>Fees:</div>
+                                    <ul>
+                                        @foreach(var fee in tier.Fees)
+                                        {
+                                            <li>
+                                                @Html.DisplayFor(model => fee.FeeName.FeeNameName)
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = tier.PricingTierID }, null) |
+                                @Html.ActionLink("Archive", "Archive", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = tier.PricingTierID }, null)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="Campaigns">
+                <h4>Campaigns</h4>
+                <span class="right-content">
+                    @Html.ActionLink("Create New Campaign", "Create", "Campaign", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), CompanyID = Model.CompanyID }, null)
+                </span>
+                <table class="index-table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Created On Date</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var campaign in Model.Campaigns.Where(c => c.CampaignStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(c => c.CampaignCreatedOnDate))
+                    {
+                        <tr>
+                            <td>
+                                <div class="editor-label">
+                                    @Html.DisplayFor(model => campaign.CampaignName)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="editor-label">
+                                    @Html.DisplayFor(model => campaign.CampaignCreatedOnDate)
+                                </div>
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", "Campaign", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = campaign.CampaignID }, null) |
+                                @Html.ActionLink("Archive", "Archive", "Campaign", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = campaign.CampaignID }, null)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    }
+</div>
+
+<div>
+    @Html.ActionLink("Back to Company List", "Index")
+</div>
+
+@section Scripts {
+
+}
