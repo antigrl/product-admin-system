@@ -303,6 +303,7 @@ namespace PAS.Helpers
 
             return (decimal)baseSellPrice;
         }
+
         #endregion
     }
 }

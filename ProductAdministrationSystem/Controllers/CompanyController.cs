@@ -120,7 +120,7 @@ namespace PAS.Controllers
                 // Add Audit Entry 
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, company, company.CompanyID, "Edit");
                 db.AuditTrails.Add(audit);
-                
+
                 // Send Emails
                 #region SendEmails
                 // Check previous status 
@@ -139,6 +139,53 @@ namespace PAS.Controllers
                 db.Entry(current).CurrentValues.SetValues(company);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+            return View(company);
+        }
+
+        //
+        // POST: /Company/SaveAndUpdateMargins/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaveAndUpdateMargins(Company company, HttpPostedFileBase CompanyImage)
+        {
+            string preSaveStatus = db.Companies.Where(c => c.CompanyID == company.CompanyID).Select(c => c.CompanyStatus).FirstOrDefault();
+
+            if (ModelState.IsValid)
+            {
+                if (CompanyImage != null && CompanyImage.ContentLength > 0)
+                {
+                    byte[] imageBinaryData = new byte[CompanyImage.ContentLength];
+                    int readresult = CompanyImage.InputStream.Read(imageBinaryData, 0, CompanyImage.ContentLength);
+                    company.CompanyImage = imageBinaryData;
+                    company.CompanyImageType = CompanyImage.ContentType;
+                }
+
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, company, company.CompanyID, "Edit");
+                db.AuditTrails.Add(audit);
+
+                //Update Margins
+                MyExtensions.UpdateActiveMarginsBasedOnCompany(db.Companies.Where(c => c.CompanyID == company.CompanyID).FirstOrDefault());
+
+                // Send Emails
+                #region SendEmails
+                // Check previous status 
+                if (preSaveStatus != company.CompanyStatus)
+                {
+                    List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(company.CompanyStatus);
+                    var urlBuilder = Request.Url.AbsoluteUri;
+                    if (sendEmailTos != null && sendEmailTos.Count > 0)
+                    {
+                        UserMailer.SendStatusUpdate(sendEmailTos, "Company Updated by: " + User.Identity.Name, urlBuilder.ToString(), company, null, null).Send();
+                    }
+                }
+                #endregion
+
+                var current = db.Companies.Find(company.CompanyID);
+                db.Entry(current).CurrentValues.SetValues(company);
+                db.SaveChanges();
+                return RedirectToAction("Edit", new { id = company.CompanyID });
             }
             return View(company);
         }
