@@ -1,0 +1,130 @@
+﻿@model PASModels.Fee
+@using PASModels;
+@using PAS.Helpers;
+
+@{
+    ViewBag.Title = "Archive Fee";
+}
+
+<h2>Archive Fee</h2>
+
+<h3>Are you sure you want to Archive this Fee?</h3>
+<fieldset>
+    <legend>Fee</legend>
+
+    <div class="editor-label">
+        @Html.LabelForRequired(model => model.FeeType)
+    </div>
+    <div class="editor-field">
+        @Html.DisplayFor(model => model.FeeType)
+        @Html.ValidationMessageFor(model => model.FeeType)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelForRequired(model => model.FeeNameID, "FeeName")
+    </div>
+    <div class="editor-field">
+        @Html.DisplayFor(model => model.FeeNameID)
+        @Html.ValidationMessageFor(model => model.FeeNameID)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.FeeName.FeeNameName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FeeName.FeeNameName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.FeeType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FeeType)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.FeeCalculation)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FeeCalculation)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.FeeAmortizedCharge)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FeeAmortizedCharge)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.FeeAmortizedType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FeeAmortizedType)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.FeePercent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FeePercent)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.FeePercentType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FeePercentType)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.FeeDollarAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FeeDollarAmount)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Company.CompanyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Company.CompanyName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Campaign.CampaignName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Campaign.CampaignName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.PricingTier.PricingTierName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PricingTier.PricingTierName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Product.ProductName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Product.ProductName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ProductSellPrice.SellPriceName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductSellPrice.SellPriceName)
+    </div>
+</fieldset>
+@using(Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Archive" />
+        |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -1,0 +1,53 @@
+﻿@model PASModels.Fee
+@using PAS.Helpers;
+@using PASModels;
+
+<div class="sell-price-fee">
+    @using (Html.BeginCollectionItem("Fees"))
+    {
+        <div>
+            <div class="editor-label float-left">
+                <label>@Html.DisplayFor(model => model.FeeName.FeeNameName):</label>
+            </div>
+            <div class="editor-field">
+                @if (Model.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
+                {
+                    <span>%@Html.TextBoxFor(model => model.FeePercent, new { @class = "percent-value" })</span>
+                    if (Model.FeeDollarAmount > 0)
+                    {
+                        <span>$@Html.DisplayFor(model => model.FeeDollarAmount)</span>
+                    }
+                }
+                @if (Model.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount))
+                {
+                    <span>$@Html.TextBoxFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })</span>
+                }
+                @if (Model.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized))
+                {
+                    <span class="left-half-content">Full Charge
+                        <br />
+                        $@Html.TextBoxFor(model => model.FeeAmortizedCharge, new { @class = "dollar-value" })
+                    </span>
+                    <span class="left-half-content">Unit Amount
+                        <br />
+                        $@Html.TextBoxFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })
+                    </span>
+                }
+            </div>
+            <div class="hidden-inputs">
+                @Html.HiddenFor(model => model.FeeID)
+                @Html.HiddenFor(model => model.ProductSellPriceID)
+                @Html.HiddenFor(model => model.FeeNameID)
+                @Html.HiddenFor(model => model.FeeType)
+                @Html.HiddenFor(model => model.FeeCalculation)
+                @Html.HiddenFor(model => model.FeeInherited)
+                @Html.HiddenFor(model => model.FeeInheritedFeeID)
+                @Html.HiddenFor(model => model.FeeDollarAmount)
+                @Html.HiddenFor(model => model.FeePercent)
+                @Html.HiddenFor(model => model.FeePercentType)
+                @Html.HiddenFor(model => model.FeeStatus)
+                <!-- Not sure if I need to add other Hidden inputs -->
+            </div>
+        </div> 
+    }
+</div>

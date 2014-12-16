@@ -1,0 +1,53 @@
+﻿@model PASModels.Fee
+@using PAS.Helpers;
+@using PASModels;
+
+<div class="editor-row">
+    @using (Html.BeginCollectionItem("Fees"))
+    {
+        @Html.ValidationSummary(true)
+        <button type="button" class="delete-row">-</button>
+        @Html.ValidationMessageFor(model => model.FeeNameID)
+        <div class="editor-label">
+            @Html.EditorFor(model => model.FeeLevel)
+            @if (Model.FeeNameID == 0)
+            {
+                @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)
+            }
+            else
+            {
+                @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList)
+                @Html.HiddenFor(model => model.FeeID)
+            }
+            @Html.HiddenFor(model => model.ProductID)
+            @Html.HiddenFor(model => model.FeeType)
+            @Html.HiddenFor(model => model.FeeCalculation)
+            @Html.HiddenFor(model => model.FeeStatus)
+            <span class="inherited-id">
+                @Html.HiddenFor(model => model.FeeInheritedFeeID)
+            </span>
+            <span class="is-inherited">
+                @Html.HiddenFor(model => model.FeeInherited)
+            </span>
+        </div> 
+        <div class="editor-field">
+            <span class="radio">
+                @Html.RadioButtonFor(model => model.FeePercentType, PercentTypeList.Multiplication, new { @title = "Multiply" })
+                <span title="Multiply">Multiply</span>
+                <br />
+                @Html.RadioButtonFor(model => model.FeePercentType, PercentTypeList.Division, new { @title = "Divide" })
+                <span title="Divide">Divide</span>
+            </span>
+            <span class="percent-span">%&nbsp;@Html.TextBoxFor(model => model.FeePercent, new { @class = "percent-value" })</span>
+            @if (Model.FeeDollarAmount != null)
+            {
+                <span>$&nbsp;@Html.DisplayFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })</span>
+            }
+            else
+            {
+                <span>N/A</span>
+            }
+            @Html.ValidationMessageFor(model => model.FeeDollarAmount)
+        </div>
+    }
+</div>

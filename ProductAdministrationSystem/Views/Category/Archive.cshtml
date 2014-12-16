@@ -1,0 +1,32 @@
+﻿@model PASModels.Category
+
+@{
+    ViewBag.Title = "Archive Category";
+}
+
+<h2>Archive Category</h2>
+
+<h3>Are you sure you want to archive this Category?</h3>
+<fieldset>
+    <legend>Category</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CategoryName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CategoryName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CategoryType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CategoryType)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Archive" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -1,0 +1,63 @@
+﻿@model PASModels.ProductSellPrice
+
+@{
+    ViewBag.Title = "Archive Product Sell Price";
+}
+
+<h2>Archive Product Sell Price</h2>
+
+<h3>Are you sure you want to Archive this Product Sell Price?</h3>
+<fieldset>
+    <legend>ProductSellPrice</legend>
+    
+    @Html.HiddenFor(model => model.SellPriceID)
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SellPriceName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SellPriceName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SellPriceLevel)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SellPriceLevel)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SellPriceMarginPercent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SellPriceMarginPercent)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SellPriceMarginDollarAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SellPriceMarginDollarAmount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SellPriceFinalAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SellPriceFinalAmount)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Product.ProductName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Product.ProductName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Archive" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

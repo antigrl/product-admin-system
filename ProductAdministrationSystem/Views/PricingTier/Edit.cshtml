@@ -1,0 +1,93 @@
+﻿@model PASModels.PricingTier
+@using PAS.Helpers;
+@using PASModels;
+
+@{
+    ViewBag.Title = "Edit Pricing Tier";
+    string archived = MyExtensions.GetEnumDescription(Status.Archived);
+}
+
+<h2>Edit Pricing Tier</h2>
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="left-half-content">
+        <legend>PricingTier</legend>
+
+        @Html.HiddenFor(model => model.PricingTierID)
+        @Html.HiddenFor(model => model.PricingTierStatus)
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.PricingTierName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PricingTierName)
+            @Html.ValidationMessageFor(model => model.PricingTierName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.PricingTierLevel)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PricingTierLevel)
+            @Html.ValidationMessageFor(model => model.PricingTierLevel)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.CompanyID, "Company")
+        </div>
+        <div class="editor-field">
+            <span>@Html.DisplayFor(model => model.Company.CompanyName)</span>
+            @Html.HiddenFor(model => model.CompanyID)
+            @Html.ValidationMessageFor(model => model.CompanyID)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+        <div>
+            @Html.ActionLink("Back to Pricing Tier List", "Index")
+        </div>
+    </fieldset>
+    <div class="right-content">
+        <div>
+            <h4>Pricing Tier Fees</h4>
+            <span class="right-content">
+                @Html.ActionLink("Create New Fee", "Create", "Fee", new { ReturnUrl = Url.Action("Edit", "PricingTier", new { id = Model.PricingTierID, ReturnUrl = ViewBag.ReturnUrl }), PricingTierID = Model.PricingTierID }, null)
+            </span>
+            <table class="index-table">
+                <tr>
+                    <th>Fee Name</th>
+                    <th>Type</th>
+                    <th></th>
+                </tr>
+                @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != archived))
+                {
+                    <tr>
+                        <td>
+                            <div class="editor-label">
+                                @Html.DisplayFor(model => fee.FeeName.FeeNameName)
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.DisplayFor(model => fee.FeeType)
+                            </div>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "Fee", new { ReturnUrl = Url.Action("Edit", "PricingTier", new { id = Model.PricingTierID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null) |
+                            @Html.ActionLink("Archive", "Archive", "Fee", new { ReturnUrl = Url.Action("Edit", "PricingTier", new { id = Model.PricingTierID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}
+
+@section Scripts {
+
+}

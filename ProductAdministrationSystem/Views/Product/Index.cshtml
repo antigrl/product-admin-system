@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PASModels.Product>
+
+@{
+    ViewBag.Title = "Product Index";
+}
+
+<h2>@ViewBag.TitleMessage Product Index</h2>
+
+<p>
+    @Html.ActionLink("Create New Product", "Create")
+    @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+    {
+        <span class="float-right">@Html.ActionLink("View Active Products", "Index")</span>
+    }
+    else
+    {
+        <span class="float-right">@Html.ActionLink("View Archived Products", "ArchivedIndex")</span>
+    }
+</p>
+<table class="index-table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductPresentationSell)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Campaign.CampaignName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductStatus)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPresentationSell)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Campaign.CampaignName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductStatus)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }) |
+            @Html.ActionLink("Archive", "Archive", new { id = item.ProductID })
+            </td>
+        </tr>
+    }
+
+</table>

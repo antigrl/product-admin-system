@@ -1,0 +1,34 @@
+﻿@using PASModels;
+@using PAS.Helpers;
+@{
+    ViewBag.Title = "PAS Home Page";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+        </div>
+    </section>
+}
+<div class="left-content">
+    @if (ViewBag.Companies != null)
+    {
+        Html.RenderPartial("~/Views/Company/_CompanyList.cshtml", (IEnumerable<Company>)ViewBag.Companies);
+    }
+</div>
+<div class="right-content">
+    <h3>Drop Down Lists</h3>
+    <ol class="round">
+        <li class="one">
+            <h5>Vendor Names</h5>
+            @Html.ActionLink("Vendor Name List", "Index", "VendorName")
+        </li>
+        <li class="two">
+            <h5>Fee Names</h5>
+            @Html.ActionLink("Fee Name List", "Index", "FeeName")
+        </li>
+    </ol>
+</div>
