@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NPRModels
+namespace PASModels
 {
     using System;
     using System.Data.Entity;

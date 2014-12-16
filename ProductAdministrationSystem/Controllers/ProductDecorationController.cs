@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NPRModels;
+using PASModels;
 using PAS.Helpers;
 
 namespace PAS.Controllers

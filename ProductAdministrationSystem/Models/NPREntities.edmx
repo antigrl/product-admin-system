@@ -5,7 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="NPRModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="NPRModelStoreContainer">
+        <EntityContainer Name="PASModelstoreContainer">
           <EntitySet Name="AuditTrail" EntityType="NPRModel.Store.AuditTrail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Campaign" EntityType="NPRModel.Store.Campaign" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Category" EntityType="NPRModel.Store.Category" store:Type="Tables" Schema="dbo" />
@@ -1725,7 +1725,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NPRModelStoreContainer" CdmEntityContainer="NPREntities">
+        <EntityContainerMapping StorageEntityContainer="PASModelstoreContainer" CdmEntityContainer="NPREntities">
           <EntitySetMapping Name="AuditTrails">
             <EntityTypeMapping TypeName="NPRModel.AuditTrail">
               <MappingFragment StoreEntitySet="AuditTrail">

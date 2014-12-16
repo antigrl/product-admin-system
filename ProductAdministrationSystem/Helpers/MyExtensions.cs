@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NPRModels;
+using PASModels;
 using System.Reflection;
 using System.ComponentModel;
 using System.Data;
@@ -69,34 +69,36 @@ namespace PAS.Helpers
             return emailToList;
         }
 
-        public static void UpdateActiveMarginsBasedOnCompany(Company company)
+        public static void UpdateActiveMarginsBasedOnCompany(Company company, decimal defaultMargin, ref  NPREntities db)
         {
+            string archived = MyExtensions.GetEnumDescription(Status.Archived);
+
             // loop though active campaigns
-            foreach (Campaign campaign in company.Campaigns.Where(c => c.CampaignStatus != MyExtensions.GetEnumDescription(Status.Archived)))
+            foreach (Campaign campaign in company.Campaigns.Where(c => c.CampaignStatus != archived))
             {
-                foreach (Product product in campaign.Products.Where(c => c.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)))
+                foreach (Product product in campaign.Products.Where(c => c.ProductStatus != archived))
                 {
-                    using (NPREntities db = new NPREntities())
+                    foreach (ProductSellPrice sellPrice in product.ProductSellPrices)
                     {
-                        foreach (ProductSellPrice sellPrice in product.ProductSellPrices.Where(s => s.SellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)))
-                        {
-                            sellPrice.SellPriceMarginPercent = company.CompanyDefaultMargin;
-                            db.Entry(sellPrice).State = EntityState.Modified;
-                        }
+                        sellPrice.SellPriceMarginPercent = defaultMargin;
+                    }
 
-                        FeeCalculator newCalculator = new FeeCalculator(product);
+                    FeeCalculator newCalculator = new FeeCalculator(product);
 
-                        try
-                        {
-                            newCalculator.ComputeAllProductPrices(true);
-                            newCalculator.ComputeMarginBasedOnSellprice();
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.Write("FeeCalculator.cs: UpdateActiveMarginsBasedOnCompany()" + ex.ToString());
-                        }
-
-                        db.SaveChanges();
+                    try
+                    {
+                        newCalculator.ComputeAllProductPrices(true);
+                        newCalculator.ComputeMarginBasedOnSellprice();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.Write("FeeCalculator.cs: UpdateActiveMarginsBasedOnCompany()" + ex.ToString());
+                    }
+                    // update  SellPriceFees
+                    foreach (var sellPrice in product.ProductSellPrices)
+                    {
+                        // Update sellprice 
+                        db.Entry(sellPrice).State = EntityState.Modified;
                     }
                 }
             }

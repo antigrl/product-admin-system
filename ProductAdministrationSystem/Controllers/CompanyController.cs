@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NPRModels;
+using PASModels;
 using PAS.Helpers;
 using PAS.Mailers;
 
@@ -166,7 +166,7 @@ namespace PAS.Controllers
                 db.AuditTrails.Add(audit);
 
                 //Update Margins
-                MyExtensions.UpdateActiveMarginsBasedOnCompany(db.Companies.Where(c => c.CompanyID == company.CompanyID).FirstOrDefault());
+                MyExtensions.UpdateActiveMarginsBasedOnCompany(db.Companies.Where(c => c.CompanyID == company.CompanyID).FirstOrDefault(), company.CompanyDefaultMargin, ref db);
 
                 // Send Emails
                 #region SendEmails
