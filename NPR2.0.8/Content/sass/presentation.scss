@@ -71,25 +71,3 @@ td {
 .moq-container {
   width: 156px;
 }
-
-@media print {
-
-  .page_break {
-    page-break-after: always;
-    break-after: page;
-    display: table;
-  }
-
-   .page_number {
-    display: block;
-    position: relative;
-    text-align: center;
-    margin-top: -35px;
-
-  }
-
-
-  header, .presentation-header, .header, .footer, footer {
-    display: none;
-  }
-}

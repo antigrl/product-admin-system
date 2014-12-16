@@ -1,12 +1,22 @@
 ﻿@media print {
-    .page_break {
-        page-break-after: always;
-        break-after: page;
-        display: table;
-    }
+
+  .page_break {
+    page-break-after: always;
+    break-after: page;
+    display: table;
+  }
+  .page_number {
+    display: block;
+    position: relative;
+    text-align: center;
+    margin-top: -35px;
+  }
+  .page_break+.page_break {
+    page-break-before: always;
+  }
 
 
-    .presentation-header, .header, .footer, footer {
-        display: none;
-    }
+  header, .presentation-header, .header, .footer, footer {
+    display: none;
+  }
 }
