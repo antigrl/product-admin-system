@@ -1,0 +1,14 @@
+<div class="text-field"
+     ng-class="{ 'text-field--is-valid': valid(),
+                 'text-field--has-error': error(),
+                 'text-field--is-disabled': disabled(),
+                 'text-field--fixed-label': fixedLabel(),
+                 'text-field--is-active': data.model || data.focused,
+                 'text-field--is-focused': data.focused,
+                 'text-field--label-hidden': fixedLabel() && data.model }">
+    <label class="text-field__label">
+        {{ label }}
+    </label>
+
+    <div ng-transclude="1"></div>
+</div>
