@@ -2,6 +2,7 @@
 
   .name-container a {
     text-decoration: none;
+    font-weight: bold;
   }
   .page_break {
     page-break-after: always;
