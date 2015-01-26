@@ -1,5 +1,8 @@
 ﻿@media print {
 
+  .name-container a {
+    text-decoration: none;
+  }
   .page_break {
     page-break-after: always;
     break-after: page;
