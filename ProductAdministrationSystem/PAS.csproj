@@ -246,6 +246,7 @@
   <ItemGroup>
     <Content Include="Content\main.css" />
     <Content Include="Content\print.css" />
+    <Content Include="Content\stylesheets\main.css" />
     <Content Include="Content\stylesheets\presentation.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -321,6 +322,7 @@
       <DependentUpon>NPREntities.edmx</DependentUpon>
       <LastGenOutput>NPREntities.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\stylesheets\main.css.map" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

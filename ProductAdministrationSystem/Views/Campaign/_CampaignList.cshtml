@@ -33,8 +33,8 @@
                         </div>
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", "Campaign", new { ReturnUrl = Url.Action("Index", "Home", new { id = item.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = item.CampaignID }, null) |
-                @Html.ActionLink("Archive", "Archive", "Campaign", new { ReturnUrl = Url.Action("Index", "Home", new { id = item.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = item.CampaignID }, null)
+                        @Html.ActionLink("Edit", "Edit", "Campaign", new { ReturnUrl = Url.Action("Index", "Home"), id = item.CampaignID }, null) |
+                        @Html.ActionLink("Archive", "Archive", "Campaign", new { ReturnUrl = Url.Action("Index", "Home"), id = item.CampaignID }, null)
                     </td>
                 </tr>
             }

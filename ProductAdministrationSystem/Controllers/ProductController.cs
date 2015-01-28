@@ -506,7 +506,6 @@ namespace PAS.Controllers
 
                 db.SaveChanges();
 
-
                 return RedirectToAction("Edit", new { id = product.ProductID, ReturnUrl = returnUrl });
             }
             else

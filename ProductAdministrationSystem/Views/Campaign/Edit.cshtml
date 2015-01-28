@@ -109,7 +109,7 @@
                                 </div>
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID}, null) |
+                                @Html.ActionLink("Edit", "Edit", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID}, null) |
                                 @Html.ActionLink("Archive", "Archive", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)
                             </td>
                         </tr>
