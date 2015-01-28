@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="~/Content/print.css">
 <div class="presentation-header">
     <h2>Campaign Presentation View - @Html.ActionLink("Back to Campaign", "Edit", new { id = Model.CampaignID })</h2>
-
     <div class="full-content">
         <h2>Presentation View Options</h2>
         <div class="left-third">
@@ -57,9 +56,10 @@
 @foreach (var majorCategory in ViewBag.MajorCategoryList)
 {
     productCount = 0;
+    var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
     <div class="major-category Category_@majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
         <h2 class="align-center">@majorCategory</h2>
-        @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0 ))
+        @foreach (var product in productList)
         {
             productCount++;
             <table class="index-table">
@@ -118,7 +118,6 @@
                                             </ul>
                                         </div>
                                     </td>
-
                                     <td style="border-top: 1px solid #000; border-left: 1px solid #000">
                                         <div class="questions-container">
                                             YES<br>
@@ -132,7 +131,10 @@
                                 <tr>
                                     <td style="border-top: 1px solid #000; border-right: 1px solid #000">
                                         <div class="country-container">
-                                            Made in @product.ProductCountryOfOrigin
+                                            @if (string.IsNullOrEmpty(product.ProductCountryOfOrigin) == false)
+                                            {
+                                                <span>Made in @product.ProductCountryOfOrigin</span>
+                                            }
                                         </div>
                                     </td>
                                     <td style="border-top: 1px solid #000;">
@@ -146,13 +148,13 @@
                     </tr>
                 </tbody>
             </table>
-            if (productCount % 8 == 0)
+            if (productCount % 8 == 0 && productCount != productList.Count())
             {
-            <div class="page_break">
-                &nbsp;
-
-            </div>
-            <div class="page_number"><span></span></div>
+                <div class="page_break">
+                    &nbsp;
+                </div>
+                <div class="page_number"><span></span></div>
+                <h2>&nbsp;</h2>
             }
         }
 
@@ -160,7 +162,6 @@
         // if the product count is not even add an empty box
         if (productCount % 2 != 0)
         {
-
             <table class="index-table">
                 <div style="display: none;">data</div>
             </table>
@@ -168,7 +169,6 @@
         }
         <div class="page_break">
             &nbsp;
-
         </div>
         <div class="page_number"><span></span></div>
     </div>

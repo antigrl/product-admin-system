@@ -164,13 +164,10 @@
 
     $(".major-catgory-checkbox").change(function () {
         var value = $(this).val();
-        if ($(this).attr("checked")) {
-            $("." + value).toggle();
-        }
         $("." + value).toggle();
     });
 
-    $(".starting-page-number").keyup(function () {
+    $(".starting-page-number").change(function () {
         ShowPrintNumbers();
     });
 
