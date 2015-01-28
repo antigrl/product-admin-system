@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="~/Content/print.css">
 <div class="presentation-header">
     <h2>Campaign Presentation View - @Html.ActionLink("Back to Campaign", "Edit", new { id = Model.CampaignID })</h2>
+
     <div class="full-content">
         <h2>Presentation View Options</h2>
         <div class="left-third">
@@ -108,7 +109,14 @@
                                             @product.ProductDescription
                                         </div>
                                     </td>
-                                    <td style="border-top: 1px solid #000; border-left: 1px solid #000">
+                            <td style="border-top: 1px solid #000; border-left: 1px solid #000;">
+                                <table style="padding: 0; vertical-align: middle; height: 75px;">
+                                    <tr style="border-bottom: 1px solid #000; vertical-align: middle; height: 15px;">
+                                        <td style="vertical-align: middle;">Price</td>
+                                        <td>Approved</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
                                         <div class="price-tiers">
                                             <ul>
                                                 @foreach (var sellPrice in product.ProductSellPrices.OrderBy(s => s.SellPriceLevel))
@@ -118,13 +126,18 @@
                                             </ul>
                                         </div>
                                     </td>
-                                    <td style="border-top: 1px solid #000; border-left: 1px solid #000">
+                                    <td style="border-left: 1px solid #000">
                                         <div class="questions-container">
                                             YES<br>
                                             NO<br>
                                             MAYBE<br>
                                         </div>
                                     </td>
+                                </tr>
+                            </table>
+                        </td>
+
+
                                 </tr>
                             </table>
                             <table>
@@ -150,10 +163,10 @@
             </table>
             if (productCount % 8 == 0 && productCount != productList.Count())
             {
-                <div class="page_break">
-                    &nbsp;
-                </div>
-                <div class="page_number"><span></span></div>
+            <div class="page_break">
+                &nbsp;
+            </div>
+            <div class="page_number"><span></span></div>
                 <h2>&nbsp;</h2>
             }
         }
