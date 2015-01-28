@@ -662,6 +662,8 @@ input, textarea {
     }
 
 .major-category {
+    display: block;
+    position: relative;
 }
 
     .major-category h2 {

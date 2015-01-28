@@ -58,7 +58,7 @@ int productCount = 0;
 {
     productCount = 0;
     <div class="major-category Category_@majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
-        <h2 class="align-center">@majorCategory</h2>
+        <div class="align-ceter"><input type="text" placeholder="@majorCategory" class="major-title"></div>
         @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0 ))
         {
         productCount++;
