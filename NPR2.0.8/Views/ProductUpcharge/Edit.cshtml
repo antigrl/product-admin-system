@@ -8,14 +8,14 @@
 
 <h2>Edit Product Upcharge</h2>
 
-@using(Html.BeginForm())
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     
     <fieldset class="left-half-content">
         <legend>ProductUpcharge</legend>
-        
+
         @Html.HiddenFor(model => model.UpchargeID)
         @Html.HiddenFor(model => model.UpchargeStatus)
 
@@ -55,7 +55,7 @@
             <input type="submit" value="Save" />
         </p>
         <div>
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
         </div>
     </fieldset>
 }

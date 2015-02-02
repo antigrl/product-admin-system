@@ -17,7 +17,7 @@ namespace NPR2._0._8.Controllers
         // GET: /AuditTrail/
         public ActionResult Index()
         {
-            return View(db.AuditTrails.ToList());
+            return View(db.AuditTrails.OrderByDescending(a => a.AuditTrailTimeStamp).ToList());
         }
 
         //

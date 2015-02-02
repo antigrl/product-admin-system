@@ -1,54 +1,54 @@
 ﻿﻿<!DOCTYPE html>
 <html lang="en" ng-app="nprApp">
 <head>
-  <meta charset="utf-8" />
-  <title>@ViewBag.Title - NPR</title>
-  <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-  <meta name="viewport" content="width=device-width" />
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  @Styles.Render("~/Content/css")
-  @Scripts.Render("~/bundles/modernizr")
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - NPR</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-  <nav class="collapsed main">
-    <a class="open"></a>
-
-    <div>
-      <header>
-        <a></a>
-        <img src="Content/themes/base/images/logo.png" class="thumb">
-        <span>@User.Identity.Name</span>
-      </header>
-    </div>
-    <ul>
-      <li class="section"><span>Navigation</span></li>
-      <li>@Html.ActionLink("Home", "Index", "Home")</li>
-      <li>@Html.ActionLink("Add New Company", "Create", "Company", new { ReturnUrl = Url.Action("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }) }, null)</li>
-      <li>@Html.ActionLink("Add New Campaign", "Create", "Campaign")</li>
-      <li>@Html.ActionLink("Vendor List", "Index", "VendorName")</li>
-      <li>@Html.ActionLink("Fee List", "Index", "FeeName")</li>
-    </ul>
-  </nav>
-
-  <main class="collapsed">
-
-
-    <div id="body">
-
-        @RenderBody()
-
-    </div>
-  </main>
-  <footer class="collapsed">
-    <nav>
-      <a href="#">Home</a>
+    <nav class="collapsed main">
+        <a class="open"></a>
+        <div>
+            <header>
+                <a></a>
+                <img src="@Url.Content("~/Content/themes/base/images/logo.png")" class="thumb">
+                <span>@User.Identity.Name</span>
+            </header>
+        </div>
+        <ul>
+            <li class="section"><span>Navigation</span></li>
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li>@Html.ActionLink("Add New Company", "Create", "Company", new { ReturnUrl = Url.Action("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }) }, null)</li>
+            <li>@Html.ActionLink("Add New Campaign", "Create", "Campaign")</li>
+            <li>@Html.ActionLink("Vendor List", "Index", "VendorName")</li>
+            <li>@Html.ActionLink("Fee List", "Index", "FeeName")</li>
+            @if (User.Identity.Name.ToLower().Contains("john.grabanski") ||
+                    User.Identity.Name.ToLower().Contains("rhonda.viviano") ||
+                    User.Identity.Name.ToLower().Contains("reid.binns") ||
+                    User.Identity.Name.ToLower().Contains("susan.kowelman") ||
+                    User.Identity.Name.ToLower().Contains("kim.walta"))
+            {
+                <li>@Html.ActionLink("Admin Links", "AdminLinks", "Home")</li>
+            }
+        </ul>
     </nav>
-
-    <p>&copy; @DateTime.Now.Year - GatewayCDI - NPR</p>
-
-  </footer>
-
-  @Scripts.Render("~/bundles/npr")
-  @RenderSection("scripts", required: false)
+    <main class="collapsed">
+        <div id="body">
+            @RenderSection("featured", required: false)
+            @RenderBody()
+        </div>
+    </main>
+    <footer class="collapsed">
+        <nav>
+            <a href="#">Home</a>
+        </nav>
+        <p>&copy; @DateTime.Now.Year - GatewayCDI - NPR</p>
+    </footer>
+    @Scripts.Render("~/bundles/npr")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

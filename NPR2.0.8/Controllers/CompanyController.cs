@@ -89,8 +89,9 @@ namespace NPR2._0._8.Controllers
 
         //
         // GET: /Company/Edit/5
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(string returnUrl, int id = 0)
         {
+            ViewBag.ReturnUrl = returnUrl;
             Company company = db.Companies.Find(id);
             if (company == null)
             {
@@ -103,7 +104,7 @@ namespace NPR2._0._8.Controllers
         // POST: /Company/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Company company, HttpPostedFileBase CompanyImage)
+        public ActionResult Edit(Company company, HttpPostedFileBase CompanyImage, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -136,7 +137,11 @@ namespace NPR2._0._8.Controllers
                 var current = db.Companies.Find(company.CompanyID);
                 db.Entry(current).CurrentValues.SetValues(company);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                if (returnUrl == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                return Redirect(returnUrl);
             }
             return View(company);
         }
