@@ -11,7 +11,7 @@ table {
   box-sizing: border-box;
 }
 table.index-table:nth-child(odd) {
-  float: right;
+  float: left;
 }
 table.index-table:nth-child(even) {
   float: left;
