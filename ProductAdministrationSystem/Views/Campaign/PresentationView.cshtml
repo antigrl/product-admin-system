@@ -61,12 +61,10 @@
     <div class="major-category Category_@majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
 
         <div class="align-ceter">
-            <input type="text" placeholder="@majorCategory" class="major-title">
+            <input type="text" value="@majorCategory" class="major-title">
         </div>
 
-
         @foreach (var product in productList)
-
         {
             productCount++;
             <table class="index-table">
@@ -142,8 +140,6 @@
                                             </tr>
                                         </table>
                                     </td>
-
-
                                 </tr>
                             </table>
                             <table>
@@ -173,7 +169,9 @@
                     &nbsp;
                 </div>
                 <div class="page_number"><span></span></div>
-                <h2 class="align-center">@majorCategory</h2>
+                <div class="align-ceter">
+                    <input type="text" value="@majorCategory" class="major-title">
+                </div>
             }
         }
 
