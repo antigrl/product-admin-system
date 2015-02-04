@@ -86,7 +86,7 @@
                                             @Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)
                                         </div>
                                     </td>
-                                    <td style="border-left: 1px solid #000;">
+                                    <td style="border-left: 1px solid #000; border-right: 2px solid #000;">
                                         <div class="icon-container">
                                             <ul>
                                                 <li class="dish" style="display: none;">
@@ -113,7 +113,7 @@
                                             @product.ProductDescription
                                         </div>
                                     </td>
-                                    <td style="border-top: 1px solid #000; border-left: 1px solid #000;">
+                                    <td style="border-top: 1px solid #000; border-left: 1px solid #000; border-right: 1px solid #000;">
                                         <table style="padding: 0; vertical-align: middle; height: 75px;">
                                             <tr style="border-bottom: 1px solid #000; vertical-align: middle; height: 15px;">
                                                 <td style="vertical-align: middle;">Price</td>
@@ -130,7 +130,7 @@
                                                         </ul>
                                                     </div>
                                                 </td>
-                                                <td style="border-left: 1px solid #000">
+                                                <td style="border-left: 1px solid #000; border-right: 1px solid #000;">
                                                     <div class="questions-container">
                                                         YES<br>
                                                         NO<br>
@@ -152,7 +152,7 @@
                                             }
                                         </div>
                                     </td>
-                                    <td style="border-top: 1px solid #000;">
+                                    <td style="border-top: 1px solid #000; border-right: 2px solid #000;">
                                         <div class="moq-container">
                                             MOQ: @product.ProductVendorMinimumOrder
                                         </div>
