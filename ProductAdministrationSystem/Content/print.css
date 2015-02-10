@@ -1,28 +1,28 @@
-﻿@media print {
+﻿@media print {    
+    .name-container a {
+        text-decoration: none;
+        font-weight: bold;
+    }
 
+    .page_break {
+        page-break-after: always;
+        break-after: page;
+        display: table;
+    }
 
-  .name-container a {
-    text-decoration: none;
-    font-weight: bold;
-  }
-  .page_break {
-    page-break-after: always;
-    break-after: page;
-    display: table;
-  }
-  .page_number {
-    display: block;
-    position: relative;
-    text-align: center;
-    margin-top: -25px;
-    padding-bottom: 30px;
-  }
-  .page_break+.page_break {
-    page-break-before: always;
-  }
+    .page_number {
+        display: block;
+        position: relative;
+        text-align: center;
+        margin-top: -25px;
+        padding-bottom: 30px;
+    }
 
+    .page_break + .page_break {
+        page-break-before: always;
+    }
 
-  header, .presentation-header, .header, .footer, footer {
-    display: none;
-  }
+    header, .presentation-header, .header, .footer, footer {
+        display: none;
+    }
 }
