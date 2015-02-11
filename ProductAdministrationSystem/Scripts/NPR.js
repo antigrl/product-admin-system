@@ -190,26 +190,13 @@
     ShowFeeInputBasedOnType();
 
     function ShowPrintNumbers() {
-        var skipPages = GetPageSkipCountBasedOnHiddenCategories()
         var startingPageNumber = $(".starting-page-number").val();
-        startingPageNumber = startingPageNumber - skipPages;
-        $(".page_number span").each(function () {
-            $(this).text("Page " + startingPageNumber);
-            startingPageNumber++;
-        });
-    }
-
-    function GetPageSkipCountBasedOnHiddenCategories()
-    {
-        var hiddenPageCount = 0;
-        $(".major-category").each(function () {
-            if ($(this).is(":visible") == false) {
-                $(this).find(".page_break").each(function () {
-                    hiddenPageCount++;
-                });
+        $(".page_number").each(function () {
+            if ($(this).is(":visible") == true) {
+                $(this).find("span").text("Page " + startingPageNumber);
+                startingPageNumber++;
             }
         });
-        return hiddenPageCount;
     }
 
     function ShowFeeInputBasedOnType() {
