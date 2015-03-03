@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PASModels
+namespace PAS.Models
 {
     using System;
     using System.Data.Entity;

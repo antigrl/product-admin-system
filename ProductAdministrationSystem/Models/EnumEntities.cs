@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace PASModels
+namespace PAS.Models
 {
     public class EnumNPREntities
     {

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace PASModels
+namespace PAS.Models
 {
     [MetadataType(typeof(AuditTrailMetadata))]
     public partial class AuditTrail

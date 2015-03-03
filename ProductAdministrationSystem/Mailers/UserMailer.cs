@@ -1,5 +1,5 @@
 using Mvc.Mailer;
-using PASModels;
+using PAS.Models;
 using System;
 using System.Collections.Generic;
 

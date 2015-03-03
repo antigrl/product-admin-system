@@ -60,9 +60,6 @@ C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NP
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8\obj\Debug\NPR2.0.8.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\NPR2.0.8\NPR2.0.8\obj\Debug\NPR2.0.8.pdb
-C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\bin\NPR2.0.8.dll.config
-C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\bin\NPR2.0.8.dll
-C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\bin\NPR2.0.8.pdb
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\bin\Antlr3.Runtime.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\bin\EntityFramework.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\bin\Microsoft.Data.Edm.dll
@@ -121,8 +118,6 @@ C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\Pr
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\obj\Debug\PAS.csprojResolveAssemblyReference.cache
-C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\obj\Debug\NPR2.0.8.dll
-C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\obj\Debug\NPR2.0.8.pdb
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem\bin\NPR2.0.8.dll
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem\bin\NPR2.0.8.pdb
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem\bin\Antlr3.Runtime.dll
@@ -185,3 +180,8 @@ C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem\bin\zh-Hant\Sys
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem\obj\Debug\PAS.csprojResolveAssemblyReference.cache
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem\obj\Debug\NPR2.0.8.dll
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem\obj\Debug\NPR2.0.8.pdb
+C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\bin\PAS.dll.config
+C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\bin\PAS.dll
+C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\bin\PAS.pdb
+C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\obj\Debug\PAS.dll
+C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem\obj\Debug\PAS.pdb
