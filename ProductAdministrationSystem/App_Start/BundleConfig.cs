@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace NPR2._0._8
+namespace PAS
 {
     public class BundleConfig
     {
