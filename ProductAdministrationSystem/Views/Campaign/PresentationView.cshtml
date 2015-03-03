@@ -57,7 +57,7 @@
 @foreach (var majorCategory in ViewBag.MajorCategoryList)
 {
     productCount = 0;
-    var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory).OrderBy(p => p.Category1 != null ? p.Category1.CategoryName : "");
+    var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
     <div class="major-category Category_@majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
 
         <div class="align-ceter">
