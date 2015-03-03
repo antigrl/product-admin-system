@@ -47,7 +47,7 @@
         </p>
 
         <div>
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
         </div>
     </fieldset>
 }

@@ -1,34 +1,38 @@
 ﻿@model PAS.Models.FeeName
 
 @{
-    ViewBag.Title = "Archive FeeName";
+ViewBag.Title = "Archive FeeName";
 }
+<div class="heading">
+    <h1>Archive FeeName
+    </h1>
+</div>
 
-<h2>Archive FeeName</h2>
+<div class="flex-grid">
+    <section>
 
-<h3>Are you sure you want to archive this FeeName?</h3>
-<fieldset>
-    <legend>FeeName</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.FeeNameName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FeeNameName)
-    </div>
+        <h2>Are you sure you want to archive this FeeName?</h2>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.FeeNameType)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FeeNameType)
-    </div>
 
-</fieldset>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Archive" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-}
+
+        <p>
+            <strong>@Html.DisplayNameFor(model => model.FeeNameName)</strong><br>
+            @Html.DisplayFor(model => model.FeeNameName)
+        </p>
+        <br>
+
+        <p><strong>@Html.DisplayNameFor(model => model.FeeNameType)</strong><br>
+            @Html.DisplayFor(model => model.FeeNameType)
+        </p>
+
+        <br>
+        @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <p>
+            <input type="submit" class="button green" value="Archive" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+</section>
+</div>

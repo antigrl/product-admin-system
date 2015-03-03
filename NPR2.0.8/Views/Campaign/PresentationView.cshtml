@@ -1,0 +1,90 @@
+﻿@model NPRModels.Campaign
+@using NPR2._0._8.Helpers;
+@using NPRModels;
+@{
+ViewBag.Title = "Presentation View";
+string archived = MyExtensions.GetEnumDescription(Status.Archived);
+int count = Model.Products.Where(p => p.ProductStatus != archived).Count();
+}
+<div class="print">
+
+  <div class="heading">
+    <h1>
+      @Html.DisplayFor(model => model.Company.CompanyName)
+      <div class="heading-info">
+        <strong>@Html.DisplayNameFor(model => model.CampaignName):</strong> @Html.DisplayFor(model => model.CampaignName)
+      </div>
+    </h1>
+  </div>
+  <div class="top-wrapper">
+    <div class="flex-grid">
+
+      <section class="seamless">
+        <span>
+          @Html.DisplayFor(model => model.CampaignProductCount)
+        </span>
+        <h3>@Html.DisplayNameFor(model => model.CampaignProductCount)</h3>
+      </section>
+
+      <section class="seamless">
+        <span>@count</span>
+        <h3>Actual Product Count</h3>
+      </section>
+    </div>
+
+    <div class="flex-grid">
+      <nav class="sub-nav">
+        <ul>
+          <li>@Html.ActionLink("Products", "Edit", new { id = Model.CampaignID })</li>
+          <li class="active">@Html.ActionLink("Presentation View", "PresentationView", new { id = Model.CampaignID })</li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+</div><!-- /Hide from print -->
+
+<div class="flex-grid">
+  <section id="tblExport">
+    @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.Category.CategoryName))
+    {
+
+    <div class="presentation-container">
+      <div class="headings">NPR ID - @product.ProductID</div>
+      <div class="headings">@Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)</div>
+      <div class="headings">@product.Category.CategoryName</div>
+      <div class="headings">@product.ProductCountryOfOrigin</div>
+      <div class="headings"></div>
+
+
+    </div>
+
+    <div class="presentation-items">
+      <div class="product-image">
+        <div class="image">
+          @if (product.ProductImage != null)
+          {
+          <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
+        }
+      </div>
+    </div>
+    <div>@product.ProductDescription</div>
+    <div>
+      @{
+      List<ProductSellPrice> sellPrices = product.ProductSellPrices.OrderBy(s => s.SellPriceLevel).ToList();
+      }
+      @for (int index = 0; index < sellPrices.Count; index++)
+      {
+      <ul>
+        <li><strong>@sellPrices[index].SellPriceName.Replace(Model.Company.CompanyName, "").Replace("/", "/ "): </strong>
+          @sellPrices[index].SellPriceFinalAmount.ToString("c")</li>
+        </ul>
+      }
+  </div>
+  <div></div>
+  <div></div>
+</div>
+}
+</section>
+</div>
+

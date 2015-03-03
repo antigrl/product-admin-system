@@ -1,0 +1,31 @@
+﻿@model IEnumerable<NPRModels.Campaign>
+@using NPRModels;
+@using NPR2._0._8.Helpers;
+
+<table class="index-table">
+    @foreach (var item in Model)
+    {
+        string returnLink = Url.Action("Index", "Home", new { id = item.CompanyID, ReturnUrl = ViewBag.ReturnUrl });
+        <tr>
+            <td>
+                <div class="editor-label">
+                    @Html.DisplayFor(model => item.CampaignName)
+                </div>
+            </td>
+            <td>
+                <div class="campaign-status">
+                    @Html.DisplayFor(model => item.CampaignStatus)
+                </div>
+            </td>
+            <td>
+                <div class="editor-label">
+                    @Html.DisplayFor(model => item.CampaignCreatedOnDate)
+                </div>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Campaign", new { ReturnUrl = returnLink, id = item.CampaignID }, null) |
+                @Html.ActionLink("Archive", "Archive", "Campaign", new { ReturnUrl = returnLink, id = item.CampaignID }, null)
+            </td>
+        </tr>
+    }
+</table>

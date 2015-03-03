@@ -15,7 +15,7 @@ namespace PAS.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Message = "From here you can view the Company and Campaign lists as well as view the list of Vendor Names";
+            ViewBag.Message = "";
 
             ViewBag.Companies = db.Companies.Where(c => c.CompanyStatus != archived)
                                         .OrderBy(c => c.CompanyDivisionNumber).ToList();
@@ -41,6 +41,15 @@ namespace PAS.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Back(string returnUrl)
+        {
+            if (returnUrl == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return Redirect(returnUrl);
         }
     }
 }

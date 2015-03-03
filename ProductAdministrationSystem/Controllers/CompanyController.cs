@@ -89,8 +89,9 @@ namespace PAS.Controllers
 
         //
         // GET: /Company/Edit/5
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(string returnUrl, int id = 0)
         {
+            ViewBag.ReturnUrl = returnUrl;
             Company company = db.Companies.Find(id);
             if (company == null)
             {
@@ -103,7 +104,7 @@ namespace PAS.Controllers
         // POST: /Company/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Company company, HttpPostedFileBase CompanyImage)
+        public ActionResult Edit(Company company, HttpPostedFileBase CompanyImage, string returnUrl)
         {
             string preSaveStatus = db.Companies.Where(c => c.CompanyID == company.CompanyID).Select(c => c.CompanyStatus).FirstOrDefault();
 
@@ -138,7 +139,11 @@ namespace PAS.Controllers
                 var current = db.Companies.Find(company.CompanyID);
                 db.Entry(current).CurrentValues.SetValues(company);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                if (returnUrl == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                return Redirect(returnUrl);
             }
             return View(company);
         }

@@ -1,48 +1,62 @@
-﻿@model IEnumerable<PAS.Models.FeeName>
+﻿@model IEnumerable<NPRModels.FeeName>
+@using NPR2._0._8.Helpers;
+@using NPRModels;
 
 @{
-    ViewBag.Title = "Fee Name Index";
+ViewBag.Title = "Fee Index";
 }
 
-<h2>Fee Name Index</h2>
+<div class="heading">
+  <h1>Fee Index
+    @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+    {
+    <div class="heading-info">@Html.ActionLink("Active Fees", "Index")</div>
+  }
+  else
+  {
+  <div class="heading-info">@Html.ActionLink("Archived Fees", "ArchivedIndex")</div>
+}
+</h1>
 
-<div class="left-half-content">
-    <p>
-        @Html.ActionLink("Create New Fee Name", "Create")
-        @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
-        {
-            <span class="float-right">@Html.ActionLink("View Active Fee Names", "Index")</span>
-        }
-        else
-        {
-            <span class="float-right">@Html.ActionLink("View Archived Fee Names", "ArchivedIndex")</span>
-        }
-    </p>
-    <table class="index-table">
+</div>
+
+@{
+FeeName feeName = new FeeName();
+feeName.OnCreate();
+Html.RenderPartial("_CreateOnIndex", feeName);
+}
+<div class="flex-grid">
+  <section>
+    <table datatable="">
+      <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FeeNameName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FeeNameType)
-            </th>
-            <th></th>
+          <th>
+            @Html.DisplayNameFor(model => model.FeeNameName)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.FeeNameType)
+          </th>
+          <th>Modify</th>
         </tr>
-
+      </thead>
+      <tbody>
         @foreach(var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FeeNameName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FeeNameType)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.FeeNameID }) |
-                    @Html.ActionLink("Archive", "Archive", new { id = item.FeeNameID })
-                </td>
-            </tr>
-        }
-    </table>
+        <tr>
+          <td>
+            @Html.DisplayFor(modelItem => item.FeeNameName)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.FeeNameType)
+          </td>
+          <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.FeeNameID }) |
+            @Html.ActionLink("Archive", "Archive", new { id = item.FeeNameID })
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>
 </div>
+
