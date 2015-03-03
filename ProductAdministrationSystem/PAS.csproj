@@ -246,6 +246,7 @@
   <ItemGroup>
     <Content Include="Content\main.css" />
     <Content Include="Content\print.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\stylesheets\main.css" />
     <Content Include="Content\stylesheets\presentation.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
