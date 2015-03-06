@@ -929,6 +929,44 @@ namespace PAS.Controllers
             return Redirect(returnUrl);
         }
 
+        //
+        // GET: /Product/UnArchive/5
+        public ActionResult UnArchive(string returnUrl, int id = 0)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            Product product = db.Products.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
+        }
+
+        //
+        // POST: /Product/UnArchive/5
+        [HttpPost, ActionName("UnArchive")]
+        [ValidateAntiForgeryToken]
+        public ActionResult UnArchiveConfirmed(int id, string returnUrl)
+        {
+            Product product = db.Products.Find(id);
+
+            // Archive Product
+            product.ProductStatus = MyExtensions.GetEnumDescription(Status.Active);
+            db.Entry(product).State = EntityState.Modified;
+
+            // Add Audit Entry 
+            AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "UnArchive");
+            db.AuditTrails.Add(audit);
+
+            db.SaveChanges();
+
+            if (returnUrl == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return Redirect(returnUrl);
+        }
+
         protected override void Dispose(bool disposing)
         {
             db.Dispose();

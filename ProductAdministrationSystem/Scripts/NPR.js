@@ -156,6 +156,10 @@
         $(".company-fees").toggle();
     });
 
+    $(".toggle-archived-products").click(function () {
+        $(".archived-products").toggle();
+    });
+
     // Presentation view functions
     $(".pricing-tier-checkbox").change(function () {
         var value = $(this).val();

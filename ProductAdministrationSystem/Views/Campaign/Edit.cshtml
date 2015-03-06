@@ -75,6 +75,40 @@
                 <span>@Html.EditorFor(model => model.CampaignCreatedOnDate)</span>
                 @Html.ValidationMessageFor(model => model.CampaignCreatedOnDate)
             </div>
+            <button type="button" class="toggle-archived-products">Show/Hide Archived Product List</button>
+            <table class="index-table index-table-blue archived-products" hidden>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                @foreach (var product in Model.Products.Where(p => p.ProductStatus == MyExtensions.GetEnumDescription(Status.Archived)))
+                {
+                    <tr>
+                        <td>
+                            <div class="editor-label">
+                                @Html.DisplayFor(model => product.ProductID)
+                            </div>
+                        </td>
+                        <td>
+                            <div class="editor-label">
+                                @Html.DisplayFor(model => product.ProductName)
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                @Html.DisplayFor(model => product.ProductStatus)
+                            </div>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null) |
+                            @Html.ActionLink("UnArchive", "UnArchive", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)
+                        </td>
+                    </tr>
+                }
+            </table>
+
         </div>
 
         <div class="right-half-content">
