@@ -117,6 +117,14 @@ select {
 }
 
 /* Table Styles */
+
+.index-table-blue th {
+  background-color: blue !important;
+  font-size: 1.2em;
+  color: white;
+  padding: 5px 5px 5px 0px;
+}
+
 .index-table {
   width: 100%;
 }
