@@ -131,7 +131,6 @@ C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\Mvc.Mailer.dll
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\NPR2.0.8.dll
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\System.Spatial.dll
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\System.Web.Helpers.dll
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\System.Web.Http.OData.dll
@@ -142,7 +141,6 @@ C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\System.Web.WebPages.Razor.dll
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\EntityFramework.dll
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\System.Web.Optimization.dll
-C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\NPR2.0.8.pdb
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\System.Web.Helpers.xml
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\System.Web.Mvc.xml
@@ -187,3 +185,5 @@ C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\obj\Debug
 C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\obj\Debug\NPR2.0.8.Tests.pdb
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem.Tests\bin\Debug\PAS.dll
 C:\Users\john.grabanski\Desktop\Local Development Repositories\Internal Sites\ProductAdministrationSystem\ProductAdministrationSystem.Tests\bin\Debug\PAS.pdb
+C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\PAS.dll
+C:\Users\Kim.Walta\Desktop\repos\pas\ProductAdministrationSystem.Tests\bin\Debug\PAS.pdb
