@@ -7,7 +7,7 @@
     int count = Model.Products.Where(p => p.ProductStatus != archived).Count();
     int productCount = 0;
 }
-<link rel="stylesheet" href="~/Content/stylesheets/presentation.css">
+<link rel="stylesheet" href="~/Content/presentation.css">
 <link rel="stylesheet" href="~/Content/print.css">
 <div class="presentation-header">
     <h2>Campaign Presentation View - @Html.ActionLink("Back to Campaign", "Edit", new { id = Model.CampaignID })</h2>

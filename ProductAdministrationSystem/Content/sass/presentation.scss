@@ -1,73 +1,69 @@
 .index-table {
   border: 1px solid #000;
   height: 122px;
-  width: 49.9% !important;
-}
+  width: 49.9% !important; }
 
 table {
   margin: 0;
   table-layout: fixed;
   text-align: center;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
+
 table.index-table:nth-child(odd) {
-  float: left;
-}
+  float: left; }
+
 table.index-table:nth-child(even) {
-  float: left;
-}
+  float: left; }
 
 td {
-  padding: 0;
-}
+  padding: 0; }
 
 .hidden {
-  display: none;
-}
+  display: none; }
+
 .image-container {
   width: 110px;
   height: 112px;
-  border-right: 1px solid #000;
-}
+  border-right: 1px solid #000; }
+
 .name-container {
   height: 18px;
   width: 204px;
-  overflow: hidden;
-}
+  overflow: hidden; }
+
 .icon-container {
   width: 156px;
   height: 18px;
-  padding: 5px 0;
-  ul {
+  padding: 5px 0; }
+  .icon-container ul {
     margin: 0;
     padding: 0;
-    list-style-type: none;
-    li { display: inline-block; }
-  }
+    list-style-type: none; }
+    .icon-container ul li {
+      display: inline-block; }
 
-}
 .description-container {
   width: 204px;
   height: 75px;
   overflow: hidden;
-  border: none;
-}
+  border: none; }
 
 .price-tiers {
-  width: 78px;
-  ul { margin: 0; padding: 0; }
-  li { list-style: none; }
-}
+  width: 78px; }
+  .price-tiers ul {
+    margin: 0;
+    padding: 0; }
+  .price-tiers li {
+    list-style: none; }
 
 .questions-container {
-  width: 78px;
-}
+  width: 78px; }
 
 .country-container {
   width: 204px;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .moq-container {
-  width: 156px;
-}
+  width: 156px; }
+
+/*# sourceMappingURL=presentation.css.map */

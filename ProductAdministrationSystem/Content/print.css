@@ -1,19 +1,28 @@
 @media print {
-  @page {
-    margin: .3in .3in .3in .4in; }
   body {
-    background-color: #fff;
-    width: 100%; }
+    font-size: 8px; }
 
-  main {
-    padding: 0; }
+  .name-container a {
+    text-decoration: none;
+    font-weight: bold; }
 
-  table:nth-child(12) {
-    margin-bottom: 30px; }
+  .page_break {
+    page-break-after: always;
+    break-after: page;
+    display: table; }
 
-  nav, .print, footer {
-    display: none;
-    width: 0; }
+  .page_number {
+    display: block;
+    position: relative;
+    text-align: center;
+    margin-top: -25px;
+    padding-bottom: 30px; }
+
+  .page_break + .page_break {
+    page-break-before: always; }
+
+  header, .presentation-header, .header, .footer, footer {
+    display: none; }
 
   .flex-grid {
     margin-left: -50px;
@@ -26,6 +35,11 @@
     .flex-grid > section:hover {
       border: none; }
 
-  .presentation-items {
-    margin-bottom: 0;
+  body {
+    background-color: #fff;
+    width: 100%; }
+
+  main {
     padding: 0; } }
+
+/*# sourceMappingURL=print.css.map */
