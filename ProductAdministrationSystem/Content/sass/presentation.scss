@@ -1,69 +1,185 @@
 .index-table {
   border: 1px solid #000;
   height: 122px;
-  width: 49.9% !important; }
+  width: 49.9% !important;
+}
 
 table {
   margin: 0;
   table-layout: fixed;
   text-align: center;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 table.index-table:nth-child(odd) {
-  float: left; }
+  float: left;
+}
 
 table.index-table:nth-child(even) {
-  float: left; }
+  float: left;
+}
 
 td {
-  padding: 0; }
+  padding: 0;
+}
 
 .hidden {
-  display: none; }
+  display: none;
+}
 
 .image-container {
   width: 110px;
   height: 112px;
-  border-right: 1px solid #000; }
+  border-right: 1px solid #000;
+}
 
 .name-container {
   height: 18px;
   width: 204px;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .icon-container {
   width: 156px;
   height: 18px;
-  padding: 5px 0; }
-  .icon-container ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none; }
-    .icon-container ul li {
-      display: inline-block; }
+  padding: 5px 0;
+}
+.icon-container ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.icon-container ul li {
+  display: inline-block;
+}
 
 .description-container {
   width: 204px;
   height: 75px;
   overflow: hidden;
-  border: none; }
+  border: none;
+}
 
 .price-tiers {
-  width: 78px; }
-  .price-tiers ul {
-    margin: 0;
-    padding: 0; }
-  .price-tiers li {
-    list-style: none; }
+  width: 78px;
+}
+.price-tiers ul {
+  margin: 0;
+  padding: 0;
+}
+.price-tiers li {
+  list-style: none;
+}
 
 .questions-container {
-  width: 78px; }
+  width: 78px;
+}
 
 .country-container {
   width: 204px;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 .moq-container {
-  width: 156px; }
+  width: 156px;
+}
 
-/*# sourceMappingURL=presentation.css.map */
+.starting-page-number {
+  width: 100%;
+  padding: 10px;
+}
+
+
+/// Define basic default for checkboxes. Do not use on its own - use mixins!
+%custom-form-buttons { // hide radio buttons/checkboxes
+  opacity: 0;
+  float: left;
+  width: 1px;
+  margin: 0;
+
+  + label {
+    position: relative;
+    margin: 0;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    color: #222;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      background: #ddd;
+      border: 1px solid #aaa;
+    }
+  }
+
+  &:checked + label {
+    color: #2ea34e;
+
+    &:before {
+      background: #3dc863;
+      border-color: darken(#3dc863, 10%)
+    }
+  }
+
+  &:disabled + label {
+    color: #ccc;
+
+    &:before {
+      background: fade-out(#ccc, .5);
+      border: 2px dotted #ccc;
+    }
+  }
+
+  &:focus + label {
+    box-shadow: inset 0 0 3px #eee;
+  }
+}
+
+
+// CALL THIS Default position: left. Override with @include custom-radio(right);
+@mixin custom-checkbox($position: left) {
+
+  input[type="checkbox"] {
+    @extend %custom-form-buttons;
+
+    + label {
+      padding-#{$position}: 50px;
+
+      &:before {
+        height: 24px;
+        width: 24px;
+        margin-top: -13px;
+        #{$position}: 10px;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+dl {
+  max-width: 350px;
+  text-align: left !important;
+
+  dt {
+    margin: 0 0 5px;
+    font-size: 18px;
+  }
+
+  dd {
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+}
+
+.check-list-left {
+  @include custom-checkbox;
+}
+
+.check-list-right {
+  @include custom-checkbox(right);
+}

@@ -24,3 +24,6 @@ app.controller('toggleController', function($scope) {
 app.run(function (DTDefaultOptions) {
   DTDefaultOptions.setDisplayLength(20);
 });
+
+
+
