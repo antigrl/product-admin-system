@@ -1,6 +1,11 @@
+.product-add-detail {
+  background-color: #fff;
+}
 .inline-left,
 .inline-middle,
 .inline-right {
+  padding: 10px;
+  margin: 0;
   @include span-columns(4);
   .controls {
     label {
@@ -20,18 +25,39 @@
     }
   }
 }
-  .inline-right {
-    @include omega;
-  }
+.inline-right {
+  @include omega;
+}
 
-  .edit-product {
-    .form-heading {
-      cursor: pointer;
-      .fa {
-        position: absolute;
-        color: red;
-        margin-top: 0px;
-        margin-left: 10px;
-      }
+.edit-product {
+  .form-heading {
+    cursor: pointer;
+    .fa {
+      position: absolute;
+      color: red;
+      margin-top: 0px;
+      margin-left: 10px;
     }
   }
+}
+
+.product-title-container {
+  background-color: $darkblue;
+  width: 100%;
+  padding: 10px;
+  ul {
+    float: left;
+    margin-right: 30px;
+  }
+  li {
+    display: inline-block;
+    label {
+      color: #fff;
+    }
+    input, select {
+      width: 250px !important;
+      margin-bottom: 0 !important;
+    }
+  }
+
+}

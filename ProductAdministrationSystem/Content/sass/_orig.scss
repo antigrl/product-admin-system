@@ -251,10 +251,12 @@
     margin: 0px;
     padding: 0px;
   }
-  img {
-    max-height: 100px;
-    max-width: 100px;
-    margin-left: 10px;
+  .image {
+    img {
+      max-height: 100px;
+      max-width: 100px;
+      margin-left: 10px;
+    }
   }
 }
 

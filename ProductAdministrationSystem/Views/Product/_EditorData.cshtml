@@ -3,15 +3,43 @@
 @using PAS.Helpers;
 
 
-<div class="flex-grid">
+<div class="flex-grid product-add-detail">
 
-  <div class="inline-left">
+  <div class="product-title-container">
+
+    <div class="controls">
+      <ul>
+        <li>
+          @Html.LabelForRequired(model => model.ProductName)
+          @Html.ValidationMessageFor(model => model.ProductName)
+        </li>
+        <li>@Html.EditorFor(model => model.ProductName)</li>
+      </ul>
+    </div>
+    <div class="controls">
+      <ul>
+        <li>
+          @Html.LabelForRequired(model => model.ProductItemEDP)
+          @Html.ValidationMessageFor(model => model.ProductItemEDP)
+        </li>
+        <li>
+          @Html.EditorFor(model => model.ProductItemEDP)
+        </li>
+      </ul>
+    </div>
+
     @if (Model == null)
     {
     <div class="controls">
-      @Html.LabelForRequired(model => model.CampaignID, "Campaign")
-      @Html.ValidationMessageFor(model => model.CampaignID)
-      @Html.DropDownList("CampaignID", ViewBag.Campaigns as SelectList, String.Empty)
+      <ul>
+        <li>
+          @Html.LabelForRequired(model => model.CampaignID, "Campaign")
+          @Html.ValidationMessageFor(model => model.CampaignID)
+        </li>
+        <li>
+          @Html.DropDownList("CampaignID", ViewBag.Campaigns as SelectList, String.Empty)
+        </li>
+      </ul>
     </div>
   }
   else
@@ -22,9 +50,15 @@
 @if (Model != null)
 {
   <div class="controls">
-    @Html.LabelForRequired(model => model.ProductStatus)
-    @Html.ValidationMessageFor(model => model.ProductStatus)
-    @Html.DropDownListFor(model => model.ProductStatus, MyExtensions.GetGenericEnumDropDown<Status>(), "")
+    <ul>
+      <li>
+        @Html.LabelForRequired(model => model.ProductStatus)
+        @Html.ValidationMessageFor(model => model.ProductStatus)
+      </li>
+      <li>
+        @Html.DropDownListFor(model => model.ProductStatus, MyExtensions.GetGenericEnumDropDown<Status>(), "")
+      </li>
+    </ul>
   </div>
 }
 else
@@ -33,23 +67,29 @@ else
   @Html.ValidationMessageFor(model => model.ProductStatus)
 }
 
-<div class="product-image">
-  <div class="controls">
-    @Html.LabelForRequired(model => model.ProductImage)
-    @Html.ValidationMessageFor(model => model.ProductImage)
+</div>
 
-    <div class="input-file-button">
-      Upload File<input type="file" class="input-file" name="ProductImage" id="ProductImage" />
-    </div>
-    @Html.HiddenFor(model => model.ProductImage)
-    @Html.HiddenFor(model => model.ProductImageType)
+<div class="inline-left">
+
+  <div class="product-image">
+    <div class="controls">
+      @Html.LabelForRequired(model => model.ProductImage)
+      @Html.ValidationMessageFor(model => model.ProductImage)
+
+      <div class="input-file-button">
+        Upload File<input type="file" class="input-file" name="ProductImage" id="ProductImage" />
+      </div>
+      @Html.HiddenFor(model => model.ProductImage)
+      @Html.HiddenFor(model => model.ProductImageType)
 
       @if (Model != null && Model.ProductImage != null)
       {
-      <img src="@Url.Action("Show", "Product", new { id = Model.ProductID })" />
+      <div class="image">
+        <img src="@Url.Action("Show", "Product", new { id = Model.ProductID })" />
+      </div>
     }
 
-</div>
+  </div>
 
 </div>
 
@@ -62,17 +102,6 @@ else
 </div>
 </div>
 <div class="inline-middle">
-  <div class="controls">
-    @Html.LabelForRequired(model => model.ProductName)
-    @Html.ValidationMessageFor(model => model.ProductName)
-    @Html.EditorFor(model => model.ProductName)
-  </div>
-
-  <div class="controls">
-    @Html.LabelForRequired(model => model.ProductDescription)
-    @Html.ValidationMessageFor(model => model.ProductDescription)
-    @Html.EditorFor(model => model.ProductDescription)
-  </div>
 
   <div class="controls">
     @Html.LabelForRequired(model => model.MajorCategoryID)
@@ -108,15 +137,10 @@ else
   @Html.EditorFor(model => model.ProductGatewayCDISKU)
 </div>
 
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductItemEDP)
-  @Html.ValidationMessageFor(model => model.ProductItemEDP)
-  @Html.EditorFor(model => model.ProductItemEDP)
-</div>
 </div>
 
-</div>
 
+</div>
 <div class="flex-grid">
   <article class="input-left">
     <div class="controls">
