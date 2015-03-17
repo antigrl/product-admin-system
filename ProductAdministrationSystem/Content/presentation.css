@@ -1,22 +1,26 @@
 .index-table {
   border: 1px solid #000;
   height: 122px;
-  width: 49.9% !important; }
+  width: 49.9% !important;
+  font-size: 12px !important; }
 
 table {
   margin: 0;
   table-layout: fixed;
   text-align: center;
-  box-sizing: border-box; }
-
-table.index-table:nth-child(odd) {
-  float: left; }
-
-table.index-table:nth-child(even) {
-  float: left; }
-
-td {
-  padding: 0; }
+  border-spacing: 0;
+  box-sizing: content-box; }
+  table.index-table:nth-child(odd) {
+    float: left; }
+  table.index-table:nth-child(even) {
+    float: left; }
+  table.index-table table {
+    border-spacing: 0; }
+  table td {
+    padding: 0;
+    box-sizing: content-box;
+    border-spacing: 0;
+    height: 21px; }
 
 .hidden {
   display: none; }
@@ -27,22 +31,19 @@ td {
   border-right: 1px solid #000; }
 
 .name-container {
-  height: 18px;
+  height: 16px;
   width: 204px;
   overflow: hidden; }
 
 .icon-container {
   width: 156px;
-  height: 18px;
-  padding: 5px 0; }
-
-.icon-container ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none; }
-
-.icon-container ul li {
-  display: inline-block; }
+  height: 16px; }
+  .icon-container ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+    .icon-container ul li {
+      display: inline-block; }
 
 .description-container {
   width: 204px;
@@ -52,13 +53,11 @@ td {
 
 .price-tiers {
   width: 78px; }
-
-.price-tiers ul {
-  margin: 0;
-  padding: 0; }
-
-.price-tiers li {
-  list-style: none; }
+  .price-tiers ul {
+    margin: 0;
+    padding: 0; }
+  .price-tiers li {
+    list-style: none; }
 
 .questions-container {
   width: 78px; }
@@ -135,5 +134,20 @@ dl {
     margin-top: -13px;
     right: 10px;
     border-radius: 4px; }
+
+.major-category {
+  text-align: center; }
+  .major-category .major-title {
+    display: block;
+    position: relative;
+    font-size: 1.75em;
+    border: none;
+    background: none;
+    padding: 0;
+    margin-bottom: 3px;
+    text-align: center;
+    width: 100%; }
+    .major-category .major-title::-webkit-input-placeholder {
+      color: #000; }
 
 /*# sourceMappingURL=presentation.css.map */

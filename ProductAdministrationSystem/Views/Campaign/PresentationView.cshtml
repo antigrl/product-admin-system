@@ -130,9 +130,9 @@ int productCount = 0;
               </td>
               <td style="border-top: 1px solid #000; border-left: 1px solid #000;">
                 <table style="padding: 0; vertical-align: middle; height: 75px; width: 100%;">
-                  <tr style="border-bottom: 1px solid #000; vertical-align: middle; height: 15px;">
-                    <td style="vertical-align: middle;">Price</td>
-                    <td>Approved</td>
+                  <tr style="height: 15px;">
+                    <td style="vertical-align: middle; border-bottom: 1px solid #000;">Price</td>
+                    <td style="vertical-align: middle; border-bottom: 1px solid #000;">Approved</td>
                   </tr>
                   <tr>
                     <td>
@@ -194,9 +194,11 @@ if (productCount % 8 == 0 && productCount != productList.Count())
 // if the product count is not even add an empty box
 if (productCount % 2 != 0)
 {
-  <table class="index-table">
-    <div style="display: none;">data</div>
-  </table>
+  <div style="display: none;">
+    <table class="index-table">
+
+    </table>
+  </div>
 }
 }
 <div class="page_break">

@@ -1,45 +1,26 @@
 @media print {
   body {
     font-size: 8px; }
-
-  .name-container a {
-    text-decoration: none;
-    font-weight: bold; }
-
-  .page_break {
-    page-break-after: always;
-    break-after: page;
-    display: table; }
-
-  .page_number {
-    display: block;
-    position: relative;
-    text-align: center;
-    margin-top: -25px;
-    padding-bottom: 30px; }
-
-  .page_break + .page_break {
-    page-break-before: always; }
-
-  header, .presentation-header, .header, .footer, footer {
-    display: none; }
-
-  .flex-grid {
-    margin-left: -50px;
-    width: 100%;
-    position: absolute; }
-
-  .flex-grid > section {
-    border: none;
-    padding: 0; }
-    .flex-grid > section:hover {
-      border: none; }
-
-  body {
-    background-color: #fff;
-    width: 100%; }
-
-  main {
-    padding: 0; } }
+    body .name-container a {
+      text-decoration: none;
+      font-weight: bold; }
+    body .page_break {
+      page-break-after: always;
+      break-after: page;
+      display: table; }
+    body .page_number {
+      display: block;
+      position: relative;
+      text-align: center;
+      margin-top: -25px;
+      padding-bottom: 30px; }
+    body .page_break + .page_break {
+      page-break-before: always; }
+    body header, body .presentation-header, body .header, body .footer, body footer,
+    body .heading, body .top-wrapper, body nav {
+      display: none; }
+    body .major-category {
+      margin-left: -70px;
+      margin-right: -20px; } }
 
 /*# sourceMappingURL=print.css.map */

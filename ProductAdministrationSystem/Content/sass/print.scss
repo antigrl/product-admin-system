@@ -1,51 +1,39 @@
 @media print {
+
   body {
     font-size: 8px;
-  }
-  .name-container a {
-    text-decoration: none;
-    font-weight: bold;
-  }
 
-  .page_break {
-    page-break-after: always;
-    break-after: page;
-    display: table;
-  }
-
-  .page_number {
-    display: block;
-    position: relative;
-    text-align: center;
-    margin-top: -25px;
-    padding-bottom: 30px;
-  }
-
-  .page_break + .page_break {
-    page-break-before: always;
-  }
-
-  header, .presentation-header, .header, .footer, footer {
-    display: none;
-  }
-  .flex-grid {
-    margin-left: -50px;
-    width: 100%;
-    position: absolute;
-
-  }
-  .flex-grid > section {
-    border: none;
-    padding: 0;
-    &:hover {
-      border: none;
+    .name-container a {
+      text-decoration: none;
+      font-weight: bold;
     }
-  }
-  body {
-    background-color: #fff;
-    width: 100%;
-  }
-  main {
-    padding: 0;
+    .page_break {
+      page-break-after: always;
+      break-after: page;
+      display: table;
+    }
+
+    .page_number {
+      display: block;
+      position: relative;
+      text-align: center;
+      margin-top: -25px;
+      padding-bottom: 30px;
+    }
+
+    .page_break + .page_break {
+      page-break-before: always;
+    }
+
+    header, .presentation-header, .header, .footer, footer,
+    .heading, .top-wrapper, nav {
+      display: none;
+    }
+
+    .major-category {
+      margin-left: -70px;
+      margin-right: -20px;
+    }
+
   }
 }
