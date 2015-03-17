@@ -1,11 +1,37 @@
-.edit-product {
-  .form-heading {
-    cursor: pointer;
-    .fa {
-      position: absolute;
-      color: red;
-      margin-top: 0px;
-      margin-left: 10px;
+.inline-left,
+.inline-middle,
+.inline-right {
+  @include span-columns(4);
+  .controls {
+    label {
+      width: 140px;
+    }
+    input[type="text"],
+    input[type="file"],
+    input[type="url"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    button,
+    textarea,
+    select {
+      width: 60% !important;
+      display: inline-block;
     }
   }
 }
+  .inline-right {
+    @include omega;
+  }
+
+  .edit-product {
+    .form-heading {
+      cursor: pointer;
+      .fa {
+        position: absolute;
+        color: red;
+        margin-top: 0px;
+        margin-left: 10px;
+      }
+    }
+  }
