@@ -92,51 +92,59 @@ else
   </div>
 
 </div>
-
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductSalesHistory)
-  @Html.ValidationMessageFor(model => model.ProductSalesHistory)
-  <div class="sales-textarea">
-    @Html.EditorFor(model => model.ProductSalesHistory)
-  </div>
-</div>
 </div>
 <div class="inline-middle">
-
   <div class="controls">
     @Html.LabelForRequired(model => model.MajorCategoryID)
     @Html.ValidationMessageFor(model => model.MajorCategoryID)
     @if (Model == null)
     {
     @Html.DropDownList("MajorCategoryID", ViewBag.MajorCategories as SelectList, String.Empty)
-  }
-  else
-  {
-  @Html.DropDownList("MajorCategoryID", ViewBag.MajorCategories as SelectList)
-}
-</div>
+    }
+    else
+    {
+    @Html.DropDownList("MajorCategoryID", ViewBag.MajorCategories as SelectList)
+    }
+    </div>
+    <div class="controls">
+      @Html.LabelForRequired(model => model.MinorCategoryID)
+      @Html.ValidationMessageFor(model => model.MinorCategoryID)
+      @if (Model == null || Model.MinorCategoryID == null)
+      {
+      @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList, String.Empty)
+    }
+    else
+    {
+      @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList)
+    }
+
+    </div>
+
+    <div class="controls">
+      @Html.LabelForRequired(model => model.ProductGatewayCDISKU)
+      @Html.ValidationMessageFor(model => model.ProductGatewayCDISKU)
+      @Html.EditorFor(model => model.ProductGatewayCDISKU)
+    </div>
 </div>
 <div class="inline-right">
+
+
   <div class="controls">
-    @Html.LabelForRequired(model => model.MinorCategoryID)
-    @Html.ValidationMessageFor(model => model.MinorCategoryID)
-    @if (Model == null || Model.MinorCategoryID == null)
-    {
-    @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList, String.Empty)
-  }
-  else
-  {
-  @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList)
-}
-
+    @Html.LabelForRequired(model => model.ProductDescription)
+    @Html.EditorFor(model => model.ProductDescription)
+    @Html.ValidationMessageFor(model => model.ProductDescription)
+  </div>
+  <div class="controls">
+    <label>Presentation Copy</label>
+    <textarea class="text-box multi-line" name="" id="" ></textarea>
+  </div>
+  <div class="controls">
+  @Html.LabelForRequired(model => model.ProductSalesHistory)
+  @Html.ValidationMessageFor(model => model.ProductSalesHistory)
+  <div class="sales-textarea">
+    @Html.EditorFor(model => model.ProductSalesHistory)
+  </div>
 </div>
-
-<div class="controls">
-  @Html.LabelForRequired(model => model.ProductGatewayCDISKU)
-  @Html.ValidationMessageFor(model => model.ProductGatewayCDISKU)
-  @Html.EditorFor(model => model.ProductGatewayCDISKU)
-</div>
-
 </div>
 
 
