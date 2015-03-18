@@ -310,7 +310,7 @@
   <div class="toggle-fee">
     <button type="button" class="toggle-company-fees">Show/Hide Company Fee Section</button>
   </div>
-  <div class="flex-grid product-fees">
+  <div class="flex-grid product-fees-default">
     <div class="company-fees">
       <div class="inline-left">
         <div class="controls">
@@ -370,20 +370,35 @@
   </div>
   <div class="flex-grid product-fees">
     <div class="inline-left dollar-fee-info">
-      <div class="fees add-target">
-        <b>Dollar Fees</b>
+      <ul class="fees add-target">
+        <h2>Dollar Fees</h2>
         @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount)))
         {
         string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount);
         ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == queryString).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", fee.FeeNameID);
         Html.RenderPartial("_DollarFeeEditor", fee);
         }
-      </div>
+      </ul>
       @Html.ActionLink("Add Dollar Fee", "BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) }, new { @class = "add-item" })
     </div>
-    <div class="inline-middle amortized-fee-info">
+    <div class="inline-middle percent-fee-info">
+      <h2>Percent Fees</h2>
+        @Html.ActionLink("Add Percent Fee", "BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Net_Cost) }, new { @class = "add-item" })
       <div class="fees add-target">
-        <b>Amortized Fees</b>
+
+          @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent)).OrderBy(f => f.FeeLevel))
+            {
+            string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Percent);
+            ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == queryString).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", fee.FeeNameID);
+            Html.RenderPartial("_PercentFeeEditor", fee);
+            }
+
+      </div>
+
+    </div>
+    <div class="inline-right amortized-fee-info">
+      <div class="fees add-target">
+        <h2>Amortized Fees</h2>
         @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized)))
         {
         string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Amortized);
@@ -392,18 +407,6 @@
         }
       </div>
       @Html.ActionLink("Add Amortized Fee", "BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) }, new { @class = "add-item" })
-    </div>
-    <div class="inline-right percent-fee-info">
-      <div class="fees add-target">
-        <b>Percent Fees</b>
-        @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent)).OrderBy(f => f.FeeLevel))
-        {
-        string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Percent);
-        ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == queryString).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", fee.FeeNameID);
-        Html.RenderPartial("_PercentFeeEditor", fee);
-        }
-      </div>
-      @Html.ActionLink("Add Percent Fee", "BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Net_Cost) }, new { @class = "add-item" })
     </div>
     <div class="inline-left editor-label">
       @Html.LabelForRequired(model => model.ProductNetCost)

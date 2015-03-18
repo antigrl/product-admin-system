@@ -1,9 +1,11 @@
 .product-add-detail,
-.product-add-detail2,
+.product-fees-default,
 .product-fees {
   background-color: #fff;
+  width: 100%;
 }
-.product-add-detail2,
+
+.product-fees-default,
 .product-fees {
   margin-top: 20px;
 }
@@ -98,5 +100,17 @@
   @include span-columns(3 of 12);
   &.last {
     @include omega;
+  }
+}
+
+
+.fee {
+  li {
+    float: left;
+    input {
+      width: 35px;
+    }
+    select {
+    }
   }
 }

@@ -1,12 +1,10 @@
 ﻿@model PAS.Models.Fee
 @using PAS.Helpers;
 
-<div class="editor-row">
+<li class="fee">
     @using (Html.BeginCollectionItem("Fees"))
     {
-        <button type="button" class="delete-row">-</button>
-        @Html.ValidationMessageFor(model => model.FeeNameID)
-        <div class="editor-label">
+
             @if (Model.FeeNameID == 0)
             {
                 @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)
@@ -26,10 +24,15 @@
             <span class="is-inherited">
                 @Html.HiddenFor(model => model.FeeInherited)
             </span>
-        </div> 
-        <div class="editor-field">
+
+
             $@Html.TextBoxFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })
             @Html.ValidationMessageFor(model => model.FeeDollarAmount)
-        </div>
+
+        <ol>
+            <li class="delete-row">X</li>
+            @Html.ValidationMessageFor(model => model.FeeNameID)
+        </ol>
+
     }
-</div>
+</li>
