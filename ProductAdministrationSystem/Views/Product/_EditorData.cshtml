@@ -3,7 +3,7 @@
 @using PAS.Helpers;
 
 
-<div class="flex-grid product-add-detail">
+<div class="flex-grid product-add-detail" ng-init="tab = 1">
   <div class="product-title-container">
     <div class="controls">
       <ul>
@@ -65,133 +65,147 @@
       @Html.ValidationMessageFor(model => model.ProductStatus)
     }
   </div>
+  <div class="toggle-content">
+    <div ng-show="tab === 1">
+      <div class="inline-left">
 
-  <div class="inline-left">
+        <div class="product-image">
+          <div class="controls">
+            @Html.LabelForRequired(model => model.ProductImage)
+            @Html.ValidationMessageFor(model => model.ProductImage)
 
-    <div class="product-image">
-      <div class="controls">
-        @Html.LabelForRequired(model => model.ProductImage)
-        @Html.ValidationMessageFor(model => model.ProductImage)
+            <div class="input-file-button">
+              Upload File<input type="file" class="input-file" name="ProductImage" id="ProductImage" />
+            </div>
+            @Html.HiddenFor(model => model.ProductImage)
+            @Html.HiddenFor(model => model.ProductImageType)
 
-        <div class="input-file-button">
-          Upload File<input type="file" class="input-file" name="ProductImage" id="ProductImage" />
+            @if (Model != null && Model.ProductImage != null)
+            {
+            <div class="image">
+              <img src="@Url.Action("Show", "Product", new { id = Model.ProductID })" />
+            </div>
+          }
+
         </div>
-        @Html.HiddenFor(model => model.ProductImage)
-        @Html.HiddenFor(model => model.ProductImageType)
+      </div>
+      </div>
+      <div class="inline-middle">
+        <div class="controls">
+          @Html.LabelForRequired(model => model.MajorCategoryID)
+          @Html.ValidationMessageFor(model => model.MajorCategoryID)
+          @if (Model == null)
+          {
+          @Html.DropDownList("MajorCategoryID", ViewBag.MajorCategories as SelectList, String.Empty)
+          }
+          else
+          {
+          @Html.DropDownList("MajorCategoryID", ViewBag.MajorCategories as SelectList)
+          }
+          </div>
+          <div class="controls">
+            @Html.LabelForRequired(model => model.MinorCategoryID)
+            @Html.ValidationMessageFor(model => model.MinorCategoryID)
+            @if (Model == null || Model.MinorCategoryID == null)
+            {
+            @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList, String.Empty)
+          }
+          else
+          {
+            @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList)
+          }
 
-        @if (Model != null && Model.ProductImage != null)
-        {
-        <div class="image">
-          <img src="@Url.Action("Show", "Product", new { id = Model.ProductID })" />
+          </div>
+
+          <div class="controls">
+            @Html.LabelForRequired(model => model.ProductGatewayCDISKU)
+            @Html.ValidationMessageFor(model => model.ProductGatewayCDISKU)
+            @Html.EditorFor(model => model.ProductGatewayCDISKU)
+          </div>
+      </div>
+      <div class="inline-right">
+        <div class="controls">
+          @Html.LabelForRequired(model => model.ProductDescription)
+          @Html.EditorFor(model => model.ProductDescription)
+          @Html.ValidationMessageFor(model => model.ProductDescription)
         </div>
-      }
 
-    </div>
-
-  </div>
-  </div>
-  <div class="inline-middle">
-    <div class="controls">
-      @Html.LabelForRequired(model => model.MajorCategoryID)
-      @Html.ValidationMessageFor(model => model.MajorCategoryID)
-      @if (Model == null)
-      {
-      @Html.DropDownList("MajorCategoryID", ViewBag.MajorCategories as SelectList, String.Empty)
-      }
-      else
-      {
-      @Html.DropDownList("MajorCategoryID", ViewBag.MajorCategories as SelectList)
-      }
-      </div>
-      <div class="controls">
-        @Html.LabelForRequired(model => model.MinorCategoryID)
-        @Html.ValidationMessageFor(model => model.MinorCategoryID)
-        @if (Model == null || Model.MinorCategoryID == null)
-        {
-        @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList, String.Empty)
-      }
-      else
-      {
-        @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList)
-      }
-
-      </div>
-
-      <div class="controls">
-        @Html.LabelForRequired(model => model.ProductGatewayCDISKU)
-        @Html.ValidationMessageFor(model => model.ProductGatewayCDISKU)
-        @Html.EditorFor(model => model.ProductGatewayCDISKU)
-      </div>
-  </div>
-  <div class="inline-right">
-    <div class="controls">
-      @Html.LabelForRequired(model => model.ProductDescription)
-      @Html.EditorFor(model => model.ProductDescription)
-      @Html.ValidationMessageFor(model => model.ProductDescription)
-    </div>
-
-    <div class="controls">
-    @Html.LabelForRequired(model => model.ProductSalesHistory)
-    @Html.ValidationMessageFor(model => model.ProductSalesHistory)
-      <div class="sales-textarea">
-        @Html.EditorFor(model => model.ProductSalesHistory)
+        <div class="controls">
+        @Html.LabelForRequired(model => model.ProductSalesHistory)
+        @Html.ValidationMessageFor(model => model.ProductSalesHistory)
+          <div class="sales-textarea">
+            @Html.EditorFor(model => model.ProductSalesHistory)
+          </div>
+        </div>
       </div>
     </div>
+
+    <div ng-show="tab === 2">
+        <div class="inline-left">
+          <div class="controls">
+            @Html.LabelForRequired(model => model.ProductUnitOfMeasure)
+            @Html.ValidationMessageFor(model => model.ProductUnitOfMeasure)
+            @Html.EditorFor(model => model.ProductUnitOfMeasure)
+          </div>
+          <div class="controls">
+            @Html.LabelForRequired(model => model.PackagingTypeID, "PackagingType")
+            @Html.ValidationMessageFor(model => model.PackagingTypeID)
+
+            @if (Model == null)
+            {
+            @Html.DropDownList("PackagingTypeID", ViewBag.PackagingTypes as SelectList, String.Empty)
+            }
+            else
+            {
+            @Html.DropDownList("PackagingTypeID", ViewBag.PackagingTypes as SelectList)
+            }
+          </div>
+          <div class="controls">
+            @Html.LabelForRequired(model => model.ProductReplacementItemNumber)
+            @Html.ValidationMessageFor(model => model.ProductReplacementItemNumber)
+            @Html.EditorFor(model => model.ProductReplacementItemNumber)
+          </div>
+        </div>
+        <div class="inline-middle">
+          <div class="controls">
+            @Html.LabelForRequired(model => model.ProductPresentationSell)
+            @Html.ValidationMessageFor(model => model.ProductPresentationSell)
+            @Html.EditorFor(model => model.ProductPresentationSell)
+          </div>
+          <div class="controls">
+            @Html.LabelForRequired(model => model.ProductQuoteNumber)
+            @Html.ValidationMessageFor(model => model.ProductQuoteNumber)
+            @Html.EditorFor(model => model.ProductQuoteNumber)
+          </div>
+        </div>
+        <div class="inline-right">
+
+          <div class="controls">
+            @Html.LabelForRequired(model => model.ProductSelectedColors)
+            @Html.ValidationMessageFor(model => model.ProductSelectedColors)
+            @Html.EditorFor(model => model.ProductSelectedColors)
+          </div>
+          <div class="controls">
+            @Html.LabelForRequired(model => model.ProductSelectedSizes)
+            @Html.ValidationMessageFor(model => model.ProductSelectedSizes)
+            @Html.EditorFor(model => model.ProductSelectedSizes)
+          </div>
+        </div>
+    </div>
   </div>
 
+  <ul class="tab-headers">
+    <li ng-class="{active:tab===1}">
+      <a href ng-click="tab = 1">Main</a>
+    </li>
+    <li ng-class="{active:tab===2}">
+      <a href ng-click="tab = 2">Details</a>
+    </li>
+  </ul>
 </div>
 
 <div class="flex-grid product-add-detail2">
-  <div class="inline-left">
-    <div class="controls">
-      @Html.LabelForRequired(model => model.ProductUnitOfMeasure)
-      @Html.ValidationMessageFor(model => model.ProductUnitOfMeasure)
-      @Html.EditorFor(model => model.ProductUnitOfMeasure)
-    </div>
-    <div class="controls">
-      @Html.LabelForRequired(model => model.PackagingTypeID, "PackagingType")
-      @Html.ValidationMessageFor(model => model.PackagingTypeID)
 
-      @if (Model == null)
-      {
-      @Html.DropDownList("PackagingTypeID", ViewBag.PackagingTypes as SelectList, String.Empty)
-      }
-      else
-      {
-      @Html.DropDownList("PackagingTypeID", ViewBag.PackagingTypes as SelectList)
-      }
-    </div>
-    <div class="controls">
-      @Html.LabelForRequired(model => model.ProductReplacementItemNumber)
-      @Html.ValidationMessageFor(model => model.ProductReplacementItemNumber)
-      @Html.EditorFor(model => model.ProductReplacementItemNumber)
-    </div>
-  </div>
-  <div class="inline-middle">
-    <div class="controls">
-      @Html.LabelForRequired(model => model.ProductPresentationSell)
-      @Html.ValidationMessageFor(model => model.ProductPresentationSell)
-      @Html.EditorFor(model => model.ProductPresentationSell)
-    </div>
-    <div class="controls">
-      @Html.LabelForRequired(model => model.ProductQuoteNumber)
-      @Html.ValidationMessageFor(model => model.ProductQuoteNumber)
-      @Html.EditorFor(model => model.ProductQuoteNumber)
-    </div>
-  </div>
-  <div class="inline-right">
-
-    <div class="controls">
-      @Html.LabelForRequired(model => model.ProductSelectedColors)
-      @Html.ValidationMessageFor(model => model.ProductSelectedColors)
-      @Html.EditorFor(model => model.ProductSelectedColors)
-    </div>
-    <div class="controls">
-      @Html.LabelForRequired(model => model.ProductSelectedSizes)
-      @Html.ValidationMessageFor(model => model.ProductSelectedSizes)
-      @Html.EditorFor(model => model.ProductSelectedSizes)
-    </div>
-  </div>
 </div>
 <div class="flex-grid product-add-detail2">
   <div class="inline-left">
