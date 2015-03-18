@@ -1,5 +1,9 @@
-.product-add-detail {
+.product-add-detail,
+.product-add-detail2 {
   background-color: #fff;
+}
+.product-add-detail2 {
+  margin-top: 20px;
 }
 .inline-left,
 .inline-middle,
@@ -8,9 +12,6 @@
   margin: 0;
   @include span-columns(4);
   .controls {
-    label {
-      width: 140px;
-    }
     input[type="text"],
     input[type="file"],
     input[type="url"],
@@ -51,13 +52,10 @@
   }
   li {
     display: inline-block;
-    label {
-      color: #fff;
-    }
+    label { color: #fff; }
     input, select {
       width: 250px !important;
       margin-bottom: 0 !important;
     }
   }
-
 }
