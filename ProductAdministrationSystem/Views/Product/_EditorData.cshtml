@@ -192,6 +192,105 @@
           </div>
         </div>
     </div>
+
+    <div ng-show="tab === 3">
+      <div class="inline-left">
+        <div class="controls">
+          @Html.LabelForRequired(model => model.VendorNameID, "VendorName")
+          @Html.ValidationMessageFor(model => model.VendorNameID)
+          @if (Model == null)
+          {
+          @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList, String.Empty)
+          }
+          else
+          {
+          @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList)
+          }
+        </div>
+
+        <div class="controls">
+          @Html.LabelForRequired(model => model.VendorTypeID, "VendorType")
+          @Html.ValidationMessageFor(model => model.VendorTypeID)
+          @if (Model == null || Model.VendorTypeID == null)
+          {
+          @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList, String.Empty)
+          }
+          else
+          {
+            @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList)
+          }
+        </div>
+
+        <div class="controls">
+          @Html.LabelForRequired(model => model.ProductVendorLeadTime)
+          @Html.ValidationMessageFor(model => model.ProductVendorLeadTime)
+          @Html.EditorFor(model => model.ProductVendorLeadTime)
+        </div>
+        <div class="controls">
+          @Html.LabelForRequired(model => model.ProductVendorMinimumOrder)
+          @Html.ValidationMessageFor(model => model.ProductVendorMinimumOrder)
+          @Html.EditorFor(model => model.ProductVendorMinimumOrder)
+        </div>
+      </div>
+      <div class="inline-middle">
+        <div class="controls">
+          @Html.LabelForRequired(model => model.ProductVendorItemNumber)
+          @Html.ValidationMessageFor(model => model.ProductVendorItemNumber)
+          @Html.EditorFor(model => model.ProductVendorItemNumber)
+        </div>
+        <div class="controls">
+          @Html.LabelForRequired(model => model.ProductCountryOfOrigin)
+          @Html.ValidationMessageFor(model => model.ProductCountryOfOrigin)
+          @Html.EditorFor(model => model.ProductCountryOfOrigin)
+        </div>
+        <div class="controls">
+          @Html.LabelForRequired(model => model.ProductHarmonizedCode)
+          @Html.ValidationMessageFor(model => model.ProductHarmonizedCode)
+          @Html.EditorFor(model => model.ProductHarmonizedCode)
+        </div>
+      </div>
+      <div class="inline-right">
+        <div class="controls">
+          @Html.LabelForRequired(model => model.ProductAnnualSalesProjection)
+          @Html.ValidationMessageFor(model => model.ProductAnnualSalesProjection)
+          @Html.EditorFor(model => model.ProductAnnualSalesProjection)
+        </div>
+        <div class="controls">
+          @Html.LabelForRequired(model => model.ProductGatewayCDIMinumumOrder)
+          @Html.ValidationMessageFor(model => model.ProductGatewayCDIMinumumOrder)
+          @Html.EditorFor(model => model.ProductGatewayCDIMinumumOrder)
+        </div>
+        <div class="controls">
+          @Html.LabelForRequired(model => model.ProductInitialOrderQuantity)
+          @Html.ValidationMessageFor(model => model.ProductInitialOrderQuantity)
+          @Html.EditorFor(model => model.ProductInitialOrderQuantity)
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="tab === 4">
+      <div class="controls comments">
+        @Html.LabelForRequired(model => model.ProductMerchandiserComments)
+        @Html.ValidationMessageFor(model => model.ProductMerchandiserComments)
+        @Html.EditorFor(model => model.ProductMerchandiserComments)
+      </div>
+      <div class="controls comments">
+        @Html.LabelForRequired(model => model.ProductInventoryBuyerComments)
+        @Html.ValidationMessageFor(model => model.ProductInventoryBuyerComments)
+        @Html.EditorFor(model => model.ProductInventoryBuyerComments)
+      </div>
+      <div class="controls comments">
+        @Html.LabelForRequired(model => model.ProductMentorComments)
+        @Html.ValidationMessageFor(model => model.ProductMentorComments)
+        @Html.EditorFor(model => model.ProductMentorComments)
+      </div>
+      <div class="controls comments last">
+        @Html.LabelForRequired(model => model.ProductAccountManagerComments)
+        @Html.ValidationMessageFor(model => model.ProductAccountManagerComments)
+        @Html.EditorFor(model => model.ProductAccountManagerComments)
+      </div>
+    </div>
+
   </div>
 
   <ul class="tab-headers">
@@ -201,86 +300,15 @@
     <li ng-class="{active:tab===2}">
       <a href ng-click="tab = 2">Details</a>
     </li>
+    <li ng-class="{active:tab===3}">
+      <a href ng-click="tab = 3">Vendor</a>
+    </li>
+    <li ng-class="{active:tab===4}">
+      <a href ng-click="tab = 4">Comments</a>
+    </li>
   </ul>
 </div>
 
-<div class="flex-grid product-add-detail2">
-
-</div>
-<div class="flex-grid product-add-detail2">
-  <div class="inline-left">
-    <div class="controls">
-      @Html.LabelForRequired(model => model.VendorNameID, "VendorName")
-      @Html.ValidationMessageFor(model => model.VendorNameID)
-      @if (Model == null)
-      {
-      @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList, String.Empty)
-      }
-      else
-      {
-      @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList)
-      }
-    </div>
-
-    <div class="controls">
-      @Html.LabelForRequired(model => model.VendorTypeID, "VendorType")
-      @Html.ValidationMessageFor(model => model.VendorTypeID)
-      @if (Model == null || Model.VendorTypeID == null)
-      {
-      @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList, String.Empty)
-      }
-      else
-      {
-        @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList)
-      }
-    </div>
-
-    <div class="controls">
-      @Html.LabelForRequired(model => model.ProductVendorLeadTime)
-      @Html.ValidationMessageFor(model => model.ProductVendorLeadTime)
-      @Html.EditorFor(model => model.ProductVendorLeadTime)
-    </div>
-    <div class="controls">
-      @Html.LabelForRequired(model => model.ProductVendorMinimumOrder)
-      @Html.ValidationMessageFor(model => model.ProductVendorMinimumOrder)
-      @Html.EditorFor(model => model.ProductVendorMinimumOrder)
-    </div>
-  </div>
-  <div class="inline-middle">
-    <div class="controls">
-      @Html.LabelForRequired(model => model.ProductVendorItemNumber)
-      @Html.ValidationMessageFor(model => model.ProductVendorItemNumber)
-      @Html.EditorFor(model => model.ProductVendorItemNumber)
-    </div>
-    <div class="controls">
-      @Html.LabelForRequired(model => model.ProductCountryOfOrigin)
-      @Html.ValidationMessageFor(model => model.ProductCountryOfOrigin)
-      @Html.EditorFor(model => model.ProductCountryOfOrigin)
-    </div>
-    <div class="controls">
-      @Html.LabelForRequired(model => model.ProductHarmonizedCode)
-      @Html.ValidationMessageFor(model => model.ProductHarmonizedCode)
-      @Html.EditorFor(model => model.ProductHarmonizedCode)
-    </div>
-  </div>
-  <div class="inline-right">
-    <div class="controls">
-      @Html.LabelForRequired(model => model.ProductAnnualSalesProjection)
-      @Html.ValidationMessageFor(model => model.ProductAnnualSalesProjection)
-      @Html.EditorFor(model => model.ProductAnnualSalesProjection)
-    </div>
-    <div class="controls">
-      @Html.LabelForRequired(model => model.ProductGatewayCDIMinumumOrder)
-      @Html.ValidationMessageFor(model => model.ProductGatewayCDIMinumumOrder)
-      @Html.EditorFor(model => model.ProductGatewayCDIMinumumOrder)
-    </div>
-    <div class="controls">
-      @Html.LabelForRequired(model => model.ProductInitialOrderQuantity)
-      @Html.ValidationMessageFor(model => model.ProductInitialOrderQuantity)
-      @Html.EditorFor(model => model.ProductInitialOrderQuantity)
-    </div>
-  </div>
-</div>
 
 <div class="flex-grid product-add-detail2">
   <section>
@@ -473,41 +501,6 @@
 }
 </section>
 </div>
-<div class="comment-info">
-  <div class="flex-grid full-content">
-    <section class="comment-container">
-      <div class="controls">
-        @Html.LabelForRequired(model => model.ProductMerchandiserComments)
-        @Html.ValidationMessageFor(model => model.ProductMerchandiserComments)
-        @Html.EditorFor(model => model.ProductMerchandiserComments)
-      </div>
-    </section>
 
-    <section class="comment-container">
-      <div class="controls">
-        @Html.LabelForRequired(model => model.ProductInventoryBuyerComments)
-        @Html.ValidationMessageFor(model => model.ProductInventoryBuyerComments)
-        @Html.EditorFor(model => model.ProductInventoryBuyerComments)
-      </div>
-    </section>
-  </div>
-  <div class="flex-grid full-content comment-info">
-    <section class="comment-container">
-      <div class="controls">
-        @Html.LabelForRequired(model => model.ProductMentorComments)
-        @Html.ValidationMessageFor(model => model.ProductMentorComments)
-        @Html.EditorFor(model => model.ProductMentorComments)
-      </div>
-    </section>
-
-    <section class="comment-container">
-      <div class="controls">
-        @Html.LabelForRequired(model => model.ProductAccountManagerComments)
-        @Html.ValidationMessageFor(model => model.ProductAccountManagerComments)
-        @Html.EditorFor(model => model.ProductAccountManagerComments)
-      </div>
-    </section>
-  </div>
-</div>
 </section>
 </div>
