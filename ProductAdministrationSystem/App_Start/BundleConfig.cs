@@ -20,6 +20,7 @@ namespace PAS
                         "~/Scripts/NPR.js",
                         "~/Content/bower_components/angular/angular.min.js",
                         "~/Content/bower_components/angular-datatables/dist/angular-datatables.min.js",
+                        "~/Scripts/angular-textarea-fit.js",
                         "~/Scripts/nprApp.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
