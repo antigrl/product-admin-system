@@ -314,7 +314,8 @@
     <div class="company-fees">
       <div class="inline-left">
         <div class="controls">
-          <h2>Dollar Fees</h2>
+          <h2>Dollar Fees
+          </h2>
           @foreach(var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount)).OrderBy(f => f.FeeName.FeeNameName))
               {
               ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames, "FeeNameID", "FeeNameName", item.FeeNameID);
@@ -329,7 +330,8 @@
 
       <div class="inline-middle">
         <div class="controls">
-        <h2>Percent Fees</h2>
+        <h2>Percent Fees
+        </h2>
           @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized)).OrderBy(f => f.FeeName.FeeNameName))
             {
             ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames, "FeeNameID", "FeeNameName", item.FeeNameID);
@@ -344,7 +346,8 @@
 
       <div class="inline-right">
         <div class="controls">
-          <h2>Amortized Fees</h2>
+          <h2>Amortized Fees
+          </h2>
             @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent)).OrderBy(f => f.FeeName.FeeNameName))
             {
             <div class="company-fee">
@@ -371,7 +374,9 @@
   <div class="flex-grid product-fees">
     <div class="inline-left dollar-fee-info">
       <ul class="fees add-target">
-        <h2>Dollar Fees</h2>
+        <h2 class="add-fee">Dollar Fees
+          <a href="#"><i class="fa fa-plus-square"></i></a>
+        </h2>
         @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount)))
         {
         string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount);
@@ -382,7 +387,9 @@
       @Html.ActionLink("Add Dollar Fee", "BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) }, new { @class = "add-item" })
     </div>
     <div class="inline-middle percent-fee-info">
-      <h2>Percent Fees</h2>
+      <h2 class="add-fee">Percent Fees
+        <a href="#"><i class="fa fa-plus-square"></i></a>
+      </h2>
         @Html.ActionLink("Add Percent Fee", "BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Net_Cost) }, new { @class = "add-item" })
       <div class="fees add-target">
 
@@ -398,7 +405,9 @@
     </div>
     <div class="inline-right amortized-fee-info">
       <div class="fees add-target">
-        <h2>Amortized Fees</h2>
+        <h2 class="add-fee">Amortized Fees
+          <a href="#"><i class="fa fa-plus-square"></i></a>
+        </h2>
         @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized)))
         {
         string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Amortized);

@@ -114,3 +114,24 @@
     }
   }
 }
+
+.add-fee {
+  position: relative;
+  a {
+    display: inline;
+    .fa-plus-square {
+      position: absolute;
+      top: 8px;
+      float: left;
+      margin-left: 10px;
+      color: $teal;
+      font-size: 21px;
+      &:hover {
+        color: darken($teal, 2%);
+      }
+      &:active {
+        color: darken($teal, 5%);
+      }
+    }
+  }
+}
