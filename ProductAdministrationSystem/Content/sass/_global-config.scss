@@ -138,7 +138,7 @@ main {
       border: 1px solid #bbb;
     }
     &:last-child {
-      margin-right: 0;
+      // margin-right: 0;
     }
     &.seamless {
       border: none;
@@ -301,4 +301,8 @@ main {
   .controls {
     margin-bottom: 15px;
   }
+}
+
+.flex-grid-client {
+  flex-direction: column;
 }
