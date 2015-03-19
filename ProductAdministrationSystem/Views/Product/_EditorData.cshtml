@@ -268,22 +268,22 @@
       <div class="controls comments">
         @Html.LabelForRequired(model => model.ProductMerchandiserComments)
         @Html.ValidationMessageFor(model => model.ProductMerchandiserComments)
-        @Html.EditorFor(model => model.ProductMerchandiserComments)
+        @Html.EditorFor(model => model.ProductMerchandiserComments, new { ng_trim="0", textarea_fit=""})
       </div>
       <div class="controls comments">
         @Html.LabelForRequired(model => model.ProductInventoryBuyerComments)
         @Html.ValidationMessageFor(model => model.ProductInventoryBuyerComments)
-        @Html.EditorFor(model => model.ProductInventoryBuyerComments)
+        @Html.EditorFor(model => model.ProductInventoryBuyerComments, new { ng_trim="0", textarea_fit=""})
       </div>
       <div class="controls comments">
         @Html.LabelForRequired(model => model.ProductMentorComments)
         @Html.ValidationMessageFor(model => model.ProductMentorComments)
-        @Html.EditorFor(model => model.ProductMentorComments)
+        @Html.EditorFor(model => model.ProductMentorComments, new { ng_trim="0", textarea_fit=""})
       </div>
       <div class="controls comments last">
         @Html.LabelForRequired(model => model.ProductAccountManagerComments)
         @Html.ValidationMessageFor(model => model.ProductAccountManagerComments)
-        @Html.EditorFor(model => model.ProductAccountManagerComments)
+        @Html.EditorFor(model => model.ProductAccountManagerComments, new { ng_trim="0", textarea_fit=""})
       </div>
     </div>
   </div>
