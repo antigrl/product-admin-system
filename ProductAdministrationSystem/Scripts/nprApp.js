@@ -2,7 +2,6 @@
 
 var app = angular.module('nprApp', ['datatables']);
 
-
 // Side nav expansion
 $(function () {
   $("nav.main header a, nav.main a.open").click(function (e) {
@@ -29,7 +28,7 @@ app.controller('toggleController', function() {
 });
 
 app.run(function (DTDefaultOptions) {
-  DTDefaultOptions.setDisplayLength(20);
+  DTDefaultOptions.setDisplayLength(10);
 });
 
 
