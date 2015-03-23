@@ -8,7 +8,7 @@ int count = Model.Products.Where(p => p.ProductStatus != archived).Count();
 int productCount = 0;
 }
 <link rel="stylesheet" href="~/Content/presentation.css">
-<link rel="stylesheet" href="~/Content/print.css">
+<link rel="stylesheet" href="~/Content/print.css" media="print">
 <div class="heading">
   <h1>@Html.DisplayFor(model => model.Company.CompanyName)
     <div class="heading-info">
