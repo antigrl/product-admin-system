@@ -11,18 +11,19 @@
       page-break-after: always;
       break-after: page;
       display: table;
+      &:last-child {
+        page-break-after: avoid;
+      }
     }
 
     .page_number {
       display: block;
       position: relative;
-      text-align: center;
-      margin-top: -25px;
-      padding-bottom: 30px;
-    }
-
-    .page_break + .page_break {
-      page-break-before: always;
+      span {
+        position: absolute;
+        top: 6.75in;
+        left: 6in;
+      }
     }
 
     header, .presentation-header, .header, .footer, footer,
@@ -34,6 +35,8 @@
       margin-left: -70px;
       margin-right: -20px;
     }
+
+
 
   }
 }

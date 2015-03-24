@@ -262,22 +262,22 @@
       <div class="controls comments">
         @Html.LabelForRequired(model => model.ProductMerchandiserComments)
         @Html.ValidationMessageFor(model => model.ProductMerchandiserComments)
-        @Html.EditorFor(model => model.ProductMerchandiserComments)
+        @Html.EditorFor(model => model.ProductMerchandiserComments, new { ng_trim="0", textarea_fit=""})
       </div>
       <div class="controls comments">
         @Html.LabelForRequired(model => model.ProductInventoryBuyerComments)
         @Html.ValidationMessageFor(model => model.ProductInventoryBuyerComments)
-        @Html.EditorFor(model => model.ProductInventoryBuyerComments)
+        @Html.EditorFor(model => model.ProductInventoryBuyerComments, new { ng_trim="0", textarea_fit=""})
       </div>
       <div class="controls comments">
         @Html.LabelForRequired(model => model.ProductMentorComments)
         @Html.ValidationMessageFor(model => model.ProductMentorComments)
-        @Html.EditorFor(model => model.ProductMentorComments)
+        @Html.EditorFor(model => model.ProductMentorComments, new { ng_trim="0", textarea_fit=""})
       </div>
       <div class="controls comments last">
         @Html.LabelForRequired(model => model.ProductAccountManagerComments)
         @Html.ValidationMessageFor(model => model.ProductAccountManagerComments)
-        @Html.EditorFor(model => model.ProductAccountManagerComments)
+        @Html.EditorFor(model => model.ProductAccountManagerComments, new { ng_trim="0", textarea_fit=""})
       </div>
     </div>
   </div>
@@ -299,7 +299,7 @@
 @if (Model != null)
 {
   <div class="toggle-fee">
-    <button type="button" class="toggle-company-fees">Show/Hide Company Fee Section</button>
+    <button type="button" class="toggle-company-fees button">Show/Hide Company Fee Section</button>
   </div>
   <div class="flex-grid product-fees-default">
     <div class="company-fees">
@@ -419,15 +419,14 @@
     </div>
   </div>
 
-  <div class="flex-grid product-fees">
-    <button type="submit" formaction="@Url.Action("SaveAndCalculateSellPrice", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Calculate Price</button>
+  <div class="flex-grid product-fees-buttons">
+    <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateSellPrice", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Calculate Price</button>
     <br />
-    <button type="submit" formaction="@Url.Action("SaveAndCalculateSellPriceToNearestFiveCents", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Calculate Rounded Price</button>
+    <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateSellPriceToNearestFiveCents", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Calculate Rounded Price</button>
     <br />
-    <button type="submit" formaction="@Url.Action("SaveAndCalculateMargin", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Calculate Margin</button>
-    <span class="float-right">
+    <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateMargin", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Calculate Margin</button>
+    <br><br>
       @Html.ActionLink("Create New Fee Name", "Create", "FeeName", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), ProductID = Model.ProductID }, null)
-    </span>
   </div>
   <div class="flex-grid product-fees">
     <div class="inline-left sell-price-info">

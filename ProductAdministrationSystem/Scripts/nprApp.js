@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('nprApp', ['datatables']);
+var app = angular.module('nprApp', ['datatables', 'textarea-fit']);
 
 // Side nav expansion
 $(function () {
@@ -30,6 +30,3 @@ app.controller('toggleController', function() {
 app.run(function (DTDefaultOptions) {
   DTDefaultOptions.setDisplayLength(10);
 });
-
-
-
