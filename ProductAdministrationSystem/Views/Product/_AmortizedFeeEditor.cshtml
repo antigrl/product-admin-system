@@ -2,22 +2,15 @@
 @using PAS.Helpers;
 @using PAS.Models;
 
-<div class="editor-row full-content amortized">
+<div class="editor-row fee">
     @using (Html.BeginCollectionItem("Fees"))
     {
         @Html.ValidationSummary(true)
         <button type="button" class="delete-row">-</button>
         @Html.ValidationMessageFor(model => model.FeeNameID)
         <div class="editor-label">
-            <span class="radio-inputs">
-                @Html.RadioButtonFor(model => model.FeeAmortizedType, MyExtensions.GetEnumDescription(AmortizedTypeList.Vindor_Minimum))
-                <span>VM</span>
-                @Html.RadioButtonFor(model => model.FeeAmortizedType, MyExtensions.GetEnumDescription(AmortizedTypeList.Initial_Order_Quantity))
-                <span>IOQ</span>
-                @Html.RadioButtonFor(model => model.FeeAmortizedType, MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project))
-                <span>ASP</span>
-                @Html.RadioButtonFor(model => model.FeeAmortizedType, MyExtensions.GetEnumDescription(AmortizedTypeList.GatewayCDI_Minimum_Order))
-                <span>GMO</span>
+            <span class="dropdown">
+                @Html.DropDownListFor(model => model.FeeAmortizedType, MyExtensions.GetGenericEnumDropDown<AmortizedTypeList>(), "")
             </span>
             <br />
             @if (Model.FeeNameID == 0)
