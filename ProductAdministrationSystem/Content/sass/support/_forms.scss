@@ -88,8 +88,11 @@ h2.form-heading{
   }
 }
 
-.field-validation-error {
-  color: red;
+input.input-validation-error,
+textarea.input-validation-error,
+select.input-validation-error {
+  background: #FEF1EC;
+  border: 1px solid #CD0A0A;
 }
 
 .form-list {
@@ -145,4 +148,8 @@ h2.form-heading{
   opacity: 0;
   filter: alpha(opacity=0);
   cursor: pointer;
+}
+
+fieldset {
+  border: 0;
 }
