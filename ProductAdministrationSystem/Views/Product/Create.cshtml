@@ -3,8 +3,17 @@
 @{
     ViewBag.Title = "Create Product";
 }
-
-<h2>Create Product</h2>
+<div class="heading">
+    <h1>
+        Company Name
+        <div class="heading-info">
+            <strong>Create Product</strong>
+        </div>
+        <div class="heading-info">
+            <strong>Campaign</strong> @Html.DisplayFor(model => model.Campaign.CampaignName)
+        </div>
+    </h1>
+</div>
 
 @using(Html.BeginForm("Create", "Product", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -12,20 +21,19 @@
     @Html.ValidationSummary(true)
 
     <fieldset class="full-content">
-        <legend>Product</legend>
+
 
         @Html.Partial("_EditorData")
 
-        <p style="float: right;">
-            <input type="submit" value="Create" />
-        </p>
+        <button type="submit" class="button green">Create</button>
+        @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
     </fieldset>
 }
 
-<div>
-    @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
-</div>
+
+
+
 
 @section Scripts {
-    
+
 }
