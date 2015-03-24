@@ -2,32 +2,32 @@
 @using PAS.Helpers;
 
 <li class="editor-row">
-    @using (Html.BeginCollectionItem("Fees"))
-    {
-        <span>
-            @if (Model.FeeNameID == 0)
-            {
-                @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)
-            }
-            else
-            {
-                @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList)
-                @Html.HiddenFor(model => model.FeeID)
-            }
-            @Html.HiddenFor(model => model.ProductID)
-            @Html.HiddenFor(model => model.FeeType)
-            @Html.HiddenFor(model => model.FeeCalculation)
-            @Html.HiddenFor(model => model.FeeStatus)
-            <span class="inherited-id">
-                @Html.HiddenFor(model => model.FeeInheritedFeeID)
-            </span>
-            <span class="is-inherited">
-                @Html.HiddenFor(model => model.FeeInherited)
-            </span>
-            $@Html.TextBoxFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })
-            @Html.ValidationMessageFor(model => model.FeeDollarAmount)
-    <li class="delete-row">X</li>
-    @Html.ValidationMessageFor(model => model.FeeNameID)
-    </span>
-    }
-    </li>
+  @using (Html.BeginCollectionItem("Fees"))
+  {
+    <span>
+      @if (Model.FeeNameID == 0)
+      {
+        @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)
+      }
+      else
+      {
+        @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList)
+        @Html.HiddenFor(model => model.FeeID)
+      }
+      @Html.HiddenFor(model => model.ProductID)
+      @Html.HiddenFor(model => model.FeeType)
+      @Html.HiddenFor(model => model.FeeCalculation)
+      @Html.HiddenFor(model => model.FeeStatus)
+      <span class="inherited-id">
+        @Html.HiddenFor(model => model.FeeInheritedFeeID)
+      </span>
+      <span class="is-inherited">
+        @Html.HiddenFor(model => model.FeeInherited)
+      </span>
+      $@Html.TextBoxFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })
+      @Html.ValidationMessageFor(model => model.FeeDollarAmount)
+  <li class="delete-row">X</li>
+  @Html.ValidationMessageFor(model => model.FeeNameID)
+  </span>
+  }
+  </li>
