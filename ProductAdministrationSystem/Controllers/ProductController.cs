@@ -1004,7 +1004,7 @@ namespace PAS.Controllers
 
         public PartialViewResult BlankEditorRowExtended(int productID, string feeType, string feeCalculation, int feeNameID, decimal? feeDollarAmount, decimal? feeAmortizedCharge, string feeAmortizedType, decimal? feePercent, string feePercentType, int inheritedID)
         {
-            ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == feeType).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", feeNameID);
+            ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == feeType && f.FeeNameStatus != archived).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", feeNameID);
 
             if(feeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount))
             {

@@ -19,12 +19,6 @@ ViewBag.Title = "Fee Index";
 </h1>
 
 </div>
-
-@{
-FeeName feeName = new FeeName();
-feeName.OnCreate();
-Html.RenderPartial("_CreateOnIndex", feeName);
-}
 <div class="flex-grid">
   <section>
     <table datatable="">

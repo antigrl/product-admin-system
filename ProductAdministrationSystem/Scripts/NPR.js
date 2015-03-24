@@ -58,7 +58,7 @@
             url: this.href,
             cache: false,
             success: function (html) {
-                $(this).siblings(".add-target").append(html);
+                $(this).parent().siblings(".add-target").append(html);
 
                 $.validator.unobtrusive.parseDynamicContent('form');
             },

@@ -39,7 +39,7 @@ ViewBag.Title = "Category Index";
       @Html.DisplayFor(modelItem => item.CategoryType)
     </td>
     <td>
-      @Html.ActionLink("shit", "shit", new { id = item.CategoryID }) |
+      @Html.ActionLink("edit", "edit", new { id = item.CategoryID }) |
       @Html.ActionLink("Archive", "Archive", new { id = item.CategoryID })
     </td>
   </tr>
