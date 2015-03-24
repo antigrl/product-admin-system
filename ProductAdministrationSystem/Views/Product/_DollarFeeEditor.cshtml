@@ -1,18 +1,18 @@
 ﻿@model PAS.Models.Fee
 @using PAS.Helpers;
 
-<li class="fee">
+<li class="editor-row">
     @using (Html.BeginCollectionItem("Fees"))
     {
         <span>
             @if (Model.FeeNameID == 0)
             {
-            @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)
+                @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)
             }
             else
             {
-            @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList)
-            @Html.HiddenFor(model => model.FeeID)
+                @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList)
+                @Html.HiddenFor(model => model.FeeID)
             }
             @Html.HiddenFor(model => model.ProductID)
             @Html.HiddenFor(model => model.FeeType)
@@ -26,8 +26,8 @@
             </span>
             $@Html.TextBoxFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })
             @Html.ValidationMessageFor(model => model.FeeDollarAmount)
-            <li class="delete-row">X</li>
-            @Html.ValidationMessageFor(model => model.FeeNameID)
-        </span>
+    <li class="delete-row">X</li>
+    @Html.ValidationMessageFor(model => model.FeeNameID)
+    </span>
     }
-</li>
+    </li>
