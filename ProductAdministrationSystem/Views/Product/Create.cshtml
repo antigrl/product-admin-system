@@ -7,7 +7,7 @@
     <h1>
         Company Name
         <div class="heading-info">
-            <strong>Create Product</strong>
+            <strong>@ViewBag.Title</strong>
         </div>
         <div class="heading-info">
             <strong>Campaign</strong> @Html.DisplayFor(model => model.Campaign.CampaignName)
@@ -18,7 +18,7 @@
 @using(Html.BeginForm("Create", "Product", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @Html.ValidationSummary(false)
 
     <fieldset class="full-content">
 
