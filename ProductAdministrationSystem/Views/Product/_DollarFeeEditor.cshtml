@@ -1,11 +1,11 @@
 ﻿@model PAS.Models.Fee
 @using PAS.Helpers;
 
-<ul class="fee editor-row">
+<ul class="fee editor-row dollar-fee">
   @using (Html.BeginCollectionItem("Fees"))
   {
     <li>
-      <button type="button" class="delete-row">-</button>
+      <a class="delete-row"></a>
       @Html.ValidationMessageFor(model => model.FeeNameID)
       @if (Model.FeeNameID == 0)
       {

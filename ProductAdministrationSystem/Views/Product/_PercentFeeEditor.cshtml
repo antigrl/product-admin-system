@@ -2,14 +2,16 @@
 @using PAS.Helpers;
 @using PAS.Models;
 
-<ul class="fee editor-row">
+<ul class="fee editor-row percent-fee">
     @using (Html.BeginCollectionItem("Fees"))
     {
         @Html.ValidationSummary(true)
         <li>
-            @Html.EditorFor(model => model.FeeLevel)
-        </li>
-        <li>
+            <a href="#" class="delete-row"></a>
+            @Html.ValidationMessageFor(model => model.FeeNameID)
+
+
+
             @if (Model.FeeNameID == 0)
             {
                 @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)
@@ -19,6 +21,7 @@
                 @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList)
                 @Html.HiddenFor(model => model.FeeID)
             }
+            @Html.EditorFor(model => model.FeeLevel)
             @Html.HiddenFor(model => model.ProductID)
             @Html.HiddenFor(model => model.FeeType)
             @Html.HiddenFor(model => model.FeeCalculation)
@@ -47,10 +50,7 @@
             }
             @Html.ValidationMessageFor(model => model.FeeDollarAmount)
         </li>
-        <li class="delete-row">
-            X
-            @Html.ValidationMessageFor(model => model.FeeNameID)
-        </li>
+
 
     }
 </ul>
