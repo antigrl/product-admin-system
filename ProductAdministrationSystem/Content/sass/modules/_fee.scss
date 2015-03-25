@@ -36,7 +36,8 @@
   }
 }
 
-.dollar-fee  {
+.dollar-fee,
+.percent-fee  {
   padding: 3px;
   select {
     width: 70%;
@@ -45,4 +46,8 @@
   input {
     margin-left: 5px;
   }
+}
+
+.percent-fee {
+  input { width: 10%; }
 }
