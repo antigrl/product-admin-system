@@ -15,26 +15,15 @@
     </h1>
 </div>
 
-@using(Html.BeginForm("Create", "Product", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("Create", "Product", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(false)
 
     <fieldset class="full-content">
-
-
         @Html.Partial("_EditorData")
 
         <button type="submit" class="button green">Create</button> |
         @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
-
     </fieldset>
-}
-
-
-
-
-
-@section Scripts {
-
 }

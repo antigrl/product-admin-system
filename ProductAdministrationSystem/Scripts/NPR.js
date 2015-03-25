@@ -342,9 +342,3 @@ $('table td div.description-container:contains("[recycle]")').each(function () {
 $('table td div.description-container:contains("[usa]")').each(function () {
     $(this).parent().parent().parent().parent().prev().find('.icon-container .usa').show();
 });
-
-
-
-
-
-

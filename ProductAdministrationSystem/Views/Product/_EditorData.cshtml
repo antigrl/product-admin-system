@@ -6,10 +6,7 @@
     <div class="product-title-container">
         <div class="controls">
             <ul>
-                <li>
-                    @Html.LabelForRequired(model => model.ProductName)
-                    @Html.ValidationMessageFor(model => model.ProductName)
-                </li>
+                <li>@Html.LabelForRequired(model => model.ProductName)</li>
                 <li>@Html.EditorFor(model => model.ProductName)</li>
             </ul>
         </div>
@@ -17,7 +14,6 @@
             <ul>
                 <li>
                     @Html.LabelForRequired(model => model.ProductItemEDP)
-                    @Html.ValidationMessageFor(model => model.ProductItemEDP)
                 </li>
                 <li>
                     @Html.EditorFor(model => model.ProductItemEDP)
@@ -31,7 +27,6 @@
                 <ul>
                     <li>
                         @Html.LabelForRequired(model => model.CampaignID, "Campaign")
-                        @Html.ValidationMessageFor(model => model.CampaignID)
                     </li>
                     <li>
                         @Html.DropDownList("CampaignID", ViewBag.Campaigns as SelectList, String.Empty)
@@ -46,12 +41,10 @@
 
         @if (Model != null)
         {
-
             <div class="controls">
                 <ul>
                     <li>
                         @Html.LabelForRequired(model => model.ProductStatus)
-                        @Html.ValidationMessageFor(model => model.ProductStatus)
                     </li>
                     <li>
                         @Html.DropDownListFor(model => model.ProductStatus, MyExtensions.GetGenericEnumDropDown<Status>(), "")
@@ -61,8 +54,7 @@
         }
         else
         {
- @Html.HiddenFor(model => model.ProductStatus, new { Value = MyExtensions.GetEnumDescription(Status.New) })
- @Html.ValidationMessageFor(model => model.ProductStatus)
+            @Html.HiddenFor(model => model.ProductStatus, new { Value = MyExtensions.GetEnumDescription(Status.New) })
         }
     </div>
     <div class="toggle-content">
@@ -71,7 +63,6 @@
                 <div class="product-image">
                     <div class="controls">
                         @Html.LabelForRequired(model => model.ProductImage)
-                        @Html.ValidationMessageFor(model => model.ProductImage)
 
                         <div class="input-file-button">
                             Upload File<input type="file" class="input-file" name="ProductImage" id="ProductImage" />
@@ -81,7 +72,6 @@
 
                         @if (Model != null && Model.ProductImage != null)
                         {
-
                             <div class="image">
                                 <img src="@Url.Action("Show", "Product", new { id = Model.ProductID })" />
                             </div>
@@ -92,31 +82,28 @@
             <div class="inline-middle">
                 <div class="controls">
                     @Html.LabelForRequired(model => model.MajorCategoryID)
-                    @Html.ValidationMessageFor(model => model.MajorCategoryID)
                     @if (Model == null)
                     {
- @Html.DropDownList("MajorCategoryID", ViewBag.MajorCategories as SelectList, String.Empty)
+                        @Html.DropDownList("MajorCategoryID", ViewBag.MajorCategories as SelectList, String.Empty)
                     }
                     else
                     {
- @Html.DropDownList("MajorCategoryID", ViewBag.MajorCategories as SelectList)
+                        @Html.DropDownList("MajorCategoryID", ViewBag.MajorCategories as SelectList)
                     }
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.MinorCategoryID)
-                    @Html.ValidationMessageFor(model => model.MinorCategoryID)
                     @if (Model == null || Model.MinorCategoryID == null)
                     {
- @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList, String.Empty)
+                        @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList, String.Empty)
                     }
                     else
                     {
- @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList)
+                        @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList)
                     }
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductGatewayCDISKU)
-                    @Html.ValidationMessageFor(model => model.ProductGatewayCDISKU)
                     @Html.EditorFor(model => model.ProductGatewayCDISKU)
                 </div>
             </div>
@@ -124,12 +111,10 @@
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductDescription)
                     @Html.EditorFor(model => model.ProductDescription)
-                    @Html.ValidationMessageFor(model => model.ProductDescription)
                 </div>
 
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductSalesHistory)
-                    @Html.ValidationMessageFor(model => model.ProductSalesHistory)
                     <div class="sales-textarea">
                         @Html.EditorFor(model => model.ProductSalesHistory)
                     </div>
@@ -140,37 +125,32 @@
             <div class="inline-left">
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductUnitOfMeasure)
-                    @Html.ValidationMessageFor(model => model.ProductUnitOfMeasure)
                     @Html.EditorFor(model => model.ProductUnitOfMeasure)
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.PackagingTypeID, "PackagingType")
-                    @Html.ValidationMessageFor(model => model.PackagingTypeID)
 
                     @if (Model == null)
                     {
- @Html.DropDownList("PackagingTypeID", ViewBag.PackagingTypes as SelectList, String.Empty)
+                        @Html.DropDownList("PackagingTypeID", ViewBag.PackagingTypes as SelectList, String.Empty)
                     }
                     else
                     {
- @Html.DropDownList("PackagingTypeID", ViewBag.PackagingTypes as SelectList)
+                        @Html.DropDownList("PackagingTypeID", ViewBag.PackagingTypes as SelectList)
                     }
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductReplacementItemNumber)
-                    @Html.ValidationMessageFor(model => model.ProductReplacementItemNumber)
                     @Html.EditorFor(model => model.ProductReplacementItemNumber)
                 </div>
             </div>
             <div class="inline-middle">
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductPresentationSell)
-                    @Html.ValidationMessageFor(model => model.ProductPresentationSell)
                     @Html.EditorFor(model => model.ProductPresentationSell)
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductQuoteNumber)
-                    @Html.ValidationMessageFor(model => model.ProductQuoteNumber)
                     @Html.EditorFor(model => model.ProductQuoteNumber)
                 </div>
             </div>
@@ -178,12 +158,10 @@
 
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductSelectedColors)
-                    @Html.ValidationMessageFor(model => model.ProductSelectedColors)
                     @Html.EditorFor(model => model.ProductSelectedColors)
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductSelectedSizes)
-                    @Html.ValidationMessageFor(model => model.ProductSelectedSizes)
                     @Html.EditorFor(model => model.ProductSelectedSizes)
                 </div>
             </div>
@@ -192,70 +170,60 @@
             <div class="inline-left">
                 <div class="controls">
                     @Html.LabelForRequired(model => model.VendorNameID, "VendorName")
-                    @Html.ValidationMessageFor(model => model.VendorNameID)
                     @if (Model == null)
                     {
- @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList, String.Empty)
+                        @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList, String.Empty)
                     }
                     else
                     {
- @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList)
+                        @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList)
                     }
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.VendorTypeID, "VendorType")
-                    @Html.ValidationMessageFor(model => model.VendorTypeID)
                     @if (Model == null || Model.VendorTypeID == null)
                     {
- @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList, String.Empty)
+                        @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList, String.Empty)
                     }
                     else
                     {
- @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList)
+                        @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList)
                     }
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductVendorLeadTime)
-                    @Html.ValidationMessageFor(model => model.ProductVendorLeadTime)
                     @Html.EditorFor(model => model.ProductVendorLeadTime)
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductVendorMinimumOrder)
-                    @Html.ValidationMessageFor(model => model.ProductVendorMinimumOrder)
                     @Html.EditorFor(model => model.ProductVendorMinimumOrder)
                 </div>
             </div>
             <div class="inline-middle">
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductVendorItemNumber)
-                    @Html.ValidationMessageFor(model => model.ProductVendorItemNumber)
                     @Html.EditorFor(model => model.ProductVendorItemNumber)
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductCountryOfOrigin)
-                    @Html.ValidationMessageFor(model => model.ProductCountryOfOrigin)
                     @Html.EditorFor(model => model.ProductCountryOfOrigin)
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductHarmonizedCode)
-                    @Html.ValidationMessageFor(model => model.ProductHarmonizedCode)
                     @Html.EditorFor(model => model.ProductHarmonizedCode)
                 </div>
             </div>
             <div class="inline-right">
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductAnnualSalesProjection)
-                    @Html.ValidationMessageFor(model => model.ProductAnnualSalesProjection)
                     @Html.EditorFor(model => model.ProductAnnualSalesProjection)
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductGatewayCDIMinumumOrder)
-                    @Html.ValidationMessageFor(model => model.ProductGatewayCDIMinumumOrder)
                     @Html.EditorFor(model => model.ProductGatewayCDIMinumumOrder)
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductInitialOrderQuantity)
-                    @Html.ValidationMessageFor(model => model.ProductInitialOrderQuantity)
                     @Html.EditorFor(model => model.ProductInitialOrderQuantity)
                 </div>
             </div>
@@ -263,23 +231,19 @@
         <div ng-show="tab === 4">
             <div class="controls comments">
                 @Html.LabelForRequired(model => model.ProductMerchandiserComments)
-                @Html.ValidationMessageFor(model => model.ProductMerchandiserComments)
-                @Html.EditorFor(model => model.ProductMerchandiserComments, new { ng_trim = "0", textarea_fit = "" })
+                @Html.TextAreaFor(model => model.ProductMerchandiserComments, new { ng_trim = "0", textarea_fit = "" })
             </div>
             <div class="controls comments">
                 @Html.LabelForRequired(model => model.ProductInventoryBuyerComments)
-                @Html.ValidationMessageFor(model => model.ProductInventoryBuyerComments)
-                @Html.EditorFor(model => model.ProductInventoryBuyerComments, new { ng_trim = "0", textarea_fit = "" })
+                @Html.TextAreaFor(model => model.ProductInventoryBuyerComments, new { ng_trim = "0", textarea_fit = "" })
             </div>
             <div class="controls comments">
                 @Html.LabelForRequired(model => model.ProductMentorComments)
-                @Html.ValidationMessageFor(model => model.ProductMentorComments)
-                @Html.EditorFor(model => model.ProductMentorComments, new { ng_trim = "0", textarea_fit = "" })
+                @Html.TextAreaFor(model => model.ProductMentorComments, new { ng_trim = "0", textarea_fit = "" })
             </div>
             <div class="controls comments last">
                 @Html.LabelForRequired(model => model.ProductAccountManagerComments)
-                @Html.ValidationMessageFor(model => model.ProductAccountManagerComments)
-                @Html.EditorFor(model => model.ProductAccountManagerComments, new { ng_trim = "0", textarea_fit = "" })
+                @Html.TextAreaFor(model => model.ProductAccountManagerComments, new { ng_trim = "0", textarea_fit = "" })
             </div>
         </div>
     </div>
@@ -303,107 +267,41 @@
     <div class="toggle-fee">
         <button type="button" class="toggle-company-fees button">Show/Hide Company Fee Section</button>
     </div>
-    <div class="flex-grid">
-        <div class="main-fees-container product-fees">
-            <div class="dollar-fee-info">
-                <h2 class="add-fee">Dollar Fees
-       
-                    <a class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) })"><i class="fa fa-plus-square"></i></a>
-                </h2>
-                <ul class="fees add-target">
-                    @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount)))
-                    {
-                        string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount);
-                        ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == queryString && f.FeeNameStatus != archived).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", fee.FeeNameID);
-                        Html.RenderPartial("_DollarFeeEditor", fee);
-                    }
-                </ul>
-            </div>
-            <div class="percent-fee-info">
-                <h2 class="add-fee">Percent Fees
-       
-                    <a class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Net_Cost) })"><i class="fa fa-plus-square"></i></a>
-                </h2>
-                <div class="fees add-target">
-                    @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent)).OrderBy(f => f.FeeLevel))
-                    {
-                        string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Percent);
-                        ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == queryString && f.FeeNameStatus != archived).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", fee.FeeNameID);
-                        Html.RenderPartial("_PercentFeeEditor", fee);
-                    }
-                </div>
-            </div>
-            <div class="amortized-fee-info">
-                <h2 class="add-fee">Amortized Fees
-       
-                    <a class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) })"><i class="fa fa-plus-square"></i></a>
-                </h2>
-                <div class="fees add-target">
-                    @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized)))
-                    {
-                        string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Amortized);
-                        ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == queryString && f.FeeNameStatus != archived).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", fee.FeeNameID);
-                        Html.RenderPartial("_AmortizedFeeEditor", fee);
-                    }
-                </div>
-            </div>
-            <div class="inline-left editor-label">
-                @Html.LabelForRequired(model => model.ProductNetCost)
-                @Html.DisplayFor(model => model.ProductNetCost, new { @class = "dollar-value" })
-                @Html.ValidationMessageFor(model => model.ProductNetCost)
-            </div>
-            <div class="inline-middle editor-label">
-                @Html.LabelForRequired(model => model.ProductTotalCost)
-                @Html.DisplayFor(model => model.ProductTotalCost, new { @class = "dollar-value" })
-                @Html.ValidationMessageFor(model => model.ProductTotalCost)
-            </div>
-            <div class="inline-right cost-info">
-                <div class="editor-label">
-                    @Html.LabelForRequired(model => model.ProductCost)
-                    @Html.TextBoxFor(model => model.ProductCost, new { @class = "dollar-value" })
-                    @Html.ValidationMessageFor(model => model.ProductCost)
-                </div>
-            </div>
-        </div>
-
-        <div class="add-on-fee-container product-fees-default">
-            <div class="company-fees">
-
+    <div class="flex-grid product-fees-default">
+        <div class="company-fees">
+            <div class="inline-left">
                 <div class="controls">
                     <h2>Dollar Fees</h2>
                     @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount)).OrderBy(f => f.FeeName.FeeNameName))
                     {
                         ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames, "FeeNameID", "FeeNameName", item.FeeNameID);
-
                         <div class="company-fee">
                             @Html.ActionLink("Add Fee", "BlankEditorRowExtended", null, new { productID = Model.ProductID, feeType = item.FeeType, inheritedID = item.FeeID, feeNameID = item.FeeNameID, feeDollarAmount = item.FeeDollarAmount, feeAmortizedCharge = item.FeeAmortizedCharge, feeAmortizedType = item.FeeAmortizedType, feePercent = item.FeePercent, feePercentType = item.FeePercentType }, new { @class = "add-existing-fee" })
                             <input type="checkbox" class="existing-fee-checkbox" name="@item.FeeName" value="@item.FeeID" data-html-location=".dollar-fee-info .fees" />
                             @item.FeeName.FeeNameName : [@Convert.ToDouble(item.FeeDollarAmount).ToString("c")]
-           
                         </div>
                     }
                 </div>
-
+            </div>
+            <div class="inline-middle">
                 <div class="controls">
                     <h2>Amortized Fees</h2>
                     @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized)).OrderBy(f => f.FeeName.FeeNameName))
                     {
                         ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames, "FeeNameID", "FeeNameName", item.FeeNameID);
-
                         <div class="company-fee">
                             @Html.ActionLink("Add Fee", "BlankEditorRowExtended", null, new { productID = Model.ProductID, feeType = item.FeeType, inheritedID = item.FeeID, feeNameID = item.FeeNameID, feeDollarAmount = item.FeeDollarAmount, feeAmortizedCharge = item.FeeAmortizedCharge, feeAmortizedType = item.FeeAmortizedType, feePercent = item.FeePercent, feePercentType = item.FeePercentType }, new { @class = "add-existing-fee" })
                             <input type="checkbox" class="existing-fee-checkbox" name="@item.FeeName" value="@item.FeeID" data-html-location=".amortized-fee-info .fees" />
                             @item.FeeName.FeeNameName : [@Convert.ToDouble(item.FeeAmortizedCharge).ToString("c") | @item.FeeAmortizedType]
-           
                         </div>
                     }
                 </div>
-
+            </div>
+            <div class="inline-right">
                 <div class="controls">
                     <h2>Percent Fees</h2>
                     @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent)).OrderBy(f => f.FeeName.FeeNameName))
                     {
-
                         <div class="company-fee">
                             @Html.ActionLink("Add Fee", "BlankEditorRowExtended", null, new { productID = Model.ProductID, feeType = item.FeeType, inheritedID = item.FeeID, feeNameID = item.FeeNameID, feeDollarAmount = item.FeeDollarAmount, feeAmortizedCharge = item.FeeAmortizedCharge, feeAmortizedType = item.FeeAmortizedType, feePercent = item.FeePercent, feePercentType = item.FeePercentType }, new { @class = "add-existing-fee" })
                             <input type="checkbox" class="existing-fee-checkbox" name="@item.FeeName" value="@item.FeeID" data-html-location=".percent-fee-info .fees" />
@@ -417,13 +315,70 @@
                         {
                             typeDisplay = "×";
                         }
- }
+                            }
                             @item.FeeName.FeeNameName : [@Convert.ToDouble(item.FeePercent).ToString("G")% | @typeDisplay]
-           
                         </div>
                     }
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="flex-grid product-fees">
+        <div class="inline-left dollar-fee-info">
+            <h2 class="add-fee">
+                Dollar Fees
+                <a class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) })"><i class="fa fa-plus-square"></i></a>
+            </h2>
+            <ul class="fees add-target">
+                @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount)))
+                {
+                    string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount);
+                    ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == queryString && f.FeeNameStatus != archived).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", fee.FeeNameID);
+                    Html.RenderPartial("_DollarFeeEditor", fee);
+                }
+            </ul>
+        </div>
+        <div class="inline-right amortized-fee-info">
+            <h2 class="add-fee">
+                Amortized Fees
+                <a class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) })"><i class="fa fa-plus-square"></i></a>
+            </h2>
+            <div class="fees add-target">
+                @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized)))
+                {
+                    string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Amortized);
+                    ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == queryString && f.FeeNameStatus != archived).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", fee.FeeNameID);
+                    Html.RenderPartial("_AmortizedFeeEditor", fee);
+                }
+            </div>
+        </div>
+        <div class="inline-middle percent-fee-info">
+            <h2 class="add-fee">
+                Percent Fees
+                <a class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Net_Cost) })"><i class="fa fa-plus-square"></i></a>
+            </h2>
+            <div class="fees add-target">
+                @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent)).OrderBy(f => f.FeeLevel))
+                {
+                    string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Percent);
+                    ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == queryString && f.FeeNameStatus != archived).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", fee.FeeNameID);
+                    Html.RenderPartial("_PercentFeeEditor", fee);
+                }
+            </div>
+        </div>
+        <div class="inline-left cost-info">
+            <div class="editor-label">
+                @Html.LabelForRequired(model => model.ProductCost)
+                @Html.TextBoxFor(model => model.ProductCost, new { @class = "dollar-value" })
+            </div>
+        </div>
+        <div class="inline-middle editor-label">
+            @Html.LabelForRequired(model => model.ProductNetCost)
+            @Html.DisplayFor(model => model.ProductNetCost, new { @class = "dollar-value" })
+        </div>
+        <div class="inline-right editor-label">
+            @Html.LabelForRequired(model => model.ProductTotalCost)
+            @Html.DisplayFor(model => model.ProductTotalCost, new { @class = "dollar-value" })
         </div>
     </div>
 
@@ -433,11 +388,9 @@
         <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateSellPriceToNearestFiveCents", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Calculate Rounded Price</button>
         <br />
         <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateMargin", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Calculate Margin</button>
-        <br>
-        <br>
+        <br><br>
         @Html.ActionLink("Create New Fee Name", "Create", "FeeName", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), ProductID = Model.ProductID }, null)
     </div>
-
     <div class="flex-grid product-fees">
         <div class="inline-left sell-price-info">
             <h3>Sell Prices</h3>
@@ -450,9 +403,6 @@
                 Html.RenderPartial("_SellPriceEditor", sellPrice);
             }
         </div>
-
-
-
         <div class="inline-middle upcharge-info">
             <div><b>Upcharge</b></div>
             @foreach (var upcharge in Model.ProductUpcharges.Where(p => p.UpchargeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
