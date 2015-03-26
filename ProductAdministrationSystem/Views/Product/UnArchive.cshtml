@@ -1,217 +1,68 @@
 ﻿@model PAS.Models.Product
 
 @{
-    ViewBag.Title = "Archive Product";
+    ViewBag.Title = "Un-Archive Product";
 }
 
-<h2>UnArchive Product</h2>
+<div class="heading">
+    <h1>@ViewBag.Title</h1>
+</div>
 
-<h3>Are you sure you want to un-archive this Product?</h3>
-<fieldset>
-    <legend>Product</legend>
+<div class="flex-grid">
+    <section class="info-list">
+        <h2>Are you sure you want to un-archive this Product from the @Html.DisplayFor(model => model.Campaign.CampaignName) Campaign?</h2>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.ProductName)</strong><br>
+            @Html.DisplayFor(model => model.ProductName)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductName)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.ProductDescription)</strong><br>
+            @Html.DisplayFor(model => model.ProductDescription)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductDescription)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductDescription)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.ProductStatus)</strong><br>
+            @Html.DisplayFor(model => model.ProductStatus)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductStatus)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductStatus)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.Category.CategoryName)</strong><br>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Category.CategoryName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Category.CategoryName)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.Category1.CategoryName)</strong><br>
+            @Html.DisplayFor(model => model.Category1.CategoryName)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Category1.CategoryName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Category1.CategoryName)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.ProductAccountManagerComments)</strong><br>
+            @Html.DisplayFor(model => model.ProductAccountManagerComments)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.PackagingType.PackagingTypeName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PackagingType.PackagingTypeName)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.ProductMerchandiserComments)</strong><br>
+            @Html.DisplayFor(model => model.ProductMerchandiserComments)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductUnitOfMeasure)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductUnitOfMeasure)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.ProductInventoryBuyerComments)</strong><br>
+            @Html.DisplayFor(model => model.ProductInventoryBuyerComments)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.PackagingType.PackagingTypeName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PackagingType.PackagingTypeName)
-    </div>
+        <div class="controls">
+            <strong>@Html.DisplayNameFor(model => model.ProductMentorComments)</strong><br>
+            @Html.DisplayFor(model => model.ProductMentorComments)
+        </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductReplacementItemNumber)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductReplacementItemNumber)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductPresentationSell)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductPresentationSell)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.VendorName.VendorNameName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.VendorName.VendorNameName)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.VendorType.VendorTypeName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.VendorType.VendorTypeName)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductVendorLeadTime)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductVendorLeadTime)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductVendorMinimumOrder)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductVendorMinimumOrder)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductCountryOfOrigin)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductCountryOfOrigin)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductHarmonizedCode)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductHarmonizedCode)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductInitialOrderQuantity)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductInitialOrderQuantity)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductVendorItemNumber)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductVendorItemNumber)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductAnnualSalesProjection)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductAnnualSalesProjection)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductCost)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductCost)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductNetCost)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductNetCost)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductTotalCost)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductTotalCost)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductGatewayCDISKU)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductGatewayCDISKU)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductAccountManagerComments)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductAccountManagerComments)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductMerchandiserComments)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductMerchandiserComments)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductInventoryBuyerComments)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductInventoryBuyerComments)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ProductMentorComments)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ProductMentorComments)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Campaign.CampaignName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Campaign.CampaignName)
-    </div>
-</fieldset>
-@using(Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
-{
-    @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="UnArchive" />
-        |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-}
+        @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+        {
+            @Html.AntiForgeryToken()
+            <p>
+                <input type="submit" class="button green" value="Un-Archive" />|
+                @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
+            </p>
+        }
+    </section>
+</div>

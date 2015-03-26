@@ -3,12 +3,11 @@
 @{
     ViewBag.Title = "Edit Product";
 }
-
 <div class="heading">
     <h1>
         @Html.DisplayFor(model => model.Campaign.Company.CompanyName)
         <div class="heading-info">
-            <strong>Editing Product</strong> @Html.DisplayFor(model => model.ProductID)
+            <strong>@ViewBag.Title</strong> @Html.DisplayFor(model => model.ProductID)
         </div>
         <div class="heading-info">
             <a href="@Url.Action("Edit", "Campaign", new {id=Model.CampaignID})">
@@ -25,12 +24,9 @@
     @Html.HiddenFor(model => model.ProductID)
     @Html.Partial("_EditorData")
 
-
     <button type="submit" class="button green" formaction="@Url.Action("SaveAndClose", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save &amp; Close</button>
-
     <input type="submit" class="button dark-blue" value="Cancel" />
     @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
-
 }
 
 @section Scripts {
