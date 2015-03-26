@@ -511,6 +511,7 @@ namespace PAS.Models
         public object SellPriceMarginDollarAmount { get; set; }
 
         [DisplayName("Final Sell Price Amount")]
+        [DisplayFormat(DataFormatString = "{0:c}")]
         [Required]
         public object SellPriceFinalAmount { get; set; }
 
