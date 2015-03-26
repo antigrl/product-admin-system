@@ -175,6 +175,7 @@
     <Compile Include="Helpers\MyExtensions.cs" />
     <Compile Include="Mailers\IUserMailer.cs" />
     <Compile Include="Mailers\UserMailer.cs" />
+    <Compile Include="Models\ActiveMajorCategory.cs" />
     <Compile Include="Models\AuditTrail.cs">
       <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>

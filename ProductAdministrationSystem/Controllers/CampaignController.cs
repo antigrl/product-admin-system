@@ -67,7 +67,7 @@ namespace PAS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Campaign campaign, string returnUrl)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 // Add Audit Entry 
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, campaign, campaign.CampaignID, "Create");
@@ -76,7 +76,7 @@ namespace PAS.Controllers
                 db.Campaigns.Add(campaign);
                 db.SaveChanges();
 
-                if(returnUrl == null)
+                if (returnUrl == null)
                 {
                     return RedirectToAction("Index");
                 }
@@ -93,7 +93,7 @@ namespace PAS.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             Campaign campaign = db.Campaigns.Find(id);
-            if(campaign == null)
+            if (campaign == null)
             {
                 return HttpNotFound();
             }
@@ -110,7 +110,7 @@ namespace PAS.Controllers
         {
             string preSaveStatus = db.Campaigns.Where(c => c.CampaignID == campaign.CampaignID).Select(c => c.CampaignStatus).FirstOrDefault();
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 // Add Audit Entry 
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, campaign, campaign.CampaignID, "Edit");
@@ -135,8 +135,8 @@ namespace PAS.Controllers
                 var current = db.Campaigns.Find(campaign.CampaignID);
                 db.Entry(current).CurrentValues.SetValues(campaign);
                 db.SaveChanges();
-                
-                if(returnUrl == null)
+
+                if (returnUrl == null)
                 {
                     return RedirectToAction("Index");
                 }
@@ -156,10 +156,33 @@ namespace PAS.Controllers
             Campaign campaign = db.Campaigns.Find(id);
 
             // pull active major categories [use hashset for only adding unique values]
-            SortedSet<string> activeMajorCategories = new SortedSet<string>();
+            SortedSet<ActiveMajorCategory> activeMajorCategories = new SortedSet<ActiveMajorCategory>();
             foreach (Product product in campaign.Products)
             {
-                activeMajorCategories.Add(product.Category.CategoryName);
+                ActiveMajorCategory majorCategory = activeMajorCategories.Where(a => a.majorCategory == product.Category.CategoryName).FirstOrDefault();
+                if (majorCategory == null)
+                {
+                    majorCategory = new ActiveMajorCategory();
+                    majorCategory.majorCategory = product.Category.CategoryName;
+                    if (product.Category1 != null)
+                    {
+                        if (majorCategory.minorCategories.Contains(product.Category1.CategoryName) == false)
+                        {
+                            majorCategory.minorCategories.Add(product.Category1.CategoryName);
+                        }
+                    }
+                    activeMajorCategories.Add(majorCategory);
+                }
+                else
+                {
+                    if (product.Category1 != null)
+                    {
+                        if (activeMajorCategories.Where(a => a.majorCategory == product.Category.CategoryName).FirstOrDefault().minorCategories.Contains(product.Category1.CategoryName) == false)
+                        {
+                            activeMajorCategories.Where(a => a.majorCategory == product.Category.CategoryName).FirstOrDefault().minorCategories.Add(product.Category1.CategoryName);
+                        }
+                    }
+                }
             }
             ViewBag.MajorCategoryList = activeMajorCategories.ToList();
 
@@ -197,7 +220,7 @@ namespace PAS.Controllers
 
             // Inventory Costs
             decimal? inventoryCostSum = (decimal?)0.0;
-            foreach(var product in campaign.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)))
+            foreach (var product in campaign.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)))
             {
                 inventoryCostSum += product.ProductInitialOrderQuantity * product.ProductTotalCost;
             }
@@ -230,7 +253,7 @@ namespace PAS.Controllers
             }
             ViewBag.BlendedMarginsList = pricingTierBlendedMargins;
 
-            if(campaign == null)
+            if (campaign == null)
             {
                 return HttpNotFound();
             }
@@ -244,7 +267,7 @@ namespace PAS.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             Campaign campaign = db.Campaigns.Find(id);
-            if(campaign == null)
+            if (campaign == null)
             {
                 return HttpNotFound();
             }
@@ -269,7 +292,7 @@ namespace PAS.Controllers
             db.Entry(campaign).State = EntityState.Modified;
             db.SaveChanges();
 
-            if(returnUrl == null)
+            if (returnUrl == null)
             {
                 return RedirectToAction("Index");
             }

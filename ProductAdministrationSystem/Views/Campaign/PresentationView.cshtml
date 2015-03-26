@@ -28,8 +28,6 @@
     </div>
 </div>
 <div class="presentation-header">
-
-
     <div class="flex-grid">
         <section class="seamless">
             <dl class="check-list-left">
@@ -57,149 +55,220 @@
             <dl class="category-checkboxes check-list-left">
                 <dt>Categories shown</dt>
                 <dd>
-                    @foreach (string majorCategory in ViewBag.MajorCategoryList)
+                    @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
                     {
-
-                        <input id="@majorCategory" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
-                        <label for="@majorCategory" class="checklist-label iconicfill-check">@majorCategory</label>
-
+                        <input id="@majorCategory.majorCategory" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
+                        <label for="@majorCategory.majorCategory" class="checklist-label iconicfill-check">@majorCategory.majorCategory</label>
+                        <ol>
+                            @foreach (string minorCategory in majorCategory.minorCategories)
+                            {
+                                <li>
+                                    <label for="@minorCategory" class="">@minorCategory</label>
+                                </li>
+                            }
+                        </ol>
                     }
                 </dd>
             </dl>
         </section>
     </div>
 </div>
+<div>
+    @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
+    {
+        productCount = 0;
+        var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
+        <div class="major-category Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
+            <div class="align-ceter">
+                <input type="text" value="@majorCategory.majorCategory" class="major-title">
+            </div>
 
-@foreach (var majorCategory in ViewBag.MajorCategoryList)
-{
-    productCount = 0;
-    var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
-    <div class="major-category Category_@majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
-
-        <div class="align-ceter">
-            <input type="text" value="@majorCategory" class="major-title">
-        </div>
-
-        @foreach (var product in productList)
-        {
-            productCount++;
-            <table class="index-table">
-                <tbody>
+            <table class="index-table index-table-blue">
+                <thead>
                     <tr>
-                        <td class="image-container">
-                            <div class="image">
-                                @if (product.ProductImage != null)
-                                {
-                                    <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
-                                }
-                            </div>
-                        </td>
-                        <td>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <div class="name-container">
-                                            @Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)
-                                        </div>
-                                    </td>
-                                    <td style="border-left: 1px solid #000;">
-                                        <div class="icon-container">
-                                            <ul>
-                                                <li class="dish" style="display: none;">
-                                                    <img src="~/Images/dishwasher-icon.png" alt="">
-                                                </li>
-                                                <li class="eco" style="display: none;">
-                                                    <img src="~/Images/leaf-icon.png" alt="">
-                                                </li>
-                                                <li class="rec" style="display: none;">
-                                                    <img src="~/Images/recycle-icon.png" alt="">
-                                                </li>
-                                                <li class="usa" style="display: none;">
-                                                    <img src="~/Images/flag-icon.png" alt="">
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr>
-                                    <td style="border-top: 1px solid #000;">
-                                        <div class="description-container">
-                                            @product.ProductDescription
-                                        </div>
-                                    </td>
-                                    <td style="border-top: 1px solid #000; border-left: 1px solid #000;">
-                                        <table style="padding: 0; vertical-align: middle; height: 75px; width: 100%;">
-                                            <tr style="height: 15px;">
-                                                <td style="vertical-align: middle; border-bottom: 1px solid #000;">Price</td>
-                                                <td style="vertical-align: middle; border-bottom: 1px solid #000;">Approved</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="price-tiers">
-                                                        <ul>
-                                                            @foreach (var sellPrice in product.ProductSellPrices.OrderBy(s => s.SellPriceLevel))
-                                                            {
-                                                                <li class="Tier_@sellPrice.SellPriceLevel">@sellPrice.SellPriceFinalAmount.ToString("c")</li>
-                                                            }
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                                <td style="border-left: 1px solid #000">
-                                                    <div class="questions-container">
-                                                        YES<br>
-                                                        NO<br>
-                                                        MAYBE<br>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr>
-                                    <td style="border-top: 1px solid #000; border-right: 1px solid #000;">
-                                        <div class="country-container">
-                                            @if (string.IsNullOrEmpty(product.ProductCountryOfOrigin) == false)
-                                            {
-                                                <span>Made in @product.ProductCountryOfOrigin</span>
-                                            }
-                                        </div>
-                                    </td>
-                                    <td style="border-top: 1px solid #000; width: 100%;">
-                                        <div class="moq-container">
-                                            MOQ: @product.ProductVendorMinimumOrder
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
+                        <th>ID</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Minor Category</th>
+                        <th>Sell Price</th>
                     </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in productList)
+                    {
+                        <tr>
+                            <td>
+                                <div>
+                                    @Html.DisplayFor(model => product.ProductID)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="product-image">
+                                    @if (Model != null && product.ProductImage != null)
+                                    {
+                                        <div class="thumb-image">
+                                            <img style="height:20px; width:20px;" src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
+                                        </div>
+                                    }
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DisplayFor(model => product.ProductName)
+                                </div>
+                            </td>
+                            <td>
+                                @if (product.Category1 != null)
+                                {
+                                    <div>
+                                        @Html.DisplayFor(model => product.Category1.CategoryName)
+                                    </div>
+                                }
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DisplayFor(model => product.ProductSellPrices.Where(p => p.SellPriceLevel == 1).FirstOrDefault().SellPriceFinalAmount)
+                                </div>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
-            if (productCount % 8 == 0 && productCount != productList.Count())
+        </div>
+    }
+</div>
+<div style="display: none">
+    @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
+    {
+        productCount = 0;
+        var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
+        <div class="major-category Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
+
+            <div class="align-ceter">
+                <input type="text" value="@majorCategory.majorCategory" class="major-title">
+            </div>
+
+            @foreach (var product in productList)
             {
-                <div class="page_number"><span></span></div>
-                <div class="page_break"></div>
-                <div class="align-ceter">
-                    <input type="text" value="@majorCategory" class="major-title">
+                productCount++;
+                <table class="index-table">
+                    <tbody>
+                        <tr>
+                            <td class="image-container">
+                                <div class="image">
+                                    @if (product.ProductImage != null)
+                                    {
+                                        <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
+                                    }
+                                </div>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <div class="name-container">
+                                                @Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)
+                                            </div>
+                                        </td>
+                                        <td style="border-left: 1px solid #000;">
+                                            <div class="icon-container">
+                                                <ul>
+                                                    <li class="dish" style="display: none;">
+                                                        <img src="~/Images/dishwasher-icon.png" alt="">
+                                                    </li>
+                                                    <li class="eco" style="display: none;">
+                                                        <img src="~/Images/leaf-icon.png" alt="">
+                                                    </li>
+                                                    <li class="rec" style="display: none;">
+                                                        <img src="~/Images/recycle-icon.png" alt="">
+                                                    </li>
+                                                    <li class="usa" style="display: none;">
+                                                        <img src="~/Images/flag-icon.png" alt="">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td style="border-top: 1px solid #000;">
+                                            <div class="description-container">
+                                                @product.ProductDescription
+                                            </div>
+                                        </td>
+                                        <td style="border-top: 1px solid #000; border-left: 1px solid #000;">
+                                            <table style="padding: 0; vertical-align: middle; height: 75px; width: 100%;">
+                                                <tr style="height: 15px;">
+                                                    <td style="vertical-align: middle; border-bottom: 1px solid #000;">Price</td>
+                                                    <td style="vertical-align: middle; border-bottom: 1px solid #000;">Approved</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="price-tiers">
+                                                            <ul>
+                                                                @foreach (var sellPrice in product.ProductSellPrices.OrderBy(s => s.SellPriceLevel))
+                                                                {
+                                                                    <li class="Tier_@sellPrice.SellPriceLevel">@sellPrice.SellPriceFinalAmount.ToString("c")</li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                    <td style="border-left: 1px solid #000">
+                                                        <div class="questions-container">
+                                                            YES<br>
+                                                            NO<br>
+                                                            MAYBE<br>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td style="border-top: 1px solid #000; border-right: 1px solid #000;">
+                                            <div class="country-container">
+                                                @if (string.IsNullOrEmpty(product.ProductCountryOfOrigin) == false)
+                                                {
+                                                    <span>Made in @product.ProductCountryOfOrigin</span>
+                                                }
+                                            </div>
+                                        </td>
+                                        <td style="border-top: 1px solid #000; width: 100%;">
+                                            <div class="moq-container">
+                                                MOQ: @product.ProductVendorMinimumOrder
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                if (productCount % 8 == 0 && productCount != productList.Count())
+                {
+                    <div class="page_number"><span></span></div>
+                    <div class="page_break"></div>
+                    <div class="align-ceter">
+                        <input type="text" value="@majorCategory" class="major-title">
+                    </div>
+                }
+            }
+
+            @{
+            // if the product count is not even add an empty box
+            if (productCount % 2 != 0)
+            {
+                <div style="display: none;">
+                    <table class="index-table"></table>
                 </div>
             }
-        }
+            }
 
-        @{
-        // if the product count is not even add an empty box
-        if (productCount % 2 != 0)
-        {
-            <div style="display: none;">
-                <table class="index-table"></table>
-            </div>
-        }
-        }
-
-        <div class="page_number"><span></span></div>
-    </div>
-    <div class="page_break"></div>
-}
+            <div class="page_number"><span></span></div>
+        </div>
+        <div class="page_break"></div>
+    }
+</div>
