@@ -39,11 +39,12 @@
                 <li class="editor-field">
                     <div class="amortized-container">
                         <span class="left-contain">
-                        Full Charge
+                        <div class="align-top">Full Charge</div>
                         <br />
                             $&nbsp;@Html.TextBoxFor(model => model.FeeAmortizedCharge, new { @class = "dollar-value" })
                         </span>
-                        <span class="right-contain">Unit Amount
+                        <span class="right-contain">
+                        <span class="align-top">Unit Amount</span>
                         <br />
                             @if (Model.FeeDollarAmount != null)
                             {
