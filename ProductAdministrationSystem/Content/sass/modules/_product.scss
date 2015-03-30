@@ -140,3 +140,48 @@
     }
   }
 }
+
+.cost-info {
+  padding: 20px;
+  text-align: center;
+}
+
+.main-fee-calc-container {
+  background: #fff;
+  margin-top: 10px;
+  padding: 20px;
+  flex: 2 0 0;
+  input {
+    padding: 3px;
+  }
+}
+
+.side-fee-calc-container {
+  flex: 1 0 0;
+}
+
+.product-cost,
+.net-cost {
+  background: $darkblue;
+  margin-top: 10px;
+  margin-right: -5px;
+  padding: 10px 20px 5px 10px;
+  flex: 2 0 0;
+  input,
+  .cost {
+    padding: 3px;
+    float: right;
+  }
+  input {
+    color: #000;
+  }
+
+  h2 {
+    border: none;
+    margin: 0 !important;
+    display: inline;
+    color: #fff;
+    font-weight: normal;
+  }
+
+}

@@ -2,56 +2,63 @@
 @using PAS.Helpers;
 @using PAS.Models;
 
-<div class="editor-row fee">
-    @using (Html.BeginCollectionItem("Fees"))
-    {
-        @Html.ValidationSummary(true)
-        <button type="button" class="delete-row">-</button>
-        @Html.ValidationMessageFor(model => model.FeeNameID)
-        <div class="editor-label">
-            <span class="dropdown">
-                @Html.DropDownListFor(model => model.FeeAmortizedType, MyExtensions.GetGenericEnumDropDown<AmortizedTypeList>(), "")
-            </span>
-            <br />
-            @if (Model.FeeNameID == 0)
-            {
-                @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)
-            }
-            else
-            {
-                @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList)
-                @Html.HiddenFor(model => model.FeeID)
-            }
-            @Html.HiddenFor(model => model.ProductID)
-            @Html.HiddenFor(model => model.FeeType)
-            @Html.HiddenFor(model => model.FeeCalculation)
-            @Html.HiddenFor(model => model.FeeStatus)
-            <span class="inherited-id">
-                @Html.HiddenFor(model => model.FeeInheritedFeeID)
-            </span>
-            <span class="is-inherited">
-                @Html.HiddenFor(model => model.FeeInherited)
-            </span>
-        </div> 
-        <div class="editor-field">
-            <div class="full-content">
-                <span class="left-half-content">Full Charge
-                <br />
-                    $&nbsp;@Html.TextBoxFor(model => model.FeeAmortizedCharge, new { @class = "dollar-value" })
-                </span>
-                <span class="right-half-content">Unit Amount
-                <br />
-                    @if (Model.FeeDollarAmount != null)
+<ul class="fee editor-row">
+    <div class="amortized-container">
+        @using (Html.BeginCollectionItem("Fees"))
+        {
+            @Html.ValidationSummary(true)
+
+
+                @Html.ValidationMessageFor(model => model.FeeNameID)
+                <li class="editor-label">
+                <a class="delete-row"></a>
+                    <span class="dropdown">
+                        @Html.DropDownListFor(model => model.FeeAmortizedType, MyExtensions.GetGenericEnumDropDown<AmortizedTypeList>(), "")
+                    </span>
+
+                    @if (Model.FeeNameID == 0)
                     {
-                        <span>$&nbsp;@Html.DisplayFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })</span>
+                        <span class="charge-type">@Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)</span>
                     }
                     else
                     {
-                        <span>N/A</span>
+                        <span class="charge-type">@Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList)</span>
+                        @Html.HiddenFor(model => model.FeeID)
                     }
-                    @Html.ValidationMessageFor(model => model.FeeDollarAmount)
-                </span>
-            </div>
-        </div>
-    }
-</div>
+                    @Html.HiddenFor(model => model.ProductID)
+                    @Html.HiddenFor(model => model.FeeType)
+                    @Html.HiddenFor(model => model.FeeCalculation)
+                    @Html.HiddenFor(model => model.FeeStatus)
+                    <span class="inherited-id">
+                        @Html.HiddenFor(model => model.FeeInheritedFeeID)
+                    </span>
+                    <span class="is-inherited">
+                        @Html.HiddenFor(model => model.FeeInherited)
+                    </span>
+                </li>
+                <li class="editor-field">
+                    <div class="amortized-container">
+                        <span class="left-contain">
+                        <div class="align-top">Full Charge</div>
+                        <br />
+                            $&nbsp;@Html.TextBoxFor(model => model.FeeAmortizedCharge, new { @class = "dollar-value" })
+                        </span>
+                        <span class="right-contain">
+                        <span class="align-top">Unit Amount</span>
+                        <br />
+                            @if (Model.FeeDollarAmount != null)
+                            {
+                                <span>$&nbsp;@Html.DisplayFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })</span>
+                            }
+                            else
+                            {
+                                <span>N/A</span>
+                            }
+                            @Html.ValidationMessageFor(model => model.FeeDollarAmount)
+                        </span>
+                    </div>
+                </li>
+
+        }
+    </div>
+</ul>

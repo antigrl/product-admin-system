@@ -45,7 +45,7 @@
 }
 
 .dollar-fee,
-.percent-fee  {
+.percent-fee {
   padding: 3px;
   select {
     width: 70%;
@@ -53,9 +53,47 @@
   }
   input {
     margin-left: 5px;
+    padding: 3px;
   }
 }
 
 .percent-fee {
   input { width: 10%; }
+}
+
+.charge-type {
+  margin-left: 10px;
+}
+
+.amortized-container {
+  .left-contain,
+  .right-contain {
+    margin: 0 10px;
+    .align-top: {
+      margin-top: -5px;
+    }
+  }
+  .left-contain {
+    float: left;
+    margin-left: 28px;
+  }
+  .right-contain {
+    float: right;
+    text-align: right;
+    margin-right: 0;
+  }
+
+  .editor-label {
+    display: inline;
+    float: left;
+
+  }
+  .editor-field {
+    width: 30%;
+    display: inline-block;
+  }
+}
+
+.fees {
+  margin: 10px 0;
 }
