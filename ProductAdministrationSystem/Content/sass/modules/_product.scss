@@ -1,14 +1,12 @@
 .product-add-detail,
 .product-fees-default,
-.product-fees,
-.cost-info {
+.product-fees {
   background-color: #fff;
   width: 100%;
 }
 
 .product-fees-default,
-.product-fees,
-.cost-info {
+.product-fees {
   margin-top: 20px;
 }
 
@@ -146,4 +144,18 @@
 .cost-info {
   padding: 20px;
   text-align: center;
+}
+
+.main-fee-calc-container {
+  background: #fff;
+  margin: 20px 0;
+  padding: 20px;
+  flex: 2 0 0;
+  input {
+    padding: 3px;
+  }
+}
+
+.side-fee-calc-container {
+  flex: 1 0 0;
 }

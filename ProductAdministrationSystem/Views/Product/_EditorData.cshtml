@@ -323,28 +323,34 @@
             </div>
         </div>
     </div>
-    <div class="flex-grid cost-info">
-        <div class="editor-label">
-            @Html.LabelForRequired(model => model.ProductCost)
-            @Html.TextBoxFor(model => model.ProductCost, new { @class = "dollar-value" })
+    <div class="flex-grid">
+        <div class="main-fee-calc-container">
+            <div class="editor-label">
+                <strong>@Html.LabelForRequired(model => model.ProductCost)</strong>
+                @Html.TextBoxFor(model => model.ProductCost, new { @class = "dollar-value" })
+            </div>
         </div>
+        <div class="side-fee-calc-container"></div>
     </div>
-    <div class="flex-grid product-fees">
-        <div class="inline-left dollar-fee-info">
-            <h2 class="add-fee">
-                Dollar Fees
-                <a class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) })"><i class="fa fa-plus-square"></i></a>
-            </h2>
-            <ul class="fees add-target">
-                @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount)))
-                {
-                    string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount);
-                    ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == queryString && f.FeeNameStatus != archived).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", fee.FeeNameID);
-                    Html.RenderPartial("_DollarFeeEditor", fee);
-                }
-            </ul>
-        </div>
-        <div class="inline-right amortized-fee-info">
+
+    <div class="flex-grid">
+        <div class="main-fee-calc-container">
+            <div class="dollar-fee-info">
+                <h2 class="add-fee">
+                    Dollar Fees
+                    <a class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) })"><i class="fa fa-plus-square"></i></a>
+                </h2>
+                <ul class="fees add-target">
+                    @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount)))
+                    {
+                        string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount);
+                        ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == queryString && f.FeeNameStatus != archived).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", fee.FeeNameID);
+                        Html.RenderPartial("_DollarFeeEditor", fee);
+                    }
+                </ul>
+            </div>
+
+            <div class="amortized-fee-info">
             <h2 class="add-fee">
                 Amortized Fees
                 <a class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) })"><i class="fa fa-plus-square"></i></a>
@@ -358,7 +364,7 @@
                 }
             </div>
         </div>
-        <div class="inline-middle percent-fee-info">
+        <div class="percent-fee-info">
             <h2 class="add-fee">
                 Percent Fees
                 <a class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Net_Cost) })"><i class="fa fa-plus-square"></i></a>
@@ -372,6 +378,13 @@
                 }
             </div>
         </div>
+        </div>
+        <div class="side-fee-calc-container">
+        </div>
+    </div>
+    <div class="flex-grid product-fees">
+
+
 
         <div class="inline-middle editor-label">
             @Html.LabelForRequired(model => model.ProductNetCost)
