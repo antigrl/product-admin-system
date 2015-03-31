@@ -61,36 +61,18 @@
   input { width: 10%; }
 }
 
-.charge-type {
-  margin-left: 10px;
-}
-
-.amortized-container {
-  .left-contain,
-  .right-contain {
-    margin: 0 10px;
-    .align-top {
-      margin-top: -5px;
-    }
-  }
-  .left-contain {
-    float: left;
-    margin-left: 28px;
-  }
-  .right-contain {
-    float: right;
-    text-align: right;
-    margin-right: 0;
-  }
-
-  .editor-label {
-    display: inline;
-    float: left;
-
-  }
-  .editor-field {
-    width: 30%;
-    display: inline-block;
+.amortized-container div {
+  width: 100%;
+  display: inline-flex;
+  align-items: stretch;
+  justify-content: space-between;
+  text-align: right;
+  margin-bottom: 5px;
+  background-color: lighten($lightgray, 30%);
+  padding: 10px;
+  label {
+    display: block;
+    margin-bottom: 5px;
   }
 }
 
