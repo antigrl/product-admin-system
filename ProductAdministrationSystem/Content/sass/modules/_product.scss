@@ -1,12 +1,14 @@
 .product-add-detail,
 .product-fees-default,
-.product-fees {
+.product-fees,
+.decoration-container {
   background-color: #fff;
   width: 100%;
 }
 
 .product-fees-default,
-.product-fees {
+.product-fees,
+.decoration-container {
   margin-top: 20px;
 }
 
@@ -82,7 +84,7 @@
 }
 .toggle-content {
   width: 100%;
-  height: 280px;
+  height: 100%;
 }
 
 .tab-headers {

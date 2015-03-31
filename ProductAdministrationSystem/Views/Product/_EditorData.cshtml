@@ -246,19 +246,6 @@
                 @Html.TextAreaFor(model => model.ProductAccountManagerComments, new { ng_trim = "0", textarea_fit = "" })
             </div>
         </div>
-        <div ng-show="tab === 5">
-            <div class="controls">
-
-                @Html.ActionLink("Add Decoration", "BlankEditorRow", null, new { productID = Model.ProductID, isDecoration = true }, new { @class = "add-item" })
-                    <div class="product-decorations add-target">
-                        @foreach (var decoration in Model.ProductDecorations.Where(p => p.DecorationStatus != MyExtensions.GetEnumDescription(Status.Archived)))
-                        {
-                            var decorationMethods = new SelectList(ViewBag.DecorationMethodsDB, "DecorationMethodID", "DecorationMethodName", decoration.DecorationMethodID);
-                            Html.RenderPartial("_ProductDecorationEditor", decoration, new ViewDataDictionary { { "DecorationMethods", decorationMethods } });
-                        }
-                    </div>
-            </div>
-        </div>
     </div>
     <ul class="tab-headers">
         <li ng-class="{active:tab===1}">
@@ -272,9 +259,6 @@
         </li>
         <li ng-class="{active:tab===4}">
             <a href ng-click="tab = 4">Comments</a>
-        </li>
-        <li ng-class="{active:tab===5}">
-            <a href ng-click="tab = 5">Add Dectionation</a>
         </li>
     </ul>
 </div>
@@ -454,5 +438,27 @@
             }
             @Html.ActionLink("Create New Upcharge", "Create", "ProductUpcharge", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), ProductID = Model.ProductID }, null)
         </div>
+
     </div>
+    <div class="flex-grid decoration-container">
+
+    @if(Model != null)
+    {
+        <div>
+            <h4>Decoration Information</h4>
+            <div>
+            @Html.ActionLink("Add Decoration", "BlankEditorRow", null, new { productID = Model.ProductID, isDecoration = true }, new { @class = "add-item" })
+            </div>
+            <div class="product-decorations add-target">
+                @foreach (var decoration in Model.ProductDecorations.Where(p => p.DecorationStatus != MyExtensions.GetEnumDescription(Status.Archived)))
+                {
+                    var decorationMethods = new SelectList(ViewBag.DecorationMethodsDB, "DecorationMethodID", "DecorationMethodName", decoration.DecorationMethodID);
+                    Html.RenderPartial("_ProductDecorationEditor", decoration, new ViewDataDictionary { { "DecorationMethods", decorationMethods } });
+                }
+            </div>
+        </div>
+    }
+    </div>
+
+
 }
