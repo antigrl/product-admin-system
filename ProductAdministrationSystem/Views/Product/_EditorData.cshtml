@@ -444,10 +444,10 @@
 
     @if(Model != null)
     {
-        <div>
-            <h4>Decoration Information</h4>
+
+            <h2 class="add-fee">Decoration Information</h2>
             <div>
-            @Html.ActionLink("Add Decoration", "BlankEditorRow", null, new { productID = Model.ProductID, isDecoration = true }, new { @class = "add-item" })
+            <a class="add-item" href="@Url.Action("BlankEditorRow", new { productID = Model.ProductID, isDecoration = true })"><i class="fa fa-plus-square"></i></a>
             </div>
             <div class="product-decorations add-target">
                 @foreach (var decoration in Model.ProductDecorations.Where(p => p.DecorationStatus != MyExtensions.GetEnumDescription(Status.Archived)))
@@ -456,7 +456,7 @@
                     Html.RenderPartial("_ProductDecorationEditor", decoration, new ViewDataDictionary { { "DecorationMethods", decorationMethods } });
                 }
             </div>
-        </div>
+
     }
     </div>
 
