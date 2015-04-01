@@ -44,24 +44,12 @@
   flex: 1 0 0;
 }
 
+
+
+
+.amortized-container div,
 .dollar-fee,
 .percent-fee {
-  padding: 3px;
-  select {
-    width: 70%;
-    margin-right: 8px;
-  }
-  input {
-    margin-left: 5px;
-    padding: 3px;
-  }
-}
-
-.percent-fee {
-  input { width: 10%; }
-}
-
-.amortized-container div {
   width: 100%;
   display: inline-flex;
   align-items: stretch;
@@ -73,6 +61,9 @@
   label {
     display: block;
     margin-bottom: 5px;
+  }
+  input.dollar-value {
+    justify-content: flex-end;
   }
 }
 
