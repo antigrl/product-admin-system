@@ -9,3 +9,8 @@ NPR2.0.8/obj/
 *.sublime-project
 *.sublime-workspace
 node_modules/
+
+ProductAdministrationSystem.Tests/bin/
+ProductAdministrationSystem.Tests/obj/
+ProductAdministrationSystem/bin/
+ProductAdministrationSystem/bin/
