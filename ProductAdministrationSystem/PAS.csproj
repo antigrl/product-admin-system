@@ -437,6 +437,7 @@
     <Content Include="Content\sass\modules\_product.scss" />
     <Content Include="Content\sass\modules\_tabs.scss" />
     <Content Include="Content\sass\modules\_top-nav.scss" />
+    <None Include="Properties\PublishProfiles\Staging Test.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\angular-textarea-fit.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
