@@ -13,4 +13,4 @@ node_modules/
 ProductAdministrationSystem.Tests/bin/
 ProductAdministrationSystem.Tests/obj/
 ProductAdministrationSystem/bin/
-ProductAdministrationSystem/bin/
+ProductAdministrationSystem/obj/
