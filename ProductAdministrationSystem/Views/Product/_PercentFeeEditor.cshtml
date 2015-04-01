@@ -2,7 +2,7 @@
 @using PAS.Helpers;
 @using PAS.Models;
 
-<ul class="fee editor-row percent-fee">
+<ul class="fee editor-row">
     @using (Html.BeginCollectionItem("Fees"))
     {
         @Html.ValidationSummary(true)
@@ -11,30 +11,33 @@
         </li>
         <li>
             @Html.ValidationMessageFor(model => model.FeeNameID)
-
-
-
-            @if (Model.FeeNameID == 0)
-            {
+        </li>
+        if (Model.FeeNameID == 0)
+        {
+            <li>
                 @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)
-            }
-            else
-            {
+            </li>
+        }
+        else
+        {
+            <li>
                 @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList)
                 @Html.HiddenFor(model => model.FeeID)
-            }
+            </li>
+        }
+        <li>
             @Html.EditorFor(model => model.FeeLevel)
-            @Html.HiddenFor(model => model.ProductID)
-            @Html.HiddenFor(model => model.FeeType)
-            @Html.HiddenFor(model => model.FeeCalculation)
-            @Html.HiddenFor(model => model.FeeStatus)
-            <span class="inherited-id">
-                @Html.HiddenFor(model => model.FeeInheritedFeeID)
-            </span>
-            <span class="is-inherited">
-                @Html.HiddenFor(model => model.FeeInherited)
-            </span>
         </li>
+        @Html.HiddenFor(model => model.ProductID)
+        @Html.HiddenFor(model => model.FeeType)
+        @Html.HiddenFor(model => model.FeeCalculation)
+        @Html.HiddenFor(model => model.FeeStatus)
+        <span class="inherited-id">
+            @Html.HiddenFor(model => model.FeeInheritedFeeID)
+        </span>
+        <span class="is-inherited">
+            @Html.HiddenFor(model => model.FeeInherited)
+        </span>
         <li>
             <span class="dropdown">
                 @Html.DropDownListFor(model => model.FeePercentType, MyExtensions.GetGenericEnumDropDown<PercentTypeList>())
