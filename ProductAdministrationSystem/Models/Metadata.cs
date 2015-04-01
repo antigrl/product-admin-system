@@ -221,6 +221,7 @@ namespace PAS.Models
         public object FeePercentType { get; set; }
 
         [DisplayName("Fee Dollar Value")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public object FeeDollarAmount { get; set; }
         
         [DisplayName("Status")]
@@ -329,6 +330,7 @@ namespace PAS.Models
         public object ProductSelectedColors { get; set; }
 
         [DisplayName("Presentation Sell")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public object ProductPresentationSell { get; set; }
 
         [DisplayName("Quote Number")]
@@ -383,12 +385,15 @@ namespace PAS.Models
         public object ProductGatewayCDIMinumumOrder { get; set; }
 
         [DisplayName("Product Cost")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public object ProductCost { get; set; }
 
         [DisplayName("Net Cost")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public object ProductNetCost { get; set; }
 
         [DisplayName("Total Cost")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public object ProductTotalCost { get; set; }
 
         [DisplayName("Landed Cost")]
@@ -507,11 +512,12 @@ namespace PAS.Models
         public object SellPriceMarginPercent { get; set; }
 
         [DisplayName("Margin Dollar Amount")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         [Required]
         public object SellPriceMarginDollarAmount { get; set; }
 
         [DisplayName("Final Sell Price Amount")]
-        [DisplayFormat(DataFormatString = "{0:c}")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         [Required]
         public object SellPriceFinalAmount { get; set; }
 
@@ -532,10 +538,12 @@ namespace PAS.Models
         public object UpchargeName { get; set; }
 
         [DisplayName("Upcharge Amount")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         [Required]
         public object UpchargeAmount { get; set; }
 
         [DisplayName("Upcharge Total Cost")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public object UpchargeTotalCost { get; set; }
 
         [DisplayName("Status")]
@@ -556,6 +564,7 @@ namespace PAS.Models
         public object UpchargeSellPriceLevel { get; set; }
 
         [DisplayName("Upcharge Sell Price Final Amount")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         [Required]
         public object UpchargeSellPriceFinalAmount { get; set; }
 

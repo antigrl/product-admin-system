@@ -376,14 +376,14 @@
                     Amortized Fees
                     <a class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) })"><i class="fa fa-plus-square"></i></a>
                 </h2>
-                <div class="fees add-target">
+                <ul class="fees add-target">
                     @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized)))
                     {
                         string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Amortized);
                         ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == queryString && f.FeeNameStatus != archived).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", fee.FeeNameID);
                         Html.RenderPartial("_AmortizedFeeEditor", fee);
                     }
-                </div>
+                </ul>
             </div>
         </div>
         <div class="side-fee-calc-container"></div>
@@ -406,14 +406,14 @@
                     Percent Fees
                     <a class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Net_Cost) })"><i class="fa fa-plus-square"></i></a>
                 </h2>
-                <div class="fees add-target">
+                <ul class="fees add-target">
                     @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent)).OrderBy(f => f.FeeLevel))
                     {
                         string queryString = MyExtensions.GetEnumDescription(FeeTypeList.Percent);
                         ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == queryString && f.FeeNameStatus != archived).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", fee.FeeNameID);
                         Html.RenderPartial("_PercentFeeEditor", fee);
                     }
-                </div>
+                </ul>
             </div>
         </div>
         <div class="side-fee-calc-container"></div>

@@ -2,58 +2,55 @@
 @using PAS.Helpers;
 @using PAS.Models;
 
-<ul class="fee editor-row">
+<li class="fee editor-row percent-fee-container">
     @using (Html.BeginCollectionItem("Fees"))
     {
-        @Html.ValidationSummary(true)
-        <li>
-            <a href="#" class="delete-row"></a>
-            @Html.ValidationMessageFor(model => model.FeeNameID)
-        </li>
-        if (Model.FeeNameID == 0)
-        {
-            <li>
-                @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)
-            </li>
-        }
-        else
-        {
-            <li>
-                @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList)
-                @Html.HiddenFor(model => model.FeeID)
-            </li>
-        }
-        <li>
-            @Html.EditorFor(model => model.FeeLevel)
-        </li>
         @Html.HiddenFor(model => model.ProductID)
         @Html.HiddenFor(model => model.FeeType)
         @Html.HiddenFor(model => model.FeeCalculation)
         @Html.HiddenFor(model => model.FeeStatus)
-        <span class="inherited-id">
-            @Html.HiddenFor(model => model.FeeInheritedFeeID)
+        
+        @Html.ValidationSummary(true)
+        <span>
+            <a href="#" class="delete-row"></a>
+            @Html.ValidationMessageFor(model => model.FeeNameID)
         </span>
-        <span class="is-inherited">
-            @Html.HiddenFor(model => model.FeeInherited)
-        </span>
-        <li>
-            <span class="dropdown">
-                @Html.DropDownListFor(model => model.FeePercentType, MyExtensions.GetGenericEnumDropDown<PercentTypeList>())
+        if (Model.FeeNameID == 0)
+        {
+            <span>
+                @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)
             </span>
-        </li>
-        <li>
-            <span class="percent-span">%&nbsp;@Html.TextBoxFor(model => model.FeePercent, new { @class = "percent-value" })</span>
-            @if (Model.FeeDollarAmount != null)
-            {
-                <span>$&nbsp;@Html.DisplayFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })</span>
-            }
-            else
-            {
-                <span>N/A</span>
-            }
-            @Html.ValidationMessageFor(model => model.FeeDollarAmount)
-        </li>
+        }
+        else
+        {
+            <span>
+                @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList)
+                @Html.HiddenFor(model => model.FeeID)
+            </span>
+        }
+        <span>
+            @Html.EditorFor(model => model.FeeLevel)
+        </span>
+        <span class="dropdown">
+            @Html.DropDownListFor(model => model.FeePercentType, MyExtensions.GetGenericEnumDropDown<PercentTypeList>())
+        </span>
+        <span class="percent-span">%&nbsp;@Html.TextBoxFor(model => model.FeePercent, new { @class = "percent-value" })</span>
 
-
+        <div class="inherited-id hide">
+            @Html.HiddenFor(model => model.FeeInheritedFeeID)
+        </div>
+        <div class="is-inherited hide">
+            @Html.HiddenFor(model => model.FeeInherited)
+        </div>
+        
+        if (Model.FeeDollarAmount != null)
+        {
+            <span>@Html.DisplayFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })</span>
+        }
+        else
+        {
+            <span>N/A</span>
+        }
+        <span> @Html.ValidationMessageFor(model => model.FeeDollarAmount)</span>
     }
-</ul>
+</li>
