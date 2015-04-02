@@ -102,7 +102,7 @@
                                             @Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)
                                         </div>
                                     </td>
-                                    <td style="border-left: 1px solid #000;">
+                                    <td style="border-left: 1px solid #000; width: 100%;">
                                         <div class="icon-container">
                                             <ul>
                                                 <li class="dish" style="display: none;">
@@ -130,7 +130,7 @@
                                         </div>
                                     </td>
                                     <td style="border-top: 1px solid #000; border-left: 1px solid #000;">
-                                        <table style="padding: 0; vertical-align: middle; height: 75px; width: 100%;">
+                                        <table style="padding: 0; vertical-align: middle; height: 112px; width: 100%;">
                                             <tr style="height: 15px;">
                                                 <td style="vertical-align: middle; border-bottom: 1px solid #000;">Price</td>
                                                 <td style="vertical-align: middle; border-bottom: 1px solid #000;">Approved</td>
