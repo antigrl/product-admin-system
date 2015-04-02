@@ -310,7 +310,7 @@ namespace PAS.Controllers
                     var campaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID).FirstOrDefault();
                     if (sendEmailTos != null && sendEmailTos.Count > 0)
                     {
-                        UserMailer.SendStatusUpdate(sendEmailTos, "Product Updated by: " + User.Identity.Name, urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, product).Send();
+                        UserMailer.SendStatusUpdate(sendEmailTos, "Product Updated by: " + MyExtensions.DisplayPrintFriendlyName(User.Identity.Name), urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, product).Send();
                     }
                 }
                 #endregion
@@ -499,7 +499,7 @@ namespace PAS.Controllers
                     var campaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID).FirstOrDefault();
                     if (sendEmailTos != null && sendEmailTos.Count > 0)
                     {
-                        UserMailer.SendStatusUpdate(sendEmailTos, "Product Updated by: " + User.Identity.Name, urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, product).Send();
+                        UserMailer.SendStatusUpdate(sendEmailTos, "Product Updated by: " + MyExtensions.DisplayPrintFriendlyName(User.Identity.Name), urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, product).Send();
                     }
                 }
                 #endregion
@@ -673,7 +673,7 @@ namespace PAS.Controllers
                     var campaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID).FirstOrDefault();
                     if (sendEmailTos != null && sendEmailTos.Count > 0)
                     {
-                        UserMailer.SendStatusUpdate(sendEmailTos, "Product Updated by: " + User.Identity.Name, urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, product).Send();
+                        UserMailer.SendStatusUpdate(sendEmailTos, "Product Updated by: " + MyExtensions.DisplayPrintFriendlyName(User.Identity.Name), urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, product).Send();
                     }
                 }
                 #endregion
@@ -858,7 +858,7 @@ namespace PAS.Controllers
                     var campaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID).FirstOrDefault();
                     if (sendEmailTos != null && sendEmailTos.Count > 0)
                     {
-                        UserMailer.SendStatusUpdate(sendEmailTos, "Product Updated by: " + User.Identity.Name, urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, product).Send();
+                        UserMailer.SendStatusUpdate(sendEmailTos, "Product Updated by: " + MyExtensions.DisplayPrintFriendlyName(User.Identity.Name), urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, product).Send();
                     }
                 }
                 #endregion

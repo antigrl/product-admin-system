@@ -12,7 +12,7 @@
     @Html.ValidationSummary(true)
 
     <div class="heading">
-        <h1>Company
+        <h1>Campaign
             <div class="heading-info">
                 Create Campaign
             </div>
@@ -62,7 +62,8 @@
             <div class="controls">
                 @Html.LabelForRequired(model => model.CampaignCreatedBy)
                 @Html.ValidationMessageFor(model => model.CampaignCreatedBy)
-                @Html.EditorFor(model => model.CampaignCreatedBy, new { @class = "floatLabel" })
+                @MyExtensions.DisplayPrintFriendlyName(Model.CampaignCreatedBy)
+                @Html.HiddenFor(model => model.CampaignCreatedBy, new { @class = "floatLabel" })
             </div>
             <div class="controls">
                 @Html.LabelForRequired(model => model.CampaignCreatedOnDate)
