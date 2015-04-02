@@ -28,5 +28,5 @@ app.controller('toggleController', function() {
 });
 
 app.run(function (DTDefaultOptions) {
-  DTDefaultOptions.setDisplayLength(10);
+  DTDefaultOptions.setDisplayLength(30);
 });
