@@ -2,9 +2,14 @@
 @using PAS.Helpers;
 @using PAS.Models;
 
-<div class="sell-price-fee">
+<div class="upcharge-sell-price">
     @using (Html.BeginCollectionItem("UpchargeSellPrices"))
     {
+        <div>
+            <strong>@Model.UpchargeSellPriceName Sell Price:</strong>
+            @Html.DisplayFor(model => model.UpchargeSellPriceFinalAmount)
+            @Html.TextBoxFor(model => model.UpchargeSellPriceFinalRoundedAmount, new { @class = "dollar-value" })
+        </div>
         <div class="hidden-inputs">
             @Html.HiddenFor(model => model.UpchargeSellPriceID)
             @Html.HiddenFor(model => model.UpchargeSellPriceName)

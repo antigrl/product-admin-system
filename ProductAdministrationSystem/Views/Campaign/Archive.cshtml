@@ -1,4 +1,5 @@
 ﻿@model PAS.Models.Campaign
+@using PAS.Helpers;
 
 @{
 ViewBag.Title = "Archive Campaign";
@@ -62,7 +63,7 @@ ViewBag.Title = "Archive Campaign";
 
         <div class="controls">
             <strong>@Html.DisplayNameFor(model => model.CampaignCreatedBy)</strong><br>
-            @Html.DisplayFor(model => model.CampaignCreatedBy)
+            @MyExtensions.DisplayPrintFriendlyName(Model.CampaignCreatedBy)
         </div>
 
         <div class="controls">

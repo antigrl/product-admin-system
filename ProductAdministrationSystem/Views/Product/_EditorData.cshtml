@@ -446,10 +446,11 @@
                     sellPrice.Product = Model;
                 }
                 Html.RenderPartial("_SellPriceEditor", sellPrice);
+                <hr />
             }
         </div>
         <div class="inline-middle upcharge-info">
-            <div><b>Upcharge</b></div>
+            <h3>Upcharge</h3>
             @foreach (var upcharge in Model.ProductUpcharges.Where(p => p.UpchargeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
             {
                 Html.RenderPartial("_UpchargeEditor", upcharge);

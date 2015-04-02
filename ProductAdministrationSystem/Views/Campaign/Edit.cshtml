@@ -26,7 +26,8 @@
                 <h3>Active Product Count</h3>
             </section>
             <section class="seamless">
-                <span>@Html.EditorFor(model => model.CampaignCreatedBy)</span>
+                <span>@MyExtensions.DisplayPrintFriendlyName(Model.CampaignCreatedBy)</span>
+                @Html.HiddenFor(model => model.CampaignCreatedBy)
                 <h3>@Html.LabelForRequired(model => model.CampaignCreatedBy)</h3>
             </section>
             <section class="seamless">

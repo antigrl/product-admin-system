@@ -7,8 +7,7 @@
     {
         <div class="sell-price">
             <div class="left-content">
-                <b><u>@Html.DisplayFor(model => model.SellPriceName)</u></b>
-                <br />
+                <h3>@Html.DisplayFor(model => model.SellPriceName)</h3>
                 <b>@Html.DisplayNameFor(model => model.SellPriceLevel): </b>@Html.DisplayFor(model => model.SellPriceLevel)
                 <br />
                 <b>Margin: </b>
@@ -45,6 +44,7 @@
                 @Html.TextBoxFor(model => model.SellPriceFinalAmount, new { @class = "dollar-value" })
             </span>
 
+
             <div class="upcharged-sell-price">
                 @foreach (var upcharge in Model.Product.ProductUpcharges.Where(u => u.UpchargeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
                 {
@@ -52,9 +52,12 @@
                     {
                         if (upchargeSellPrice.UpchargeSellPriceLevel == Model.SellPriceLevel)
                         {
-                            <b>@upcharge.UpchargeName | @upchargeSellPrice.UpchargeSellPriceName Sell Price: </b>
-                            <span>$@upchargeSellPrice.UpchargeSellPriceFinalAmount</span>
-                            <br />
+                            <div>
+                                <b>@upcharge.UpchargeName Sell Price: </b>
+                                <span>$@upchargeSellPrice.UpchargeSellPriceFinalAmount</span>
+                                <b>Rounded: </b>
+                                <span>$@upchargeSellPrice.UpchargeSellPriceFinalRoundedAmount</span>
+                            </div>
                         }
                     }
                 }

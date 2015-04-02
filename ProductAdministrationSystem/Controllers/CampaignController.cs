@@ -52,7 +52,7 @@ namespace PAS.Controllers
             ViewBag.ReturnUrl = returnUrl;
             // Create New Campaign to get Constructor Values and set Created By
             Campaign campaign = new Campaign();
-            campaign.OnCreate(User.Identity.Name.ToString());
+            campaign.OnCreate(User.Identity.Name);
 
             string archived = MyExtensions.GetEnumDescription(Status.Archived);
 
@@ -126,7 +126,7 @@ namespace PAS.Controllers
 
                     if (sendEmailTos != null && sendEmailTos.Count > 0)
                     {
-                        UserMailer.SendStatusUpdate(sendEmailTos, "Company Updated by: " + User.Identity.Name, urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, null).Send();
+                        UserMailer.SendStatusUpdate(sendEmailTos, "Company Updated by: " + MyExtensions.DisplayPrintFriendlyName(User.Identity.Name), urlBuilder.ToString(), db.Companies.Where(c => c.CompanyID == campaign.CompanyID).FirstOrDefault(), campaign, null).Send();
                     }
                 }
                 #endregion

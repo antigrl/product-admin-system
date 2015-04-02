@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     @Styles.Render("~/Content/css")
+    @using PAS.Helpers;
 </head>
 <body>
     <nav class="collapsed main">
@@ -15,7 +16,7 @@
             <header>
                 <a></a>
                 <img src="@Url.Content("~/Content/themes/base/images/logo.png")" class="thumb">
-                <span>@User.Identity.Name</span>
+                <span>@MyExtensions.DisplayPrintFriendlyName(User.Identity.Name)</span>
             </header>
         </div>
         <ul>
