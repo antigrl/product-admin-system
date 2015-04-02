@@ -221,7 +221,8 @@
 a.edit-btn,
 a.archive-btn {
   .fa-pencil-square-o,
-  .fa-archive {
+  .fa-archive,
+  .fa-undo {
     color: $darkblue;
     font-size: 18px;
     transition: color 0.5s ease;
