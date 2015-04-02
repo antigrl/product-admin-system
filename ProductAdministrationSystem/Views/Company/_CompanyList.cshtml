@@ -16,6 +16,10 @@
                 {
                     <img src="@Url.Action("Show", "Company", new { id = item.CompanyID })" />
                 }
+                else
+                {
+                    <h1>@Html.DisplayFor(model => item.CompanyName)</h1>
+                }
             </div>
             <a class="button orange add-campaign" href="@Url.Action("Create", "Campaign", new { ReturnURL = Url.Action("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }), CompanyID = item.CompanyID }, null)">Add Campaign
             </a>
