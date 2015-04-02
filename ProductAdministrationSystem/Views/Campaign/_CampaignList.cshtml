@@ -8,8 +8,9 @@
         <thead>
             <tr>
                 <th>Campaign Name</th>
+                <th>Product Count</th>
                 <th>Status</th>
-                <th>Date</th>
+                <th>Created On</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -19,6 +20,9 @@
             <tr>
                 <td class="campaign-name">
                     @Html.DisplayFor(model => item.CampaignName)
+                </td>
+                <td>
+                    @item.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)).Count()
                 </td>
                 <td class="status">
                     @Html.DisplayFor(model => item.CampaignStatus)
