@@ -26,6 +26,7 @@ namespace PAS.Models
         public bool UpchargeSellPriceLocked { get; set; }
         public int UpchargeID { get; set; }
         public string UpchargeSellPriceStatus { get; set; }
+        public Nullable<decimal> UpchargeSellPriceFinalRoundedAmount { get; set; }
     
         public virtual ICollection<AuditTrail> AuditTrails { get; set; }
         public virtual ProductUpcharge ProductUpcharge { get; set; }

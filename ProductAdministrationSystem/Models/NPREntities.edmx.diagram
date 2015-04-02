@@ -18,7 +18,7 @@
         <EntityTypeShape EntityType="NPRModel.ProductDecoration" Width="1.5" PointX="10.5" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="NPRModel.ProductSellPrice" Width="1.5" PointX="7.5" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="NPRModel.ProductUpcharge" Width="1.5" PointX="7.5" PointY="24.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.UpchargeSellPrice" Width="1.5" PointX="9.75" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.UpchargeSellPrice" Width="2.5" PointX="9.75" PointY="24.375" IsExpanded="true" />
         <EntityTypeShape EntityType="NPRModel.VendorName" Width="1.5" PointX="3" PointY="19.375" IsExpanded="true" />
         <EntityTypeShape EntityType="NPRModel.VendorType" Width="1.5" PointX="3" PointY="22.125" IsExpanded="true" />
         <AssociationConnector Association="NPRModel.FK_AuditTrail_AuditTrail" ManuallyRouted="false" />

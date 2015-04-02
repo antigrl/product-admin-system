@@ -575,6 +575,10 @@ namespace PAS.Models
         [StringLength(150)]
         [Required]
         public object UpchargeSellPriceStatus { get; set; }
+
+        [DisplayName("Upcharge Sell Price Final Rounded Amount")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public object UpchargeSellPriceFinalRoundedAmount { get; set; }
     }
 
     public class VendorNameMetadata
