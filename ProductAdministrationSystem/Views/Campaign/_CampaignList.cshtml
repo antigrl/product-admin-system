@@ -26,9 +26,15 @@
                 <td>
                     @Html.DisplayFor(model => item.CampaignCreatedOnDate)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "Campaign", new { ReturnUrl = Url.Action("Index", "Home"), id = item.CampaignID }, null)
-                    @Html.ActionLink("Archive", "Archive", "Campaign", new { ReturnUrl = Url.Action("Index", "Home"), id = item.CampaignID }, null)
+                <td class="action-icons">
+                    <ul>
+                        <li>
+                            <a class="edit-btn" href="@Url.Action("Edit", "Campaign", new { ReturnUrl = Url.Action("Index", "Home"), id = item.CampaignID }, null)"><i class="fa fa-pencil-square-o"></i></a>
+                        </li>
+                        <li>
+                            <a class="archive-btn" href="@Url.Action("Archive", "Campaign", new { ReturnUrl = Url.Action("Index", "Home"), id = item.CampaignID }, null)"><i class="fa fa-archive"></i></a>
+                        </li>
+                    </ul>
                 </td>
             </tr>
         }
