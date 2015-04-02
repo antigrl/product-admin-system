@@ -106,14 +106,55 @@
     </div>
     <br>
     <div class="flex-grid">
+                <section>
+            <h2 class="add-plus">Campaigns <a href="@Url.Action("Create", "Campaign", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), CompanyID = Model.CompanyID }, null)"><i class="fa fa-plus-square"></i></a></h2>
+            <table class="index-table" datatable="">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var campaign in Model.Campaigns.Where(c => c.CampaignStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(c => c.CampaignCreatedOnDate))
+                    {
+                        <tr>
+                            <td>
+                                <div class="controls">
+                                    @Html.DisplayFor(model => campaign.CampaignName)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="controls">
+                                    @Html.DisplayFor(model => campaign.CampaignCreatedOnDate)
+                                </div>
+                            </td>
+                            <td class="action-icons">
+                                <ul>
+                                    <li><a class="edit-btn" href="@Url.Action("Edit", "Campaign", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = campaign.CampaignID }, null)"><i class="fa fa-pencil-square-o"></i></a></li>
+                                    <li><a class="archive-btn" href="@Url.Action("Archive", "Campaign", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = campaign.CampaignID }, null)"><i class="fa fa-archive"></i></a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <div class="flex-grid">
         <section>
-            <h2>Company Fees <span>@Html.ActionLink("Create New Fee", "Create", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), CompanyID = Model.CompanyID }, null)</span></h2>
+            <h2 class="add-plus">Company Fees
+                <a href="@Url.Action("Create", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), CompanyID = Model.CompanyID }, null)">
+                    <i class="fa fa-plus-square"></i>
+                </a>
+            </h2>
             <table class="index-table" datatable="">
                 <thead>
                     <tr>
                         <th>Fee Name</th>
                         <th>Type</th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -130,23 +171,26 @@
                                     @Html.DisplayFor(model => fee.FeeType)
                                 </div>
                             </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null) |
-                                @Html.ActionLink("Archive", "Archive", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null)
+                            <td class="action-icons">
+                                <ul>
+                                    <li><a class="edit-btn" href="@Url.Action("Edit", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null)"><i class="fa fa-pencil-square-o"></i></a></li>
+                                    <li><a class="archive-btn" href="@Url.Action("Archive", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null)"><i class="fa fa-archive"></i></a></li>
+                                </ul>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </section>
+
         <section>
-            <h2>Pricing Tiers  <span>@Html.ActionLink("Create New Pricing Tier", "Create", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), CompanyID = Model.CompanyID }, null)</span></h2>
+            <h2 class="add-plus">Pricing Tiers  <a href="@Url.Action("Create", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), CompanyID = Model.CompanyID }, null)"><i class="fa fa-plus-square"></i></a></h2>
             <table class="index-table" datatable="">
                 <thead>
                     <tr>
                         <th>Level</th>
                         <th>Name</th>
-                        <th></th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -174,42 +218,11 @@
                                     </ul>
                                 </div>
                             </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = tier.PricingTierID }, null) |
-                                @Html.ActionLink("Archive", "Archive", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = tier.PricingTierID }, null)
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </section>
-        <section>
-            <h2>Campaigns <span>@Html.ActionLink("Create New Campaign", "Create", "Campaign", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), CompanyID = Model.CompanyID }, null)</span></h2>
-            <table class="index-table" datatable="">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var campaign in Model.Campaigns.Where(c => c.CampaignStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(c => c.CampaignCreatedOnDate))
-                    {
-                        <tr>
-                            <td>
-                                <div class="controls">
-                                    @Html.DisplayFor(model => campaign.CampaignName)
-                                </div>
-                            </td>
-                            <td>
-                                <div class="controls">
-                                    @Html.DisplayFor(model => campaign.CampaignCreatedOnDate)
-                                </div>
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", "Campaign", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = campaign.CampaignID }, null) |
-                                @Html.ActionLink("Archive", "Archive", "Campaign", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = campaign.CampaignID }, null)
+                            <td class="action-icons">
+                                <ul>
+                                    <li><a class="edit-btn" href="@Url.Action("Edit", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = tier.PricingTierID }, null)"><i class="fa fa-pencil-square-o"></i></a>
+                                    <li><a class="archive-btn" href="@Url.Action("Archive", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = tier.PricingTierID }, null)"><i class="fa fa-archive"></i></a>
+                                </ul>
                             </td>
                         </tr>
                     }
