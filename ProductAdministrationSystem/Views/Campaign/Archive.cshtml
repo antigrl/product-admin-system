@@ -2,7 +2,7 @@
 @using PAS.Helpers;
 
 @{
-ViewBag.Title = "Archive Campaign";
+    ViewBag.Title = "Archive Campaign";
 }
 <div class="heading">
     <h1>
@@ -71,15 +71,14 @@ ViewBag.Title = "Archive Campaign";
             @Html.DisplayFor(model => model.CampaignCreatedOnDate)
         </div>
 
-        @using(Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+        @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
         {
-        @Html.AntiForgeryToken()
-        <p>
-            <input type="submit" class="button green" value="Archive" />
-            |
-            @Html.ActionLink("Back to List", "Index")
-        </p>
-    }
-
-</section>
+            @Html.AntiForgeryToken()
+            <p>
+                <input type="submit" class="button green" value="Archive" />
+                |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        }
+    </section>
 </div>
