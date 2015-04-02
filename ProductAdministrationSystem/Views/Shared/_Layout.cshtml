@@ -41,12 +41,7 @@
             @RenderBody()
         </div>
     </main>
-    <footer class="collapsed">
-        <nav>
-            <a href="#">Home</a>
-        </nav>
-        <p>&copy; @DateTime.Now.Year - GatewayCDI - NPR</p>
-    </footer>
+
     @Scripts.Render("~/bundles/npr")
     @RenderSection("scripts", required: false)
 </body>
