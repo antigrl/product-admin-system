@@ -148,9 +148,11 @@
                                 @Html.DisplayFor(model => product.ProductSellPrices.Where(p => p.SellPriceLevel == 1).FirstOrDefault().SellPriceFinalAmount)
                             </div>
                         </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null) |
-                            @Html.ActionLink("Archive", "Archive", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)
+                        <td class="action-icons">
+                            <ul>
+                                <li><a class="edit-btn" href="@Url.Action("Edit", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)"><i class="fa fa-pencil-square-o"></i></a></li>
+                                <li><a class="archive-btn" href="@Url.Action("Archive", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)"><i class="fa fa-archive"></i></a></li>
+                            </ul>
                         </td>
                     </tr>
                 }
@@ -206,9 +208,16 @@
                                 @Html.DisplayFor(model => product.ProductSellPrices.Where(p => p.SellPriceLevel == 1).FirstOrDefault().SellPriceFinalAmount)
                             </div>
                         </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null) |
-                            @Html.ActionLink("UnArchive", "UnArchive", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)
+                        <td class="action-icons">
+                            <ul>
+                                <li><a class="edit-btn" href="@Url.Action("Edit", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)"><i class="fa fa-pencil-square-o"></i></a></li>
+                                <li>
+                                    <a class="archive-btn" href="@Url.Action("UnArchive", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)">
+                                        <i class="fa fa-undo"></i>
+
+                                    </a>
+                                </li>
+                            </ul>
                         </td>
                     </tr>
                 }
