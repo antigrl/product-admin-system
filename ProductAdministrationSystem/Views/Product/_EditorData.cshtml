@@ -449,16 +449,7 @@
                 <hr />
             }
         </div>
-        <!--
-        <div class="inline-middle upcharge-info">
-            <h3>Upcharge</h3>
-            @foreach (var upcharge in Model.ProductUpcharges.Where(p => p.UpchargeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
-            {
-                Html.RenderPartial("_UpchargeEditor", upcharge);
-            }
-            @Html.ActionLink("Create New Upcharge", "Create", "ProductUpcharge", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), ProductID = Model.ProductID }, null)
-        </div>-->
-        <div class="inline-right">
+        <div class="inline-middle">
             <h2 class="add-upcharge">
                 Upcharge
                 <a class="add-item" href="@Url.Action("BlankEditorRow", new { productID = Model.ProductID, isDecoration = false, isUpcharge = true })"><i class="fa fa-plus-square"></i></a>

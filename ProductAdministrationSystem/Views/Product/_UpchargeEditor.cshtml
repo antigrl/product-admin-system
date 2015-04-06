@@ -2,10 +2,10 @@
 @using PAS.Models
 @using PAS.Helpers
 
-<div class="upcharge">
+<li class="upcharge-container editor-row ">
     @using (Html.BeginCollectionItem("ProductUpcharges"))
     {
-        @Html.ActionLink("Remove Upcharge", "Archive", "ProductUpcharge", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), id = Model.UpchargeID }, null)
+        <a href="#" class="delete-row"></a>
         <div class="editor-label">
             @if (Model.UpchargeID != null || Model.UpchargeID != 0)
             {
@@ -39,4 +39,4 @@
             }
         </div>
     }
-</div>
+</li>

@@ -66,15 +66,15 @@ namespace PAS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Exclude = "ProductImage")]Product product, HttpPostedFileBase ProductImage, string returnUrl)
         {
-            if(product.ProductInitialOrderQuantity == null)
+            if (product.ProductInitialOrderQuantity == null)
             {
                 product.ProductInitialOrderQuantity = (decimal?)0;
             }
-            if(product.ProductGatewayCDIMinumumOrder == null)
+            if (product.ProductGatewayCDIMinumumOrder == null)
             {
                 product.ProductGatewayCDIMinumumOrder = (decimal?)0;
             }
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 // Get product's campaign and loop though that campaigns, companies price tiers
                 Campaign thisCampaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID).FirstOrDefault();
@@ -92,7 +92,7 @@ namespace PAS.Controllers
                     }
                 }
                 // Product Image 
-                if(ProductImage != null && ProductImage.ContentLength > 0)
+                if (ProductImage != null && ProductImage.ContentLength > 0)
                 {
                     byte[] imageBinaryData = new byte[ProductImage.ContentLength];
                     int readresult = ProductImage.InputStream.Read(imageBinaryData, 0, ProductImage.ContentLength);
@@ -107,7 +107,7 @@ namespace PAS.Controllers
                 db.Products.Add(product);
                 db.SaveChanges();
 
-                if(returnUrl == null)
+                if (returnUrl == null)
                 {
                     return RedirectToAction("Index");
                 }
@@ -126,7 +126,7 @@ namespace PAS.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Close(Product product, HttpPostedFileBase ProductImage, string returnUrl)
         {
-            if(returnUrl == null)
+            if (returnUrl == null)
             {
                 return RedirectToAction("Index");
             }
@@ -138,7 +138,7 @@ namespace PAS.Controllers
         public ActionResult Edit(string returnUrl, int id = 0)
         {
             Product product = db.Products.Find(id);
-            if(product == null)
+            if (product == null)
             {
                 // Error
                 return HttpNotFound();
@@ -172,9 +172,9 @@ namespace PAS.Controllers
                         index++;
                     }
                 }
-                foreach(var upcharge in product.ProductUpcharges)
+                foreach (var upcharge in product.ProductUpcharges)
                 {
-                    if(upcharge.UpchargeID <= 0)
+                    if (upcharge.UpchargeID <= 0)
                     {
                         upcharge.UpchargeID = index;
                         index++;
@@ -191,6 +191,16 @@ namespace PAS.Controllers
                     {
                         fee.FeeStatus = MyExtensions.GetEnumDescription(Status.Archived);
                         db.Entry(fee).State = EntityState.Modified; ;
+                    }
+                }
+                // Remove Upcharges
+                var Upcharges = product.ProductUpcharges.ToList();
+                foreach (var upcharge in db.ProductUpcharges.Where(p => p.ProductID == product.ProductID))
+                {
+                    if (!Upcharges.Contains(upcharge))
+                    {
+                        upcharge.UpchargeStatus = MyExtensions.GetEnumDescription(Status.Archived);
+                        db.Entry(upcharge).State = EntityState.Modified; ;
                     }
                 }
 
@@ -373,21 +383,21 @@ namespace PAS.Controllers
             SetViewBagData(returnUrl, product);
             string preSaveStatus = db.Products.Where(p => p.ProductID == product.ProductID).Select(p => p.ProductStatus).FirstOrDefault();
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 int index = -100;
                 foreach (var fee in product.Fees)
                 {
                     // IF it's a new fee
-                    if(fee.FeeID <= 0)
+                    if (fee.FeeID <= 0)
                     {
                         fee.FeeID = index;
                         index++;
                     }
                 }
-                foreach(var upcharge in product.ProductUpcharges)
+                foreach (var upcharge in product.ProductUpcharges)
                 {
-                    if(upcharge.UpchargeID <= 0)
+                    if (upcharge.UpchargeID <= 0)
                     {
                         upcharge.UpchargeID = index;
                         index++;
@@ -398,20 +408,30 @@ namespace PAS.Controllers
 
                 // Remove Fees
                 var Fees = product.Fees.ToList();
-                foreach(var fee in db.Fees.Where(p => p.ProductID == product.ProductID))
+                foreach (var fee in db.Fees.Where(p => p.ProductID == product.ProductID))
                 {
-                    if(!Fees.Contains(fee))
+                    if (!Fees.Contains(fee))
                     {
                         fee.FeeStatus = MyExtensions.GetEnumDescription(Status.Archived);
-                        db.Entry(fee).State = EntityState.Modified;;
+                        db.Entry(fee).State = EntityState.Modified; ;
+                    }
+                }
+                // Remove Upcharges
+                var Upcharges = product.ProductUpcharges.ToList();
+                foreach (var upcharge in db.ProductUpcharges.Where(p => p.ProductID == product.ProductID))
+                {
+                    if (!Upcharges.Contains(upcharge))
+                    {
+                        upcharge.UpchargeStatus = MyExtensions.GetEnumDescription(Status.Archived);
+                        db.Entry(upcharge).State = EntityState.Modified; ;
                     }
                 }
 
                 // Add/Update Fees
-                foreach(var fee in product.Fees)
+                foreach (var fee in product.Fees)
                 {
                     // IF it's a new fee
-                    if(fee.FeeID <= 0)
+                    if (fee.FeeID <= 0)
                     {
                         // Create a new Fee
                         db.Fees.Add(fee);
@@ -423,15 +443,15 @@ namespace PAS.Controllers
                     }
                 }
                 // update  SellPriceFees
-                foreach(var sellPrice in product.ProductSellPrices)
+                foreach (var sellPrice in product.ProductSellPrices)
                 {
                     // Update sellprice 
                     db.Entry(sellPrice).State = EntityState.Modified;
 
                     //TODO: add/update/remove SellPriceFees
-                    foreach(var fee in sellPrice.Fees)
+                    foreach (var fee in sellPrice.Fees)
                     {
-                        if(fee.FeeID <= 0)
+                        if (fee.FeeID <= 0)
                         {
                             db.Fees.Add(fee);
                         }
@@ -443,7 +463,7 @@ namespace PAS.Controllers
                 }
 
                 // update Upcharges
-                foreach(var upcharge in product.ProductUpcharges)
+                foreach (var upcharge in product.ProductUpcharges)
                 {
                     // IF it's a new Upcharge
                     if (upcharge.UpchargeID <= 0)
@@ -462,12 +482,12 @@ namespace PAS.Controllers
                         // Else update existing Fee
                         db.Entry(upcharge).State = EntityState.Modified;
                     }
-                    
+
 
                     //TODO: add/update/remove SellPriceFees
-                    foreach(var upchargeSellPrice in upcharge.UpchargeSellPrices)
+                    foreach (var upchargeSellPrice in upcharge.UpchargeSellPrices)
                     {
-                        if(upchargeSellPrice.UpchargeSellPriceID <= 0)
+                        if (upchargeSellPrice.UpchargeSellPriceID <= 0)
                         {
                             db.UpchargeSellPrices.Add(upchargeSellPrice);
                         }
@@ -480,9 +500,9 @@ namespace PAS.Controllers
                 // Decorations
                 // Remove
                 var decorations = product.ProductDecorations.ToList();
-                foreach(var decoration in db.ProductDecorations.Where(p => p.ProductID == product.ProductID))
+                foreach (var decoration in db.ProductDecorations.Where(p => p.ProductID == product.ProductID))
                 {
-                    if(!decorations.Contains(decoration))
+                    if (!decorations.Contains(decoration))
                     {
                         decoration.DecorationStatus = MyExtensions.GetEnumDescription(Status.Archived);
                         db.Entry(decoration).State = EntityState.Modified;
@@ -490,9 +510,9 @@ namespace PAS.Controllers
                 }
 
                 // Add/Update
-                foreach(var decoration in product.ProductDecorations)
+                foreach (var decoration in product.ProductDecorations)
                 {
-                    if(DecorationImage != null && DecorationImage.ContentLength > 0)
+                    if (DecorationImage != null && DecorationImage.ContentLength > 0)
                     {
                         byte[] imageBinaryData = new byte[DecorationImage.ContentLength];
                         int readresult = DecorationImage.InputStream.Read(imageBinaryData, 0, DecorationImage.ContentLength);
@@ -501,7 +521,7 @@ namespace PAS.Controllers
                     }
 
                     // IF it's a new fee
-                    if(decoration.DecorationID <= 0)
+                    if (decoration.DecorationID <= 0)
                     {
                         // Create a new Fee
                         db.ProductDecorations.Add(decoration);
@@ -513,7 +533,7 @@ namespace PAS.Controllers
                     }
                 }
 
-                if(ProductImage != null && ProductImage.ContentLength > 0)
+                if (ProductImage != null && ProductImage.ContentLength > 0)
                 {
                     byte[] imageBinaryData = new byte[ProductImage.ContentLength];
                     int readresult = ProductImage.InputStream.Read(imageBinaryData, 0, ProductImage.ContentLength);
@@ -531,7 +551,7 @@ namespace PAS.Controllers
                 {
                     Console.Write("ProductController.cs SaveAndCalculateSellPrice() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
                 }
-                
+
                 // Add Audit Entry 
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Save and Calculate Prices");
                 db.AuditTrails.Add(audit);
@@ -558,9 +578,9 @@ namespace PAS.Controllers
             else
             {
                 int count = 0;
-                foreach(var modelStateVal in ModelState.Values)
+                foreach (var modelStateVal in ModelState.Values)
                 {
-                    foreach(var error in modelStateVal.Errors)
+                    foreach (var error in modelStateVal.Errors)
                     {
                         var errorMessage = error.ErrorMessage;
                         var exception = error.Exception;
@@ -585,13 +605,13 @@ namespace PAS.Controllers
             SetViewBagData(returnUrl, product);
             string preSaveStatus = db.Products.Where(p => p.ProductID == product.ProductID).Select(p => p.ProductStatus).FirstOrDefault();
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 int index = -100;
-                foreach(var fee in product.Fees)
+                foreach (var fee in product.Fees)
                 {
                     // IF it's a new fee
-                    if(fee.FeeID <= 0)
+                    if (fee.FeeID <= 0)
                     {
                         fee.FeeID = index;
                         index++;
@@ -610,20 +630,30 @@ namespace PAS.Controllers
 
                 // Remove Fees
                 var Fees = product.Fees.ToList();
-                foreach(var fee in db.Fees.Where(p => p.ProductID == product.ProductID))
+                foreach (var fee in db.Fees.Where(p => p.ProductID == product.ProductID))
                 {
-                    if(!Fees.Contains(fee))
+                    if (!Fees.Contains(fee))
                     {
                         fee.FeeStatus = MyExtensions.GetEnumDescription(Status.Archived);
                         db.Entry(fee).State = EntityState.Modified;
                     }
                 }
+                // Remove Upcharges
+                var Upcharges = product.ProductUpcharges.ToList();
+                foreach (var upcharge in db.ProductUpcharges.Where(p => p.ProductID == product.ProductID))
+                {
+                    if (!Upcharges.Contains(upcharge))
+                    {
+                        upcharge.UpchargeStatus = MyExtensions.GetEnumDescription(Status.Archived);
+                        db.Entry(upcharge).State = EntityState.Modified; ;
+                    }
+                }
 
                 // Add/Update Fees
-                foreach(var fee in product.Fees)
+                foreach (var fee in product.Fees)
                 {
                     // IF it's a new fee
-                    if(fee.FeeID <= 0)
+                    if (fee.FeeID <= 0)
                     {
                         // Create a new Fee
                         db.Fees.Add(fee);
@@ -635,15 +665,15 @@ namespace PAS.Controllers
                     }
                 }
                 // update  SellPriceFees
-                foreach(var sellPrice in product.ProductSellPrices)
+                foreach (var sellPrice in product.ProductSellPrices)
                 {
                     // Update sellprice 
                     db.Entry(sellPrice).State = EntityState.Modified;
 
                     //TODO: add/update/remove SellPriceFees
-                    foreach(var fee in sellPrice.Fees)
+                    foreach (var fee in sellPrice.Fees)
                     {
-                        if(fee.FeeID <= 0)
+                        if (fee.FeeID <= 0)
                         {
                             db.Fees.Add(fee);
                         }
@@ -655,7 +685,7 @@ namespace PAS.Controllers
                 }
 
                 // update Upcharges
-                foreach(var upcharge in product.ProductUpcharges)
+                foreach (var upcharge in product.ProductUpcharges)
                 {
                     // IF it's a new Upcharge
                     if (upcharge.UpchargeID <= 0)
@@ -676,9 +706,9 @@ namespace PAS.Controllers
                     }
 
                     //TODO: add/update/remove SellPriceFees
-                    foreach(var upchargeSellPrice in upcharge.UpchargeSellPrices)
+                    foreach (var upchargeSellPrice in upcharge.UpchargeSellPrices)
                     {
-                        if(upchargeSellPrice.UpchargeSellPriceID <= 0)
+                        if (upchargeSellPrice.UpchargeSellPriceID <= 0)
                         {
                             db.UpchargeSellPrices.Add(upchargeSellPrice);
                         }
@@ -692,9 +722,9 @@ namespace PAS.Controllers
                 // Decorations
                 // Remove
                 var decorations = product.ProductDecorations.ToList();
-                foreach(var decoration in db.ProductDecorations.Where(p => p.ProductID == product.ProductID))
+                foreach (var decoration in db.ProductDecorations.Where(p => p.ProductID == product.ProductID))
                 {
-                    if(!decorations.Contains(decoration))
+                    if (!decorations.Contains(decoration))
                     {
                         decoration.DecorationStatus = MyExtensions.GetEnumDescription(Status.Archived);
                         db.Entry(decoration).State = EntityState.Modified;
@@ -702,10 +732,10 @@ namespace PAS.Controllers
                 }
 
                 // Add/Update
-                foreach(var decoration in product.ProductDecorations)
+                foreach (var decoration in product.ProductDecorations)
                 {
                     // IF it's a new fee
-                    if(decoration.DecorationID <= 0)
+                    if (decoration.DecorationID <= 0)
                     {
                         // Create a new Fee
                         db.ProductDecorations.Add(decoration);
@@ -717,14 +747,14 @@ namespace PAS.Controllers
                     }
                 }
 
-                if(ProductImage != null && ProductImage.ContentLength > 0)
+                if (ProductImage != null && ProductImage.ContentLength > 0)
                 {
                     byte[] imageBinaryData = new byte[ProductImage.ContentLength];
                     int readresult = ProductImage.InputStream.Read(imageBinaryData, 0, ProductImage.ContentLength);
                     product.ProductImage = imageBinaryData;
                     product.ProductImageType = ProductImage.ContentType;
                 }
-                
+
                 // Calculator
                 Helpers.FeeCalculator newCalculator = new Helpers.FeeCalculator(product);
                 try
@@ -735,7 +765,7 @@ namespace PAS.Controllers
                 {
                     Console.Write("ProductController.cs SaveAndCalculateMargin() ComputeMarginBasedOnSellprice() failure. Exception: " + ex.ToString());
                 }
-                
+
                 // Add Audit Entry 
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Save and Calculate Margin");
                 db.AuditTrails.Add(audit);
@@ -761,9 +791,9 @@ namespace PAS.Controllers
             else
             {
                 int count = 0;
-                foreach(var modelStateVal in ModelState.Values)
+                foreach (var modelStateVal in ModelState.Values)
                 {
-                    foreach(var error in modelStateVal.Errors)
+                    foreach (var error in modelStateVal.Errors)
                     {
                         var errorMessage = error.ErrorMessage;
                         var exception = error.Exception;
@@ -817,6 +847,16 @@ namespace PAS.Controllers
                     {
                         fee.FeeStatus = MyExtensions.GetEnumDescription(Status.Archived);
                         db.Entry(fee).State = EntityState.Modified; ;
+                    }
+                }
+                // Remove Upcharges
+                var Upcharges = product.ProductUpcharges.ToList();
+                foreach (var upcharge in db.ProductUpcharges.Where(p => p.ProductID == product.ProductID))
+                {
+                    if (!Upcharges.Contains(upcharge))
+                    {
+                        upcharge.UpchargeStatus = MyExtensions.GetEnumDescription(Status.Archived);
+                        db.Entry(upcharge).State = EntityState.Modified; ;
                     }
                 }
 
@@ -965,7 +1005,7 @@ namespace PAS.Controllers
                 #endregion
 
                 db.SaveChanges();
-                
+
                 if (returnUrl == null)
                 {
                     return RedirectToAction("Index");
@@ -998,7 +1038,7 @@ namespace PAS.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             Product product = db.Products.Find(id);
-            if(product == null)
+            if (product == null)
             {
                 return HttpNotFound();
             }
@@ -1023,7 +1063,7 @@ namespace PAS.Controllers
 
             db.SaveChanges();
 
-            if(returnUrl == null)
+            if (returnUrl == null)
             {
                 return RedirectToAction("Index");
             }
@@ -1080,26 +1120,26 @@ namespace PAS.Controllers
                                                                         f.FeeNameStatus != archived)
                                                             .OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", 0);
 
-            if(feeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount))
+            if (feeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount))
             {
                 return PartialView("_DollarFeeEditor", new Fee(productID, feeType, feeCalculation));
             }
-            else if(feeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized))
+            else if (feeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized))
             {
                 return PartialView("_AmortizedFeeEditor", new Fee(productID, feeType, feeCalculation));
             }
-            else if(feeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
+            else if (feeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
             {
                 return PartialView("_PercentFeeEditor", new Fee(productID, feeType, feeCalculation));
             }
 
-            if(isDecoration)
+            if (isDecoration)
             {
                 ViewBag.DecorationMethods = new SelectList(db.DecorationMethods.Where(d => d.DecorationMethodStatus != archived)
                                                                                 .OrderBy(d => d.DecorationMethodName), "DecorationMethodID", "DecorationMethodName");
                 return PartialView("_ProductDecorationEditor", new ProductDecoration(productID));
             }
-            if(isUpcharge)
+            if (isUpcharge)
             {
                 return PartialView("_UpchargeEditor", new ProductUpcharge(productID));
             }
@@ -1111,15 +1151,15 @@ namespace PAS.Controllers
         {
             ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames.Where(f => f.FeeNameType == feeType && f.FeeNameStatus != archived).OrderBy(f => f.FeeNameName), "FeeNameID", "FeeNameName", feeNameID);
 
-            if(feeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount))
+            if (feeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount))
             {
                 return PartialView("_DollarFeeEditor", new Fee(productID, feeType, feeCalculation, feeNameID, feeDollarAmount, feeAmortizedCharge, feeAmortizedType, feePercent, feePercentType, inheritedID));
             }
-            else if(feeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized))
+            else if (feeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized))
             {
                 return PartialView("_AmortizedFeeEditor", new Fee(productID, feeType, feeCalculation, feeNameID, feeDollarAmount, feeAmortizedCharge, feeAmortizedType, feePercent, feePercentType, inheritedID));
             }
-            else if(feeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
+            else if (feeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
             {
                 return PartialView("_PercentFeeEditor", new Fee(productID, feeType, feeCalculation, feeNameID, feeDollarAmount, feeAmortizedCharge, feeAmortizedType, feePercent, feePercentType, inheritedID));
             }
@@ -1136,9 +1176,9 @@ namespace PAS.Controllers
                 var file = File(imageData, imageType);
                 return file;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.Write("ProductController.cs Show() failure. Exception: " + ex.ToString()); 
+                Console.Write("ProductController.cs Show() failure. Exception: " + ex.ToString());
                 return View();
             }
         }
@@ -1148,7 +1188,7 @@ namespace PAS.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
 
-            if(product != null)
+            if (product != null)
             {
                 var list = db.Campaigns.Where(c => c.CampaignStatus != archived &&
                                                     c.Company.CompanyStatus != archived);
@@ -1163,7 +1203,7 @@ namespace PAS.Controllers
                 ViewBag.DecorationMethodsDB = db.DecorationMethods.Where(d => d.DecorationMethodStatus != archived).OrderBy(d => d.DecorationMethodName);
             }
 
-            else if(product == null)
+            else if (product == null)
             {
                 ViewBag.ReturnUrl = returnUrl;
                 var campaignList = db.Campaigns.Where(c => c.CampaignStatus != archived &&
