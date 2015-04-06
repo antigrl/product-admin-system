@@ -7,24 +7,35 @@
     {
         @Html.ActionLink("Remove Upcharge", "Archive", "ProductUpcharge", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), id = Model.UpchargeID }, null)
         <div class="editor-label">
-            <label>
-                @Html.DisplayFor(model => model.UpchargeName)
-            </label>
+            @if (Model.UpchargeID != null || Model.UpchargeID != 0)
+            {
+                @Html.DropDownListFor(model => model.UpchargeName, MyExtensions.GetGenericEnumDropDown<ProductUpchargeNames>(), "")
+            }
+            else
+            {
+                <label>
+                    @Html.DisplayFor(model => model.UpchargeName)
+                </label>
+            }
             @Html.HiddenFor(model => model.UpchargeID)
             @Html.HiddenFor(model => model.ProductID)
             @Html.HiddenFor(model => model.UpchargeName)
             @Html.HiddenFor(model => model.UpchargeStatus)
-        </div> 
+        </div>
         <div class="editor-field">
             $@Html.TextBoxFor(model => model.UpchargeAmount, new { @class = "dollar-value" })
             @Html.ValidationMessageFor(model => model.UpchargeAmount)
         </div>
-        <span>Total Cost: @Html.DisplayFor(model => model.UpchargeTotalCost)
+        <span>
+            Total Cost: @Html.DisplayFor(model => model.UpchargeTotalCost)
         </span>
         <div class="hidden-inputs">
-            @foreach (var upchargeSellPrice in Model.UpchargeSellPrices.Where(price => price.UpchargeSellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(price => price.UpchargeSellPriceLevel))
+            @if (Model.UpchargeID != 0)
             {
-                Html.RenderPartial("_UpchargeSellPriceEditor", upchargeSellPrice);
+                foreach (var upchargeSellPrice in Model.UpchargeSellPrices.Where(price => price.UpchargeSellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(price => price.UpchargeSellPriceLevel))
+                {
+                    Html.RenderPartial("_UpchargeSellPriceEditor", upchargeSellPrice);
+                }
             }
         </div>
     }

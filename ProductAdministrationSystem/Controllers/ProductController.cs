@@ -162,17 +162,6 @@ namespace PAS.Controllers
 
             if (ModelState.IsValid)
             {
-                Helpers.FeeCalculator newCalculator = new Helpers.FeeCalculator(product);
-                try
-                {
-                    newCalculator.ComputeAllProductPrices(true);
-                    newCalculator.ComputeMarginBasedOnSellprice();
-                }
-                catch (Exception ex)
-                {
-                    Console.Write("ProductController.cs SaveAndCalculateSellPrice() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
-                }
-
                 int index = -100;
                 foreach (var fee in product.Fees)
                 {
@@ -180,6 +169,14 @@ namespace PAS.Controllers
                     if (fee.FeeID <= 0)
                     {
                         fee.FeeID = index;
+                        index++;
+                    }
+                }
+                foreach(var upcharge in product.ProductUpcharges)
+                {
+                    if(upcharge.UpchargeID <= 0)
+                    {
+                        upcharge.UpchargeID = index;
                         index++;
                     }
                 }
@@ -235,8 +232,23 @@ namespace PAS.Controllers
                 // update Upcharges
                 foreach (var upcharge in product.ProductUpcharges)
                 {
-                    // Update Upcharge
-                    db.Entry(upcharge).State = EntityState.Modified;
+                    // IF it's a new Upcharge
+                    if (upcharge.UpchargeID <= 0)
+                    {
+                        // Create a new Upcharge
+                        db.ProductUpcharges.Add(upcharge);
+                        Product thisProduct = db.Products.Where(p => p.ProductID == product.ProductID).FirstOrDefault();
+                        foreach (var sellPrice in thisProduct.ProductSellPrices)
+                        {
+                            UpchargeSellPrice newUpchargeSellPrice = new UpchargeSellPrice(upcharge, sellPrice.SellPriceName, sellPrice.SellPriceLevel);
+                            db.UpchargeSellPrices.Add(newUpchargeSellPrice);
+                        }
+                    }
+                    else
+                    {
+                        // Else update existing Fee
+                        db.Entry(upcharge).State = EntityState.Modified;
+                    }
 
                     //TODO: add/update/remove SellPriceFees
                     foreach (var upchargeSellPrice in upcharge.UpchargeSellPrices)
@@ -249,7 +261,6 @@ namespace PAS.Controllers
                         {
                             db.Entry(upchargeSellPrice).State = EntityState.Modified;
                         }
-
                     }
                 }
                 // Decorations
@@ -294,6 +305,18 @@ namespace PAS.Controllers
                     int readresult = ProductImage.InputStream.Read(imageBinaryData, 0, ProductImage.ContentLength);
                     product.ProductImage = imageBinaryData;
                     product.ProductImageType = ProductImage.ContentType;
+                }
+
+                // Calculator
+                Helpers.FeeCalculator newCalculator = new Helpers.FeeCalculator(product);
+                try
+                {
+                    newCalculator.ComputeAllProductPrices(true);
+                    newCalculator.ComputeMarginBasedOnSellprice();
+                }
+                catch (Exception ex)
+                {
+                    Console.Write("ProductController.cs SaveAndCalculateSellPrice() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
                 }
 
                 // Add Audit Entry 
@@ -352,16 +375,6 @@ namespace PAS.Controllers
 
             if(ModelState.IsValid)
             {
-                Helpers.FeeCalculator newCalculator = new Helpers.FeeCalculator(product);
-                try
-                {
-                    newCalculator.ComputeAllProductPrices(false);
-                }
-                catch(Exception ex)
-                {
-                    Console.Write("ProductController.cs SaveAndCalculateSellPrice() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
-                }
-
                 int index = -100;
                 foreach (var fee in product.Fees)
                 {
@@ -369,6 +382,14 @@ namespace PAS.Controllers
                     if(fee.FeeID <= 0)
                     {
                         fee.FeeID = index;
+                        index++;
+                    }
+                }
+                foreach(var upcharge in product.ProductUpcharges)
+                {
+                    if(upcharge.UpchargeID <= 0)
+                    {
+                        upcharge.UpchargeID = index;
                         index++;
                     }
                 }
@@ -424,8 +445,24 @@ namespace PAS.Controllers
                 // update Upcharges
                 foreach(var upcharge in product.ProductUpcharges)
                 {
-                    // Update Upcharge
-                    db.Entry(upcharge).State = EntityState.Modified;
+                    // IF it's a new Upcharge
+                    if (upcharge.UpchargeID <= 0)
+                    {
+                        // Create a new Upcharge
+                        db.ProductUpcharges.Add(upcharge);
+                        Product thisProduct = db.Products.Where(p => p.ProductID == product.ProductID).FirstOrDefault();
+                        foreach (var sellPrice in thisProduct.ProductSellPrices)
+                        {
+                            UpchargeSellPrice newUpchargeSellPrice = new UpchargeSellPrice(upcharge, sellPrice.SellPriceName, sellPrice.SellPriceLevel);
+                            db.UpchargeSellPrices.Add(newUpchargeSellPrice);
+                        }
+                    }
+                    else
+                    {
+                        // Else update existing Fee
+                        db.Entry(upcharge).State = EntityState.Modified;
+                    }
+                    
 
                     //TODO: add/update/remove SellPriceFees
                     foreach(var upchargeSellPrice in upcharge.UpchargeSellPrices)
@@ -438,7 +475,6 @@ namespace PAS.Controllers
                         {
                             db.Entry(upchargeSellPrice).State = EntityState.Modified;
                         }
-
                     }
                 }
                 // Decorations
@@ -483,6 +519,17 @@ namespace PAS.Controllers
                     int readresult = ProductImage.InputStream.Read(imageBinaryData, 0, ProductImage.ContentLength);
                     product.ProductImage = imageBinaryData;
                     product.ProductImageType = ProductImage.ContentType;
+                }
+
+                // Calculator
+                Helpers.FeeCalculator newCalculator = new Helpers.FeeCalculator(product);
+                try
+                {
+                    newCalculator.ComputeAllProductPrices(false);
+                }
+                catch (Exception ex)
+                {
+                    Console.Write("ProductController.cs SaveAndCalculateSellPrice() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
                 }
                 
                 // Add Audit Entry 
@@ -540,9 +587,6 @@ namespace PAS.Controllers
 
             if(ModelState.IsValid)
             {
-                Helpers.FeeCalculator newCalculator = new Helpers.FeeCalculator(product);
-                newCalculator.ComputeMarginBasedOnSellprice();
-
                 int index = -100;
                 foreach(var fee in product.Fees)
                 {
@@ -550,6 +594,14 @@ namespace PAS.Controllers
                     if(fee.FeeID <= 0)
                     {
                         fee.FeeID = index;
+                        index++;
+                    }
+                }
+                foreach (var upcharge in product.ProductUpcharges)
+                {
+                    if (upcharge.UpchargeID <= 0)
+                    {
+                        upcharge.UpchargeID = index;
                         index++;
                     }
                 }
@@ -605,8 +657,23 @@ namespace PAS.Controllers
                 // update Upcharges
                 foreach(var upcharge in product.ProductUpcharges)
                 {
-                    // Update Upcharge
-                    db.Entry(upcharge).State = EntityState.Modified;
+                    // IF it's a new Upcharge
+                    if (upcharge.UpchargeID <= 0)
+                    {
+                        // Create a new Upcharge
+                        db.ProductUpcharges.Add(upcharge);
+                        Product thisProduct = db.Products.Where(p => p.ProductID == product.ProductID).FirstOrDefault();
+                        foreach (var sellPrice in thisProduct.ProductSellPrices)
+                        {
+                            UpchargeSellPrice newUpchargeSellPrice = new UpchargeSellPrice(upcharge, sellPrice.SellPriceName, sellPrice.SellPriceLevel);
+                            db.UpchargeSellPrices.Add(newUpchargeSellPrice);
+                        }
+                    }
+                    else
+                    {
+                        // Else update existing Fee
+                        db.Entry(upcharge).State = EntityState.Modified;
+                    }
 
                     //TODO: add/update/remove SellPriceFees
                     foreach(var upchargeSellPrice in upcharge.UpchargeSellPrices)
@@ -619,7 +686,6 @@ namespace PAS.Controllers
                         {
                             db.Entry(upchargeSellPrice).State = EntityState.Modified;
                         }
-
                     }
                 }
 
@@ -657,6 +723,17 @@ namespace PAS.Controllers
                     int readresult = ProductImage.InputStream.Read(imageBinaryData, 0, ProductImage.ContentLength);
                     product.ProductImage = imageBinaryData;
                     product.ProductImageType = ProductImage.ContentType;
+                }
+                
+                // Calculator
+                Helpers.FeeCalculator newCalculator = new Helpers.FeeCalculator(product);
+                try
+                {
+                    newCalculator.ComputeMarginBasedOnSellprice();
+                }
+                catch (Exception ex)
+                {
+                    Console.Write("ProductController.cs SaveAndCalculateMargin() ComputeMarginBasedOnSellprice() failure. Exception: " + ex.ToString());
                 }
                 
                 // Add Audit Entry 
@@ -700,7 +777,7 @@ namespace PAS.Controllers
         }
 
         //
-        // POST: /Product/SaveAndCalculateSellPrice/5
+        // POST: /Product/SaveAndClose/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SaveAndClose(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, string returnUrl)
@@ -711,16 +788,6 @@ namespace PAS.Controllers
 
             if (ModelState.IsValid)
             {
-                Helpers.FeeCalculator newCalculator = new Helpers.FeeCalculator(product);
-                try
-                {
-                    newCalculator.ComputeAllProductPrices(false);
-                }
-                catch (Exception ex)
-                {
-                    Console.Write("ProductController.cs SaveAndCalculateSellPrice() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
-                }
-
                 int index = -100;
                 foreach (var fee in product.Fees)
                 {
@@ -728,6 +795,14 @@ namespace PAS.Controllers
                     if (fee.FeeID <= 0)
                     {
                         fee.FeeID = index;
+                        index++;
+                    }
+                }
+                foreach (var upcharge in product.ProductUpcharges)
+                {
+                    if (upcharge.UpchargeID <= 0)
+                    {
+                        upcharge.UpchargeID = index;
                         index++;
                     }
                 }
@@ -783,8 +858,23 @@ namespace PAS.Controllers
                 // update Upcharges
                 foreach (var upcharge in product.ProductUpcharges)
                 {
-                    // Update Upcharge
-                    db.Entry(upcharge).State = EntityState.Modified;
+                    // IF it's a new Upcharge
+                    if (upcharge.UpchargeID <= 0)
+                    {
+                        // Create a new Upcharge
+                        db.ProductUpcharges.Add(upcharge);
+                        Product thisProduct = db.Products.Where(p => p.ProductID == product.ProductID).FirstOrDefault();
+                        foreach (var sellPrice in thisProduct.ProductSellPrices)
+                        {
+                            UpchargeSellPrice newUpchargeSellPrice = new UpchargeSellPrice(upcharge, sellPrice.SellPriceName, sellPrice.SellPriceLevel);
+                            db.UpchargeSellPrices.Add(newUpchargeSellPrice);
+                        }
+                    }
+                    else
+                    {
+                        // Else update existing Fee
+                        db.Entry(upcharge).State = EntityState.Modified;
+                    }
 
                     //TODO: add/update/remove SellPriceFees
                     foreach (var upchargeSellPrice in upcharge.UpchargeSellPrices)
@@ -842,6 +932,17 @@ namespace PAS.Controllers
                     int readresult = ProductImage.InputStream.Read(imageBinaryData, 0, ProductImage.ContentLength);
                     product.ProductImage = imageBinaryData;
                     product.ProductImageType = ProductImage.ContentType;
+                }
+
+                // Calculator
+                Helpers.FeeCalculator newCalculator = new Helpers.FeeCalculator(product);
+                try
+                {
+                    newCalculator.ComputeAllProductPrices(false);
+                }
+                catch (Exception ex)
+                {
+                    Console.Write("ProductController.cs SaveAndCalculateSellPrice() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
                 }
 
                 // Add Audit Entry 
@@ -973,7 +1074,7 @@ namespace PAS.Controllers
             base.Dispose(disposing);
         }
 
-        public PartialViewResult BlankEditorRow(int productID, bool isDecoration = false, string feeType = "", string feeCalculation = "")
+        public PartialViewResult BlankEditorRow(int productID, bool isDecoration = false, bool isUpcharge = false, string feeType = "", string feeCalculation = "")
         {
             ViewBag.FeeNames = new SelectList(db.FeeNames.Where(f => f.FeeNameType == feeType &&
                                                                         f.FeeNameStatus != archived)
@@ -997,6 +1098,10 @@ namespace PAS.Controllers
                 ViewBag.DecorationMethods = new SelectList(db.DecorationMethods.Where(d => d.DecorationMethodStatus != archived)
                                                                                 .OrderBy(d => d.DecorationMethodName), "DecorationMethodID", "DecorationMethodName");
                 return PartialView("_ProductDecorationEditor", new ProductDecoration(productID));
+            }
+            if(isUpcharge)
+            {
+                return PartialView("_UpchargeEditor", new ProductUpcharge(productID));
             }
 
             return PartialView();

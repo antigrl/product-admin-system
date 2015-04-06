@@ -671,6 +671,13 @@ namespace PAS.Models
         {
             this.UpchargeStatus = MyExtensions.GetEnumDescription(Status.Active);
         }
+        //Non-Generated Constructors 
+        public ProductUpcharge(int productID)
+        {
+            this.ProductID = productID;
+            this.AuditTrails = new HashSet<AuditTrail>();
+            this.UpchargeStatus = "Active";
+        }
     }
 
     [MetadataType(typeof(UpchargeSellPriceMetadata))]
