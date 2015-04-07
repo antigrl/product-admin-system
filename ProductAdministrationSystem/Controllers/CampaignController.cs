@@ -76,11 +76,7 @@ namespace PAS.Controllers
                 db.Campaigns.Add(campaign);
                 db.SaveChanges();
 
-                if(returnUrl == null)
-                {
-                    return RedirectToAction("Index");
-                }
-                return Redirect(returnUrl);
+                return RedirectToAction("Edit", new { id = campaign.CampaignID, ReturnUrl = returnUrl });
             }
 
             ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != archived), "CompanyID", "CompanyName", campaign.CompanyID);

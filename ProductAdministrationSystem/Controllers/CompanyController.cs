@@ -77,7 +77,7 @@ namespace PAS.Controllers
                 db.Companies.Add(company);
                 db.SaveChanges();
 
-                return Redirect("Edit");
+                return RedirectToAction("Edit", new { id = company.CompanyID, ReturnUrl = returnUrl });
             }
 
             return View(company);

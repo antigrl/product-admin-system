@@ -13,82 +13,85 @@
     </section>
 }
 
-<div class="left-half-content">
-    <h3>Basic Links</h3>
-    <ol class="round">
-        <li class="one">
-            <h5>Company</h5>
-            @Html.ActionLink("Company List", "Index", "Company")
-        </li>
+<div class="flex-grid-client">
+    <div class="flex-grid">
+        <article class="input-left">
+            <h1>Basic Links</h1>
+            <ol class="round">
+                <li class="one">
+                    <h3>Company</h3>
+                    @Html.ActionLink("Company List", "Index", "Company")
+                </li>
+                <li class="two">
+                    <h3>Campaign</h3>
+                    @Html.ActionLink("Campaign List", "Index", "Campaign")
+                </li>
+            </ol>
+            <h1>Drop Down Lists</h1>
+            <ol class="round">
+                <li class="one">
+                    <h3>Fee Names</h3>
+                    @Html.ActionLink("Fee Name List", "Index", "FeeName")
+                </li>
+                <li class="two">
+                    <h3>Decoration Methods</h3>
+                    @Html.ActionLink("Decoration Method List", "Index", "DecorationMethod")
+                </li>
+                <li class="three">
+                    <h3>Packaging Types</h3>
+                    @Html.ActionLink("Packaging Type List", "Index", "PackagingType")
+                </li>
+                <li class="four">
+                    <h3>Vendor Names</h3>
+                    @Html.ActionLink("Vendor Name List", "Index", "VendorName")
+                </li>
+                <li class="five">
+                    <h3>Vendor Types</h3>
+                    @Html.ActionLink("Vendor Type List", "Index", "VendorType")
+                </li>
+                <li class="six">
+                    <h3>Category List</h3>
+                    @Html.ActionLink("Category List", "Index", "Category")
+                </li>
+            </ol>
+        </article>
+        <article class="input-right">
+            <h1>Admin Links</h1>
+            <ol class="round">
+                <li class="one">
+                    <h3>Pricing Tier</h3>
+                    @Html.ActionLink("Pricing Tier List", "Index", "PricingTier")
+                </li>
+                <li class="two">
+                    <h3>Product Decoration</h3>
+                    @Html.ActionLink("Product Decorations", "Index", "ProductDecoration")
+                </li>
 
-        <li class="two">
-            <h5>Campaign</h5>
-            @Html.ActionLink("Campaign List", "Index", "Campaign")
-        </li>
-    </ol>
-    <h3>Drop Down Lists</h3>
-    <ol class="round">
-        <li class="one">
-            <h5>Fee Names</h5>
-            @Html.ActionLink("Fee Name List", "Index", "FeeName")
-        </li>
-        <li class="two">
-            <h5>Decoration Methods</h5>
-            @Html.ActionLink("Decoration Method List", "Index", "DecorationMethod")
-        </li>
-        <li class="three">
-            <h5>Packaging Types</h5>
-            @Html.ActionLink("Packaging Type List", "Index", "PackagingType")
-        </li>
-        <li class="four">
-            <h5>Vendor Names</h5>
-            @Html.ActionLink("Vendor Name List", "Index", "VendorName")
-        </li>
-        <li class="five">
-            <h5>Vendor Types</h5>
-            @Html.ActionLink("Vendor Type List", "Index", "VendorType")
-        </li>
-        <li class="six">
-            <h5>Category List</h5>
-            @Html.ActionLink("Category List", "Index", "Category")
-        </li>
-    </ol>
-</div>
-<div class="right-half-content">
-    <h3>Admin Links</h3>
-    <ol class="round">
-        <li class="one">
-            <h5>Pricing Tier</h5>
-            @Html.ActionLink("Pricing Tier List", "Index", "PricingTier")
-        </li>
-        <li class="two">
-            <h5>Product Decoration</h5>
-            @Html.ActionLink("Product Decorations", "Index", "ProductDecoration")
-        </li>
+                <li class="three">
+                    <h3>Fee</h3>
+                    @Html.ActionLink("Fee List", "Index", "Fee")
+                </li>
 
-        <li class="three">
-            <h5>Fee</h5>
-            @Html.ActionLink("Fee List", "Index", "Fee")
-        </li>
+                <li class="four">
+                    <h3>Product</h3>
+                    @Html.ActionLink("Product List", "Index", "Product")
+                </li>
 
-        <li class="four">
-            <h5>Product</h5>
-            @Html.ActionLink("Product List", "Index", "Product")
-        </li>
+                <li class="five">
+                    <h3>Product Sell Price</h3>
+                    @Html.ActionLink("Sell Price List", "Index", "ProductSellPrice")
+                </li>
 
-        <li class="five">
-            <h5>Product Sell Price</h5>
-            @Html.ActionLink("Sell Price List", "Index", "ProductSellPrice")
-        </li>
+                <li class="six">
+                    <h3>Product Upcharge</h3>
+                    @Html.ActionLink("Upcharge List", "Index", "ProductUpcharge")
+                </li>
 
-        <li class="six">
-            <h5>Product Upcharge</h5>
-            @Html.ActionLink("Upcharge List", "Index", "ProductUpcharge")
-        </li>
-
-        <li class="seven">
-            <h5>Upcharge Sell Price</h5>
-            @Html.ActionLink("Upcharge Sell Price List", "Index", "UpchargeSellPrice")
-        </li>
-    </ol>
+                <li class="seven">
+                    <h3>Upcharge Sell Price</h3>
+                    @Html.ActionLink("Upcharge Sell Price List", "Index", "UpchargeSellPrice")
+                </li>
+            </ol>
+        </article>
+    </div>
 </div>
