@@ -85,13 +85,16 @@
 }
 
 .toggle-fee {
-  text-align: center;
+  text-align: right;
   margin: 10px 0;
+  position: relative;
+  .fa:before {
+    top: 8px;
+    right: 8px;
+    font-size: 26px;
+  }
 }
-.toggle-content {
-  width: 100%;
-  height: 100%;
-}
+
 
 .tab-headers {
   position: relative;
