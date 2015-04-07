@@ -99,6 +99,10 @@
   }
 }
 
+.toggle-content {
+  width: 100%;
+}
+
 
 .tab-headers {
   position: relative;
@@ -131,6 +135,9 @@
   @include span-columns(3 of 12);
   &.last {
     @include omega;
+  }
+  textarea {
+    min-height: 50px;
   }
 }
 
