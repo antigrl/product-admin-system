@@ -281,65 +281,7 @@
             </div>
         </div>
     </div>
-    <div class="toggle-fee">
-        <button type="button" class="toggle-company-fees button">Show/Hide Company Fee Section</button>
-    </div>
-    <div class="flex-grid product-fees-default">
-        <div class="company-fees">
-            <div class="inline-left">
-                <div class="controls">
-                    <h2>Dollar Fees</h2>
-                    @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount)).OrderBy(f => f.FeeName.FeeNameName))
-                    {
-                        ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames, "FeeNameID", "FeeNameName", item.FeeNameID);
-                        <div class="company-fee">
-                            @Html.ActionLink("Add Fee", "BlankEditorRowExtended", null, new { productID = Model.ProductID, feeType = item.FeeType, inheritedID = item.FeeID, feeNameID = item.FeeNameID, feeDollarAmount = item.FeeDollarAmount, feeAmortizedCharge = item.FeeAmortizedCharge, feeAmortizedType = item.FeeAmortizedType, feePercent = item.FeePercent, feePercentType = item.FeePercentType }, new { @class = "add-existing-fee" })
-                            <input type="checkbox" class="existing-fee-checkbox" name="@item.FeeName" value="@item.FeeID" data-html-location=".dollar-fee-info .fees" />
-                            @item.FeeName.FeeNameName : [@Convert.ToDouble(item.FeeDollarAmount).ToString("c")]
-                        </div>
-                    }
-                </div>
-            </div>
-            <div class="inline-middle">
-                <div class="controls">
-                    <h2>Amortized Fees</h2>
-                    @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized)).OrderBy(f => f.FeeName.FeeNameName))
-                    {
-                        ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames, "FeeNameID", "FeeNameName", item.FeeNameID);
-                        <div class="company-fee">
-                            @Html.ActionLink("Add Fee", "BlankEditorRowExtended", null, new { productID = Model.ProductID, feeType = item.FeeType, inheritedID = item.FeeID, feeNameID = item.FeeNameID, feeDollarAmount = item.FeeDollarAmount, feeAmortizedCharge = item.FeeAmortizedCharge, feeAmortizedType = item.FeeAmortizedType, feePercent = item.FeePercent, feePercentType = item.FeePercentType }, new { @class = "add-existing-fee" })
-                            <input type="checkbox" class="existing-fee-checkbox" name="@item.FeeName" value="@item.FeeID" data-html-location=".amortized-fee-info .fees" />
-                            @item.FeeName.FeeNameName : [@Convert.ToDouble(item.FeeAmortizedCharge).ToString("c") | @item.FeeAmortizedType]
-                        </div>
-                    }
-                </div>
-            </div>
-            <div class="inline-right">
-                <div class="controls">
-                    <h2>Percent Fees</h2>
-                    @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent)).OrderBy(f => f.FeeName.FeeNameName))
-                    {
-                        <div class="company-fee">
-                            @Html.ActionLink("Add Fee", "BlankEditorRowExtended", null, new { productID = Model.ProductID, feeType = item.FeeType, inheritedID = item.FeeID, feeNameID = item.FeeNameID, feeDollarAmount = item.FeeDollarAmount, feeAmortizedCharge = item.FeeAmortizedCharge, feeAmortizedType = item.FeeAmortizedType, feePercent = item.FeePercent, feePercentType = item.FeePercentType }, new { @class = "add-existing-fee" })
-                            <input type="checkbox" class="existing-fee-checkbox" name="@item.FeeName" value="@item.FeeID" data-html-location=".percent-fee-info .fees" />
-                            @{  /* NOTE: used convert.todouble to tostring("g") to remove trailing 0's */
-                        string typeDisplay = "";
-                        if (item.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Division))
-                        {
-                            typeDisplay = "÷";
-                        }
-                        else if (item.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Multiplication))
-                        {
-                            typeDisplay = "×";
-                        }
-                            }
-                            @item.FeeName.FeeNameName : [@Convert.ToDouble(item.FeePercent).ToString("G")% | @typeDisplay]
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
+
     <div class="flex-grid">
         <div class="product-cost">
             <div class="editor-label">
@@ -347,7 +289,11 @@
                 <h2>@Html.TextBoxFor(model => model.ProductCost, new { @class = "dollar-value" })</h2>
             </div>
         </div>
-        <div class="side-fee-calc-container"></div>
+        <div class="side-fee-calc-container">
+            <div class="toggle-fee">
+                <button type="button" class="toggle-company-fees button">Show/Hide Company Fee Section</button>
+            </div>
+        </div>
     </div>
 
     <div class="flex-grid">
@@ -367,7 +313,22 @@
                 </ul>
             </div>
         </div>
-        <div class="side-fee-calc-container"></div>
+        <div class="side-fee-calc-container">
+        <div class="company-fees controls">
+
+            <div class="the-fees">
+                @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount)).OrderBy(f => f.FeeName.FeeNameName))
+                {
+                    ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames, "FeeNameID", "FeeNameName", item.FeeNameID);
+                    <div class="company-fee">
+                        @Html.ActionLink("Add Fee", "BlankEditorRowExtended", null, new { productID = Model.ProductID, feeType = item.FeeType, inheritedID = item.FeeID, feeNameID = item.FeeNameID, feeDollarAmount = item.FeeDollarAmount, feeAmortizedCharge = item.FeeAmortizedCharge, feeAmortizedType = item.FeeAmortizedType, feePercent = item.FeePercent, feePercentType = item.FeePercentType }, new { @class = "add-existing-fee" })
+                        <input type="checkbox" class="existing-fee-checkbox" name="@item.FeeName" value="@item.FeeID" data-html-location=".dollar-fee-info .fees" />
+                        @item.FeeName.FeeNameName : [@Convert.ToDouble(item.FeeDollarAmount).ToString("c")]
+                    </div>
+                }
+                </div>
+            </div>
+        </div>
     </div>
     <div class="flex-grid">
         <div class="main-fee-calc-container">
@@ -386,7 +347,22 @@
                 </ul>
             </div>
         </div>
-        <div class="side-fee-calc-container"></div>
+        <div class="side-fee-calc-container">
+            <div class="company-fees controls">
+
+                <div class="the-fees">
+                @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized)).OrderBy(f => f.FeeName.FeeNameName))
+                {
+                    ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames, "FeeNameID", "FeeNameName", item.FeeNameID);
+                    <div class="company-fee">
+                        @Html.ActionLink("Add Fee", "BlankEditorRowExtended", null, new { productID = Model.ProductID, feeType = item.FeeType, inheritedID = item.FeeID, feeNameID = item.FeeNameID, feeDollarAmount = item.FeeDollarAmount, feeAmortizedCharge = item.FeeAmortizedCharge, feeAmortizedType = item.FeeAmortizedType, feePercent = item.FeePercent, feePercentType = item.FeePercentType }, new { @class = "add-existing-fee" })
+                        <input type="checkbox" class="existing-fee-checkbox" name="@item.FeeName" value="@item.FeeID" data-html-location=".amortized-fee-info .fees" />
+                        @item.FeeName.FeeNameName : [@Convert.ToDouble(item.FeeAmortizedCharge).ToString("c") | @item.FeeAmortizedType]
+                    </div>
+                }
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="flex-grid">
@@ -416,9 +392,34 @@
                 </ul>
             </div>
         </div>
-        <div class="side-fee-calc-container"></div>
+        <div class="side-fee-calc-container">
+            <div class="company-fees controls">
+
+                <div class="the-fees">
+                @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent)).OrderBy(f => f.FeeName.FeeNameName))
+                {
+                    <div class="company-fee">
+                        @Html.ActionLink("Add Fee", "BlankEditorRowExtended", null, new { productID = Model.ProductID, feeType = item.FeeType, inheritedID = item.FeeID, feeNameID = item.FeeNameID, feeDollarAmount = item.FeeDollarAmount, feeAmortizedCharge = item.FeeAmortizedCharge, feeAmortizedType = item.FeeAmortizedType, feePercent = item.FeePercent, feePercentType = item.FeePercentType }, new { @class = "add-existing-fee" })
+                        <input type="checkbox" class="existing-fee-checkbox" name="@item.FeeName" value="@item.FeeID" data-html-location=".percent-fee-info .fees" />
+                        @{  /* NOTE: used convert.todouble to tostring("g") to remove trailing 0's */
+                    string typeDisplay = "";
+                    if (item.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Division))
+                    {
+                        typeDisplay = "÷";
+                    }
+                    else if (item.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Multiplication))
+                    {
+                        typeDisplay = "×";
+                    }
+                        }
+                        @item.FeeName.FeeNameName : [@Convert.ToDouble(item.FeePercent).ToString("G")% | @typeDisplay]
+                    </div>
+                }
+                </div>
+            </div>
+        </div>
     </div>
-    
+
     <div class="flex-grid">
         <div class="net-cost">
             <div class="editor-label">
