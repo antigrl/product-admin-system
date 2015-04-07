@@ -86,12 +86,16 @@
 
 .toggle-fee {
   text-align: right;
-  margin: 10px 0;
   position: relative;
+  button {
+    font-size: 8px;
+    padding: 10px 15px;
+    margin-top: 10px;
+  }
   .fa:before {
-    top: 8px;
-    right: 8px;
-    font-size: 26px;
+    top: 15px;
+    right: 5px;
+    font-size: 21px;
   }
 }
 
@@ -165,6 +169,10 @@
   flex: 2 0 0;
   input, select {
     padding: 3px;
+    &:disabled {
+      background-color: #efefef;
+      cursor: not-allowed;
+    }
   }
 }
 
