@@ -2,36 +2,47 @@
 @using PAS.Models
 @using PAS.Helpers
 
-<div class="upcharge">
+<li class="upcharge editor-row">
     @using (Html.BeginCollectionItem("ProductUpcharges"))
     {
+        <div>
+            <span><a class="delete-row"></a></span>
 
+            <span>
+                @if (Model.UpchargeID != null || Model.UpchargeID != 0)
+                {
+                    @Html.DropDownListFor(model => model.UpchargeName, MyExtensions.GetGenericEnumDropDown<ProductUpchargeNames>(), "")
+                }
+                else
+                {
 
-         <span>
-            <a class="delete-row" href="@Url.Action("Archive", "ProductUpcharge", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), id = Model.UpchargeID }, null)"></a>
-        </span>
-        <span>
-            @Html.DisplayFor(model => model.UpchargeName)
-            @Html.HiddenFor(model => model.UpchargeID)
-            @Html.HiddenFor(model => model.ProductID)
-            @Html.HiddenFor(model => model.UpchargeName)
-            @Html.HiddenFor(model => model.UpchargeStatus)
-        </span>
+                        @Html.DisplayFor(model => model.UpchargeName)
 
-        <span>
-            $@Html.TextBoxFor(model => model.UpchargeAmount, new { @class = "dollar-value" })
-            @Html.ValidationMessageFor(model => model.UpchargeAmount)
-        </span>
+                }
+                @Html.HiddenFor(model => model.UpchargeID)
+                @Html.HiddenFor(model => model.ProductID)
+                @Html.HiddenFor(model => model.UpchargeName)
+                @Html.HiddenFor(model => model.UpchargeStatus)
+            </span>
 
-        <span>
-        Total Cost: @Html.DisplayFor(model => model.UpchargeTotalCost)
-        </span>
-        <div class="hidden-inputs">
-            @foreach (var upchargeSellPrice in Model.UpchargeSellPrices.Where(price => price.UpchargeSellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(price => price.UpchargeSellPriceLevel))
-            {
-                Html.RenderPartial("_UpchargeSellPriceEditor", upchargeSellPrice);
-            }
+            <span>
+                $@Html.TextBoxFor(model => model.UpchargeAmount, new { @class = "dollar-value" })
+                @Html.ValidationMessageFor(model => model.UpchargeAmount)
+            </span>
         </div>
+        <div>
+            <span>
+                Total Cost: @Html.DisplayFor(model => model.UpchargeTotalCost)
+            </span>
 
+                @if (Model.UpchargeID != 0)
+                {
+                    foreach (var upchargeSellPrice in Model.UpchargeSellPrices.Where(price => price.UpchargeSellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(price => price.UpchargeSellPriceLevel))
+                    {
+                        Html.RenderPartial("_UpchargeSellPriceEditor", upchargeSellPrice);
+                    }
+                }
+
+        </div>
     }
-</div>
+</li>

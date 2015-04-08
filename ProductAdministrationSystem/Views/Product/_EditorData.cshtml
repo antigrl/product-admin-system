@@ -312,15 +312,16 @@
         </div>
         <div class="side-fee-calc-container">
             <div class="main-fee-calc-container">
-                <h2 class="add-fee">
-                    Upcharge
-                    <a href="@Url.Action("Create", "ProductUpcharge", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), ProductID = Model.ProductID }, null)"><I class="fa fa-plus-square"></i></a>
+                <h2 class="add-upcharge">
+                Upcharge
+                <a class="add-item" href="@Url.Action("BlankEditorRow", new { productID = Model.ProductID, isDecoration = false, isUpcharge = true })"><i class="fa fa-plus-square"></i></a>
                 </h2>
-                @foreach (var upcharge in Model.ProductUpcharges.Where(p => p.UpchargeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
-                {
-                    Html.RenderPartial("_UpchargeEditor", upcharge);
-                }
-
+                <ul class="upcharges add-target">
+                    @foreach (var upcharge in Model.ProductUpcharges.Where(p => p.UpchargeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
+                    {
+                        Html.RenderPartial("_UpchargeEditor", upcharge);
+                    }
+                </ul>
             </div>
 
             <div class="toggle-fee">
@@ -461,9 +462,6 @@
                 Html.RenderPartial("_SellPriceEditor", sellPrice);
                 <hr />
             }
-        </div>
-        <div class="inline-middle upcharge-info">
-
         </div>
     </div>
 }

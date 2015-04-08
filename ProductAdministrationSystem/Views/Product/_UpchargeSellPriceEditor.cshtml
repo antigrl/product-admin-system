@@ -5,12 +5,12 @@
 <div class="upcharge-sell-price">
     @using (Html.BeginCollectionItem("UpchargeSellPrices"))
     {
-        <div>
-            <strong>Sell Price:</strong>
-            @Html.DisplayFor(model => model.UpchargeSellPriceFinalAmount)
+        <span>
+            Sell Price:
+            @Html.DisplayFor(model => model.UpchargeSellPriceFinalAmount)<br>
             @Html.TextBoxFor(model => model.UpchargeSellPriceFinalRoundedAmount, new { @class = "dollar-value" })
-        </div>
-        <div class="hidden-inputs">
+        </span>
+        <span class="hidden-inputs">
             @Html.HiddenFor(model => model.UpchargeSellPriceID)
             @Html.HiddenFor(model => model.UpchargeSellPriceName)
             @Html.HiddenFor(model => model.UpchargeSellPriceLevel)
@@ -18,6 +18,6 @@
             @Html.HiddenFor(model => model.UpchargeSellPriceLocked)
             @Html.HiddenFor(model => model.UpchargeID)
             @Html.HiddenFor(model => model.UpchargeSellPriceStatus)
-        </div>
+        </span>
     }
 </div>
