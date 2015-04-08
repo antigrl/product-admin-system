@@ -312,7 +312,7 @@
         </div>
         <div class="side-fee-calc-container">
             <div class="main-fee-calc-container">
-                <h2 class="add-upcharge">
+                <h2 class="add-fee">
                 Upcharge
                 <a class="add-item" href="@Url.Action("BlankEditorRow", new { productID = Model.ProductID, isDecoration = false, isUpcharge = true })"><i class="fa fa-plus-square"></i></a>
                 </h2>
@@ -450,18 +450,15 @@
 
         <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateMargin", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Margin</button>
     </div>
-    <div class="flex-grid product-fees">
-        <div class="inline-left sell-price-info">
-            <h3>Sell Prices</h3>
-            @foreach (var sellPrice in Model.ProductSellPrices.Where(price => price.SellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(price => price.SellPriceLevel))
+    <div class="flex-grid">
+        @foreach (var sellPrice in Model.ProductSellPrices.Where(price => price.SellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(price => price.SellPriceLevel))
+        {
+            if (sellPrice.Product == null)
             {
-                if (sellPrice.Product == null)
-                {
-                    sellPrice.Product = Model;
-                }
-                Html.RenderPartial("_SellPriceEditor", sellPrice);
-                <hr />
+                sellPrice.Product = Model;
             }
-        </div>
+            Html.RenderPartial("_SellPriceEditor", sellPrice);
+            <hr />
+        }
     </div>
 }

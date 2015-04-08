@@ -289,12 +289,12 @@
 
                 // Disable all not selected options if inherited
                 $(this).find("select option:not(:selected)").each(function () {
-                    $(this).parent().prop("disabled", "disabled");
+                    $(this).prop("disabled", "disabled");
                 });
 
                 // Disable all radio buttons if inherited [if applicable]
                 $(this).find("input:radio:not(:checked)").each(function () {
-                    $(this).parent().prop("disabled", "disabled");
+                    $(this).prop("disabled", "disabled");
                 });
 
                 // Tie Existing fee checkbox to the inherited fee

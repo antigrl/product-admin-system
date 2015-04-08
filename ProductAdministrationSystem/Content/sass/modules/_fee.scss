@@ -48,10 +48,11 @@
 .amortized-fee-container,
 .dollar-fee-container,
 .percent-fee-container,
-.upcharge {
+.upcharge,
+.sell-price {
   width: 100%;
   display: inline-flex;
-  align-items: stretch;
+  align-items: flex-start;
   justify-content: space-between;
   text-align: right;
   margin-bottom: 5px;
@@ -78,4 +79,10 @@
 .the-fees {
   margin: 10px 0;
   font-size: 12px;
+}
+
+.price-level,
+.final-sell,
+.upcharge-sell {
+  text-align: left;
 }
