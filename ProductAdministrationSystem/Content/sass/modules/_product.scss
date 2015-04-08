@@ -85,12 +85,24 @@
 }
 
 .toggle-fee {
-  text-align: center;
+  text-align: right;
+  position: relative;
+  button {
+    font-size: 8px;
+    padding: 10px 15px;
+    margin-top: 10px;
+  }
+  .fa:before {
+    top: 15px;
+    right: 5px;
+    font-size: 21px;
+  }
 }
+
 .toggle-content {
   width: 100%;
-  height: 100%;
 }
+
 
 .tab-headers {
   position: relative;
@@ -123,6 +135,9 @@
   @include span-columns(3 of 12);
   &.last {
     @include omega;
+  }
+  textarea {
+    min-height: 50px;
   }
 }
 
@@ -161,11 +176,16 @@
   flex: 2 0 0;
   input, select {
     padding: 3px;
+    &:disabled {
+      background-color: #efefef;
+      cursor: not-allowed;
+    }
   }
 }
 
 .side-fee-calc-container {
   flex: 1 0 0;
+  margin: 0 0 10px 10px;
 }
 
 .product-cost,

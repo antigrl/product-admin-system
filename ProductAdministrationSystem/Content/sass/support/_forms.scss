@@ -44,6 +44,9 @@ h2.form-heading{
     background-color: #fff;
     border-radius: 2px;
     transition: all .3s;
+    &:disabled {
+      background-color: #ccc;
+    }
 
     &:focus, &:hover{
       outline: none;
@@ -64,6 +67,9 @@ h2.form-heading{
   select{
     appearance: none;
     cursor: pointer;
+    &:disabled {
+      background-color: #ccc;
+    }
   }
   label {
     color: #555;
@@ -73,9 +79,6 @@ h2.form-heading{
     font-weight: 400;
     background-color: rgba(255,255,255,0);
     transition: color .3s, top .3s, background-color .8s;
-  }
-  textarea{
-
   }
   button {
     cursor: pointer;
@@ -122,6 +125,9 @@ select.input-validation-error {
     textarea {
       // height: 230px;
     }
+  }
+  select:disabled {
+    background-color: #ccc;
   }
 }
 

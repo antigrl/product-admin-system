@@ -152,9 +152,9 @@
         ShowFeeInputBasedOnType();
     });
 
-    $(".toggle-company-fees").click(function () {
-        $(".company-fees").toggle();
-    });
+    // $(".toggle-company-fees").click(function () {
+    //     $(".company-fees").toggle();
+    // });
 
     $(".toggle-archived-products").click(function () {
         $(".archived-products").toggle();
@@ -289,12 +289,12 @@
 
                 // Disable all not selected options if inherited
                 $(this).find("select option:not(:selected)").each(function () {
-                    $(this).prop("disabled", "disabled");
+                    $(this).parent().prop("disabled", "disabled");
                 });
 
                 // Disable all radio buttons if inherited [if applicable]
                 $(this).find("input:radio:not(:checked)").each(function () {
-                    $(this).prop("disabled", "disabled");
+                    $(this).parent().prop("disabled", "disabled");
                 });
 
                 // Tie Existing fee checkbox to the inherited fee
