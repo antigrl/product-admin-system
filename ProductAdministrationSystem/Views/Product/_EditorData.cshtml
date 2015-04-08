@@ -290,9 +290,6 @@
             </div>
         </div>
         <div class="side-fee-calc-container">
-            <div class="toggle-fee">
-                <button type="button" ng-click="expand = !expand" class="toggle-company-fees button green"><i class="fa" ng-class="{'fa-expand': expand, 'fa-compress': !expand}"></i></button>
-            </div>
         </div>
     </div>
 
@@ -314,6 +311,21 @@
             </div>
         </div>
         <div class="side-fee-calc-container">
+            <div class="main-fee-calc-container">
+                <h2 class="add-fee">
+                    Upcharge
+                    <a href="@Url.Action("Create", "ProductUpcharge", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), ProductID = Model.ProductID }, null)"><I class="fa fa-plus-square"></i></a>
+                </h2>
+                @foreach (var upcharge in Model.ProductUpcharges.Where(p => p.UpchargeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
+                {
+                    Html.RenderPartial("_UpchargeEditor", upcharge);
+                }
+
+            </div>
+
+            <div class="toggle-fee">
+                <button type="button" ng-click="expand = !expand" class="toggle-company-fees button green"><i class="fa" ng-class="{'fa-expand': expand, 'fa-compress': !expand}"></i></button>
+            </div>
         <div class="company-fee controls" ng-show="expand">
 
             <div class="the-fees">
@@ -393,7 +405,7 @@
             </div>
         </div>
         <div class="side-fee-calc-container">
-            <div class="company-fee controls" ng-show="">
+            <div class="company-fee controls" ng-show="expand">
 
                 <div class="the-fees">
                 @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent)).OrderBy(f => f.FeeName.FeeNameName))
@@ -431,11 +443,11 @@
     </div>
 
     <div class="flex-grid product-fees-buttons">
-        <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateSellPrice", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Calculate Price</button>
+        <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateSellPrice", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Price</button>
 
-        <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateSellPriceToNearestFiveCents", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Calculate Rounded Price</button>
+        <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateSellPriceToNearestFiveCents", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Rounded Price</button>
 
-        <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateMargin", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save & Calculate Margin</button>
+        <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateMargin", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Margin</button>
     </div>
     <div class="flex-grid product-fees">
         <div class="inline-left sell-price-info">
@@ -451,12 +463,7 @@
             }
         </div>
         <div class="inline-middle upcharge-info">
-            <h3>Upcharge</h3>
-            @foreach (var upcharge in Model.ProductUpcharges.Where(p => p.UpchargeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
-            {
-                Html.RenderPartial("_UpchargeEditor", upcharge);
-            }
-            @Html.ActionLink("Create New Upcharge", "Create", "ProductUpcharge", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), ProductID = Model.ProductID }, null)
+
         </div>
     </div>
 }

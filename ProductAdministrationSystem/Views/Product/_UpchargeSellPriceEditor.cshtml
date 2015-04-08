@@ -6,7 +6,7 @@
     @using (Html.BeginCollectionItem("UpchargeSellPrices"))
     {
         <div>
-            <strong>@Model.UpchargeSellPriceName Sell Price:</strong>
+            <strong>Sell Price:</strong>
             @Html.DisplayFor(model => model.UpchargeSellPriceFinalAmount)
             @Html.TextBoxFor(model => model.UpchargeSellPriceFinalRoundedAmount, new { @class = "dollar-value" })
         </div>

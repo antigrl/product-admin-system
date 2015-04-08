@@ -5,21 +5,25 @@
 <div class="upcharge">
     @using (Html.BeginCollectionItem("ProductUpcharges"))
     {
-        @Html.ActionLink("Remove Upcharge", "Archive", "ProductUpcharge", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), id = Model.UpchargeID }, null)
-        <div class="editor-label">
-            <label>
-                @Html.DisplayFor(model => model.UpchargeName)
-            </label>
-            @Html.HiddenFor(model => model.UpchargeID)
-            @Html.HiddenFor(model => model.ProductID)
-            @Html.HiddenFor(model => model.UpchargeName)
-            @Html.HiddenFor(model => model.UpchargeStatus)
-        </div> 
-        <div class="editor-field">
+
+     <span>
+        <a class="delete-row" href="@Url.Action("Archive", "ProductUpcharge", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), id = Model.UpchargeID }, null)"></a>
+    </span>
+    <span>
+        @Html.DisplayFor(model => model.UpchargeName)
+    </span>
+        @Html.HiddenFor(model => model.UpchargeID)
+        @Html.HiddenFor(model => model.ProductID)
+        @Html.HiddenFor(model => model.UpchargeName)
+        @Html.HiddenFor(model => model.UpchargeStatus)
+
+        <span>
             $@Html.TextBoxFor(model => model.UpchargeAmount, new { @class = "dollar-value" })
             @Html.ValidationMessageFor(model => model.UpchargeAmount)
-        </div>
-        <span>Total Cost: @Html.DisplayFor(model => model.UpchargeTotalCost)
+        </span>
+        <br>
+        <span>
+        Total Cost: @Html.DisplayFor(model => model.UpchargeTotalCost)
         </span>
         <div class="hidden-inputs">
             @foreach (var upchargeSellPrice in Model.UpchargeSellPrices.Where(price => price.UpchargeSellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(price => price.UpchargeSellPriceLevel))
