@@ -5,6 +5,7 @@
 
     @using (Html.BeginCollectionItem("ProductSellPrices"))
     {
+        <div class="flex-grid">
         <div class="product-fees">
 
             <h2 class="add-fee">Sell Price</h2>
@@ -12,7 +13,7 @@
                 <div class="price-level">
                     <span>
                         <strong>@Html.DisplayNameFor(model => model.SellPriceLevel): </strong>@Html.DisplayFor(model => model.SellPriceLevel)
-                    </span><br>
+                    </span>
                     <span>
                         <strong>Margin: </strong>
                     </span>
@@ -77,6 +78,6 @@
             </div>
 
         </div>
-
+    </div>
     }
 

@@ -450,15 +450,18 @@
 
         <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateMargin", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Margin</button>
     </div>
-    <div class="flex-grid">
-        @foreach (var sellPrice in Model.ProductSellPrices.Where(price => price.SellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(price => price.SellPriceLevel))
-        {
-            if (sellPrice.Product == null)
+    <div>
+
+
+            @foreach (var sellPrice in Model.ProductSellPrices.Where(price => price.SellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(price => price.SellPriceLevel))
             {
-                sellPrice.Product = Model;
+                if (sellPrice.Product == null)
+                {
+                    sellPrice.Product = Model;
+                }
+                Html.RenderPartial("_SellPriceEditor", sellPrice);
+
             }
-            Html.RenderPartial("_SellPriceEditor", sellPrice);
-            <hr />
-        }
+
     </div>
 }
