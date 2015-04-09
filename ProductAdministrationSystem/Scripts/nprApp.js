@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('nprApp', ['datatables', 'textarea-fit']);
+var app = angular.module('nprApp', ['datatables', 'textarea-fit', 'datatables.scroller']);
 
 // Side nav expansion
 $(function () {
@@ -27,6 +27,12 @@ app.controller('toggleController', function() {
   };
 });
 
-app.run(function (DTDefaultOptions) {
-  DTDefaultOptions.setDisplayLength(30);
-});
+app.controller('WithScrollerCtrl', WithScrollerCtrl);
+
+function WithScrollerCtrl(DTOptionsBuilder) {
+  var vm = this;
+  vm.dtOptions = DTOptionsBuilder.newOptions()
+  .withScroller()
+  .withOption('deferRender', true)
+  .withOption('scrollY', 200);
+}

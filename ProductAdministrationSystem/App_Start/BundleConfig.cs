@@ -19,6 +19,7 @@ namespace PAS
                         "~/Content/bower_components/angular-datatables/dist/angular-datatables.js",
                         "~/Scripts/NPR.js",
                         "~/Content/bower_components/angular-datatables/dist/angular-datatables.min.js",
+                        "~/Content/bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js",
                         "~/Scripts/angular-textarea-fit.js",
                         "~/Scripts/nprApp.js"));
 
