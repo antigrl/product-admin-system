@@ -96,8 +96,8 @@
 }
 @Html.ActionLink("Create New Product", "Create", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), CampaignID = Model.CampaignID }, null)
 <div class="flex-grid">
-    <section>
-        <table datatable="" class="campaign-list">
+    <section ng-controller="WithScrollerCtrl as app">
+        <table datatable="" class="campaign-list" dt-options="app.dtOptions">
             <thead>
                 <tr>
                     <th>ID</th>
