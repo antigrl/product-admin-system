@@ -232,12 +232,9 @@
 }
 .action-icons {
   padding: 0;
-  ul {
-    margin-top: -20px;
-  }
   li {
     display: inline-block;
-    margin: 0 15px;
+    margin: 0 5px;
   }
 }
 
@@ -251,6 +248,9 @@ a.archive-btn {
     transition: color 0.5s ease;
     &:hover {
       color: $teal;
+    }
+    &:before {
+      position: relative;
     }
   }
 }

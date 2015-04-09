@@ -279,7 +279,7 @@ main {
 
 .flex-grid-client {
   > section {
-    flex: 0;
+    flex: 1;
   }
 }
 .truncate {
@@ -304,5 +304,5 @@ main {
 }
 
 .flex-grid-client {
-  flex-direction: column;
+
 }
