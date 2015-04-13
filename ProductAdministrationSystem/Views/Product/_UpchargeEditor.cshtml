@@ -29,12 +29,10 @@
                 $@Html.TextBoxFor(model => model.UpchargeAmount, new { @class = "dollar-value" })
                 @Html.ValidationMessageFor(model => model.UpchargeAmount)
             </span>
-        </div>
-        <div>
             <span>
-                Total Cost: @Html.DisplayFor(model => model.UpchargeTotalCost)
+                @Html.DisplayFor(model => model.UpchargeName) Cost: @Html.DisplayFor(model => model.UpchargeTotalCost)
             </span>
-
+            <ul>
                 @if (Model.UpchargeID != 0)
                 {
                     foreach (var upchargeSellPrice in Model.UpchargeSellPrices.Where(price => price.UpchargeSellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(price => price.UpchargeSellPriceLevel))
@@ -42,7 +40,7 @@
                         Html.RenderPartial("_UpchargeSellPriceEditor", upchargeSellPrice);
                     }
                 }
-
+            </ul>
         </div>
     }
 </li>
