@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('nprApp', ['datatables', 'textarea-fit', 'datatables.scroller']);
+var app = angular.module('nprApp', ['datatables', 'textarea-fit', 'datatables.scroller', 'ngAnimate', 'ngTooltip']);
 
 // Side nav expansion
 $(function () {
@@ -37,3 +37,4 @@ function WithScrollerCtrl(DTOptionsBuilder) {
   .withOption('deferRender', true)
   .withOption('scrollY', 200);
 }
+
