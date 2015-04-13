@@ -1,0 +1,81 @@
+﻿@model IEnumerable<PAS.Models.Campaign>
+
+@{
+ViewBag.Title = "Campaign Index";
+}
+
+<div class="heading">
+  <h1>@ViewBag.TitleMessage Campaign Index
+
+
+    @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+    {
+    <div class="heading-info">@Html.ActionLink("View Active Campaigns", "Index")</div>
+  }
+  else
+  {
+  <div class="heading-info">@Html.ActionLink("View Archived Campaigns", "ArchivedIndex")</div>
+}
+<div class="heading-info">@Html.ActionLink("Create New Campaign", "Create")</div>
+</h1>
+</div>
+
+<div class="flex-grid">
+  <section>
+    <table datatable="">
+      <thead>
+        <tr>
+          <th>
+            @Html.DisplayNameFor(model => model.CampaignName)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.Company.CompanyName)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CampaignReason)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CampaignCreatedBy)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CampaignCreatedOnDate)
+          </th>
+          <th>
+            @Html.DisplayNameFor(model => model.CampaignStatus)
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      @foreach(var item in Model)
+      {
+      <tr>
+        <td>
+          @Html.DisplayFor(modelItem => item.CampaignName)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.Company.CompanyName)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.CampaignReason)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.CampaignCreatedBy)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.CampaignCreatedOnDate)
+        </td>
+        <td>
+          @Html.DisplayFor(modelItem => item.CampaignStatus)
+        </td>
+        <td>
+          @Html.ActionLink("shit", "shit", new { id = item.CampaignID }) |
+          @Html.ActionLink("Archive", "Archive", new { id = item.CampaignID })
+        </td>
+      </tr>
+    }
+    </tbody>
+  </table>
+
+</section>
+</div>

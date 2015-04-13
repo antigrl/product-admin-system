@@ -1,0 +1,104 @@
+﻿@model PAS.Models.Fee
+@using PAS.Models;
+@using PAS.Helpers;
+
+@{
+    ViewBag.Title = "Archive Fee";
+}
+<div class="heading">
+    <h1>Archive Fee</h1>
+</div>
+
+<div class="flex-grid">
+    <section class="info-list">
+        <h2>Are you sure you want to Archive this Fee?</h2>
+
+    <div class="controls">
+        <storng>@Html.LabelForRequired(model => model.FeeType)</strong><br>
+        @Html.ValidationMessageFor(model => model.FeeType)
+        @Html.DisplayFor(model => model.FeeType)
+    </div>
+
+    <div class="controls">
+        <strong>@Html.LabelForRequired(model => model.FeeNameID, "FeeName")</strong><br>
+        @Html.ValidationMessageFor(model => model.FeeNameID)
+        @Html.DisplayFor(model => model.FeeNameID)
+    </div>
+
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.FeeName.FeeNameName)</strong><br>
+        @Html.DisplayFor(model => model.FeeName.FeeNameName)
+    </div>
+
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.FeeType)</strong><br>
+        @Html.DisplayFor(model => model.FeeType)
+    </div>
+
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.FeeCalculation)</strong><br>
+        @Html.DisplayFor(model => model.FeeCalculation)
+    </div>
+
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.FeeAmortizedCharge)</strong><br>
+        @Html.DisplayFor(model => model.FeeAmortizedCharge)
+    </div>
+
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.FeeAmortizedType)</strong><br>
+        @Html.DisplayFor(model => model.FeeAmortizedType)
+    </div>
+
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.FeePercent)</strong><br>
+        @Html.DisplayFor(model => model.FeePercent)
+    </div>
+
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.FeePercentType)</strong><br>
+        @Html.DisplayFor(model => model.FeePercentType)
+    </div>
+
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.FeeDollarAmount)</strong><br>
+        @Html.DisplayFor(model => model.FeeDollarAmount)
+    </div>
+
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.Company.CompanyName)</strong><br>
+        @Html.DisplayFor(model => model.Company.CompanyName)
+    </div>
+
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.Campaign.CampaignName)</strong><br>
+        @Html.DisplayFor(model => model.Campaign.CampaignName)
+    </div>
+
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.PricingTier.PricingTierName)</strong><br>
+        @Html.DisplayFor(model => model.PricingTier.PricingTierName)
+    </div>
+
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.Product.ProductName)</strong><br>
+        @Html.DisplayFor(model => model.Product.ProductName)
+    </div>
+
+    <div class="controls">
+        <strong>@Html.DisplayNameFor(model => model.ProductSellPrice.SellPriceName)</strong><br>
+        @Html.DisplayFor(model => model.ProductSellPrice.SellPriceName)
+    </div>
+
+@using(Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" class="button green" value="Archive" />
+        |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
+
+    </section>
+</div>

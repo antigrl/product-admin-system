@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PAS.Models.ProductUpcharge>
+
+@{
+    ViewBag.Title = "Product Upcharge Index";
+}
+
+<h2>@ViewBag.TitleMessage Product Upcharge Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+    {
+        <span class="float-right">@Html.ActionLink("View Active Product Upcharges", "Index")</span>
+    }
+    else
+    {
+        <span class="float-right">@Html.ActionLink("View Archived Product Upcharges", "ArchivedIndex")</span>
+    }
+</p>
+<table class="index-table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UpchargeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpchargeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpchargeAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpchargeTotalCost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.ProductName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpchargeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpchargeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpchargeAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpchargeTotalCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.ProductName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.UpchargeID }) |
+                @Html.ActionLink("Archive", "Archive", new { id = item.UpchargeID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,36 @@
+﻿@model PAS.Models.FeeName
+@using PAS.Helpers;
+@using PAS.Models;
+
+@{
+    ViewBag.Title = "Create Fee Name";
+}
+
+<div class="heading">
+    <h1>
+        @ViewBag.Title
+    </h1>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false)
+
+    <div class="flex-grid">
+        <section>
+            @Html.HiddenFor(model => model.FeeNameStatus)
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.FeeNameName)
+                @Html.EditorFor(model => model.FeeNameName)
+            </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.FeeNameType)
+                @Html.DropDownListFor(model => model.FeeNameType, MyExtensions.GetGenericEnumDropDown<FeeTypeList>(), "")
+            </div>
+            <p>
+                <input type="submit" class="button green" value="Create" /> | @Html.ActionLink("Back to Fee Name List", "Index")
+            </p>
+        </section>
+    </div>
+}

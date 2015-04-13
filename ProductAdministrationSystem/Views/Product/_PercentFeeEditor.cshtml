@@ -8,10 +8,8 @@
         @Html.ValidationSummary(true)
         <li>
             <a href="#" class="delete-row"></a>
+            @Html.EditorFor(model => model.FeeLevel)
             @Html.ValidationMessageFor(model => model.FeeNameID)
-
-
-
             @if (Model.FeeNameID == 0)
             {
                 @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)
@@ -21,7 +19,6 @@
                 @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList)
                 @Html.HiddenFor(model => model.FeeID)
             }
-            @Html.EditorFor(model => model.FeeLevel)
             @Html.HiddenFor(model => model.ProductID)
             @Html.HiddenFor(model => model.FeeType)
             @Html.HiddenFor(model => model.FeeCalculation)

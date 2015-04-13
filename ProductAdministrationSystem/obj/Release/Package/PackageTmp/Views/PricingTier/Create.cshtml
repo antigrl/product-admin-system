@@ -1,0 +1,58 @@
+﻿@model PAS.Models.PricingTier
+@using PAS.Helpers;
+
+@{
+    ViewBag.Title = "Create Pricing Tier";
+}
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="heading">
+        <h1>Create Pricing Tier</h1>
+    </div>
+
+    <div class="flex-grid">
+        <section>
+            @Html.HiddenFor(model => model.PricingTierStatus)
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.PricingTierName)
+                @Html.ValidationMessageFor(model => model.PricingTierName)
+                @Html.EditorFor(model => model.PricingTierName)
+            </div>
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.PricingTierLevel)
+                @Html.ValidationMessageFor(model => model.PricingTierLevel)
+                @Html.EditorFor(model => model.PricingTierLevel)
+            </div>
+
+            @if (Request.QueryString.GetValues("CompanyID") == null)
+            {
+                <div class="controls">
+                    @Html.LabelForRequired(model => model.CompanyID, "Company")
+                    @Html.ValidationMessageFor(model => model.CompanyID)
+                    @Html.DropDownList("CompanyID", String.Empty)
+                </div>
+            }
+            else
+            {
+                <div class="controls">@Html.DisplayFor(model => model.Company.CompanyName)</div>
+                @Html.HiddenFor(model => model.CompanyID)
+            }
+
+            <p>
+                <input type="submit" class="button green" value="Create" />
+                | @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
+            </p>
+
+        </section>
+    </div>
+}
+
+@section Scripts {
+
+}

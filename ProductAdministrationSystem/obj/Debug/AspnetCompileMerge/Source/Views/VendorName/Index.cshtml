@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PAS.Models.VendorName>
+
+@{
+    ViewBag.Title = "Vendor Name Index";
+}
+
+<div class="heading">
+    <h1>Vendor Name Index
+        @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+        {
+            <div class="heading-info">@Html.ActionLink("View Active Vendor Names", "Index")</div>
+        }
+        else
+        {
+            <div class="heading-info">@Html.ActionLink("View Archived Vendor Names", "ArchivedIndex")</div>
+        }
+        <div class="heading-info">@Html.ActionLink("Create New Vendor Name", "Create")</div>
+    </h1>
+</div>
+
+<div class="flex-grid">
+    <section>
+        <table datatable="">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.VendorNameName)</th>
+                    <th>Modify</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VendorNameName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.VendorNameID }) |
+                    @Html.ActionLink("Archive", "Archive", new { id = item.VendorNameID })
+                </td>
+            </tr>
+        }
+            </tbody>
+        </table>
+    </section>
+</div>

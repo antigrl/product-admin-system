@@ -1,0 +1,18 @@
+﻿@model PAS.Models.UpchargeSellPrice
+@using PAS.Helpers;
+@using PAS.Models;
+
+<div class="sell-price-fee">
+    @using (Html.BeginCollectionItem("UpchargeSellPrices"))
+    {
+        <div class="hidden-inputs">
+            @Html.HiddenFor(model => model.UpchargeSellPriceID)
+            @Html.HiddenFor(model => model.UpchargeSellPriceName)
+            @Html.HiddenFor(model => model.UpchargeSellPriceLevel)
+            @Html.HiddenFor(model => model.UpchargeSellPriceFinalAmount)
+            @Html.HiddenFor(model => model.UpchargeSellPriceLocked)
+            @Html.HiddenFor(model => model.UpchargeID)
+            @Html.HiddenFor(model => model.UpchargeSellPriceStatus)
+        </div>
+    }
+</div>

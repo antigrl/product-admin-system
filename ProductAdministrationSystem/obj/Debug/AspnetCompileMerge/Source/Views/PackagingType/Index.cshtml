@@ -1,0 +1,41 @@
+﻿@model IEnumerable<PAS.Models.PackagingType>
+
+@{
+    ViewBag.Title = "Packaging Type Index";
+}
+
+<h2>Packaging Type Index</h2>
+
+<div class="left-half-content">
+    <p>
+        @Html.ActionLink("Create New Packaging Type", "Create")
+        @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+        {
+            <span class="float-right">@Html.ActionLink("View Active Packaging Types", "Index")</span>
+        }
+        else
+        {
+            <span class="float-right">@Html.ActionLink("View Archived Packaging Types", "ArchivedIndex")</span>
+        }
+    </p>
+    <table class="index-table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PackagingTypeName)
+            </th>
+            <th></th>
+        </tr>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PackagingTypeName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PackagingTypeID }) |
+                    @Html.ActionLink("Archive", "Archive", new { id = item.PackagingTypeID })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

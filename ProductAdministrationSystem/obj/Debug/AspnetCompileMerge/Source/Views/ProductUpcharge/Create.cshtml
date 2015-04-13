@@ -1,0 +1,56 @@
+﻿@model PAS.Models.ProductUpcharge
+@using PAS.Models
+@using PAS.Helpers
+
+@{
+    ViewBag.Title = "Create Product Upcharge";
+}
+
+<h2>Create Product Upcharge</h2>
+
+@using(Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <fieldset class="left-half-content">
+        <legend>ProductUpcharge</legend>
+        
+        @Html.HiddenFor(model => model.UpchargeStatus)
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.UpchargeName)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.UpchargeName, MyExtensions.GetGenericEnumDropDown<ProductUpchargeNames>(), "")
+            @Html.ValidationMessageFor(model => model.UpchargeName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.UpchargeAmount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UpchargeAmount)
+            @Html.ValidationMessageFor(model => model.UpchargeAmount)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.ProductID, "Product")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ProductID", String.Empty)
+            @Html.ValidationMessageFor(model => model.ProductID)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+
+        <div>
+            @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+}

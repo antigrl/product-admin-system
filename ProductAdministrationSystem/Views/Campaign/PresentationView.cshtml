@@ -36,6 +36,12 @@
                     <input type="number" class="starting-page-number" name="StartingPageNumber" value="1" />
                 </dd>
             </dl>
+            <dl class="check-list-left">
+                <dt>Show Print Preview</dt>
+                <dd>
+                    <input type="button" class="showPrintPreview" name="showPrintPreview" value="Show Print Preview" />
+                </dd>
+            </dl>
         </section>
 
         <section class="seamless">
@@ -59,14 +65,7 @@
                     {
                         <input id="@majorCategory.majorCategory" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
                         <label for="@majorCategory.majorCategory" class="checklist-label iconicfill-check">@majorCategory.majorCategory</label>
-                        <ol>
-                            @foreach (string minorCategory in majorCategory.minorCategories)
-                            {
-                                <li>
-                                    <label for="@minorCategory" class="">@minorCategory</label>
-                                </li>
-                            }
-                        </ol>
+                        
                     }
                 </dd>
             </dl>
@@ -107,7 +106,7 @@
                                     @if (Model != null && product.ProductImage != null)
                                     {
                                         <div class="thumb-image">
-                                            <img style="height:20px; width:20px;" src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
+                                            <img style="height:40px; width:40px;" src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
                                         </div>
                                     }
                                 </div>
@@ -137,7 +136,7 @@
         </div>
     }
 </div>
-<div style="display: none">
+<div >
     @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
     {
         productCount = 0;

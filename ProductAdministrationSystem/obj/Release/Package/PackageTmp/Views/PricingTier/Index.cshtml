@@ -1,0 +1,54 @@
+﻿@model IEnumerable<PAS.Models.PricingTier>
+
+@{
+    ViewBag.Title = "Pricing Tier Index";
+}
+
+<h2>@ViewBag.TitleMessage Pricing Tier Index</h2>
+<div class="left-half-content">
+    <p>
+        @Html.ActionLink("Create New Pricing Tier", "Create")
+        @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+        {
+            <span class="float-right">@Html.ActionLink("View Active Pricing Tiers", "Index")</span>
+        }
+        else
+        {
+            <span class="float-right">@Html.ActionLink("View Archived Pricing Tiers", "ArchivedIndex")</span>
+        }
+    </p>
+    <table class="index-table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PricingTierLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PricingTierName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company.CompanyName)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PricingTierLevel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PricingTierName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company.CompanyName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PricingTierID }) |
+                    @Html.ActionLink("Archive", "Archive", new { id = item.PricingTierID })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

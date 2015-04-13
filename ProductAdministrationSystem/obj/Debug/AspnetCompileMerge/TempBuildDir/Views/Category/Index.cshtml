@@ -1,0 +1,48 @@
+﻿@model IEnumerable<PAS.Models.Category>
+
+@{
+ViewBag.Title = "Category Index";
+}
+
+<h2>Category Index</h2>
+
+<div class="left-half-content">
+  <p>
+    @Html.ActionLink("Create New Category", "Create")
+    @if (Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+    {
+    <span class="float-right">@Html.ActionLink("View Active Categories", "Index")</span>
+  }
+  else
+  {
+  <span class="float-right">@Html.ActionLink("View Archived Categories", "ArchivedIndex")</span>
+}
+</p>
+<table>
+  <tr>
+    <th>
+      @Html.DisplayNameFor(model => model.CategoryName)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.CategoryType)
+    </th>
+    <th></th>
+  </tr>
+
+  @foreach (var item in Model)
+  {
+  <tr>
+    <td>
+      @Html.DisplayFor(modelItem => item.CategoryName)
+    </td>
+    <td>
+      @Html.DisplayFor(modelItem => item.CategoryType)
+    </td>
+    <td>
+      @Html.ActionLink("edit", "edit", new { id = item.CategoryID }) |
+      @Html.ActionLink("Archive", "Archive", new { id = item.CategoryID })
+    </td>
+  </tr>
+}
+</table>
+</div>

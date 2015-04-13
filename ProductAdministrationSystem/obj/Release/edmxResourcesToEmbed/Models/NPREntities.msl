@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PASModelstoreContainer" CdmEntityContainer="NPREntities">
+    <EntitySetMapping Name="AuditTrails">
+      <EntityTypeMapping TypeName="NPRModel.AuditTrail">
+        <MappingFragment StoreEntitySet="AuditTrail">
+          <ScalarProperty Name="AuditTrailID" ColumnName="AuditTrailID" />
+          <ScalarProperty Name="AuditTrailTimeStamp" ColumnName="AuditTrailTimeStamp" />
+          <ScalarProperty Name="AuditTrailUserName" ColumnName="AuditTrailUserName" />
+          <ScalarProperty Name="AuditTrailComment" ColumnName="AuditTrailComment" />
+          <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="DecorationMethodID" ColumnName="DecorationMethodID" />
+          <ScalarProperty Name="FeeID" ColumnName="FeeID" />
+          <ScalarProperty Name="FeeNameID" ColumnName="FeeNameID" />
+          <ScalarProperty Name="PackagingTypeID" ColumnName="PackagingTypeID" />
+          <ScalarProperty Name="PricingTierID" ColumnName="PricingTierID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="DecorationID" ColumnName="DecorationID" />
+          <ScalarProperty Name="SellPriceID" ColumnName="SellPriceID" />
+          <ScalarProperty Name="UpchargeID" ColumnName="UpchargeID" />
+          <ScalarProperty Name="VendorNameID" ColumnName="VendorNameID" />
+          <ScalarProperty Name="VendorTypeID" ColumnName="VendorTypeID" />
+          <ScalarProperty Name="UpchargeSellPriceID" ColumnName="UpchargeSellPriceID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Campaigns">
+      <EntityTypeMapping TypeName="NPRModel.Campaign">
+        <MappingFragment StoreEntitySet="Campaign">
+          <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+          <ScalarProperty Name="CampaignName" ColumnName="CampaignName" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CampaignReason" ColumnName="CampaignReason" />
+          <ScalarProperty Name="CampaignProductCount" ColumnName="CampaignProductCount" />
+          <ScalarProperty Name="CampaignAccountManagerComments" ColumnName="CampaignAccountManagerComments" />
+          <ScalarProperty Name="CampaignMerchandiserComments" ColumnName="CampaignMerchandiserComments" />
+          <ScalarProperty Name="CampaignInventoryBuyerComments" ColumnName="CampaignInventoryBuyerComments" />
+          <ScalarProperty Name="CampaignMentorComments" ColumnName="CampaignMentorComments" />
+          <ScalarProperty Name="CampaignStatus" ColumnName="CampaignStatus" />
+          <ScalarProperty Name="CampaignCreatedBy" ColumnName="CampaignCreatedBy" />
+          <ScalarProperty Name="CampaignCreatedOnDate" ColumnName="CampaignCreatedOnDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="NPRModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
+          <ScalarProperty Name="CategoryStatus" ColumnName="CategoryStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="NPRModel.Company">
+        <MappingFragment StoreEntitySet="Company">
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="CompanyDivisionNumber" ColumnName="CompanyDivisionNumber" />
+          <ScalarProperty Name="CompanyImage" ColumnName="CompanyImage" />
+          <ScalarProperty Name="CompanyImageType" ColumnName="CompanyImageType" />
+          <ScalarProperty Name="CompanyContactName" ColumnName="CompanyContactName" />
+          <ScalarProperty Name="CompanyContactEmail" ColumnName="CompanyContactEmail" />
+          <ScalarProperty Name="CompanyAccountManagerName" ColumnName="CompanyAccountManagerName" />
+          <ScalarProperty Name="CompanyAccountManagerEmail" ColumnName="CompanyAccountManagerEmail" />
+          <ScalarProperty Name="CompanyMentorName" ColumnName="CompanyMentorName" />
+          <ScalarProperty Name="CompanyMentorEmail" ColumnName="CompanyMentorEmail" />
+          <ScalarProperty Name="CompanyLocation" ColumnName="CompanyLocation" />
+          <ScalarProperty Name="CompanyAdditionalDetails" ColumnName="CompanyAdditionalDetails" />
+          <ScalarProperty Name="CompanyStatus" ColumnName="CompanyStatus" />
+          <ScalarProperty Name="CompanyUrl" ColumnName="CompanyUrl" />
+          <ScalarProperty Name="CompanyDefaultMargin" ColumnName="CompanyDefaultMargin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DecorationMethods">
+      <EntityTypeMapping TypeName="NPRModel.DecorationMethod">
+        <MappingFragment StoreEntitySet="DecorationMethod">
+          <ScalarProperty Name="DecorationMethodID" ColumnName="DecorationMethodID" />
+          <ScalarProperty Name="DecorationMethodName" ColumnName="DecorationMethodName" />
+          <ScalarProperty Name="DecorationMethodStatus" ColumnName="DecorationMethodStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Fees">
+      <EntityTypeMapping TypeName="NPRModel.Fee">
+        <MappingFragment StoreEntitySet="Fee">
+          <ScalarProperty Name="FeeID" ColumnName="FeeID" />
+          <ScalarProperty Name="FeeNameID" ColumnName="FeeNameID" />
+          <ScalarProperty Name="FeeType" ColumnName="FeeType" />
+          <ScalarProperty Name="FeeLevel" ColumnName="FeeLevel" />
+          <ScalarProperty Name="FeeInherited" ColumnName="FeeInherited" />
+          <ScalarProperty Name="FeeInheritedFeeID" ColumnName="FeeInheritedFeeID" />
+          <ScalarProperty Name="FeeCalculation" ColumnName="FeeCalculation" />
+          <ScalarProperty Name="FeeAmortizedCharge" ColumnName="FeeAmortizedCharge" />
+          <ScalarProperty Name="FeeAmortizedType" ColumnName="FeeAmortizedType" />
+          <ScalarProperty Name="FeePercent" ColumnName="FeePercent" />
+          <ScalarProperty Name="FeePercentType" ColumnName="FeePercentType" />
+          <ScalarProperty Name="FeeDollarAmount" ColumnName="FeeDollarAmount" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+          <ScalarProperty Name="PricingTierID" ColumnName="PricingTierID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductSellPriceID" ColumnName="ProductSellPriceID" />
+          <ScalarProperty Name="FeeStatus" ColumnName="FeeStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FeeNames">
+      <EntityTypeMapping TypeName="NPRModel.FeeName">
+        <MappingFragment StoreEntitySet="FeeName">
+          <ScalarProperty Name="FeeNameID" ColumnName="FeeNameID" />
+          <ScalarProperty Name="FeeNameName" ColumnName="FeeNameName" />
+          <ScalarProperty Name="FeeNameType" ColumnName="FeeNameType" />
+          <ScalarProperty Name="FeeNameStatus" ColumnName="FeeNameStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PackagingTypes">
+      <EntityTypeMapping TypeName="NPRModel.PackagingType">
+        <MappingFragment StoreEntitySet="PackagingType">
+          <ScalarProperty Name="PackagingTypeID" ColumnName="PackagingTypeID" />
+          <ScalarProperty Name="PackagingTypeName" ColumnName="PackagingTypeName" />
+          <ScalarProperty Name="PackagingTypeStatus" ColumnName="PackagingTypeStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PricingTiers">
+      <EntityTypeMapping TypeName="NPRModel.PricingTier">
+        <MappingFragment StoreEntitySet="PricingTier">
+          <ScalarProperty Name="PricingTierID" ColumnName="PricingTierID" />
+          <ScalarProperty Name="PricingTierName" ColumnName="PricingTierName" />
+          <ScalarProperty Name="PricingTierLevel" ColumnName="PricingTierLevel" />
+          <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+          <ScalarProperty Name="PricingTierStatus" ColumnName="PricingTierStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="NPRModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+          <ScalarProperty Name="ProductImageType" ColumnName="ProductImageType" />
+          <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+          <ScalarProperty Name="ProductStatus" ColumnName="ProductStatus" />
+          <ScalarProperty Name="ProductUnitOfMeasure" ColumnName="ProductUnitOfMeasure" />
+          <ScalarProperty Name="PackagingTypeID" ColumnName="PackagingTypeID" />
+          <ScalarProperty Name="ProductReplacementItemNumber" ColumnName="ProductReplacementItemNumber" />
+          <ScalarProperty Name="ProductSelectedSizes" ColumnName="ProductSelectedSizes" />
+          <ScalarProperty Name="ProductSelectedColors" ColumnName="ProductSelectedColors" />
+          <ScalarProperty Name="ProductPresentationSell" ColumnName="ProductPresentationSell" />
+          <ScalarProperty Name="ProductQuoteNumber" ColumnName="ProductQuoteNumber" />
+          <ScalarProperty Name="ProductSalesHistory" ColumnName="ProductSalesHistory" />
+          <ScalarProperty Name="VendorNameID" ColumnName="VendorNameID" />
+          <ScalarProperty Name="VendorTypeID" ColumnName="VendorTypeID" />
+          <ScalarProperty Name="ProductVendorLeadTime" ColumnName="ProductVendorLeadTime" />
+          <ScalarProperty Name="ProductVendorMinimumOrder" ColumnName="ProductVendorMinimumOrder" />
+          <ScalarProperty Name="ProductCountryOfOrigin" ColumnName="ProductCountryOfOrigin" />
+          <ScalarProperty Name="ProductHarmonizedCode" ColumnName="ProductHarmonizedCode" />
+          <ScalarProperty Name="ProductInitialOrderQuantity" ColumnName="ProductInitialOrderQuantity" />
+          <ScalarProperty Name="ProductVendorItemNumber" ColumnName="ProductVendorItemNumber" />
+          <ScalarProperty Name="ProductAnnualSalesProjection" ColumnName="ProductAnnualSalesProjection" />
+          <ScalarProperty Name="ProductGatewayCDIMinumumOrder" ColumnName="ProductGatewayCDIMinumumOrder" />
+          <ScalarProperty Name="ProductCost" ColumnName="ProductCost" />
+          <ScalarProperty Name="ProductNetCost" ColumnName="ProductNetCost" />
+          <ScalarProperty Name="ProductTotalCost" ColumnName="ProductTotalCost" />
+          <ScalarProperty Name="ProductLandedCost" ColumnName="ProductLandedCost" />
+          <ScalarProperty Name="ProductGatewayCDISKU" ColumnName="ProductGatewayCDISKU" />
+          <ScalarProperty Name="ProductItemEDP" ColumnName="ProductItemEDP" />
+          <ScalarProperty Name="ProductAccountManagerComments" ColumnName="ProductAccountManagerComments" />
+          <ScalarProperty Name="ProductMerchandiserComments" ColumnName="ProductMerchandiserComments" />
+          <ScalarProperty Name="ProductInventoryBuyerComments" ColumnName="ProductInventoryBuyerComments" />
+          <ScalarProperty Name="ProductMentorComments" ColumnName="ProductMentorComments" />
+          <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+          <ScalarProperty Name="MajorCategoryID" ColumnName="MajorCategoryID" />
+          <ScalarProperty Name="MinorCategoryID" ColumnName="MinorCategoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductDecorations">
+      <EntityTypeMapping TypeName="NPRModel.ProductDecoration">
+        <MappingFragment StoreEntitySet="ProductDecoration">
+          <ScalarProperty Name="DecorationID" ColumnName="DecorationID" />
+          <ScalarProperty Name="DecorationName" ColumnName="DecorationName" />
+          <ScalarProperty Name="DecorationMethodID" ColumnName="DecorationMethodID" />
+          <ScalarProperty Name="DecorationColor" ColumnName="DecorationColor" />
+          <ScalarProperty Name="DecorationLocation" ColumnName="DecorationLocation" />
+          <ScalarProperty Name="DecorationSize" ColumnName="DecorationSize" />
+          <ScalarProperty Name="DecorationVendor" ColumnName="DecorationVendor" />
+          <ScalarProperty Name="DecorationImage" ColumnName="DecorationImage" />
+          <ScalarProperty Name="DecorationImageType" ColumnName="DecorationImageType" />
+          <ScalarProperty Name="DecorationEmbroideryDesignNumber" ColumnName="DecorationEmbroideryDesignNumber" />
+          <ScalarProperty Name="DecorationEmbroideryStitchCount" ColumnName="DecorationEmbroideryStitchCount" />
+          <ScalarProperty Name="DecorationEmbroideryColorWay" ColumnName="DecorationEmbroideryColorWay" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="DecorationStatus" ColumnName="DecorationStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductSellPrices">
+      <EntityTypeMapping TypeName="NPRModel.ProductSellPrice">
+        <MappingFragment StoreEntitySet="ProductSellPrice">
+          <ScalarProperty Name="SellPriceID" ColumnName="SellPriceID" />
+          <ScalarProperty Name="SellPriceName" ColumnName="SellPriceName" />
+          <ScalarProperty Name="SellPriceLevel" ColumnName="SellPriceLevel" />
+          <ScalarProperty Name="SellPriceMarginPercent" ColumnName="SellPriceMarginPercent" />
+          <ScalarProperty Name="SellPriceMarginDollarAmount" ColumnName="SellPriceMarginDollarAmount" />
+          <ScalarProperty Name="SellPriceFinalAmount" ColumnName="SellPriceFinalAmount" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="SellPriceStatus" ColumnName="SellPriceStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductUpcharges">
+      <EntityTypeMapping TypeName="NPRModel.ProductUpcharge">
+        <MappingFragment StoreEntitySet="ProductUpcharge">
+          <ScalarProperty Name="UpchargeID" ColumnName="UpchargeID" />
+          <ScalarProperty Name="UpchargeName" ColumnName="UpchargeName" />
+          <ScalarProperty Name="UpchargeAmount" ColumnName="UpchargeAmount" />
+          <ScalarProperty Name="UpchargeTotalCost" ColumnName="UpchargeTotalCost" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="UpchargeStatus" ColumnName="UpchargeStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UpchargeSellPrices">
+      <EntityTypeMapping TypeName="NPRModel.UpchargeSellPrice">
+        <MappingFragment StoreEntitySet="UpchargeSellPrice">
+          <ScalarProperty Name="UpchargeSellPriceID" ColumnName="UpchargeSellPriceID" />
+          <ScalarProperty Name="UpchargeSellPriceName" ColumnName="UpchargeSellPriceName" />
+          <ScalarProperty Name="UpchargeSellPriceLevel" ColumnName="UpchargeSellPriceLevel" />
+          <ScalarProperty Name="UpchargeSellPriceFinalAmount" ColumnName="UpchargeSellPriceFinalAmount" />
+          <ScalarProperty Name="UpchargeSellPriceLocked" ColumnName="UpchargeSellPriceLocked" />
+          <ScalarProperty Name="UpchargeID" ColumnName="UpchargeID" />
+          <ScalarProperty Name="UpchargeSellPriceStatus" ColumnName="UpchargeSellPriceStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VendorNames">
+      <EntityTypeMapping TypeName="NPRModel.VendorName">
+        <MappingFragment StoreEntitySet="VendorName">
+          <ScalarProperty Name="VendorNameID" ColumnName="VendorNameID" />
+          <ScalarProperty Name="VendorNameName" ColumnName="VendorNameName" />
+          <ScalarProperty Name="VendorNameStatus" ColumnName="VendorNameStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VendorTypes">
+      <EntityTypeMapping TypeName="NPRModel.VendorType">
+        <MappingFragment StoreEntitySet="VendorType">
+          <ScalarProperty Name="VendorTypeID" ColumnName="VendorTypeID" />
+          <ScalarProperty Name="VendorTypeName" ColumnName="VendorTypeName" />
+          <ScalarProperty Name="VendorTypeStatus" ColumnName="VendorTypeStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

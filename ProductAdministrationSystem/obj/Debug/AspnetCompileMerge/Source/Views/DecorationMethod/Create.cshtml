@@ -1,0 +1,38 @@
+﻿@model PAS.Models.DecorationMethod
+@using PAS.Helpers;
+
+@{
+    ViewBag.Title = "Create Decoration Method";
+}
+
+<h2>CreateDecoration Method</h2>
+
+@using(Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="left-half-content">
+        <legend>DecorationMethod</legend>
+
+        @Html.HiddenFor(model => model.DecorationMethodStatus)
+
+        <div class="editor-label">
+            @Html.LabelForRequired(model => model.DecorationMethodName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DecorationMethodName)
+            @Html.ValidationMessageFor(model => model.DecorationMethodName)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+        <div>
+            @Html.ActionLink("Back to Decoration Method List", "Index")
+        </div>
+    </fieldset>
+}
+
+@section Scripts {
+}

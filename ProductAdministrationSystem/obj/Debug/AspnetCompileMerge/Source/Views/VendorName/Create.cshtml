@@ -1,0 +1,40 @@
+﻿@model PAS.Models.VendorName
+
+@{
+ViewBag.Title = "Create Vendor Name";
+}
+
+<div class="heading">
+    <h1>Create Vendor Name</h1>
+</div>
+
+<div class="flex-grid">
+    <section>
+        @using(Html.BeginForm())
+        {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+
+
+            @Html.HiddenFor(model => model.VendorNameStatus)
+
+            <div class="controls">
+                @Html.LabelFor(model => model.VendorNameName)
+                @Html.ValidationMessageFor(model => model.VendorNameName)
+                @Html.EditorFor(model => model.VendorNameName)
+            </div>
+
+            <p>
+                <input type="submit" class="button green" value="Create" /> | @Html.ActionLink("Back to Vendor Name List", "Index")
+            </p>
+
+
+
+
+    }
+
+    @section Scripts {
+}
+</section>
+</div>

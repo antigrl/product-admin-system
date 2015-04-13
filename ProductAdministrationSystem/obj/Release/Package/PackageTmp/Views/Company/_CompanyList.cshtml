@@ -1,0 +1,27 @@
+﻿@model IEnumerable<PAS.Models.Company>
+@using PAS.Models;
+@using PAS.Helpers;
+
+
+@foreach (var item in Model)
+{
+    string returnLink = Url.Action("Index", "Home", new { id = item.CompanyID, ReturnUrl = ViewBag.ReturnUrl });
+    <section class="clients">
+        <a class="edit-company" href="@Url.Action("Edit", "Company", new { ReturnUrl = returnLink, id = item.CompanyID }, null)">
+            <i class="fa fa-edit"></i>
+        </a>
+        <h2>
+            <div class="company-logo">
+                @if (item != null && item.CompanyImage != null)
+                {
+                    <img src="@Url.Action("Show", "Company", new { id = item.CompanyID })" />
+                }
+            </div>
+            <a class="button orange add-campaign" href="@Url.Action("Create", "Campaign", new { ReturnURL = Url.Action("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }), CompanyID = item.CompanyID }, null)">Add Campaign
+            </a>
+        </h2>
+        @{
+            Html.RenderPartial("~/Views/Campaign/_CampaignList.cshtml", (IEnumerable<Campaign>)item.Campaigns.Where(c => c.CampaignStatus != MyExtensions.GetEnumDescription(Status.Archived)));
+        }
+    </section>
+}

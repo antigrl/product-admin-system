@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eb3cbba8602d45b28808ca5b27b771ea" Name="Diagram1">
+        <EntityTypeShape EntityType="NPRModel.AuditTrail" Width="1.5" PointX="7.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.Campaign" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.Category" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.Company" Width="1.5" PointX="0.75" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.DecorationMethod" Width="1.5" PointX="8.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.Fee" Width="1.5" PointX="5.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.FeeName" Width="1.5" PointX="3" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.PackagingType" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.PricingTier" Width="1.5" PointX="3" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.Product" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.ProductDecoration" Width="1.5" PointX="10.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.ProductSellPrice" Width="1.5" PointX="7.5" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.ProductUpcharge" Width="1.5" PointX="7.5" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.UpchargeSellPrice" Width="1.5" PointX="9.75" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.VendorName" Width="1.5" PointX="3" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.VendorType" Width="1.5" PointX="3" PointY="22.125" IsExpanded="true" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_AuditTrail" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_Campaign" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_DecorationMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_Fee" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_FeeName" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_PackagingType" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_PricingTier" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_ProductDecoration" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_ProductSellPrice" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_ProductUpcharge" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_UpchargeSellPrice" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_VendorName" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_VendorType" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_Campaign_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_Fee_Campaign" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_Product_Campaign" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_Product_MajorCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_Product_MinorCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_Fee_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_PricingTier_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_ProductDecoration_DecorationMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_Fee_FeeName" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_Fee_PricingTier" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_Fee_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_Fee_ProductSellPrice" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_Product_PackagingType" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_Product_VendorName" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_Product_VendorType" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_ProductDecoration_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_ProductSellPrice_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_ProductUpcharge_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="NPRModel.FK_UpchargeSellPrice_ProductUpcharge" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

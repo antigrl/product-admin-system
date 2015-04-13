@@ -1,0 +1,38 @@
+﻿@model PAS.Models.FeeName
+
+@{
+ViewBag.Title = "Archive FeeName";
+}
+<div class="heading">
+    <h1>Archive FeeName
+    </h1>
+</div>
+
+<div class="flex-grid">
+    <section>
+
+
+        <h2>Are you sure you want to archive this FeeName?</h2>
+
+
+
+        <p>
+            <strong>@Html.DisplayNameFor(model => model.FeeNameName)</strong><br>
+            @Html.DisplayFor(model => model.FeeNameName)
+        </p>
+        <br>
+
+        <p><strong>@Html.DisplayNameFor(model => model.FeeNameType)</strong><br>
+            @Html.DisplayFor(model => model.FeeNameType)
+        </p>
+
+        <br>
+        @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <p>
+            <input type="submit" class="button green" value="Archive" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    }
+</section>
+</div>
