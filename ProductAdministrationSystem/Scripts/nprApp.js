@@ -38,3 +38,11 @@ function WithScrollerCtrl(DTOptionsBuilder) {
   .withOption('scrollY', 200);
 }
 
+app.controller('NoScrollCtrl', NoScrollCtrl);
+
+function NoScrollCtrl(DTOptionsBuilder) {
+  var vm = this;
+  vm.dtOptions = DTOptionsBuilder.newOptions)_
+    .withOption('paging', false)
+}
+
