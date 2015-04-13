@@ -9,11 +9,14 @@
         @Html.HiddenFor(model => model.FeeType)
         @Html.HiddenFor(model => model.FeeCalculation)
         @Html.HiddenFor(model => model.FeeStatus)
-        
+
         @Html.ValidationSummary(true)
         <span>
             <a href="#" class="delete-row"></a>
             @Html.ValidationMessageFor(model => model.FeeNameID)
+        </span>
+        <span class="percent-fee-order">
+            @Html.EditorFor(model => model.FeeLevel)
         </span>
         if (Model.FeeNameID == 0)
         {
@@ -28,9 +31,6 @@
                 @Html.HiddenFor(model => model.FeeID)
             </span>
         }
-        <span>
-            @Html.EditorFor(model => model.FeeLevel)
-        </span>
         <span class="dropdown">
             @Html.DropDownListFor(model => model.FeePercentType, MyExtensions.GetGenericEnumDropDown<PercentTypeList>())
         </span>
@@ -42,7 +42,7 @@
         <div class="is-inherited hide">
             @Html.HiddenFor(model => model.FeeInherited)
         </div>
-        
+
         if (Model.FeeDollarAmount != null)
         {
             <span>@Html.DisplayFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })</span>

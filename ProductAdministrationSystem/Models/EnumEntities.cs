@@ -46,8 +46,8 @@ namespace PAS.Models
     }
     public enum AmortizedTypeList
     {
-        [Description("Vindor Minimum")]
-        Vindor_Minimum,
+        [Description("Vendor Minimum")]
+        Vendor_Minimum,
         [Description("Initial Order Quantity")]
         Initial_Order_Quantity,
         [Description("Annual Sales Project")]
