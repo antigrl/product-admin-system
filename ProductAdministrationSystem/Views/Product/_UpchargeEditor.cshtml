@@ -27,7 +27,6 @@
 
             <span>
                 $@Html.TextBoxFor(model => model.UpchargeAmount, new { @class = "dollar-value" })
-                @Html.ValidationMessageFor(model => model.UpchargeAmount)
             </span>
             <span>
                 @Html.DisplayFor(model => model.UpchargeName) Cost: @Html.DisplayFor(model => model.UpchargeTotalCost)

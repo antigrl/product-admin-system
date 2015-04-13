@@ -10,7 +10,6 @@
         @Html.HiddenFor(model => model.FeeStatus)
 
         <span><a class="delete-row"></a></span>
-        <span>@Html.ValidationMessageFor(model => model.FeeNameID)</span>
         if (Model.FeeNameID == 0)
         {
             <span>@Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)</span>
@@ -30,7 +29,6 @@
 
         <span>
             $@Html.TextBoxFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })
-            @Html.ValidationMessageFor(model => model.FeeDollarAmount)
         </span>
     }
 </li>

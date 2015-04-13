@@ -13,7 +13,6 @@
         @Html.ValidationSummary(true)
         <span>
             <a href="#" class="delete-row"></a>
-            @Html.ValidationMessageFor(model => model.FeeNameID)
         </span>
         <span class="percent-fee-order">
             @Html.EditorFor(model => model.FeeLevel)
@@ -51,6 +50,5 @@
         {
             <span>N/A</span>
         }
-        <span> @Html.ValidationMessageFor(model => model.FeeDollarAmount)</span>
     }
 </li>
