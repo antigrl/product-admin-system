@@ -109,12 +109,14 @@
     <div class="inline-right">
         <div class="controls">
             @Html.LabelForRequired(model => model.ProductDescription)
-            @Html.EditorFor(model => model.ProductDescription)
+            <div class="fixed-textarea">
+                @Html.EditorFor(model => model.ProductDescription)
+            </div>
         </div>
 
         <div class="controls">
             @Html.LabelForRequired(model => model.ProductSalesHistory)
-            <div class="sales-textarea">
+            <div class="fixed-textarea">
                 @Html.EditorFor(model => model.ProductSalesHistory)
             </div>
         </div>
