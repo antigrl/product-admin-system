@@ -3,6 +3,33 @@
 @import url('//weloveiconfonts.com/api/?family=fontawesome');
 
 
+/* styles for validation helpers */
+.field-validation-error {
+    color: #e80c4d !important;
+    font-weight: bold;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #e80c4d !important;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #e80c4d !important;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.validation-summary-valid {
+    display: none;
+}
 
 [ng\:cloak], [ng-cloak], .ng-cloak {
   display: none !important;
