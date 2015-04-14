@@ -322,9 +322,9 @@
                 </ul>
             </div>
             <div class="toggle-fee">
-                <button type="button" ng-tooltip="Show/Hide Default Fees" ng-click="expand = !expand" class="toggle-company-fees button green"><i class="fa" ng-class="{'fa-expand': expand, 'fa-compress': !expand}"></i></button>
+                <button type="button" ng-click="expand = !expand" class="toggle-company-fees button green"><i class="fa" ng-class="{'fa-expand': expand, 'fa-compress': !expand}"></i>Show/Hide Company Fees</button>
             </div>
-            <div class="company-fee controls" ng-show="expand">
+            <div class="company-fee controls" ng-show="!expand">
 
                 <div class="the-fees">
                     @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount)).OrderBy(f => f.FeeName.FeeNameName))
@@ -358,7 +358,7 @@
             </div>
         </div>
         <div class="side-fee-calc-container">
-            <div class="company-fee controls" ng-show="expand">
+            <div class="company-fee controls" ng-show="!expand">
                 <div class="the-fees">
                     @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized)).OrderBy(f => f.FeeName.FeeNameName))
                     {
@@ -401,7 +401,7 @@
             </div>
         </div>
         <div class="side-fee-calc-container">
-            <div class="company-fee controls" ng-show="expand">
+            <div class="company-fee controls" ng-show="!expand">
                 <div class="the-fees">
                     @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent)).OrderBy(f => f.FeeName.FeeNameName))
                     {

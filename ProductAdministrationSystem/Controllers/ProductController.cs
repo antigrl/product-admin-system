@@ -326,7 +326,7 @@ namespace PAS.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Console.Write("ProductController.cs SaveAndCalculateSellPrice() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
+                    Console.Write("ProductController.cs SaveAndCalculateSellPriceToNearestFiveCents() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
                 }
 
                 // Add Audit Entry 
