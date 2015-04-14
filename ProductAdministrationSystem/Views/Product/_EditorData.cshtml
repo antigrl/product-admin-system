@@ -2,7 +2,7 @@
 @using PAS.Models;
 @using PAS.Helpers;
 @{  string archived = MyExtensions.GetEnumDescription(Status.Archived); }
-<div class="flex-grid product-add-detail" ng-init="tab = 1">
+<div class="flex-grid product-add-detail">
     <div class="product-title-container">
         <div class="controls">
             <ul>
@@ -57,210 +57,194 @@
             @Html.HiddenFor(model => model.ProductStatus, new { Value = MyExtensions.GetEnumDescription(Status.New) })
         }
     </div>
-    <div class="toggle-content">
-        <div ng-show="tab === 1">
-            <div class="inline-left">
-                <div class="product-image">
-                    <div class="controls">
-                        @Html.LabelForRequired(model => model.ProductImage)
 
-                        <div class="input-file-button">
-                            Upload File<input type="file" class="input-file" name="ProductImage" id="ProductImage" />
-                        </div>
-                        @Html.HiddenFor(model => model.ProductImage)
-                        @Html.HiddenFor(model => model.ProductImageType)
+    <div class="inline-left">
+        <div class="product-image">
+            <div class="controls">
+                @Html.LabelForRequired(model => model.ProductImage)
 
-                        @if (Model != null && Model.ProductImage != null)
-                        {
-                            <div class="image">
-                                <img src="@Url.Action("Show", "Product", new { id = Model.ProductID })" />
-                            </div>
-                        }
+                <div class="input-file-button">
+                    Upload File<input type="file" class="input-file" name="ProductImage" id="ProductImage" />
+                </div>
+                @Html.HiddenFor(model => model.ProductImage)
+                @Html.HiddenFor(model => model.ProductImageType)
+
+                @if (Model != null && Model.ProductImage != null)
+                {
+                    <div class="image">
+                        <img src="@Url.Action("Show", "Product", new { id = Model.ProductID })" />
                     </div>
-                </div>
-            </div>
-            <div class="inline-middle">
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.MajorCategoryID)
-                    @if (Model == null)
-                    {
-                        @Html.DropDownList("MajorCategoryID", ViewBag.MajorCategories as SelectList, String.Empty)
-                    }
-                    else
-                    {
-                        @Html.DropDownList("MajorCategoryID", ViewBag.MajorCategories as SelectList)
-                    }
-                </div>
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.MinorCategoryID)
-                    @if (Model == null || Model.MinorCategoryID == null)
-                    {
-                        @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList, String.Empty)
-                    }
-                    else
-                    {
-                        @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList)
-                    }
-                </div>
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductGatewayCDISKU)
-                    @Html.EditorFor(model => model.ProductGatewayCDISKU)
-                </div>
-            </div>
-            <div class="inline-right">
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductDescription)
-                    @Html.EditorFor(model => model.ProductDescription)
-                </div>
-
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductSalesHistory)
-                    <div class="sales-textarea">
-                        @Html.EditorFor(model => model.ProductSalesHistory)
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div ng-show="tab === 2">
-            <div class="inline-left">
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductUnitOfMeasure)
-                    @Html.EditorFor(model => model.ProductUnitOfMeasure)
-                </div>
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.PackagingTypeID, "PackagingType")
-
-                    @if (Model == null)
-                    {
-                        @Html.DropDownList("PackagingTypeID", ViewBag.PackagingTypes as SelectList, String.Empty)
-                    }
-                    else
-                    {
-                        @Html.DropDownList("PackagingTypeID", ViewBag.PackagingTypes as SelectList)
-                    }
-                </div>
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductReplacementItemNumber)
-                    @Html.EditorFor(model => model.ProductReplacementItemNumber)
-                </div>
-            </div>
-            <div class="inline-middle">
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductPresentationSell)
-                    @Html.EditorFor(model => model.ProductPresentationSell)
-                </div>
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductQuoteNumber)
-                    @Html.EditorFor(model => model.ProductQuoteNumber)
-                </div>
-            </div>
-            <div class="inline-right">
-
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductSelectedColors)
-                    @Html.EditorFor(model => model.ProductSelectedColors)
-                </div>
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductSelectedSizes)
-                    @Html.EditorFor(model => model.ProductSelectedSizes)
-                </div>
-            </div>
-        </div>
-        <div ng-show="tab === 3">
-            <div class="inline-left">
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.VendorNameID, "VendorName")
-                    @if (Model == null)
-                    {
-                        @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList, String.Empty)
-                    }
-                    else
-                    {
-                        @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList)
-                    }
-                </div>
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.VendorTypeID, "VendorType")
-                    @if (Model == null || Model.VendorTypeID == null)
-                    {
-                        @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList, String.Empty)
-                    }
-                    else
-                    {
-                        @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList)
-                    }
-                </div>
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductVendorLeadTime)
-                    @Html.EditorFor(model => model.ProductVendorLeadTime)
-                </div>
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductVendorMinimumOrder)
-                    @Html.EditorFor(model => model.ProductVendorMinimumOrder)
-                </div>
-            </div>
-            <div class="inline-middle">
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductVendorItemNumber)
-                    @Html.EditorFor(model => model.ProductVendorItemNumber)
-                </div>
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductCountryOfOrigin)
-                    @Html.EditorFor(model => model.ProductCountryOfOrigin)
-                </div>
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductHarmonizedCode)
-                    @Html.EditorFor(model => model.ProductHarmonizedCode)
-                </div>
-            </div>
-            <div class="inline-right">
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductAnnualSalesProjection)
-                    @Html.EditorFor(model => model.ProductAnnualSalesProjection)
-                </div>
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductGatewayCDIMinumumOrder)
-                    @Html.EditorFor(model => model.ProductGatewayCDIMinumumOrder)
-                </div>
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductInitialOrderQuantity)
-                    @Html.EditorFor(model => model.ProductInitialOrderQuantity)
-                </div>
-            </div>
-        </div>
-        <div ng-show="tab === 4">
-            <div class="controls comments">
-                @Html.LabelForRequired(model => model.ProductMerchandiserComments)
-                @Html.TextAreaFor(model => model.ProductMerchandiserComments, new { ng_trim = "0", textarea_fit = "" })
-            </div>
-            <div class="controls comments">
-                @Html.LabelForRequired(model => model.ProductInventoryBuyerComments)
-                @Html.TextAreaFor(model => model.ProductInventoryBuyerComments, new { ng_trim = "0", textarea_fit = "" })
-            </div>
-            <div class="controls comments">
-                @Html.LabelForRequired(model => model.ProductMentorComments)
-                @Html.TextAreaFor(model => model.ProductMentorComments, new { ng_trim = "0", textarea_fit = "" })
-            </div>
-            <div class="controls comments last">
-                @Html.LabelForRequired(model => model.ProductAccountManagerComments)
-                @Html.TextAreaFor(model => model.ProductAccountManagerComments, new { ng_trim = "0", textarea_fit = "" })
+                }
             </div>
         </div>
     </div>
-    <ul class="tab-headers">
-        <li ng-class="{active:tab===1}">
-            <a href ng-click="tab = 1">Main</a>
-        </li>
-        <li ng-class="{active:tab===2}">
-            <a href ng-click="tab = 2">Details</a>
-        </li>
-        <li ng-class="{active:tab===3}">
-            <a href ng-click="tab = 3">Vendor</a>
-        </li>
-        <li ng-class="{active:tab===4}">
-            <a href ng-click="tab = 4">Comments</a>
-        </li>
-    </ul>
+    <div class="inline-middle">
+        <div class="controls">
+            @Html.LabelForRequired(model => model.MajorCategoryID)
+            @if (Model == null)
+            {
+                @Html.DropDownList("MajorCategoryID", ViewBag.MajorCategories as SelectList, String.Empty)
+            }
+            else
+            {
+                @Html.DropDownList("MajorCategoryID", ViewBag.MajorCategories as SelectList)
+            }
+        </div>
+        <div class="controls">
+            @Html.LabelForRequired(model => model.MinorCategoryID)
+            @if (Model == null || Model.MinorCategoryID == null)
+            {
+                @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList, String.Empty)
+            }
+            else
+            {
+                @Html.DropDownList("MinorCategoryID", ViewBag.MinorCategories as SelectList)
+            }
+        </div>
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductGatewayCDISKU)
+            @Html.EditorFor(model => model.ProductGatewayCDISKU)
+        </div>
+    </div>
+    <div class="inline-right">
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductDescription)
+            @Html.EditorFor(model => model.ProductDescription)
+        </div>
+
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductSalesHistory)
+            <div class="sales-textarea">
+                @Html.EditorFor(model => model.ProductSalesHistory)
+            </div>
+        </div>
+    </div>
+
+
+    <div class="inline-left">
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductUnitOfMeasure)
+            @Html.EditorFor(model => model.ProductUnitOfMeasure)
+        </div>
+        <div class="controls">
+            @Html.LabelForRequired(model => model.PackagingTypeID, "PackagingType")
+
+            @if (Model == null)
+            {
+                @Html.DropDownList("PackagingTypeID", ViewBag.PackagingTypes as SelectList, String.Empty)
+            }
+            else
+            {
+                @Html.DropDownList("PackagingTypeID", ViewBag.PackagingTypes as SelectList)
+            }
+        </div>
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductReplacementItemNumber)
+            @Html.EditorFor(model => model.ProductReplacementItemNumber)
+        </div>
+    </div>
+    <div class="inline-middle">
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductPresentationSell)
+            @Html.EditorFor(model => model.ProductPresentationSell)
+        </div>
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductQuoteNumber)
+            @Html.EditorFor(model => model.ProductQuoteNumber)
+        </div>
+    </div>
+    <div class="inline-right">
+
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductSelectedColors)
+            @Html.EditorFor(model => model.ProductSelectedColors)
+        </div>
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductSelectedSizes)
+            @Html.EditorFor(model => model.ProductSelectedSizes)
+        </div>
+    </div>
+
+
+    <div class="inline-left">
+        <div class="controls">
+            @Html.LabelForRequired(model => model.VendorNameID, "VendorName")
+            @if (Model == null)
+            {
+                @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList, String.Empty)
+            }
+            else
+            {
+                @Html.DropDownList("VendorNameID", ViewBag.VendorNames as SelectList)
+            }
+        </div>
+        <div class="controls">
+            @Html.LabelForRequired(model => model.VendorTypeID, "VendorType")
+            @if (Model == null || Model.VendorTypeID == null)
+            {
+                @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList, String.Empty)
+            }
+            else
+            {
+                @Html.DropDownList("VendorTypeID", ViewBag.VendorTypes as SelectList)
+            }
+        </div>
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductVendorLeadTime)
+            @Html.EditorFor(model => model.ProductVendorLeadTime)
+        </div>
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductVendorMinimumOrder)
+            @Html.EditorFor(model => model.ProductVendorMinimumOrder)
+        </div>
+    </div>
+    <div class="inline-middle">
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductVendorItemNumber)
+            @Html.EditorFor(model => model.ProductVendorItemNumber)
+        </div>
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductCountryOfOrigin)
+            @Html.EditorFor(model => model.ProductCountryOfOrigin)
+        </div>
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductHarmonizedCode)
+            @Html.EditorFor(model => model.ProductHarmonizedCode)
+        </div>
+    </div>
+    <div class="inline-right">
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductAnnualSalesProjection)
+            @Html.EditorFor(model => model.ProductAnnualSalesProjection)
+        </div>
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductGatewayCDIMinumumOrder)
+            @Html.EditorFor(model => model.ProductGatewayCDIMinumumOrder)
+        </div>
+        <div class="controls">
+            @Html.LabelForRequired(model => model.ProductInitialOrderQuantity)
+            @Html.EditorFor(model => model.ProductInitialOrderQuantity)
+        </div>
+    </div>
+
+
+    <div class="controls comments">
+        @Html.LabelForRequired(model => model.ProductMerchandiserComments)
+        @Html.TextAreaFor(model => model.ProductMerchandiserComments, new { ng_trim = "0", textarea_fit = "" })
+    </div>
+    <div class="controls comments">
+        @Html.LabelForRequired(model => model.ProductInventoryBuyerComments)
+        @Html.TextAreaFor(model => model.ProductInventoryBuyerComments, new { ng_trim = "0", textarea_fit = "" })
+    </div>
+    <div class="controls comments">
+        @Html.LabelForRequired(model => model.ProductMentorComments)
+        @Html.TextAreaFor(model => model.ProductMentorComments, new { ng_trim = "0", textarea_fit = "" })
+    </div>
+    <div class="controls comments last">
+        @Html.LabelForRequired(model => model.ProductAccountManagerComments)
+        @Html.TextAreaFor(model => model.ProductAccountManagerComments, new { ng_trim = "0", textarea_fit = "" })
+    </div>
+
 </div>
 
 @if (Model != null)
