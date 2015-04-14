@@ -458,6 +458,10 @@ namespace PAS.Models
             {
                 yield return new ValidationResult("You must fill out all percent fee information");
             }
+            if((FeeDollarAmount == null || FeeDollarAmount <= 0) && FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount))
+            {
+                yield return new ValidationResult("You must fill out all dollar fee information");
+            }
         }
 
         // Default Constructor additions

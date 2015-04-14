@@ -17,12 +17,10 @@
                 <div class="controls">
                     @Html.LabelForRequired(model => model.DecorationName)
                     @Html.EditorFor(model => model.DecorationName)
-                    @Html.ValidationMessageFor(model => model.DecorationName)
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.DecorationVendor)
                     @Html.EditorFor(model => model.DecorationVendor)
-                    @Html.ValidationMessageFor(model => model.DecorationVendor)
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.DecorationMethodID, "DecorationMethod")
@@ -34,42 +32,34 @@
                     {
                         @Html.DropDownList("DecorationMethodID", ViewBag.DecorationMethods as SelectList)
                     }
-                    @Html.ValidationMessageFor(model => model.DecorationMethodID)
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.DecorationEmbroideryDesignNumber)
                     @Html.EditorFor(model => model.DecorationEmbroideryDesignNumber)
-                    @Html.ValidationMessageFor(model => model.DecorationEmbroideryDesignNumber)
                 </div>
             </div>
             <div class="inline-middle">
                 <div class="controls">
                     @Html.LabelForRequired(model => model.DecorationColor)
                     @Html.EditorFor(model => model.DecorationColor)
-                    @Html.ValidationMessageFor(model => model.DecorationColor)
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.DecorationLocation)
                     @Html.EditorFor(model => model.DecorationLocation)
-                    @Html.ValidationMessageFor(model => model.DecorationLocation)
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.DecorationSize)
                     @Html.EditorFor(model => model.DecorationSize)
-                    @Html.ValidationMessageFor(model => model.DecorationSize)
                 </div>
             </div>
             <div class="inline-right">
                 <div class="controls">
                     @Html.LabelForRequired(model => model.DecorationEmbroideryStitchCount)
                     @Html.EditorFor(model => model.DecorationEmbroideryStitchCount)
-                    @Html.ValidationMessageFor(model => model.DecorationEmbroideryStitchCount)
                 </div>
-
                 <div class="controls">
                     @Html.LabelForRequired(model => model.DecorationEmbroideryColorWay)
                     @Html.EditorFor(model => model.DecorationEmbroideryColorWay)
-                    @Html.ValidationMessageFor(model => model.DecorationEmbroideryColorWay)
                 </div>
             </div>
         </li>

@@ -203,7 +203,7 @@ namespace PAS.Tests.Features
             {
                 fee.FeeDollarAmount = fee.FeeAmortizedCharge / _product.ProductInitialOrderQuantity;
             }
-            else if (fee.FeeAmortizedType == MyExtensions.GetEnumDescription(AmortizedTypeList.Vindor_Minimum))
+            else if (fee.FeeAmortizedType == MyExtensions.GetEnumDescription(AmortizedTypeList.Vendor_Minimum))
             {
                 fee.FeeDollarAmount = fee.FeeAmortizedCharge / _product.ProductVendorMinimumOrder;
             }
