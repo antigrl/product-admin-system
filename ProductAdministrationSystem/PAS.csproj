@@ -439,8 +439,6 @@
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Content\main.css" />
     <Content Include="Content\main.css.map" />
-    <Content Include="Content\presentation.css" />
-    <Content Include="Content\presentation.css.map" />
     <Content Include="Content\print.css" />
     <Content Include="Content\print.css.map" />
     <Content Include="Content\sass\bourbon\addons\_button.scss" />
