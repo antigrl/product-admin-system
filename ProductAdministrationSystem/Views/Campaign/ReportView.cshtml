@@ -26,10 +26,11 @@
     <thead>
         <tr>
             <th>NPR ID</th>
+            <th>SKU</th>
             <th>Product Name</th>
             <th>Unit of Measure</th>
-            <th>Intial Order Quantity</th>
-            <th>Annual Sales Projection</th>
+            <th>IOQ</th>
+            <th>ASP</th>
             <th>Cost</th>
             <th>Net Cost</th>
             <th>Total Cost</th>
@@ -50,6 +51,7 @@
         {
             <tr>
                 <td>@product.ProductID</td>
+                <td>@product.ProductGatewayCDISKU</td>
                 <td>@product.ProductName</td>
                 <td>@product.ProductUnitOfMeasure</td>
                 <td>@product.ProductInitialOrderQuantity</td>
