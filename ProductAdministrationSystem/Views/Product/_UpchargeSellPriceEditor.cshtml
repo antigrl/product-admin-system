@@ -6,7 +6,7 @@
     @using (Html.BeginCollectionItem("UpchargeSellPrices"))
     {
         <span>
-            @Html.DisplayFor(model => model.UpchargeSellPriceName).ToString().Replace(Model.ProductUpcharge.Product.Campaign.Company.CompanyName, ""): 
+            @Html.DisplayFor(model => model.UpchargeSellPriceName): 
             @Html.DisplayFor(model => model.UpchargeSellPriceFinalAmount) 
             @Html.TextBoxFor(model => model.UpchargeSellPriceFinalRoundedAmount, new { @class = "dollar-value" })
         </span>

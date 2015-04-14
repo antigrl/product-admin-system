@@ -19,15 +19,17 @@
             @Html.DropDownListFor(model => model.FeeAmortizedType, MyExtensions.GetGenericEnumDropDown<AmortizedTypeList>(), "")
         </span>
 
-        if (Model.FeeNameID == 0)
-        {
-            <span class="charge-type">@Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)</span>
-        }
-        else
-        {
-            <span class="charge-type">@Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList)</span>
-            @Html.HiddenFor(model => model.FeeID)
-        }
+        <span class="charge-type">
+            @if (Model.FeeNameID == 0)
+            {
+                @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)
+            }
+            else
+            {
+                @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList)
+                @Html.HiddenFor(model => model.FeeID)
+            }
+        </span>
         <span>
             <label>Full Charge</label>
             $&nbsp;@Html.TextBoxFor(model => model.FeeAmortizedCharge, new { @class = "dollar-value" })
@@ -53,4 +55,3 @@
         </span>
     }
 </li>
-

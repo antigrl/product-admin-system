@@ -9,6 +9,7 @@
         @Html.HiddenFor(model => model.FeeCalculation)
         @Html.HiddenFor(model => model.FeeStatus)
 
+        @Html.ValidationSummary(true)
         <span><a class="delete-row"></a></span>
         if (Model.FeeNameID == 0)
         {
