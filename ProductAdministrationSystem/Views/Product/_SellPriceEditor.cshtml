@@ -3,12 +3,13 @@
 @using PAS.Models
 
 
-    @using (Html.BeginCollectionItem("ProductSellPrices"))
-    {
-        <div class="flex-grid">
+@using (Html.BeginCollectionItem("ProductSellPrices"))
+{
+    <div class="flex-grid">
         <div class="product-fees">
 
-            <h2 class="add-fee">Sell Price
+            <h2 class="add-fee">
+                Sell Price
                 <a ng-tooltip="Add Sell Price" href="@Url.Action("Create", "Fee", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), ProductSellPriceID = Model.SellPriceID }, null)"><i class="fa fa-plus-square"></i></a>
             </h2>
             <div class="sell-price">
@@ -44,11 +45,11 @@
                     }
                 </div>
                 <div class="final-sell">
-                        <strong>@Html.DisplayFor(model => model.SellPriceName) Sell Price:</strong>
+                    <strong>@Html.DisplayFor(model => model.SellPriceName) Sell Price:</strong>
 
-                        <span>
-                            @Html.TextBoxFor(model => model.SellPriceFinalAmount, new { @class = "dollar-value" })
-                        </span>
+                    <span>
+                        @Html.TextBoxFor(model => model.SellPriceFinalAmount, new { @class = "dollar-value" })
+                    </span>
 
                 </div>
                 <div class="upcharge-sell">
@@ -61,8 +62,11 @@
                                 <div>
                                     <strong>@upcharge.UpchargeName Sell Price: </strong>
                                     <span>$@upchargeSellPrice.UpchargeSellPriceFinalAmount</span>
-                                    <strong>Rounded: </strong>
-                                    <span>$@upchargeSellPrice.UpchargeSellPriceFinalRoundedAmount</span>
+                                    @if (upchargeSellPrice.UpchargeSellPriceFinalRoundedAmount != null || upchargeSellPrice.UpchargeSellPriceFinalRoundedAmount > 0)
+                                    {
+                                        <strong>Rounded: </strong>
+                                        <span>$@upchargeSellPrice.UpchargeSellPriceFinalRoundedAmount</span>
+                                    }
                                 </div>
                             }
                         }
@@ -81,5 +85,5 @@
 
         </div>
     </div>
-    }
+}
 

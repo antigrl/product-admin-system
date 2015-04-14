@@ -194,10 +194,6 @@
                     @Html.LabelForRequired(model => model.ProductVendorLeadTime)
                     @Html.EditorFor(model => model.ProductVendorLeadTime)
                 </div>
-                <div class="controls">
-                    @Html.LabelForRequired(model => model.ProductVendorMinimumOrder)
-                    @Html.EditorFor(model => model.ProductVendorMinimumOrder)
-                </div>
             </div>
             <div class="inline-middle">
                 <div class="controls">
@@ -217,6 +213,10 @@
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductAnnualSalesProjection)
                     @Html.EditorFor(model => model.ProductAnnualSalesProjection)
+                </div>
+                <div class="controls">
+                    @Html.LabelForRequired(model => model.ProductVendorMinimumOrder)
+                    @Html.EditorFor(model => model.ProductVendorMinimumOrder)
                 </div>
                 <div class="controls">
                     @Html.LabelForRequired(model => model.ProductGatewayCDIMinumumOrder)
