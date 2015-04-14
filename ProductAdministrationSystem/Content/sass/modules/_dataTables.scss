@@ -1,12 +1,17 @@
 /*
  * Table styles
  */
+<<<<<<< HEAD
 table.dataTable {
+=======
+ table.dataTable {
+>>>>>>> 7babd3834a3338f0740cdd32bc98bd1e91852d7e
   width: 100%;
   margin: 0 auto;
   clear: both;
   border-collapse: separate;
   border-spacing: 0;
+<<<<<<< HEAD
   /*
    * Header and footer styles
    */
@@ -17,6 +22,12 @@ table.dataTable {
 
 table.dataTable thead th,
 table.dataTable tfoot th {
+=======
+ }
+
+ table.dataTable thead th,
+ table.dataTable tfoot th {
+>>>>>>> 7babd3834a3338f0740cdd32bc98bd1e91852d7e
   font-weight: bold;
 }
 
@@ -359,7 +370,11 @@ table.dataTable td {
 /*
  * Control feature layout
  */
+<<<<<<< HEAD
 .dataTables_wrapper {
+=======
+ .dataTables_wrapper {
+>>>>>>> 7babd3834a3338f0740cdd32bc98bd1e91852d7e
   position: relative;
   clear: both;
   *zoom: 1;
