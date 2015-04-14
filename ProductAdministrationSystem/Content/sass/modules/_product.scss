@@ -147,10 +147,10 @@
   position: relative;
   a {
     display: inline;
+    position: relative;
     .fa-plus-square {
       position: absolute;
-      top: 8px;
-      float: left;
+      top: -2px;
       margin-left: 10px;
       color: $teal;
       font-size: 21px;
