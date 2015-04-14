@@ -518,7 +518,6 @@
     <Content Include="Content\sass\modules\_dataTables.scss" />
     <Content Include="Content\sass\modules\_fee.scss" />
     <Content Include="Content\sass\modules\_footer.scss" />
-    <Content Include="Content\sass\modules\_presentation.scss" />
     <Content Include="Content\sass\modules\_product.scss" />
     <Content Include="Content\sass\modules\_tabs.scss" />
     <Content Include="Content\sass\modules\_top-nav.scss" />
