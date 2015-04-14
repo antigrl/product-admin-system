@@ -32,9 +32,16 @@ app.controller('WithScrollerCtrl', WithScrollerCtrl);
 function WithScrollerCtrl(DTOptionsBuilder) {
   var vm = this;
   vm.dtOptions = DTOptionsBuilder.newOptions()
-  .withOption('paging', false)
   .withScroller()
   .withOption('deferRender', true)
   .withOption('scrollY', 200);
+}
+
+app.controller('NoScrollCtrl', NoScrollCtrl);
+
+function NoScrollCtrl(DTOptionsBuilder) {
+  var vm = this;
+  vm.dtOptions = DTOptionsBuilder.newOptions()
+    .withOption('paging', false);
 }
 

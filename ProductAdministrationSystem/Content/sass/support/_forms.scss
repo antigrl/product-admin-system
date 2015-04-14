@@ -92,9 +92,9 @@ h2.form-heading{
   }
 }
 
-input.input-validation-error,
-textarea.input-validation-error,
-select.input-validation-error {
+input .input-validation-error,
+textarea .input-validation-error,
+select .input-validation-error {
   background: #FEF1EC;
   border: 1px solid #CD0A0A;
 }
@@ -148,7 +148,7 @@ select.input-validation-error {
 }
 .input-file {
   width: 40px;
-  overflow: hidden;
+
   position: absolute;
   top: 0;
   right: 0;

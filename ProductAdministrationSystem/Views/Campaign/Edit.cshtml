@@ -96,8 +96,8 @@
 }
 @Html.ActionLink("Create New Product", "Create", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), CampaignID = Model.CampaignID }, null)
 <div class="flex-grid">
-    <section ng-controller="WithScrollerCtrl as app">
-        <table datatable="" class="campaign-list" dt-options="app.dtOptions">
+    <section ng-controller="NoScrollCtrl as app">
+        <table datatable="" dt-options="app.dtOptions" class="campaign-list">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -150,8 +150,8 @@
                         </td>
                         <td class="action-icons">
                             <ul>
-                                <li><a class="edit-btn" href="@Url.Action("Edit", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)"><i class="fa fa-pencil-square-o"></i></a></li>
-                                <li><a class="archive-btn" href="@Url.Action("Archive", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)"><i class="fa fa-archive"></i></a></li>
+                                <li><a class="edit-btn" ng-tooltip="Edit" href="@Url.Action("Edit", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)"><i class="fa fa-pencil-square-o"></i></a></li>
+                                <li><a class="archive-btn" ng-tooltip="Archive" href="@Url.Action("Archive", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)"><i class="fa fa-archive"></i></a></li>
                             </ul>
                         </td>
                     </tr>
@@ -162,8 +162,8 @@
 </div>
 <button type="button" class="button green toggle-archived-products">Show/Hide Archived Product List</button>
 <div class="flex-grid archived-products" style="display:none">
-    <section>
-        <table datatable="" class="index-table index-table-blue">
+    <section ng-controller="NoScrollCtrl as app">
+        <table datatable="" class="index-table" dt-options="app.dtOptions">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -210,9 +210,9 @@
                         </td>
                         <td class="action-icons">
                             <ul>
-                                <li><a class="edit-btn" href="@Url.Action("Edit", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)"><i class="fa fa-pencil-square-o"></i></a></li>
+                                <li><a class="edit-btn" ng-tooltip="Edit" href="@Url.Action("Edit", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)"><i class="fa fa-pencil-square-o"></i></a></li>
                                 <li>
-                                    <a class="archive-btn" href="@Url.Action("UnArchive", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)">
+                                    <a class="archive-btn" ng-tooltip="Unarchive" href="@Url.Action("UnArchive", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)">
                                         <i class="fa fa-undo"></i>
 
                                     </a>
