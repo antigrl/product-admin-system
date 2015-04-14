@@ -543,8 +543,20 @@
     <Content Include="Content\sass\neat\settings\_visual-grid.scss" />
     <Content Include="Content\sass\neat\_neat-helpers.scss" />
     <Content Include="Content\sass\neat\_neat.scss" />
+    <Content Include="Content\sass\presentation.css">
+      <DependentUpon>presentation.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\sass\presentation.min.css">
+      <DependentUpon>presentation.css</DependentUpon>
+    </Content>
     <Content Include="Content\sass\presentation.scss" />
     <Content Include="Content\sass\print.scss" />
+    <Content Include="Content\sass\style.css">
+      <DependentUpon>style.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\sass\style.min.css">
+      <DependentUpon>style.css</DependentUpon>
+    </Content>
     <Content Include="Content\sass\style.scss" />
     <Content Include="Content\sass\support\_buttons.scss" />
     <Content Include="Content\sass\support\_font-awesome.scss" />
@@ -649,33 +661,6 @@
       <DependentUpon>NPREntities.edmx</DependentUpon>
       <LastGenOutput>NPREntities.cs</LastGenOutput>
     </Content>
-    <Content Include="Content\.sass-cache\1fb9ee8c5db07ff7b2ba7f11999874e6b084ab7f\_layout.scssc" />
-    <Content Include="Content\.sass-cache\35584bdcca1883788a0228340f144454a03f3f76\_buttons.scssc" />
-    <Content Include="Content\.sass-cache\35584bdcca1883788a0228340f144454a03f3f76\_font-awesome.scssc" />
-    <Content Include="Content\.sass-cache\35584bdcca1883788a0228340f144454a03f3f76\_forms.scssc" />
-    <Content Include="Content\.sass-cache\35584bdcca1883788a0228340f144454a03f3f76\_misc.scssc" />
-    <Content Include="Content\.sass-cache\35584bdcca1883788a0228340f144454a03f3f76\_sections.scssc" />
-    <Content Include="Content\.sass-cache\35584bdcca1883788a0228340f144454a03f3f76\_settings.scssc" />
-    <Content Include="Content\.sass-cache\35584bdcca1883788a0228340f144454a03f3f76\_sidenav.scssc" />
-    <Content Include="Content\.sass-cache\35584bdcca1883788a0228340f144454a03f3f76\_subnav.scssc" />
-    <Content Include="Content\.sass-cache\35584bdcca1883788a0228340f144454a03f3f76\_topbar.scssc" />
-    <Content Include="Content\.sass-cache\3aebbfea8f26ee55be89709f8948e8b499cc4cbf\import.scssc" />
-    <Content Include="Content\.sass-cache\3aebbfea8f26ee55be89709f8948e8b499cc4cbf\main.scssc" />
-    <Content Include="Content\.sass-cache\3aebbfea8f26ee55be89709f8948e8b499cc4cbf\presentation.scssc" />
-    <Content Include="Content\.sass-cache\3aebbfea8f26ee55be89709f8948e8b499cc4cbf\print.scssc" />
-    <Content Include="Content\.sass-cache\3aebbfea8f26ee55be89709f8948e8b499cc4cbf\style.scssc" />
-    <Content Include="Content\.sass-cache\3aebbfea8f26ee55be89709f8948e8b499cc4cbf\_flexbox.scssc" />
-    <Content Include="Content\.sass-cache\3aebbfea8f26ee55be89709f8948e8b499cc4cbf\_global-config.scssc" />
-    <Content Include="Content\.sass-cache\3aebbfea8f26ee55be89709f8948e8b499cc4cbf\_orig.scssc" />
-    <Content Include="Content\.sass-cache\3aebbfea8f26ee55be89709f8948e8b499cc4cbf\_variables.scssc" />
-    <Content Include="Content\.sass-cache\623385f322b25f0fd846e2e659ef6c1a8e19dc92\_campaigns.scssc" />
-    <Content Include="Content\.sass-cache\623385f322b25f0fd846e2e659ef6c1a8e19dc92\_clients.scssc" />
-    <Content Include="Content\.sass-cache\623385f322b25f0fd846e2e659ef6c1a8e19dc92\_dataTables.scssc" />
-    <Content Include="Content\.sass-cache\623385f322b25f0fd846e2e659ef6c1a8e19dc92\_fee.scssc" />
-    <Content Include="Content\.sass-cache\623385f322b25f0fd846e2e659ef6c1a8e19dc92\_footer.scssc" />
-    <Content Include="Content\.sass-cache\623385f322b25f0fd846e2e659ef6c1a8e19dc92\_presentation.scssc" />
-    <Content Include="Content\.sass-cache\623385f322b25f0fd846e2e659ef6c1a8e19dc92\_product.scssc" />
-    <Content Include="Content\.sass-cache\623385f322b25f0fd846e2e659ef6c1a8e19dc92\_top-nav.scssc" />
     <Content Include="Content\bower_components\angular-animate\.bower.json" />
     <Content Include="Content\bower_components\angular-animate\angular-animate.min.js.map" />
     <Content Include="Content\bower_components\angular-animate\bower.json" />
@@ -712,6 +697,12 @@
     <Content Include="Content\bower_components\tether\sass\tether-theme-arrows.sass" />
     <Content Include="Content\bower_components\tether\sass\tether-theme-basic.sass" />
     <Content Include="Content\bower_components\tether\sass\tether.sass" />
+    <Content Include="Content\sass\presentation.css.map">
+      <DependentUpon>presentation.css</DependentUpon>
+    </Content>
+    <Content Include="Content\sass\style.css.map">
+      <DependentUpon>style.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Staging Test.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\angular-textarea-fit.js" />

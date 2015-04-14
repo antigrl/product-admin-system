@@ -14,7 +14,10 @@
 
 .decoration-container {
   padding: 20px;
-  li { width: 100%; }
+
+  li {
+    width: 100%;
+  }
 }
 
 .product-fees-buttons {
@@ -28,12 +31,14 @@
     margin: 0 10px;
   }
 }
+
 .inline-left,
 .inline-middle,
 .inline-right {
   padding: 10px;
   margin: 0;
   @include span-columns(4);
+
   .controls {
     input[type="text"],
     input[type="file"],
@@ -49,6 +54,7 @@
     }
   }
 }
+
 .inline-right {
   @include omega;
 }
@@ -56,6 +62,7 @@
 .edit-product {
   .form-heading {
     cursor: pointer;
+
     .fa {
       position: absolute;
       color: red;
@@ -69,14 +76,20 @@
   background-color: $darkblue;
   width: 100%;
   padding: 10px;
+
   ul {
     float: left;
     margin-right: 30px;
     color: transparent;
   }
+
   li {
     display: inline-block;
-    label { color: #fff; }
+
+    label {
+      color: #fff;
+    }
+
     input, select {
       width: 250px !important;
       margin-bottom: 0 !important;
@@ -87,11 +100,13 @@
 .toggle-fee {
   text-align: left;
   position: relative;
+
   button {
     font-size: 14px;
     padding: 5px 15px 5px 30px;
     margin-top: 10px;
   }
+
   .fa:before {
     top: 15px;
     left: 5px;
@@ -109,6 +124,7 @@
   background-color: $bgbody;
   display: block;
   width: 100%;
+
   li {
     float: left;
 
@@ -120,11 +136,13 @@
       padding: 5px 20px;
       text-decoration: none;
     }
+
     &:not(.active) {
       background-color: $lightergray;
       box-shadow: inset 61px 61px 35px -75px black;
     }
   }
+
   .active {
     background-color: #fff;
   }
@@ -133,9 +151,11 @@
 .comments {
   padding: 10px;
   @include span-columns(3 of 12);
+
   &.last {
     @include omega;
   }
+
   textarea {
     min-height: 50px;
   }
@@ -145,18 +165,22 @@
 .add-fee,
 .add-plus {
   position: relative;
+
   a {
     display: inline;
     position: relative;
+
     .fa-plus-square {
       position: absolute;
       top: -2px;
       margin-left: 10px;
       color: $teal;
       font-size: 21px;
+
       &:hover {
         color: darken($teal, 2%);
       }
+
       &:active {
         color: darken($teal, 5%);
       }
@@ -176,8 +200,10 @@
   margin-top: 10px;
   padding: 20px;
   flex: 2 0 0;
+
   input, select {
     padding: 3px;
+
     &:disabled {
       background-color: #efefef;
       cursor: not-allowed;
@@ -197,11 +223,13 @@
   margin-right: -5px;
   padding: 10px 20px 5px 10px;
   flex: 2 0 0;
+
   input,
   .cost {
     padding: 3px;
     float: right;
   }
+
   input {
     color: #000;
   }
@@ -213,7 +241,6 @@
     color: #fff;
     font-weight: normal;
   }
-
 }
 
 .product-decoration {
@@ -230,8 +257,10 @@
   justify-content: center;
   margin-left: 10px;
 }
+
 .action-icons {
   padding: 0;
+
   li {
     display: inline-block;
     margin: 0 5px;
@@ -246,9 +275,11 @@ a.archive-btn {
     color: $darkblue;
     font-size: 18px;
     transition: color 0.5s ease;
+
     &:hover {
       color: $teal;
     }
+
     &:before {
       position: relative;
     }
