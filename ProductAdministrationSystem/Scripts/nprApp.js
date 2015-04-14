@@ -14,19 +14,6 @@ $(function () {
   });
 });
 
-// Toggle Edit Campaign field
-app.controller('toggleController', function() {
-  this.tab = 1;
-
-  this.selectTab = function(setTab) {
-    this.tab = setTab;
-  };
-
-  this.isSelected = function(checkTab) {
-    return this.tab === checkTab;
-  };
-});
-
 app.controller('WithScrollerCtrl', WithScrollerCtrl);
 
 function WithScrollerCtrl(DTOptionsBuilder) {
