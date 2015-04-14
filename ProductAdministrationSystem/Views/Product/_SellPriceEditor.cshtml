@@ -9,7 +9,7 @@
         <div class="product-fees">
 
             <h2 class="add-fee">Sell Price
-                <a href="@Url.Action("Create", "Fee", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), ProductSellPriceID = Model.SellPriceID }, null)"><i class="fa fa-plus-square"></i></a>
+                <a ng-tooltip="Add Sell Price" href="@Url.Action("Create", "Fee", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), ProductSellPriceID = Model.SellPriceID }, null)"><i class="fa fa-plus-square"></i></a>
             </h2>
             <div class="sell-price">
                 <div class="price-level">
