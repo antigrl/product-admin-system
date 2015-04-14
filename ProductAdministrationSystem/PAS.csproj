@@ -439,6 +439,7 @@
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Content\main.css" />
     <Content Include="Content\main.css.map" />
+    <Content Include="Content\presentation.css" />
     <Content Include="Content\print.css" />
     <Content Include="Content\print.css.map" />
     <Content Include="Content\sass\bourbon\addons\_button.scss" />
@@ -572,6 +573,7 @@
     <Content Include="Content\sass\_orig.scss" />
     <Content Include="Content\sass\_variables.scss" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\themes\base\images\logo.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
