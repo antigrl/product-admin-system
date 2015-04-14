@@ -1281,6 +1281,36 @@ input[type="search"] {
         color: #077ABC;
         cursor: text; }
 
+.report-view-table {
+  text-align: center; }
+  .report-view-table th {
+    border: 1px solid #E0E0E0;
+    background-color: #7C211E;
+    font-size: 1em;
+    color: white;
+    white-space: nowrap;
+    padding: 3px;
+    border-bottom: 4px solid black; }
+  .report-view-table thead .fees {
+    background-color: #260d54;
+    white-space: normal; }
+  .report-view-table tbody .fees {
+    border: 1px solid black;
+    background-color: #AAA; }
+  .report-view-table tbody tr:nth-child(odd) .fees {
+    background-color: #EEE; }
+  .report-view-table tr {
+    font-size: 0.9em; }
+  .report-view-table tr:nth-child(odd) {
+    background-color: #FFF; }
+  .report-view-table tr:nth-child(even) {
+    background-color: #DDD; }
+  .report-view-table ul {
+    margin: 0px;
+    padding-left: 20px; }
+  .report-view-table td {
+    padding: 0px; }
+
 .fee-filter {
   align-items: baseline;
   text-align: left !important; }
@@ -1915,6 +1945,27 @@ input .input-validation-error, textarea .input-validation-error, select .input-v
 
 fieldset {
   border: 0; }
+
+.field-validation-error {
+  color: #e80c4d !important;
+  font-weight: bold; }
+
+.field-validation-valid {
+  display: none; }
+
+.input-validation-error {
+  border: 1px solid #e80c4d !important; }
+
+input[type="checkbox"].input-validation-error {
+  border: 0 none; }
+
+.validation-summary-errors {
+  color: #e80c4d !important;
+  font-weight: bold;
+  font-size: 1.1em; }
+
+.validation-summary-valid {
+  display: none; }
 
 .panel.callout {
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0) inset; }
