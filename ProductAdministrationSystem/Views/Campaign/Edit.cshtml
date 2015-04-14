@@ -120,12 +120,13 @@
                         </td>
                         <td>
                             <div class="product-image">
+                                <div class="thumb-image">
                                 @if (Model != null && product.ProductImage != null)
-                                {
-                                    <div class="thumb-image">
+                                    {
+
                                         <img style="height:40px; width:40px;" src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
-                                    </div>
-                                }
+                                    }
+                                </div>
                             </div>
                         </td>
                         <td>
