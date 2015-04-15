@@ -28,9 +28,7 @@
                 @Html.LabelForRequired(model => model.FeeNameType)
                 @Html.DropDownListFor(model => model.FeeNameType, MyExtensions.GetGenericEnumDropDown<FeeTypeList>(), "")
             </div>
-            <p>
-                <input type="submit" class="button green" value="Create" /> | @Html.ActionLink("Back to Fee Name List", "Index")
-            </p>
         </section>
     </div>
+    <input type="submit" class="button green" value="Create" />  <a href="@Url.Action("Index")" class="button">Back</a>
 }

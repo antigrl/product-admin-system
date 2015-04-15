@@ -70,19 +70,19 @@
             <article class="input-right">
                 <article class="controls">
                     @Html.LabelForRequired(model => model.CampaignAccountManagerComments)
-                    @Html.TextAreaFor(model => model.CampaignAccountManagerComments)
+                    @Html.TextAreaFor(model => model.CampaignAccountManagerComments, new { @placeholder = "Add Comments"})
                 </article>
                 <article class="controls">
                     @Html.LabelForRequired(model => model.CampaignMerchandiserComments)
-                    @Html.TextAreaFor(model => model.CampaignMerchandiserComments)
+                    @Html.TextAreaFor(model => model.CampaignMerchandiserComments, new { @placeholder = "Add Comments"})
                 </article>
                 <article class="controls">
                     @Html.LabelForRequired(model => model.CampaignInventoryBuyerComments)
-                    @Html.TextAreaFor(model => model.CampaignInventoryBuyerComments)
+                    @Html.TextAreaFor(model => model.CampaignInventoryBuyerComments, new { @placeholder = "Add Comments"})
                 </article>
                 <article class="controls">
                     @Html.LabelForRequired(model => model.CampaignMentorComments)
-                    @Html.TextAreaFor(model => model.CampaignMentorComments)
+                    @Html.TextAreaFor(model => model.CampaignMentorComments, new { @placeholder = "Add Comments"})
                 </article>
             </article>
             <div class="flex-grid">
@@ -95,7 +95,7 @@
   <!-- /edit-campaign -->
 }
 <div class="flex-grid">
-    <a href="@Url.Action("Create", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), CampaignID = Model.CampaignID }, null)" class="button green">New Product</a>
+    <a href="@Url.Action("Create", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), CampaignID = Model.CampaignID }, null)" class="button green add-product">New Product <i class="fa fa-plus pull-right"></i></a>
 </div>
 <div class="flex-grid">
     <section ng-controller="NoScrollCtrl as app">

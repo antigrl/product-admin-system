@@ -3,10 +3,13 @@
 @{
     ViewBag.Title = "Audit Trail Index";
 }
+<div class="heading">
+<h1>Audit Trail Index
 
-<h2>Audit Trail Index</h2>
-
-<table class="index-table">
+</h1>
+</div>
+<table datatable="">
+<thead>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.AuditTrailTimeStamp)
@@ -23,8 +26,10 @@
         <th>
             TypeID
         </th>
-        <th></th>
+        <th>Modify</th>
     </tr>
+</thead>
+<tbody>
 
 @foreach (var item in Model) {
     <tr>
@@ -44,9 +49,9 @@
             @item.GetAuditTrailTypeID()
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.AuditTrailID }) 
+            @Html.ActionLink("Details", "Details", new { id=item.AuditTrailID })
         </td>
     </tr>
 }
-
+</tbody>
 </table>

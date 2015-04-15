@@ -223,7 +223,7 @@ namespace PAS.Models
         [DisplayName("Fee Dollar Value")]
         [DisplayFormat(DataFormatString = "{0:C}")]
         public object FeeDollarAmount { get; set; }
-        
+
         [DisplayName("Status")]
         [StringLength(150)]
         [Required]
@@ -407,22 +407,22 @@ namespace PAS.Models
         [StringLength(150)]
         public object ProductItemEDP { get; set; }
 
-        [DisplayName("Account Manager Comments")]
+        [DisplayName("Account Manager")]
         [DataType(DataType.MultilineText)]
         [StringLength(4000)]
         public object ProductAccountManagerComments { get; set; }
 
-        [DisplayName("Merchandiser Comments ")]
+        [DisplayName("Merchandiser ")]
         [DataType(DataType.MultilineText)]
         [StringLength(4000)]
         public object ProductMerchandiserComments { get; set; }
 
-        [DisplayName("Inventory Buyer Comments")]
+        [DisplayName("Inventory Buyer")]
         [DataType(DataType.MultilineText)]
         [StringLength(4000)]
         public object ProductInventoryBuyerComments { get; set; }
 
-        [DisplayName("Mentor Comments")]
+        [DisplayName("Mentor")]
         [DataType(DataType.MultilineText)]
         [StringLength(4000)]
         public object ProductMentorComments { get; set; }

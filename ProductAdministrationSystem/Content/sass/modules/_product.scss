@@ -4,6 +4,7 @@
 .decoration-container {
   background-color: #fff;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .product-fees-default,
@@ -41,7 +42,6 @@
 
   .controls {
     input[type="text"],
-    input[type="file"],
     input[type="url"],
     input[type="email"],
     input[type="tel"],
