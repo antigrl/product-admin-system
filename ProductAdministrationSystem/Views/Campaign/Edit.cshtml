@@ -94,7 +94,9 @@
     </div>
   <!-- /edit-campaign -->
 }
-@Html.ActionLink("Create New Product", "Create", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), CampaignID = Model.CampaignID }, null)
+<div class="flex-grid">
+    <a href="@Url.Action("Create", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), CampaignID = Model.CampaignID }, null)" class="button green">New Product</a>
+</div>
 <div class="flex-grid">
     <section ng-controller="NoScrollCtrl as app">
         <table datatable="" dt-options="app.dtOptions" class="campaign-list">
@@ -161,7 +163,9 @@
         </table>
     </section>
 </div>
-<button type="button" class="button green toggle-archived-products">Show/Hide Archived Product List</button>
+<div class="flex-grid">
+    <button type="button" class="button green toggle-archived-products">Show/Hide Archived Product List</button>
+</div>
 <div class="flex-grid archived-products" style="display:none">
     <section ng-controller="NoScrollCtrl as app">
         <table datatable="" class="index-table" dt-options="app.dtOptions">
@@ -225,8 +229,4 @@
             </tbody>
         </table>
     </section>
-</div>
-
-<div>
-    @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
 </div>
