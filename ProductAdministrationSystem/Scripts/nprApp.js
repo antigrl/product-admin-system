@@ -45,3 +45,4 @@ function NoScrollCtrl(DTOptionsBuilder) {
     .withOption('paging', false);
 }
 
+$('.dataTables_filter > label > input').attr("placeholder", "Search");
