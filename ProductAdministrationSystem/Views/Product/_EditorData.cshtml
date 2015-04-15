@@ -232,19 +232,19 @@
 
     <div class="controls comments">
         @Html.LabelForRequired(model => model.ProductMerchandiserComments)
-        @Html.TextAreaFor(model => model.ProductMerchandiserComments, new { ng_trim = "0", textarea_fit = "" })
+        @Html.TextAreaFor(model => model.ProductMerchandiserComments, new { ng_trim = "0", textarea_fit = "", @placeholder = "Add Comment" })
     </div>
     <div class="controls comments">
         @Html.LabelForRequired(model => model.ProductInventoryBuyerComments)
-        @Html.TextAreaFor(model => model.ProductInventoryBuyerComments, new { ng_trim = "0", textarea_fit = "" })
+        @Html.TextAreaFor(model => model.ProductInventoryBuyerComments, new { ng_trim = "0", textarea_fit = "", @placeholder = "Add Comment" })
     </div>
     <div class="controls comments">
         @Html.LabelForRequired(model => model.ProductMentorComments)
-        @Html.TextAreaFor(model => model.ProductMentorComments, new { ng_trim = "0", textarea_fit = "" })
+        @Html.TextAreaFor(model => model.ProductMentorComments, new { ng_trim = "0", textarea_fit = "", @placeholder = "Add Comment" })
     </div>
     <div class="controls comments last">
         @Html.LabelForRequired(model => model.ProductAccountManagerComments)
-        @Html.TextAreaFor(model => model.ProductAccountManagerComments, new { ng_trim = "0", textarea_fit = "" })
+        @Html.TextAreaFor(model => model.ProductAccountManagerComments, new { ng_trim = "0", textarea_fit = "", @placeholder = "Add Comment" })
     </div>
 
 </div>
