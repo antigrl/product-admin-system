@@ -63,7 +63,7 @@
             <div class="controls">
                 @Html.LabelForRequired(model => model.ProductImage)
 
-                <div class="input-file-button">
+                <div class="input-file-button button orange">
                     Upload File<input type="file" class="input-file" name="ProductImage" id="ProductImage" />
                 </div>
                 @Html.HiddenFor(model => model.ProductImage)
@@ -431,11 +431,11 @@
     </div>
 
     <div class="flex-grid product-fees-buttons">
-        <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateSellPrice", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Price</button>
+        <button type="submit" class="button dark-blue" formaction="@Url.Action("SaveAndCalculateSellPrice", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Price</button>
 
-        <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateSellPriceToNearestFiveCents", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Rounded Price</button>
+        <button type="submit" class="button dark-blue" formaction="@Url.Action("SaveAndCalculateSellPriceToNearestFiveCents", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Rounded Price</button>
 
-        <button type="submit" class="button" formaction="@Url.Action("SaveAndCalculateMargin", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Margin</button>
+        <button type="submit" class="button dark-blue" formaction="@Url.Action("SaveAndCalculateMargin", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Margin</button>
     </div>
     <div>
 
