@@ -31,7 +31,7 @@
             <li class="section"><span>Navigation</span></li>
             <li>@Html.ActionLink("Home", "Index", "Home")</li>
             <li>@Html.ActionLink("Add New Company", "Create", "Company", new { ReturnUrl = Url.Action("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }) }, null)</li>
-            <li>@Html.ActionLink("Add New Campaign", "Create", "Campaign")</li>
+            <!-- <li>@Html.ActionLink("Add New Campaign", "Create", "Campaign")</li>-->
             <li>@Html.ActionLink("Vendor List", "Index", "VendorName")</li>
             <li>@Html.ActionLink("Fee List", "Index", "FeeName")</li>
             @if (User.Identity.Name.ToLower().Contains("john.grabanski") ||

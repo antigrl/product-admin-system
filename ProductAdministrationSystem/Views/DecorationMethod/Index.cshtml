@@ -4,27 +4,33 @@
     ViewBag.Title = "Decoration Method Index";
 }
 
-<h2>Decoration Method Index</h2>
+<div class="heading">
+    <h1>
+    Decoration Method Index
 
-<div class="left-half-content">
-    <p>
-        @Html.ActionLink("Create New Decoration Method", "Create")
         @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
         {
-            <span class="float-right">@Html.ActionLink("View Active Decoration Methods", "Index")</span>
+            <span class="heading-info">@Html.ActionLink("View Active", "Index")</span>
         }
         else
         {
-            <span class="float-right">@Html.ActionLink("View Archived Decoration Methods", "ArchivedIndex")</span>
+            <span class="heading-info">@Html.ActionLink("View Archived", "ArchivedIndex")</span>
         }
-    </p>
-    <table class="index-table">
+        <div class="heading-info">@Html.ActionLink("Create New", "Create")</div>
+    </h1>
+</div>
+<div class="flex-grid">
+    <section>
+    <table datatable="">
+    <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.DecorationMethodName)
             </th>
-            <th></th>
+            <th>Modify</th>
         </tr>
+    </thead>
+    <tbody>
         @foreach(var item in Model)
         {
             <tr>
@@ -37,5 +43,7 @@
                 </td>
             </tr>
         }
+        </tbody>
     </table>
+    </section>
 </div>
