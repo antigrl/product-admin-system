@@ -701,6 +701,7 @@
       <DependentUpon>style.css</DependentUpon>
     </Content>
     <Content Include="Content\sass\support\_tooltip.scss" />
+    <None Include="Properties\PublishProfiles\Live Production.pubxml" />
     <None Include="Properties\PublishProfiles\Staging Test.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\angular-textarea-fit.js" />
