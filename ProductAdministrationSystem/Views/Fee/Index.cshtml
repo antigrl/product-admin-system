@@ -6,17 +6,15 @@
 
 <div class="heading">
     <h1>@ViewBag.TitleMessage Fee Index
-
-    @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
-    {
-        <div class="heading-info">@Html.ActionLink("View Active Fees", "Index")</div>
-    }
-    else
-    {
-        <div class="heading-info">@Html.ActionLink("View Archived Fees", "ArchivedIndex")</div>
-    }
-    <div class="heading-info">@Html.ActionLink("Create New Fee", "Create")</div>
-
+        @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+        {
+            <div class="heading-info">@Html.ActionLink("View Active Fees", "Index")</div>
+        }
+        else
+        {
+            <div class="heading-info">@Html.ActionLink("View Archived Fees", "ArchivedIndex")</div>
+        }
+        <div class="heading-info">@Html.ActionLink("Create New Fee", "Create")</div>
     </h1>
 </div>
 
