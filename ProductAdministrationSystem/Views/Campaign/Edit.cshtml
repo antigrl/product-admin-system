@@ -95,7 +95,7 @@
   <!-- /edit-campaign -->
 }
 <div class="flex-grid">
-    <a href="@Url.Action("Create", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), CampaignID = Model.CampaignID }, null)" class="button green">New Product</a>
+    <a href="@Url.Action("Create", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), CampaignID = Model.CampaignID }, null)" class="button green add-product">New Product <i class="fa fa-plus pull-right"></i></a>
 </div>
 <div class="flex-grid">
     <section ng-controller="NoScrollCtrl as app">
