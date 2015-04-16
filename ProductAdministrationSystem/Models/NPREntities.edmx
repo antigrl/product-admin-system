@@ -127,6 +127,7 @@
           <Property Name="CategoryID" Type="int" Nullable="false" />
           <Property Name="CategoryRename" Type="nvarchar" MaxLength="150" />
           <Property Name="Status" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ShowCategory" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="PackagingType">
           <Key>
@@ -1798,6 +1799,7 @@
           <NavigationProperty Name="Category" Relationship="NPRModel.FK_MajorCategoryOrdering_Category" FromRole="MajorCategoryOrdering" ToRole="Category" />
           <NavigationProperty Name="AuditTrails" Relationship="NPRModel.FK_AuditTrail_AuditTrail1" FromRole="MajorCategoryOrdering" ToRole="AuditTrail" />
           <Property Name="Status" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ShowCategory" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_MajorCategoryOrdering_Campaign">
           <End Type="NPRModel.Campaign" Role="Campaign" Multiplicity="1" />
@@ -2105,6 +2107,7 @@
           <EntitySetMapping Name="MajorCategoryOrderings">
             <EntityTypeMapping TypeName="NPRModel.MajorCategoryOrdering">
               <MappingFragment StoreEntitySet="MajorCategoryOrdering">
+                <ScalarProperty Name="ShowCategory" ColumnName="ShowCategory" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="CategoryRename" ColumnName="CategoryRename" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />

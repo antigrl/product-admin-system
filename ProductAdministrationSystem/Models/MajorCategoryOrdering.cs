@@ -25,6 +25,7 @@ namespace PAS.Models
         public int CategoryID { get; set; }
         public string CategoryRename { get; set; }
         public string Status { get; set; }
+        public bool ShowCategory { get; set; }
     
         public virtual Campaign Campaign { get; set; }
         public virtual Category Category { get; set; }

@@ -430,11 +430,12 @@ namespace PAS.Models
     [MetadataType(typeof(MajorCategoryOrderingMetedata))]
     public partial class MajorCategoryOrdering
     {
-        public void OnCreate(int sortValue, int campaignID, int categoryID, string categoryRename = null)
+        public void OnCreate(int sortValue, int campaignID, int categoryID, bool showCategory, string categoryRename = null)
         {
             this.SortValue = SortValue;
             this.CampaignID = campaignID;
             this.CategoryID = categoryID;
+            this.ShowCategory = showCategory;
             if (string.IsNullOrEmpty(categoryRename) == false)
             {
                 this.CategoryRename = categoryRename;
