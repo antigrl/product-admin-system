@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('nprApp', ['datatables', 'textarea-fit']);
+var app = angular.module('nprApp', ['datatables', 'textarea-fit', 'datatables.scroller', 'ngAnimate', 'ngTooltip']);
 
 // Side nav expansion
 $(function () {
@@ -27,6 +27,22 @@ app.controller('toggleController', function() {
   };
 });
 
-app.run(function (DTDefaultOptions) {
-  DTDefaultOptions.setDisplayLength(10);
-});
+app.controller('WithScrollerCtrl', WithScrollerCtrl);
+
+function WithScrollerCtrl(DTOptionsBuilder) {
+  var vm = this;
+  vm.dtOptions = DTOptionsBuilder.newOptions()
+  .withScroller()
+  .withOption('deferRender', true)
+  .withOption('scrollY', 200);
+}
+
+app.controller('NoScrollCtrl', NoScrollCtrl);
+
+function NoScrollCtrl(DTOptionsBuilder) {
+  var vm = this;
+  vm.dtOptions = DTOptionsBuilder.newOptions()
+    .withOption('paging', false);
+}
+
+$('.dataTables_filter > label > input').attr("placeholder", "Search");

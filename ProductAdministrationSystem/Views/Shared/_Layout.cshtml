@@ -7,6 +7,15 @@
     <meta name="viewport" content="width=device-width" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     @Styles.Render("~/Content/css")
+    @using PAS.Helpers;
+<script type='text/javascript'>
+(function (d, t) {
+  var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+  bh.type = 'text/javascript';
+  bh.src = '//www.bugherd.com/sidebarv2.js?apikey=0napvmewib36altnynfnmw';
+  s.parentNode.insertBefore(bh, s);
+  })(document, 'script');
+</script>
 </head>
 <body>
     <nav class="collapsed main">
@@ -15,14 +24,14 @@
             <header>
                 <a></a>
                 <img src="@Url.Content("~/Content/themes/base/images/logo.png")" class="thumb">
-                <span>@User.Identity.Name</span>
+                <span>@MyExtensions.DisplayPrintFriendlyName(User.Identity.Name)</span>
             </header>
         </div>
         <ul>
             <li class="section"><span>Navigation</span></li>
             <li>@Html.ActionLink("Home", "Index", "Home")</li>
             <li>@Html.ActionLink("Add New Company", "Create", "Company", new { ReturnUrl = Url.Action("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }) }, null)</li>
-            <li>@Html.ActionLink("Add New Campaign", "Create", "Campaign")</li>
+            <!-- <li>@Html.ActionLink("Add New Campaign", "Create", "Campaign")</li>-->
             <li>@Html.ActionLink("Vendor List", "Index", "VendorName")</li>
             <li>@Html.ActionLink("Fee List", "Index", "FeeName")</li>
             @if (User.Identity.Name.ToLower().Contains("john.grabanski") ||
@@ -41,12 +50,7 @@
             @RenderBody()
         </div>
     </main>
-    <footer class="collapsed">
-        <nav>
-            <a href="#">Home</a>
-        </nav>
-        <p>&copy; @DateTime.Now.Year - GatewayCDI - NPR</p>
-    </footer>
+
     @Scripts.Render("~/bundles/npr")
     @RenderSection("scripts", required: false)
 </body>

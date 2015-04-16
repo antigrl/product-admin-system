@@ -1,5 +1,7 @@
 @media print {
-
+  @page {
+    margin: 20px;
+  }
   body {
     font-size: 8px;
 
@@ -22,7 +24,7 @@
       span {
         position: absolute;
         top: 6.75in;
-        left: 6in;
+        left: 4.75in;
       }
     }
 
@@ -35,8 +37,5 @@
       margin-left: -70px;
       margin-right: -20px;
     }
-
-
-
   }
 }

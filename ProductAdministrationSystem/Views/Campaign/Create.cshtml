@@ -12,11 +12,7 @@
     @Html.ValidationSummary(true)
 
     <div class="heading">
-        <h1>Company
-            <div class="heading-info">
-                Create Campaign
-            </div>
-        </h1>
+        <h1>Create Campaign</h1>
     </div>
 
     <div class="flex-grid">
@@ -62,7 +58,8 @@
             <div class="controls">
                 @Html.LabelForRequired(model => model.CampaignCreatedBy)
                 @Html.ValidationMessageFor(model => model.CampaignCreatedBy)
-                @Html.EditorFor(model => model.CampaignCreatedBy, new { @class = "floatLabel" })
+                @MyExtensions.DisplayPrintFriendlyName(Model.CampaignCreatedBy)
+                @Html.HiddenFor(model => model.CampaignCreatedBy, new { @class = "floatLabel" })
             </div>
             <div class="controls">
                 @Html.LabelForRequired(model => model.CampaignCreatedOnDate)
@@ -75,22 +72,22 @@
             <div class="controls">
                 @Html.LabelForRequired(model => model.CampaignAccountManagerComments)
                 @Html.ValidationMessageFor(model => model.CampaignAccountManagerComments)
-                @Html.EditorFor(model => model.CampaignAccountManagerComments, new { @class = "floatLabel" })
+                @Html.EditorFor(model => model.CampaignAccountManagerComments, new { @class = "floatLabel", @placeholder = "Add Comments" })
             </div>
             <div class="controls">
                 @Html.LabelForRequired(model => model.CampaignMerchandiserComments)
                 @Html.ValidationMessageFor(model => model.CampaignMerchandiserComments)
-                @Html.EditorFor(model => model.CampaignMerchandiserComments, new { @class = "floatLabel" })
+                @Html.EditorFor(model => model.CampaignMerchandiserComments, new { @class = "floatLabel", @placeholder = "Add Comments" })
             </div>
             <div class="controls">
                 @Html.LabelForRequired(model => model.CampaignInventoryBuyerComments)
                 @Html.ValidationMessageFor(model => model.CampaignInventoryBuyerComments)
-                @Html.EditorFor(model => model.CampaignInventoryBuyerComments, new { @class = "floatLabel" })
+                @Html.EditorFor(model => model.CampaignInventoryBuyerComments, new { @class = "floatLabel", @placeholder = "Add Comments" })
             </div>
             <div class="controls">
                 @Html.LabelForRequired(model => model.CampaignMentorComments)
                 @Html.ValidationMessageFor(model => model.CampaignMentorComments)
-                @Html.EditorFor(model => model.CampaignMentorComments, new { @class = "floatLabel" })
+                @Html.EditorFor(model => model.CampaignMentorComments, new { @class = "floatLabel", @placeholder = "Add Comments" })
             </div>
             <div class="controls">
                 <input type="submit" class="button green" value="Create" />

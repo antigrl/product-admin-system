@@ -5,66 +5,54 @@
     ViewBag.Title = "Create Upcharge Sell Price";
 }
 
-<h2>Create Upcharge Sell Price</h2>
-
+<div class="heading">
+    <h1>Create Upcharge Sell Price
+    </h1>
+</div>
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>UpchargeSellPrice</legend>
-        
-        @Html.HiddenFor(model => model.UpchargeSellPriceStatus)
+    <div class="flex-grid">
+        <section>
+            @Html.HiddenFor(model => model.UpchargeSellPriceStatus)
 
-        <div class="editor-label">
-            @Html.LabelForRequired(model => model.UpchargeSellPriceName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UpchargeSellPriceName)
-            @Html.ValidationMessageFor(model => model.UpchargeSellPriceName)
-        </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.UpchargeSellPriceName)
+                @Html.EditorFor(model => model.UpchargeSellPriceName)
+                @Html.ValidationMessageFor(model => model.UpchargeSellPriceName)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelForRequired(model => model.UpchargeSellPriceLevel)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UpchargeSellPriceLevel)
-            @Html.ValidationMessageFor(model => model.UpchargeSellPriceLevel)
-        </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.UpchargeSellPriceLevel)
+                @Html.EditorFor(model => model.UpchargeSellPriceLevel)
+                @Html.ValidationMessageFor(model => model.UpchargeSellPriceLevel)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelForRequired(model => model.UpchargeSellPriceFinalAmount)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UpchargeSellPriceFinalAmount)
-            @Html.ValidationMessageFor(model => model.UpchargeSellPriceFinalAmount)
-        </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.UpchargeSellPriceFinalAmount)
+                @Html.EditorFor(model => model.UpchargeSellPriceFinalAmount)
+                @Html.ValidationMessageFor(model => model.UpchargeSellPriceFinalAmount)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelForRequired(model => model.UpchargeSellPriceLocked)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.UpchargeSellPriceLocked)
-            @Html.ValidationMessageFor(model => model.UpchargeSellPriceLocked)
-        </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.UpchargeSellPriceLocked)
+                @Html.EditorFor(model => model.UpchargeSellPriceLocked)
+                @Html.ValidationMessageFor(model => model.UpchargeSellPriceLocked)
+            </div>
 
-        <div class="editor-label">
-            @Html.LabelForRequired(model => model.UpchargeID, "ProductUpcharge")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("UpchargeID", String.Empty)
-            @Html.ValidationMessageFor(model => model.UpchargeID)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.UpchargeID, "ProductUpcharge")
+                @Html.DropDownList("UpchargeID", String.Empty)
+                @Html.ValidationMessageFor(model => model.UpchargeID)
+            </div>
+        </section>
+    </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+<input type="submit" class="button green" value="Create" />
+<a class="button" href="@Url.Action("Index")">Back</a>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

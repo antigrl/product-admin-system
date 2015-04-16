@@ -283,12 +283,9 @@
 //   font-size: large !important;
 // }
 
-.company-fees {
-  a {
-    display: none;
-  }
+.company-fee a {
+  display: none;
 }
-
 
 
 // .fees {
@@ -307,11 +304,12 @@
 // }
 
 .dollar-value, .percent-dollar-value {
-  width: 52px;
+  width: 60px;
+
 }
 
 .percent-value {
-  width: 45px;
+  width: 60px;
 }
 
 // .dollar-fee-info {

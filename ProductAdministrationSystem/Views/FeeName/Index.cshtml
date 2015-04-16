@@ -9,7 +9,7 @@
 <div class="heading">
     <h1>
         Fee Index
-        <div class="heading-info">@Html.ActionLink("Create New Fee Name", "Create")</div>
+
         @if (Request.Url.AbsolutePath.Contains("ArchivedIndex"))
         {
             <div class="heading-info">@Html.ActionLink("Active Fees", "Index")</div>
@@ -18,6 +18,7 @@
         {
             <div class="heading-info">@Html.ActionLink("Archived Fees", "ArchivedIndex")</div>
         }
+        <div class="heading-info">@Html.ActionLink("Create New Fee Name", "Create")</div>
     </h1>
 
 </div>

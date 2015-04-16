@@ -77,11 +77,7 @@ namespace PAS.Controllers
                 db.Companies.Add(company);
                 db.SaveChanges();
 
-                if (returnUrl == null)
-                {
-                    return RedirectToAction("Index");
-                }
-                return Redirect(returnUrl);
+                return RedirectToAction("Edit", new { id = company.CompanyID, ReturnUrl = returnUrl });
             }
 
             return View(company);
@@ -131,7 +127,7 @@ namespace PAS.Controllers
                     var urlBuilder = Request.Url.AbsoluteUri;
                     if (sendEmailTos != null && sendEmailTos.Count > 0)
                     {
-                        UserMailer.SendStatusUpdate(sendEmailTos, "Company Updated by: " + User.Identity.Name, urlBuilder.ToString(), company, null, null).Send();
+                        UserMailer.SendStatusUpdate(sendEmailTos, "Company Updated by: " + MyExtensions.DisplayPrintFriendlyName(User.Identity.Name), urlBuilder.ToString(), company, null, null).Send();
                     }
                 }
                 #endregion
@@ -182,7 +178,7 @@ namespace PAS.Controllers
                     var urlBuilder = Request.Url.AbsoluteUri;
                     if (sendEmailTos != null && sendEmailTos.Count > 0)
                     {
-                        UserMailer.SendStatusUpdate(sendEmailTos, "Company Updated by: " + User.Identity.Name, urlBuilder.ToString(), company, null, null).Send();
+                        UserMailer.SendStatusUpdate(sendEmailTos, "Company Updated by: " + MyExtensions.DisplayPrintFriendlyName(User.Identity.Name), urlBuilder.ToString(), company, null, null).Send();
                     }
                 }
                 #endregion

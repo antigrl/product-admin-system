@@ -51,7 +51,7 @@
 
     $("form[data-npr-ajax='true']").submit(ajaxFormSubmit);
 
-    // Add Fee row to the page [currently only does one at a time]v
+    // Add Fee row to the page [currently only does one at a time
     $(".add-item").click(function () {
         $.ajax({
             type: "POST",
@@ -152,9 +152,9 @@
         ShowFeeInputBasedOnType();
     });
 
-    $(".toggle-company-fees").click(function () {
-        $(".company-fees").toggle();
-    });
+    // $(".toggle-company-fees").click(function () {
+    //     $(".company-fees").toggle();
+    // });
 
     $(".toggle-archived-products").click(function () {
         $(".archived-products").toggle();

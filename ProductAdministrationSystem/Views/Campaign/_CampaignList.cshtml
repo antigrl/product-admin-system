@@ -4,34 +4,42 @@
 
 @if (Model.Any() && Model != null)
 {
-    <table datatable="">
-        <thead>
-            <tr>
-                <th>Campaign Name</th>
-                <th>Status</th>
-                <th>Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-            <tr>
-                <td class="campaign-name">
-                    @Html.DisplayFor(model => item.CampaignName)
-                </td>
-                <td class="status">
-                    @Html.DisplayFor(model => item.CampaignStatus)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.CampaignCreatedOnDate)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "Campaign", new { ReturnUrl = Url.Action("Index", "Home"), id = item.CampaignID }, null) |
-                    @Html.ActionLink("Archive", "Archive", "Campaign", new { ReturnUrl = Url.Action("Index", "Home"), id = item.CampaignID }, null)
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <div ng-controller="WithScrollerCtrl as app">
+        <table datatable="" dt-options="app.dtOptions">
+            <thead>
+                <tr>
+                    <th>Campaign Name</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td class="campaign-name">
+                        @Html.DisplayFor(model => item.CampaignName)
+                    </td>
+                    <td class="status">
+                        @Html.DisplayFor(model => item.CampaignStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.CampaignCreatedOnDate)
+                    </td>
+                    <td class="action-icons">
+                        <ul>
+                            <li>
+                                <a class="edit-btn" ng-tooltip="Edit" href="@Url.Action("Edit", "Campaign", new { ReturnUrl = Url.Action("Index", "Home"), id = item.CampaignID }, null)"><i class="fa fa-pencil-square-o"></i></a>
+                            </li>
+                            <li>
+                                <a class="archive-btn" ng-tooltip="Archive" href="@Url.Action("Archive", "Campaign", new { ReturnUrl = Url.Action("Index", "Home"), id = item.CampaignID }, null)"><i class="fa fa-archive"></i></a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 }

@@ -221,8 +221,9 @@ namespace PAS.Models
         public object FeePercentType { get; set; }
 
         [DisplayName("Fee Dollar Value")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public object FeeDollarAmount { get; set; }
-        
+
         [DisplayName("Status")]
         [StringLength(150)]
         [Required]
@@ -329,6 +330,7 @@ namespace PAS.Models
         public object ProductSelectedColors { get; set; }
 
         [DisplayName("Presentation Sell")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public object ProductPresentationSell { get; set; }
 
         [DisplayName("Quote Number")]
@@ -383,12 +385,15 @@ namespace PAS.Models
         public object ProductGatewayCDIMinumumOrder { get; set; }
 
         [DisplayName("Product Cost")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public object ProductCost { get; set; }
 
         [DisplayName("Net Cost")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public object ProductNetCost { get; set; }
 
         [DisplayName("Total Cost")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public object ProductTotalCost { get; set; }
 
         [DisplayName("Landed Cost")]
@@ -402,22 +407,22 @@ namespace PAS.Models
         [StringLength(150)]
         public object ProductItemEDP { get; set; }
 
-        [DisplayName("Account Manager Comments")]
+        [DisplayName("Account Manager")]
         [DataType(DataType.MultilineText)]
         [StringLength(4000)]
         public object ProductAccountManagerComments { get; set; }
 
-        [DisplayName("Merchandiser Comments ")]
+        [DisplayName("Merchandiser ")]
         [DataType(DataType.MultilineText)]
         [StringLength(4000)]
         public object ProductMerchandiserComments { get; set; }
 
-        [DisplayName("Inventory Buyer Comments")]
+        [DisplayName("Inventory Buyer")]
         [DataType(DataType.MultilineText)]
         [StringLength(4000)]
         public object ProductInventoryBuyerComments { get; set; }
 
-        [DisplayName("Mentor Comments")]
+        [DisplayName("Mentor")]
         [DataType(DataType.MultilineText)]
         [StringLength(4000)]
         public object ProductMentorComments { get; set; }
@@ -507,11 +512,12 @@ namespace PAS.Models
         public object SellPriceMarginPercent { get; set; }
 
         [DisplayName("Margin Dollar Amount")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         [Required]
         public object SellPriceMarginDollarAmount { get; set; }
 
         [DisplayName("Final Sell Price Amount")]
-        [DisplayFormat(DataFormatString = "{0:c}")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         [Required]
         public object SellPriceFinalAmount { get; set; }
 
@@ -532,10 +538,12 @@ namespace PAS.Models
         public object UpchargeName { get; set; }
 
         [DisplayName("Upcharge Amount")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         [Required]
         public object UpchargeAmount { get; set; }
 
         [DisplayName("Upcharge Total Cost")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public object UpchargeTotalCost { get; set; }
 
         [DisplayName("Status")]
@@ -556,6 +564,7 @@ namespace PAS.Models
         public object UpchargeSellPriceLevel { get; set; }
 
         [DisplayName("Upcharge Sell Price Final Amount")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         [Required]
         public object UpchargeSellPriceFinalAmount { get; set; }
 
@@ -566,6 +575,10 @@ namespace PAS.Models
         [StringLength(150)]
         [Required]
         public object UpchargeSellPriceStatus { get; set; }
+
+        [DisplayName("Upcharge Sell Price Final Rounded Amount")]
+        [DisplayFormat(DataFormatString = "{0:C}")]
+        public object UpchargeSellPriceFinalRoundedAmount { get; set; }
     }
 
     public class VendorNameMetadata

@@ -458,6 +458,10 @@ namespace PAS.Models
             {
                 yield return new ValidationResult("You must fill out all percent fee information");
             }
+            if((FeeDollarAmount == null || FeeDollarAmount <= 0) && FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount))
+            {
+                yield return new ValidationResult("You must fill out all dollar fee information");
+            }
         }
 
         // Default Constructor additions
@@ -670,6 +674,13 @@ namespace PAS.Models
         public void OnCreate()
         {
             this.UpchargeStatus = MyExtensions.GetEnumDescription(Status.Active);
+        }
+        //Non-Generated Constructors 
+        public ProductUpcharge(int productID)
+        {
+            this.ProductID = productID;
+            this.AuditTrails = new HashSet<AuditTrail>();
+            this.UpchargeStatus = "Active";
         }
     }
 

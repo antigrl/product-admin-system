@@ -1,38 +1,43 @@
 .campaign-status {
-  background: lighten($emerland, 40%);
-  border-radius: 3px;
-  padding: 3px 1px;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 10px;
+    background: lighten($emerland, 40%);
+    border-radius: 3px;
+    padding: 3px 1px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 10px;
 }
 
 .edit-campaign {
-  .form-heading {
-    cursor: pointer;
-    &:before {
-      content: '\F044';
-      font: normal 16px FontAwesome;
-      margin-left: 150px;
-      color: red;
-      margin-bottom: -15px;
-    }
-  }
-  .campaign-toggle {
+    .form-heading {
+        cursor: pointer;
 
-  }
+        &:before {
+            content: '\F044';
+            font: normal 16px FontAwesome;
+            margin-left: 150px;
+            color: red;
+            margin-bottom: -15px;
+        }
+    }
+
+    .campaign-toggle {
+    }
 }
 
 .campaign-list {
-  tr:nth-child(1) {
-    background: #fff !important;
-    text-align: left;
-    th {
-      padding-left: 10px;
-      padding-bottom: 10px;
-      font-size: 18px;
+    tr:nth-child(1) {
+        text-align: left;
+
+        th {
+            padding-left: 10px;
+            padding-bottom: 10px;
+            font-size: 18px;
+        }
     }
-  }
 }
 
-
+.add-product {
+    .fa-plus {
+        padding: 2px 5px 0 5px;
+    }
+}

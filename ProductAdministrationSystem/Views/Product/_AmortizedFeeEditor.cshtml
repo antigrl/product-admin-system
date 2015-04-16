@@ -2,17 +2,24 @@
 @using PAS.Helpers;
 @using PAS.Models;
 
-<div class="editor-row fee">
+<li class="fee editor-row amortized-fee-container">
     @using (Html.BeginCollectionItem("Fees"))
     {
+        @Html.HiddenFor(model => model.ProductID)
+        @Html.HiddenFor(model => model.FeeType)
+        @Html.HiddenFor(model => model.FeeCalculation)
+        @Html.HiddenFor(model => model.FeeStatus)
+
         @Html.ValidationSummary(true)
-        <button type="button" class="delete-row">-</button>
-        @Html.ValidationMessageFor(model => model.FeeNameID)
-        <div class="editor-label">
-            <span class="dropdown">
-                @Html.DropDownListFor(model => model.FeeAmortizedType, MyExtensions.GetGenericEnumDropDown<AmortizedTypeList>(), "")
-            </span>
-            <br />
+        <span>
+            <a class="delete-row"></a>
+        </span>
+
+        <span class="dropdown">
+            @Html.DropDownListFor(model => model.FeeAmortizedType, MyExtensions.GetGenericEnumDropDown<AmortizedTypeList>(), "")
+        </span>
+
+        <span class="charge-type">
             @if (Model.FeeNameID == 0)
             {
                 @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList, String.Empty)
@@ -22,36 +29,29 @@
                 @Html.DropDownList("FeeNameID", ViewBag.FeeNames as SelectList)
                 @Html.HiddenFor(model => model.FeeID)
             }
-            @Html.HiddenFor(model => model.ProductID)
-            @Html.HiddenFor(model => model.FeeType)
-            @Html.HiddenFor(model => model.FeeCalculation)
-            @Html.HiddenFor(model => model.FeeStatus)
-            <span class="inherited-id">
-                @Html.HiddenFor(model => model.FeeInheritedFeeID)
-            </span>
-            <span class="is-inherited">
-                @Html.HiddenFor(model => model.FeeInherited)
-            </span>
-        </div> 
-        <div class="editor-field">
-            <div class="full-content">
-                <span class="left-half-content">Full Charge
-                <br />
-                    $&nbsp;@Html.TextBoxFor(model => model.FeeAmortizedCharge, new { @class = "dollar-value" })
-                </span>
-                <span class="right-half-content">Unit Amount
-                <br />
-                    @if (Model.FeeDollarAmount != null)
-                    {
-                        <span>$&nbsp;@Html.DisplayFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })</span>
-                    }
-                    else
-                    {
-                        <span>N/A</span>
-                    }
-                    @Html.ValidationMessageFor(model => model.FeeDollarAmount)
-                </span>
-            </div>
+        </span>
+        <span>
+            <label>Full Charge</label>
+            $&nbsp;@Html.TextBoxFor(model => model.FeeAmortizedCharge, new { @class = "dollar-value" })
+        </span>
+
+        <div class="inherited-id hide">
+            @Html.HiddenFor(model => model.FeeInheritedFeeID)
         </div>
+        <div class="is-inherited hide">
+            @Html.HiddenFor(model => model.FeeInherited)
+        </div>
+
+        <span>
+            <label>Unit Amount</label>
+            @if (Model.FeeDollarAmount != null)
+            {
+                <span>@Html.DisplayFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })</span>
+            }
+            else
+            {
+                <span>N/A</span>
+            }
+        </span>
     }
-</div>
+</li>

@@ -30,15 +30,10 @@ body {
   position: relative;
   background: #f5f5f5;
   font: 15px Lato, sans-serif;
-
-  // Sticky footer
   min-height: 100vh;
-  // flex-direction: column;
+
 }
 
-// #body {
-//   padding: 25px;
-// }
 
 a {
   cursor: pointer;
@@ -152,7 +147,7 @@ main {
         margin-top: 8px;
       }
       span {
-        font-size: 34px;
+        font-size: 21px;
         color: #62a9dd;
       }
       a {
@@ -279,7 +274,7 @@ main {
 
 .flex-grid-client {
   > section {
-    flex: 0;
+    flex: 1;
   }
 }
 .truncate {
@@ -301,8 +296,4 @@ main {
   .controls {
     margin-bottom: 15px;
   }
-}
-
-.flex-grid-client {
-  flex-direction: column;
 }

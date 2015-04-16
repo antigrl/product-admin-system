@@ -18,8 +18,11 @@ namespace PAS
                         "~/Scripts/jquery.throttledresize.js",
                         "~/Content/bower_components/angular-datatables/dist/angular-datatables.js",
                         "~/Scripts/NPR.js",
-                        "~/Content/bower_components/angular/angular.min.js",
                         "~/Content/bower_components/angular-datatables/dist/angular-datatables.min.js",
+                        "~/Content/bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js",
+                        "~/Content/bower_components/tether/tether.js",
+                        "~/Content/bower_components/angular-animate/angular-animate.js",
+                        "~/Content/bower_components/ng-modal/src/angular-tooltip.js",
                         "~/Scripts/angular-textarea-fit.js",
                         "~/Scripts/nprApp.js"));
 

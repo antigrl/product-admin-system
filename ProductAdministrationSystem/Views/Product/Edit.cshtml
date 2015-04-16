@@ -25,8 +25,7 @@
     @Html.Partial("_EditorData")
 
     <button type="submit" class="button green" formaction="@Url.Action("SaveAndClose", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save &amp; Close</button>
-    <input type="submit" class="button dark-blue" value="Cancel" />
-    @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
+    <input type="submit" class="button" value="Cancel" />
 }
 
 @section Scripts {

@@ -1,61 +1,102 @@
 .fee-filter {
-  @extend .controls;
-  @extend .seamless;
-  align-items: baseline;
-  text-align: left !important;
-  span {
-    color: red !important;
-    font-size: 14px !important;
-  }
-  .button {
-    margin-top: 30px;
-  }
+    @extend .controls;
+    @extend .seamless;
+    align-items: baseline;
+    text-align: left !important;
+
+    span {
+        color: red !important;
+        font-size: 14px !important;
+    }
+
+    .button {
+        margin-top: 30px;
+    }
+}
+
+.percent-fee-order, .percent-fee-order input {
+    width: 45px;
 }
 
 .delete-row {
-  height: 21px;
-  width: 21px;
-  overflow: hidden;
-  border-radius: 50%;
-  line-height: 21px;
-  display: inline-block;
-  font-size: 14px;
-  outline: none;
-  color: $pink;
-  margin-right: 2px;
-  margin-bottom: -5px;
-  &:hover,
-  &:active {
-    background-color: lightgray;
-    cursor: pointer;
-  }
-  &:before {
-    content: '\f00d';
-    font-family: FontAwesome;
-    padding-left: 5px;
-  }
+    height: 21px;
+    width: 21px;
+    overflow: hidden;
+    border-radius: 50%;
+    line-height: 21px;
+    display: inline-block;
+    font-size: 14px;
+    outline: none;
+    color: $pink;
+    margin-right: 2px;
+    margin-bottom: -5px;
+
+    &:hover,
+    &:active {
+        background-color: lightgray;
+        cursor: pointer;
+    }
+
+    &:before {
+        content: '\f00d';
+        font-family: FontAwesome;
+        padding-left: 5px;
+    }
 }
+
 .main-fees-container {
-  -webkit-flex: 2 0 0;
-  flex: 2 0 0;
+    -webkit-flex: 2 0 0;
+    flex: 2 0 0;
 }
+
 .add-on-fee-container {
-  -webkit-flex: 1 0 0;
-  flex: 1 0 0;
+    -webkit-flex: 1 0 0;
+    flex: 1 0 0;
 }
 
-.dollar-fee,
-.percent-fee  {
-  padding: 3px;
-  select {
-    width: 70%;
-    margin-right: 8px;
-  }
-  input {
-    margin-left: 5px;
-  }
+
+.amortized-fee-container,
+.dollar-fee-container,
+.percent-fee-container,
+.upcharge,
+.sell-price {
+    width: 100%;
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    text-align: right;
+    margin-bottom: 5px;
+    background-color: lighten($lightgray, 30%);
+    padding: 10px;
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input.dollar-value {
+        justify-content: flex-end;
+    }
 }
 
-.percent-fee {
-  input { width: 10%; }
+.upcharge {
+    padding: 10px 5px;
+}
+
+.fees {
+    margin: 10px 0;
+}
+
+.upcharge {
+}
+
+.the-fees {
+    margin: 10px 0;
+    font-size: 12px;
+}
+
+.price-level,
+.final-sell,
+.upcharge-sell {
+    text-align: left;
 }
