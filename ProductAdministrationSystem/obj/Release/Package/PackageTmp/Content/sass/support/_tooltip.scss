@@ -1,0 +1,17 @@
+.tooltip {
+    position: absolute;
+    color: #fff;
+    background: #000;
+    border-radius: 3px;
+    padding: 5px 5px;
+    display: inline-block;
+    z-index: 9999;
+    font-size: 12px;
+  }
+  .tooltip.ng-enter {
+    opacity: 0;
+    transition: opacity 1s;
+  }
+  .tooltip.ng-enter-active {
+    opacity: 1;
+  }

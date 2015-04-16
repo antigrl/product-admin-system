@@ -1,0 +1,44 @@
+﻿@model PAS.Models.Category
+@using PAS.Helpers;
+@using PAS.Models;
+
+@{
+    ViewBag.Title = "Create Category";
+}
+
+<div class="heading">
+    <h1>
+        @ViewBag.Title
+    </h1>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <div class="flex-grid">
+        <section>
+        @Html.HiddenFor(model => model.CategoryStatus)
+
+        <div class="controls">
+            @Html.LabelForRequired(model => model.CategoryName)
+            @Html.EditorFor(model => model.CategoryName)
+            @Html.ValidationMessageFor(model => model.CategoryName)
+        </div>
+
+        <div class="controls">
+            @Html.LabelForRequired(model => model.CategoryType)
+            @Html.DropDownListFor(model => model.CategoryType, MyExtensions.GetGenericEnumDropDown<CategoryTypeList>(), "")
+            @Html.ValidationMessageFor(model => model.CategoryType)
+        </div>
+        </section>
+    </div>
+
+    <input type="submit" class="button green" value="Create" />
+
+    <a href="@Url.Action("Index")" class="button">Back</a>
+
+}
+
+@section Scripts {
+}

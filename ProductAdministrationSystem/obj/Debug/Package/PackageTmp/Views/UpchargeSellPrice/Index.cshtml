@@ -1,0 +1,73 @@
+﻿@model IEnumerable<PAS.Models.UpchargeSellPrice>
+
+@{
+    ViewBag.Title = "Upcharge Sell Price Index";
+}
+
+<div class="heading">
+    <h1>@ViewBag.TitleMessage Upcharge Sell Price Index
+
+        @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+        {
+            <span class="heading-info">@Html.ActionLink("View Active", "Index")</span>
+        }
+        else
+        {
+            <span class="heading-info">@Html.ActionLink("View Archived", "ArchivedIndex")</span>
+        }
+        <div class="heading-info">@Html.ActionLink("Create New", "Create")</div>
+    </h1>
+</div>
+
+<div class="flex-grid">
+    <section>
+        <table datatable="">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpchargeSellPriceName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpchargeSellPriceLevel)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpchargeSellPriceFinalAmount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpchargeSellPriceLocked)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductUpcharge.UpchargeName)
+                    </th>
+                    <th>Modify</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpchargeSellPriceName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpchargeSellPriceLevel)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpchargeSellPriceFinalAmount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpchargeSellPriceLocked)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductUpcharge.UpchargeName)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.UpchargeSellPriceID }) |
+                            @Html.ActionLink("Archive", "Archive", new { id = item.UpchargeSellPriceID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+</div>

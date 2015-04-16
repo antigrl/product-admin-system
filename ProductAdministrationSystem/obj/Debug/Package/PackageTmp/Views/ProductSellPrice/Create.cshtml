@@ -1,0 +1,63 @@
+﻿@model PAS.Models.ProductSellPrice
+@using PAS.Helpers;
+
+@{
+    ViewBag.Title = "Create Sell Price";
+}
+<div class="heading">
+    <h1>Create Sell Price</h1>
+</div>
+@using(Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="flex-grid">
+        <section>
+            @Html.HiddenFor(model => model.SellPriceStatus)
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.SellPriceName)
+                @Html.EditorFor(model => model.SellPriceName)
+                @Html.ValidationMessageFor(model => model.SellPriceName)
+            </div>
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.SellPriceLevel)
+                @Html.EditorFor(model => model.SellPriceLevel)
+                @Html.ValidationMessageFor(model => model.SellPriceLevel)
+            </div>
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.SellPriceMarginPercent)
+                @Html.EditorFor(model => model.SellPriceMarginPercent)
+                @Html.ValidationMessageFor(model => model.SellPriceMarginPercent)
+            </div>
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.SellPriceMarginDollarAmount)
+                @Html.EditorFor(model => model.SellPriceMarginDollarAmount)
+                @Html.ValidationMessageFor(model => model.SellPriceMarginDollarAmount)
+            </div>
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.SellPriceFinalAmount)
+                @Html.EditorFor(model => model.SellPriceFinalAmount)
+                @Html.ValidationMessageFor(model => model.SellPriceFinalAmount)
+            </div>
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.ProductID, "Product")
+                @Html.DropDownList("ProductID", String.Empty)
+                @Html.ValidationMessageFor(model => model.ProductID)
+            </div>
+        </section>
+    </div>
+
+    <input type="submit" class="button green" value="Create" />
+    <a class="button" href="@Url.Action("Index")">Back</a>
+}
+
+@section Scripts {
+
+}

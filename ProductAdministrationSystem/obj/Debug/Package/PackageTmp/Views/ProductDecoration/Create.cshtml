@@ -1,0 +1,88 @@
+﻿@model PAS.Models.ProductDecoration
+@using PAS.Models
+@using PAS.Helpers
+
+@{
+    ViewBag.Title = "Create Product Decoration";
+}
+<div class="heading">
+    <h1>Create Product Decoration</h1>
+</div>
+@using(Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="flex-grid">
+        <section>
+            @Html.HiddenFor(model => model.DecorationStatus)
+            <div class="controls">
+                @Html.LabelForRequired(model => model.DecorationName)
+                @Html.EditorFor(model => model.DecorationName)
+                @Html.ValidationMessageFor(model => model.DecorationName)
+            </div>
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.DecorationMethodID, "DecorationMethod")
+                @Html.DropDownList("DecorationMethodID", String.Empty)
+                @Html.ValidationMessageFor(model => model.DecorationMethodID)
+            </div>
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.DecorationColor)
+                @Html.EditorFor(model => model.DecorationColor)
+                @Html.ValidationMessageFor(model => model.DecorationColor)
+            </div>
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.DecorationLocation)
+                @Html.EditorFor(model => model.DecorationLocation)
+                @Html.ValidationMessageFor(model => model.DecorationLocation)
+            </div>
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.DecorationSize)
+                @Html.EditorFor(model => model.DecorationSize)
+                @Html.ValidationMessageFor(model => model.DecorationSize)
+            </div>
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.DecorationVendor)
+                @Html.EditorFor(model => model.DecorationVendor)
+                @Html.ValidationMessageFor(model => model.DecorationVendor)
+            </div>
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.ProductID, "Product")
+                @Html.DropDownList("ProductID", String.Empty)
+                @Html.ValidationMessageFor(model => model.ProductID)
+            </div>
+
+
+            <h2>Embroidery</h2>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.DecorationEmbroideryDesignNumber)
+                @Html.EditorFor(model => model.DecorationEmbroideryDesignNumber)
+                @Html.ValidationMessageFor(model => model.DecorationEmbroideryDesignNumber)
+            </div>
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.DecorationEmbroideryStitchCount)
+                @Html.EditorFor(model => model.DecorationEmbroideryStitchCount)
+                @Html.ValidationMessageFor(model => model.DecorationEmbroideryStitchCount)
+            </div>
+
+            <div class="controls">
+                @Html.LabelForRequired(model => model.DecorationEmbroideryColorWay)
+                @Html.EditorFor(model => model.DecorationEmbroideryColorWay)
+                @Html.ValidationMessageFor(model => model.DecorationEmbroideryColorWay)
+            </div>
+        </section>
+    </div>
+    <input type="submit" class="button green" value="Create" />
+    <a href="@Url.Action("Index")" class="button">Back</a>
+}
+
+@section Scripts {
+
+}

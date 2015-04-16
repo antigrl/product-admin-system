@@ -1,0 +1,237 @@
+﻿@model PAS.Models.Company
+@using PAS.Helpers;
+@using PAS.Models;
+
+@{
+    ViewBag.Title = "Edit Company";
+}
+
+@using (Html.BeginForm("Edit", "Company", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="heading">
+        <h1>Edit Company</h1>
+    </div>
+    <div class="flex-grid">
+        @Html.HiddenFor(model => model.CompanyID)
+        <article class="input-left">
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyName)
+                @Html.ValidationMessageFor(model => model.CompanyName)
+                @Html.EditorFor(model => model.CompanyName)
+            </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyStatus)
+                @Html.ValidationMessageFor(model => model.CompanyStatus)
+                @Html.DropDownListFor(model => model.CompanyStatus, MyExtensions.GetGenericEnumDropDown<Status>(), "")
+            </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyDivisionNumber)
+                @Html.ValidationMessageFor(model => model.CompanyDivisionNumber)
+                @Html.EditorFor(model => model.CompanyDivisionNumber)
+            </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyDefaultMargin)
+                @Html.ValidationMessageFor(model => model.CompanyDefaultMargin)
+                @Html.EditorFor(model => model.CompanyDefaultMargin)
+            </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyContactName)
+                @Html.ValidationMessageFor(model => model.CompanyContactName)
+                @Html.EditorFor(model => model.CompanyContactName)
+            </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyContactEmail)
+                @Html.ValidationMessageFor(model => model.CompanyContactEmail)
+                @Html.EditorFor(model => model.CompanyContactEmail)
+            </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyLocation)
+                @Html.ValidationMessageFor(model => model.CompanyLocation)
+                @Html.EditorFor(model => model.CompanyLocation)
+            </div>
+        </article>
+        <article class="input-right">
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyAccountManagerName)
+                @Html.ValidationMessageFor(model => model.CompanyAccountManagerName)
+                @Html.EditorFor(model => model.CompanyAccountManagerName)
+            </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyAccountManagerEmail)
+                @Html.ValidationMessageFor(model => model.CompanyAccountManagerEmail)
+                @Html.EditorFor(model => model.CompanyAccountManagerEmail)
+            </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyMentorName)
+                @Html.ValidationMessageFor(model => model.CompanyMentorName)
+                @Html.EditorFor(model => model.CompanyMentorName)
+            </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyMentorEmail)
+                @Html.ValidationMessageFor(model => model.CompanyMentorEmail)
+                @Html.EditorFor(model => model.CompanyMentorEmail)
+            </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyUrl)
+                @Html.ValidationMessageFor(model => model.CompanyUrl)
+                @Html.EditorFor(model => model.CompanyUrl)
+            </div>
+            <div class="company-image">
+                <div class="controls">
+                    @Html.LabelForRequired(model => model.CompanyImage)
+                    <input type="file" name="CompanyImage" id="CompanyImage" />
+                    @Html.HiddenFor(model => model.CompanyImage)
+                    @Html.HiddenFor(model => model.CompanyImageType)
+                </div>
+                <div class="image">
+                    @if (Model != null && Model.CompanyImage != null)
+                    {
+                        <img src="@Url.Action("Show", "Company", new { id = Model.CompanyID })" />
+                    }
+                    @Html.ValidationMessageFor(model => model.CompanyImage)
+                </div>
+            </div>
+            <div class="controls">
+                @Html.LabelForRequired(model => model.CompanyAdditionalDetails)
+                @Html.ValidationMessageFor(model => model.CompanyAdditionalDetails)
+                @Html.EditorFor(model => model.CompanyAdditionalDetails)
+            </div>
+            <div class="controls">
+                <input type="submit" class="button green" value="Save" />
+                | @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl}, null)
+            </div>
+        </article>
+    </div>
+    <br>
+    <div class="flex-grid">
+                <section>
+            <h2 class="add-plus">Campaigns <a href="@Url.Action("Create", "Campaign", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), CompanyID = Model.CompanyID }, null)"><i class="fa fa-plus-square"></i></a></h2>
+            <table class="index-table" datatable="">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var campaign in Model.Campaigns.Where(c => c.CampaignStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(c => c.CampaignCreatedOnDate))
+                    {
+                        <tr>
+                            <td>
+                                <div class="controls">
+                                    @Html.DisplayFor(model => campaign.CampaignName)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="controls">
+                                    @Html.DisplayFor(model => campaign.CampaignCreatedOnDate)
+                                </div>
+                            </td>
+                            <td class="action-icons">
+                                <ul>
+                                    <li><a class="edit-btn" href="@Url.Action("Edit", "Campaign", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = campaign.CampaignID }, null)"><i class="fa fa-pencil-square-o"></i></a></li>
+                                    <li><a class="archive-btn" href="@Url.Action("Archive", "Campaign", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = campaign.CampaignID }, null)"><i class="fa fa-archive"></i></a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <div class="flex-grid">
+        <section>
+            <h2 class="add-plus">Company Fees
+                <a href="@Url.Action("Create", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), CompanyID = Model.CompanyID }, null)">
+                    <i class="fa fa-plus-square"></i>
+                </a>
+            </h2>
+            <table class="index-table" datatable="">
+                <thead>
+                    <tr>
+                        <th>Fee Name</th>
+                        <th>Type</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(f => f.FeeName.FeeNameName))
+                    {
+                        <tr>
+                            <td>
+                                <div class="controls">
+                                    @Html.DisplayFor(model => fee.FeeName.FeeNameName)
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.DisplayFor(model => fee.FeeType)
+                                </div>
+                            </td>
+                            <td class="action-icons">
+                                <ul>
+                                    <li><a class="edit-btn" href="@Url.Action("Edit", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null)"><i class="fa fa-pencil-square-o"></i></a></li>
+                                    <li><a class="archive-btn" href="@Url.Action("Archive", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = fee.FeeID }, null)"><i class="fa fa-archive"></i></a></li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2 class="add-plus">Pricing Tiers  <a href="@Url.Action("Create", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), CompanyID = Model.CompanyID }, null)"><i class="fa fa-plus-square"></i></a></h2>
+            <table class="index-table" datatable="">
+                <thead>
+                    <tr>
+                        <th>Level</th>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var tier in Model.PricingTiers.Where(p => p.PricingTierStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.PricingTierLevel))
+                    {
+                        <tr>
+                            <td>
+                                <div class="controls">
+                                    @Html.DisplayFor(model => tier.PricingTierLevel)
+                                </div>
+                            </td>
+                            <td>
+                                <b>
+                                    @Html.DisplayFor(model => tier.PricingTierName)
+                                </b>
+                                <div>
+                                    <div>Fees:</div>
+                                    <ul>
+                                        @foreach (var fee in tier.Fees)
+                                        {
+                                            <li>
+                                                @Html.DisplayFor(model => fee.FeeName.FeeNameName)
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </td>
+                            <td class="action-icons">
+                                <ul>
+                                    <li><a class="edit-btn" href="@Url.Action("Edit", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = tier.PricingTierID }, null)"><i class="fa fa-pencil-square-o"></i></a>
+                                    <li><a class="archive-btn" href="@Url.Action("Archive", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), id = tier.PricingTierID }, null)"><i class="fa fa-archive"></i></a>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+    </div>
+}
+
+@section Scripts {
+
+}

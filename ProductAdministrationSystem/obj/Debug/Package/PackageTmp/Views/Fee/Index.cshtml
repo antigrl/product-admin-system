@@ -1,0 +1,104 @@
+﻿@model IEnumerable<PAS.Models.Fee>
+
+@{
+    ViewBag.Title = "Fee Index";
+}
+
+<div class="heading">
+    <h1>@ViewBag.TitleMessage Fee Index
+        @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+        {
+            <div class="heading-info">@Html.ActionLink("View Active Fees", "Index")</div>
+        }
+        else
+        {
+            <div class="heading-info">@Html.ActionLink("View Archived Fees", "ArchivedIndex")</div>
+        }
+        <div class="heading-info">@Html.ActionLink("Create New Fee", "Create")</div>
+    </h1>
+</div>
+
+<div class="flex-grid">
+    <section>
+        <table class="index-table" datatable="">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FeeStatus)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FeeName.FeeNameName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FeeType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FeeCalculation)
+                    </th>
+                    <th>
+                        Connection
+                    </th>
+                    <th>
+                        Connected Object Name
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FeeStatus)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FeeName.FeeNameName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FeeType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FeeCalculation)
+                        </td>
+                        <td>
+                            @item.GetFeeConnection()
+                        </td>
+                        <td>
+                            @if(item.PricingTier != null)
+                            {
+                                <b>Pricing Tier:</b> @item.PricingTier.PricingTierName
+                                <br />
+                                <b>Company:</b> @item.PricingTier.Company.CompanyName
+                            }
+                            else if(item.ProductSellPrice != null)
+                            {
+                                <b>Sell Price:</b> @item.ProductSellPrice.SellPriceName
+                                <br />
+                                <b>Product: </b> @item.ProductSellPrice.Product.ProductName
+                            }
+                            else if(item.Product != null)
+                            {
+                                <b>Product:</b> @item.Product.ProductName
+                                <br />
+                                <b>Campaign:</b> @item.Product.Campaign.CampaignName
+                            }
+                            else if(item.Campaign != null)
+                            {
+                                <b>Campaign:</b> @item.Campaign.CampaignName
+                                <br />
+                                <b>Company:</b> @item.Campaign.Company.CompanyName
+                            }
+                            else if(item.Company != null)
+                            {
+                                @item.Company.CompanyName
+                            }
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id=item.FeeID }) |
+                            @Html.ActionLink("Archive", "Archive", new { id=item.FeeID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+</div>

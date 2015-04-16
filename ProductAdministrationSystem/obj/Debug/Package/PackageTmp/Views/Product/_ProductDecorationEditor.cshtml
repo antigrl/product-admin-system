@@ -1,0 +1,67 @@
+﻿@model PAS.Models.ProductDecoration
+@using PAS.Helpers;
+@using PAS.Models;
+
+<ul class="product-decoration editor-row">
+    @using (Html.BeginCollectionItem("ProductDecorations"))
+    {
+        @Html.HiddenFor(model => model.DecorationID)
+        @Html.HiddenFor(model => model.ProductID)
+        @Html.HiddenFor(model => model.DecorationStatus)
+        <li class="decorate-delete">
+            <a href="#" class="delete-row"></a>
+        </li>
+        <li>
+            <div class="inline-left">
+
+                <div class="controls">
+                    @Html.LabelForRequired(model => model.DecorationName)
+                    @Html.EditorFor(model => model.DecorationName)
+                </div>
+                <div class="controls">
+                    @Html.LabelForRequired(model => model.DecorationVendor)
+                    @Html.EditorFor(model => model.DecorationVendor)
+                </div>
+                <div class="controls">
+                    @Html.LabelForRequired(model => model.DecorationMethodID, "DecorationMethod")
+                    @if (Model.DecorationMethodID == 0)
+                    {
+                        @Html.DropDownList("DecorationMethodID", ViewBag.DecorationMethods as SelectList, String.Empty)
+                    }
+                    else
+                    {
+                        @Html.DropDownList("DecorationMethodID", ViewBag.DecorationMethods as SelectList)
+                    }
+                </div>
+                <div class="controls">
+                    @Html.LabelForRequired(model => model.DecorationEmbroideryDesignNumber)
+                    @Html.EditorFor(model => model.DecorationEmbroideryDesignNumber)
+                </div>
+            </div>
+            <div class="inline-middle">
+                <div class="controls">
+                    @Html.LabelForRequired(model => model.DecorationColor)
+                    @Html.EditorFor(model => model.DecorationColor)
+                </div>
+                <div class="controls">
+                    @Html.LabelForRequired(model => model.DecorationLocation)
+                    @Html.EditorFor(model => model.DecorationLocation)
+                </div>
+                <div class="controls">
+                    @Html.LabelForRequired(model => model.DecorationSize)
+                    @Html.EditorFor(model => model.DecorationSize)
+                </div>
+            </div>
+            <div class="inline-right">
+                <div class="controls">
+                    @Html.LabelForRequired(model => model.DecorationEmbroideryStitchCount)
+                    @Html.EditorFor(model => model.DecorationEmbroideryStitchCount)
+                </div>
+                <div class="controls">
+                    @Html.LabelForRequired(model => model.DecorationEmbroideryColorWay)
+                    @Html.EditorFor(model => model.DecorationEmbroideryColorWay)
+                </div>
+            </div>
+        </li>
+    }
+</ul>

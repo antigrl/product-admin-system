@@ -1,0 +1,45 @@
+﻿@model PAS.Models.ProductUpcharge
+@using PAS.Models
+@using PAS.Helpers
+
+<li class="upcharge editor-row">
+    @using (Html.BeginCollectionItem("ProductUpcharges"))
+    {
+        <div>
+            <span><a class="delete-row"></a></span>
+
+            <span>
+                @if (Model.UpchargeID != null || Model.UpchargeID != 0)
+                {
+                    @Html.DropDownListFor(model => model.UpchargeName, MyExtensions.GetGenericEnumDropDown<ProductUpchargeNames>(), "")
+                }
+                else
+                {
+
+                        @Html.DisplayFor(model => model.UpchargeName)
+
+                }
+                @Html.HiddenFor(model => model.UpchargeID)
+                @Html.HiddenFor(model => model.ProductID)
+                @Html.HiddenFor(model => model.UpchargeName)
+                @Html.HiddenFor(model => model.UpchargeStatus)
+            </span>
+
+            <span>
+                $@Html.TextBoxFor(model => model.UpchargeAmount, new { @class = "dollar-value" })
+            </span>
+            <span>
+                @Html.DisplayFor(model => model.UpchargeName) Cost: @Html.DisplayFor(model => model.UpchargeTotalCost)
+            </span>
+            <ul>
+                @if (Model.UpchargeID != 0)
+                {
+                    foreach (var upchargeSellPrice in Model.UpchargeSellPrices.Where(price => price.UpchargeSellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(price => price.UpchargeSellPriceLevel))
+                    {
+                        Html.RenderPartial("_UpchargeSellPriceEditor", upchargeSellPrice);
+                    }
+                }
+            </ul>
+        </div>
+    }
+</li>

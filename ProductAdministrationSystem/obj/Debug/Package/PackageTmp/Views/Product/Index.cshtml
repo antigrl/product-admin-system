@@ -1,0 +1,74 @@
+﻿@model IEnumerable<PAS.Models.Product>
+
+@{
+    ViewBag.Title = "Product Index";
+}
+
+
+
+<div class="heading">
+    <h1>@ViewBag.TitleMessage Product Index
+
+        @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+        {
+            <span class="heading-info">@Html.ActionLink("View Active", "Index")</span>
+        }
+        else
+        {
+            <span class="heading-info">@Html.ActionLink("View Archived", "ArchivedIndex")</span>
+        }
+        <div class="heading-info">@Html.ActionLink("Create New", "Create")</div>
+    </h1>
+</div>
+<div class="flex-grid">
+    <section>
+        <table datatable="">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductPresentationSell)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Campaign.CampaignName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductStatus)
+                    </th>
+                    <th>Modify</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductPresentationSell)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Campaign.CampaignName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductStatus)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "fuck", new { id = item.ProductID }) |
+                        @Html.ActionLink("Archive", "Archive", new { id = item.ProductID })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+</div>

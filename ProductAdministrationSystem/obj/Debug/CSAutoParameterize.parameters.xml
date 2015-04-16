@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="NPREntities-Web.config Connection String" description="NPREntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.NPREntities.csdl|res://*/Models.NPREntities.ssdl|res://*/Models.NPREntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=InternalDataBaseServer;initial catalog=PAS_Test;persist security info=True;user id=NPR_User;password=38o6XLbF8359d83Rtq6u;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\john\.grabanski\\Desktop\\Dev\ Repos\\Internal\ Sites\\ProductAdministrationSystem\\ProductAdministrationSystem\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='NPREntities']/@connectionString" />
+  </parameter>
+</parameters>
