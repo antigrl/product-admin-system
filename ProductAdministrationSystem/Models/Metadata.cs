@@ -19,6 +19,15 @@ namespace PAS.Models
         public object AuditTrailComment{ get; set; }
     }
 
+    public class MajorCategoryOrderingMetedata
+    {
+        [DisplayName("Sort Value")]
+        public object SortValue { get; set; }
+
+        [DisplayName("Category Rename")]
+        public object CategoryRename { get; set; }
+    }
+
     public class CampaignMetadata
     {
         [HiddenInput]

@@ -51,7 +51,7 @@ namespace PAS.Tests.Features
             var product = new Product() { ProductCost = 1, ProductAnnualSalesProjection = 100 };
             product.Fees = new List<Fee>();
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), FeeDollarAmount = 1 });
-            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project)});
+            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection)});
 
             var feeCalculator = new FeeCalculator(product);
             feeCalculator.ComputeNetCost();
@@ -65,7 +65,7 @@ namespace PAS.Tests.Features
             var product = new Product() { ProductCost = 1, ProductAnnualSalesProjection = 100 };
             product.Fees = new List<Fee>();
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), FeeDollarAmount = 1 });
-            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project) });
+            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Multiplication)});
 
             var feeCalculator = new FeeCalculator(product);
@@ -84,7 +84,7 @@ namespace PAS.Tests.Features
             var product = new Product() { ProductCost = 1, ProductAnnualSalesProjection = 100 };
             product.Fees = new List<Fee>();
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), FeeDollarAmount = 1 });
-            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project) });
+            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Division) });
 
             var feeCalculator = new FeeCalculator(product);
@@ -106,7 +106,7 @@ namespace PAS.Tests.Features
             var product = new Product() { ProductCost = 1, ProductAnnualSalesProjection = 100 };
             product.Fees = new List<Fee>();
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), FeeDollarAmount = 1 });
-            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project) });
+            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Multiplication) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Division) });
 
@@ -129,7 +129,7 @@ namespace PAS.Tests.Features
             var product = new Product() { ProductCost = 1, ProductAnnualSalesProjection = 100 };
             product.Fees = new List<Fee>();
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), FeeDollarAmount = 1 });
-            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project) });
+            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Division) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Multiplication) });
 
@@ -152,7 +152,7 @@ namespace PAS.Tests.Features
             var product = new Product() { ProductCost = 1, ProductAnnualSalesProjection = 100 };
             product.Fees = new List<Fee>();
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), FeeDollarAmount = 1 });
-            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project) });
+            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Division) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Multiplication) });
             product.ProductSellPrices = new List<ProductSellPrice>();
@@ -186,7 +186,7 @@ namespace PAS.Tests.Features
             var product = new Product() { ProductCost = 1, ProductAnnualSalesProjection = 100 };
             product.Fees = new List<Fee>();
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), FeeDollarAmount = 1 });
-            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project) });
+            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Division) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Multiplication) });
             product.ProductSellPrices = new List<ProductSellPrice>();
@@ -242,7 +242,7 @@ namespace PAS.Tests.Features
             var product = new Product() { ProductCost = 1, ProductAnnualSalesProjection = 100 };
             product.Fees = new List<Fee>();
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), FeeDollarAmount = 1 });
-            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project) });
+            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Division) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Multiplication) });
             product.ProductSellPrices = new List<ProductSellPrice>();
@@ -257,7 +257,7 @@ namespace PAS.Tests.Features
                     sellPrice.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 20, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Multiplication) });
                 }
                 sellPrice.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), FeeDollarAmount = 1 });
-                sellPrice.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project) });
+                sellPrice.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection) });
             }
 
 
@@ -307,7 +307,7 @@ namespace PAS.Tests.Features
             var product = new Product() { ProductCost = 1, ProductAnnualSalesProjection = 100 };
             product.Fees = new List<Fee>();
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), FeeDollarAmount = 1 });
-            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project) });
+            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection) });
 
             var feeCalculator = new FeeCalculator(product);
             feeCalculator.ComputeNetCost();
@@ -326,7 +326,7 @@ namespace PAS.Tests.Features
             var product = new Product() { ProductCost = 1, ProductAnnualSalesProjection = 100 };
             product.Fees = new List<Fee>();
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), FeeDollarAmount = 1 });
-            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project) });
+            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Division) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Multiplication) });
             product.ProductSellPrices = new List<ProductSellPrice>();
@@ -377,7 +377,7 @@ namespace PAS.Tests.Features
             var product = new Product() { ProductCost = 1, ProductAnnualSalesProjection = 100 };
             product.Fees = new List<Fee>();
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), FeeDollarAmount = 1 });
-            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project) });
+            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Division) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Multiplication) });
             product.ProductSellPrices = new List<ProductSellPrice>();
@@ -461,7 +461,7 @@ namespace PAS.Tests.Features
             var product = new Product() { ProductCost = 1, ProductAnnualSalesProjection = 100 };
             product.Fees = new List<Fee>();
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), FeeDollarAmount = 1 });
-            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project) });
+            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Division) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Multiplication) });
             product.ProductSellPrices = new List<ProductSellPrice>();
@@ -545,7 +545,7 @@ namespace PAS.Tests.Features
             var product = new Product() { ProductCost = 1, ProductAnnualSalesProjection = 100 };
             product.Fees = new List<Fee>();
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), FeeDollarAmount = 1 });
-            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project) });
+            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Division) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Multiplication) });
             product.ProductSellPrices = new List<ProductSellPrice>();
@@ -791,7 +791,7 @@ namespace PAS.Tests.Features
             product.ProductUpcharges.Add(upcharge1);
             product.Fees = new List<Fee>();
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), FeeDollarAmount = 1 });
-            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project) });
+            product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), FeeAmortizedCharge = 100, FeeAmortizedType = MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Division) });
             product.Fees.Add(new Fee() { FeeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), FeePercent = 10, FeePercentType = MyExtensions.GetEnumDescription(PercentTypeList.Multiplication) });
             product.ProductSellPrices = new List<ProductSellPrice>();

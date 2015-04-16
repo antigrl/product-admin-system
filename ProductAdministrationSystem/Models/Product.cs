@@ -60,6 +60,7 @@ namespace PAS.Models
         public int CampaignID { get; set; }
         public int MajorCategoryID { get; set; }
         public Nullable<int> MinorCategoryID { get; set; }
+        public Nullable<int> ProductSortValue { get; set; }
     
         public virtual ICollection<AuditTrail> AuditTrails { get; set; }
         public virtual Campaign Campaign { get; set; }

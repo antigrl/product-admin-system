@@ -331,6 +331,10 @@ namespace PAS.Models
             {
                 type = ObjectType.Vendor_Type;
             }
+            else if (this.MajorCategoryOrdering != null)
+            {
+                type = ObjectType.Major_Category_Ordering;
+            }
 
             return MyExtensions.GetEnumDescription(type);
         }
@@ -397,8 +401,27 @@ namespace PAS.Models
             {
                 return this.VendorTypeID;
             }
+            else if (this.MajorCategoryOrdering != null)
+            {
+                return this.MajorCategoryOrderingID;
+            }
 
             return 0;
+        }
+    }
+
+    [MetadataType(typeof(MajorCategoryOrderingMetedata))]
+    public partial class MajorCategoryOrdering
+    {
+        public void OnCreate(int sortValue, int campaignID, int categoryID, string categoryRename = null)
+        {
+            this.SortValue = SortValue;
+            this.CampaignID = campaignID;
+            this.CategoryID = categoryID;
+            if (string.IsNullOrEmpty(categoryRename) == false)
+            {
+                this.CategoryRename = categoryRename;
+            }
         }
     }
 

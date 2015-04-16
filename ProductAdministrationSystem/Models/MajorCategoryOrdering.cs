@@ -12,24 +12,21 @@ namespace PAS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Category
+    public partial class MajorCategoryOrdering
     {
-        public Category()
+        public MajorCategoryOrdering()
         {
             this.AuditTrails = new HashSet<AuditTrail>();
-            this.Products = new HashSet<Product>();
-            this.Products1 = new HashSet<Product>();
-            this.MajorCategoryOrderings = new HashSet<MajorCategoryOrdering>();
         }
     
+        public int ID { get; set; }
+        public int SortValue { get; set; }
+        public int CampaignID { get; set; }
         public int CategoryID { get; set; }
-        public string CategoryName { get; set; }
-        public string CategoryType { get; set; }
-        public string CategoryStatus { get; set; }
+        public string CategoryRename { get; set; }
     
+        public virtual Campaign Campaign { get; set; }
+        public virtual Category Category { get; set; }
         public virtual ICollection<AuditTrail> AuditTrails { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
-        public virtual ICollection<Product> Products1 { get; set; }
-        public virtual ICollection<MajorCategoryOrdering> MajorCategoryOrderings { get; set; }
     }
 }

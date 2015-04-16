@@ -50,8 +50,8 @@ namespace PAS.Models
         Vendor_Minimum,
         [Description("Initial Order Quantity")]
         Initial_Order_Quantity,
-        [Description("Annual Sales Project")]
-        Annual_Sales_Project,
+        [Description("Annual Sales Projection")]
+        Annual_Sales_Projection,
         [Description("GatewayCDI Minimum Order")]
         GatewayCDI_Minimum_Order
     }
@@ -247,6 +247,8 @@ namespace PAS.Models
         Vendor_Name,
         [Description("Vendor Type")]
         Vendor_Type,
+        [Description("Major Category Ordering")]
+        Major_Category_Ordering,
         Null
     }
 }

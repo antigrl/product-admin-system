@@ -28,6 +28,7 @@
           <Property Name="VendorTypeID" Type="int" />
           <Property Name="UpchargeSellPriceID" Type="int" />
           <Property Name="CategoryID" Type="int" />
+          <Property Name="MajorCategoryOrderingID" Type="int" />
         </EntityType>
         <EntityType Name="Campaign">
           <Key>
@@ -116,6 +117,16 @@
           <Property Name="FeeNameType" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="FeeNameStatus" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
+        <EntityType Name="MajorCategoryOrdering">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SortValue" Type="int" Nullable="false" />
+          <Property Name="CampaignID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryRename" Type="nvarchar" MaxLength="150" />
+        </EntityType>
         <EntityType Name="PackagingType">
           <Key>
             <PropertyRef Name="PackagingTypeID" />
@@ -175,6 +186,7 @@
           <Property Name="CampaignID" Type="int" Nullable="false" />
           <Property Name="MajorCategoryID" Type="int" Nullable="false" />
           <Property Name="MinorCategoryID" Type="int" />
+          <Property Name="ProductSortValue" Type="int" />
         </EntityType>
         <EntityType Name="ProductDecoration">
           <Key>
@@ -249,14 +261,14 @@
           <Property Name="VendorTypeStatus" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <Association Name="FK_AuditTrail_AuditTrail">
-          <End Role="AuditTrail" Type="Self.AuditTrail" Multiplicity="1" />
-          <End Role="AuditTrail1" Type="Self.AuditTrail" Multiplicity="0..1" />
+          <End Role="MajorCategoryOrdering" Type="Self.MajorCategoryOrdering" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Self.AuditTrail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AuditTrail">
-              <PropertyRef Name="AuditTrailID" />
+            <Principal Role="MajorCategoryOrdering">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="AuditTrail1">
-              <PropertyRef Name="AuditTrailID" />
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="MajorCategoryOrderingID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -524,6 +536,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MajorCategoryOrdering_Campaign">
+          <End Role="Campaign" Type="Self.Campaign" Multiplicity="1" />
+          <End Role="MajorCategoryOrdering" Type="Self.MajorCategoryOrdering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaign">
+              <PropertyRef Name="CampaignID" />
+            </Principal>
+            <Dependent Role="MajorCategoryOrdering">
+              <PropertyRef Name="CampaignID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MajorCategoryOrdering_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="MajorCategoryOrdering" Type="Self.MajorCategoryOrdering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="MajorCategoryOrdering">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PricingTier_Company">
           <End Role="Company" Type="Self.Company" Multiplicity="1" />
           <End Role="PricingTier" Type="Self.PricingTier" Multiplicity="*" />
@@ -676,6 +712,7 @@
           <EntitySet Name="DecorationMethod" EntityType="Self.DecorationMethod" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fee" EntityType="Self.Fee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FeeName" EntityType="Self.FeeName" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MajorCategoryOrdering" EntityType="Self.MajorCategoryOrdering" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PackagingType" EntityType="Self.PackagingType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PricingTier" EntityType="Self.PricingTier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
@@ -686,8 +723,8 @@
           <EntitySet Name="VendorName" EntityType="Self.VendorName" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorType" EntityType="Self.VendorType" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AuditTrail_AuditTrail" Association="Self.FK_AuditTrail_AuditTrail">
+            <End Role="MajorCategoryOrdering" EntitySet="MajorCategoryOrdering" />
             <End Role="AuditTrail" EntitySet="AuditTrail" />
-            <End Role="AuditTrail1" EntitySet="AuditTrail" />
           </AssociationSet>
           <AssociationSet Name="FK_AuditTrail_Campaign" Association="Self.FK_AuditTrail_Campaign">
             <End Role="Campaign" EntitySet="Campaign" />
@@ -776,6 +813,14 @@
           <AssociationSet Name="FK_Fee_ProductSellPrice" Association="Self.FK_Fee_ProductSellPrice">
             <End Role="ProductSellPrice" EntitySet="ProductSellPrice" />
             <End Role="Fee" EntitySet="Fee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MajorCategoryOrdering_Campaign" Association="Self.FK_MajorCategoryOrdering_Campaign">
+            <End Role="Campaign" EntitySet="Campaign" />
+            <End Role="MajorCategoryOrdering" EntitySet="MajorCategoryOrdering" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MajorCategoryOrdering_Category" Association="Self.FK_MajorCategoryOrdering_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="MajorCategoryOrdering" EntitySet="MajorCategoryOrdering" />
           </AssociationSet>
           <AssociationSet Name="FK_PricingTier_Company" Association="Self.FK_PricingTier_Company">
             <End Role="Company" EntitySet="Company" />
@@ -987,6 +1032,19 @@
             <End Role="ProductUpcharge" EntitySet="ProductUpcharges" />
             <End Role="UpchargeSellPrice" EntitySet="UpchargeSellPrices" />
           </AssociationSet>
+          <EntitySet Name="MajorCategoryOrderings" EntityType="NPRModel.MajorCategoryOrdering" />
+          <AssociationSet Name="FK_MajorCategoryOrdering_Campaign" Association="NPRModel.FK_MajorCategoryOrdering_Campaign">
+            <End Role="Campaign" EntitySet="Campaigns" />
+            <End Role="MajorCategoryOrdering" EntitySet="MajorCategoryOrderings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MajorCategoryOrdering_Category" Association="NPRModel.FK_MajorCategoryOrdering_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="MajorCategoryOrdering" EntitySet="MajorCategoryOrderings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_AuditTrail1" Association="NPRModel.FK_AuditTrail_AuditTrail1">
+            <End Role="MajorCategoryOrdering" EntitySet="MajorCategoryOrderings" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AuditTrail">
           <Key>
@@ -1028,6 +1086,8 @@
           <NavigationProperty Name="UpchargeSellPrice" Relationship="NPRModel.FK_AuditTrail_UpchargeSellPrice" FromRole="AuditTrail" ToRole="UpchargeSellPrice" />
           <NavigationProperty Name="VendorName" Relationship="NPRModel.FK_AuditTrail_VendorName" FromRole="AuditTrail" ToRole="VendorName" />
           <NavigationProperty Name="VendorType" Relationship="NPRModel.FK_AuditTrail_VendorType" FromRole="AuditTrail" ToRole="VendorType" />
+          <Property Name="MajorCategoryOrderingID" Type="Int32" />
+          <NavigationProperty Name="MajorCategoryOrdering" Relationship="NPRModel.FK_AuditTrail_AuditTrail1" FromRole="AuditTrail" ToRole="MajorCategoryOrdering" />
         </EntityType>
         <EntityType Name="Campaign">
           <Key>
@@ -1049,6 +1109,7 @@
           <NavigationProperty Name="Company" Relationship="NPRModel.FK_Campaign_Company" FromRole="Campaign" ToRole="Company" />
           <NavigationProperty Name="Fees" Relationship="NPRModel.FK_Fee_Campaign" FromRole="Campaign" ToRole="Fee" />
           <NavigationProperty Name="Products" Relationship="NPRModel.FK_Product_Campaign" FromRole="Campaign" ToRole="Product" />
+          <NavigationProperty Name="MajorCategoryOrderings" Relationship="NPRModel.FK_MajorCategoryOrdering_Campaign" FromRole="Campaign" ToRole="MajorCategoryOrdering" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -1061,6 +1122,7 @@
           <NavigationProperty Name="AuditTrails" Relationship="NPRModel.FK_AuditTrail_Category" FromRole="Category" ToRole="AuditTrail" />
           <NavigationProperty Name="Products" Relationship="NPRModel.FK_Product_MajorCategory" FromRole="Category" ToRole="Product" />
           <NavigationProperty Name="Products1" Relationship="NPRModel.FK_Product_MinorCategory" FromRole="Category" ToRole="Product" />
+          <NavigationProperty Name="MajorCategoryOrderings" Relationship="NPRModel.FK_MajorCategoryOrdering_Category" FromRole="Category" ToRole="MajorCategoryOrdering" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
@@ -1213,6 +1275,7 @@
           <NavigationProperty Name="ProductDecorations" Relationship="NPRModel.FK_ProductDecoration_Product" FromRole="Product" ToRole="ProductDecoration" />
           <NavigationProperty Name="ProductSellPrices" Relationship="NPRModel.FK_ProductSellPrice_Product" FromRole="Product" ToRole="ProductSellPrice" />
           <NavigationProperty Name="ProductUpcharges" Relationship="NPRModel.FK_ProductUpcharge_Product" FromRole="Product" ToRole="ProductUpcharge" />
+          <Property Name="ProductSortValue" Type="Int32" />
         </EntityType>
         <EntityType Name="ProductDecoration">
           <Key>
@@ -1721,6 +1784,55 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MajorCategoryOrdering">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SortValue" Type="Int32" Nullable="false" />
+          <Property Name="CampaignID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryRename" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Campaign" Relationship="NPRModel.FK_MajorCategoryOrdering_Campaign" FromRole="MajorCategoryOrdering" ToRole="Campaign" />
+          <NavigationProperty Name="Category" Relationship="NPRModel.FK_MajorCategoryOrdering_Category" FromRole="MajorCategoryOrdering" ToRole="Category" />
+          <NavigationProperty Name="AuditTrails" Relationship="NPRModel.FK_AuditTrail_AuditTrail1" FromRole="MajorCategoryOrdering" ToRole="AuditTrail" />
+        </EntityType>
+        <Association Name="FK_MajorCategoryOrdering_Campaign">
+          <End Type="NPRModel.Campaign" Role="Campaign" Multiplicity="1" />
+          <End Type="NPRModel.MajorCategoryOrdering" Role="MajorCategoryOrdering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaign">
+              <PropertyRef Name="CampaignID" />
+            </Principal>
+            <Dependent Role="MajorCategoryOrdering">
+              <PropertyRef Name="CampaignID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MajorCategoryOrdering_Category">
+          <End Type="NPRModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="NPRModel.MajorCategoryOrdering" Role="MajorCategoryOrdering" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="MajorCategoryOrdering">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_AuditTrail1">
+          <End Type="NPRModel.MajorCategoryOrdering" Role="MajorCategoryOrdering" Multiplicity="0..1" />
+          <End Type="NPRModel.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MajorCategoryOrdering">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="MajorCategoryOrderingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1730,6 +1842,7 @@
           <EntitySetMapping Name="AuditTrails">
             <EntityTypeMapping TypeName="NPRModel.AuditTrail">
               <MappingFragment StoreEntitySet="AuditTrail">
+                <ScalarProperty Name="MajorCategoryOrderingID" ColumnName="MajorCategoryOrderingID" />
                 <ScalarProperty Name="AuditTrailID" ColumnName="AuditTrailID" />
                 <ScalarProperty Name="AuditTrailTimeStamp" ColumnName="AuditTrailTimeStamp" />
                 <ScalarProperty Name="AuditTrailUserName" ColumnName="AuditTrailUserName" />
@@ -1868,6 +1981,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="NPRModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductSortValue" ColumnName="ProductSortValue" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
@@ -1983,6 +2097,17 @@
                 <ScalarProperty Name="VendorTypeID" ColumnName="VendorTypeID" />
                 <ScalarProperty Name="VendorTypeName" ColumnName="VendorTypeName" />
                 <ScalarProperty Name="VendorTypeStatus" ColumnName="VendorTypeStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MajorCategoryOrderings">
+            <EntityTypeMapping TypeName="NPRModel.MajorCategoryOrdering">
+              <MappingFragment StoreEntitySet="MajorCategoryOrdering">
+                <ScalarProperty Name="CategoryRename" ColumnName="CategoryRename" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+                <ScalarProperty Name="SortValue" ColumnName="SortValue" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

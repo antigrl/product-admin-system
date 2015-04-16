@@ -191,7 +191,7 @@ namespace PAS.Tests.Features
         private void CalculateAmortizedFee(Fee fee)
         {
             // Determime the type of amortized fee and use the value associated 
-            if (fee.FeeAmortizedType == MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Project))
+            if (fee.FeeAmortizedType == MyExtensions.GetEnumDescription(AmortizedTypeList.Annual_Sales_Projection))
             {
                 fee.FeeDollarAmount = fee.FeeAmortizedCharge / _product.ProductAnnualSalesProjection;
             }

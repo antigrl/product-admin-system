@@ -200,6 +200,9 @@
     <Compile Include="Models\FeeName.cs">
       <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MajorCategoryOrdering.cs">
+      <DependentUpon>NPREntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Metadata.cs" />
     <Compile Include="Models\NPREntities.Context.cs">
       <AutoGen>True</AutoGen>

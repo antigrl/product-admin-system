@@ -41,5 +41,6 @@ namespace PAS.Models
         public DbSet<UpchargeSellPrice> UpchargeSellPrices { get; set; }
         public DbSet<VendorName> VendorNames { get; set; }
         public DbSet<VendorType> VendorTypes { get; set; }
+        public DbSet<MajorCategoryOrdering> MajorCategoryOrderings { get; set; }
     }
 }
