@@ -1,4 +1,10 @@
-﻿.index-table {
+﻿.drag-and-drop-table {
+  width: 100%; }
+
+.button {
+  margin: 5px; }
+
+.index-table {
   border: 1px solid #000;
   height: 122px;
   width: 49.9% !important;

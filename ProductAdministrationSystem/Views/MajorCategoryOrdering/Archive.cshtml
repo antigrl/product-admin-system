@@ -1,0 +1,47 @@
+﻿@model PAS.Models.MajorCategoryOrdering
+
+@{
+    ViewBag.Title = "Archive";
+}
+
+<h2>Archive</h2>
+
+<h3>Are you sure you want to Archive this?</h3>
+<fieldset>
+    <legend>MajorCategoryOrdering</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.SortValue)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SortValue)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Campaign.CampaignName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Campaign.CampaignName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Category.CategoryName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Category.CategoryName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CategoryRename)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CategoryRename)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Archive" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

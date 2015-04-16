@@ -250,6 +250,23 @@ namespace PAS.Models
             }
         }
 
+        // MajorCategoryOrdering 
+        public AuditTrail(DateTime dateTime, string userName, MajorCategoryOrdering majorCategoryOrdering, int id, string comment)
+        {
+            this.AuditTrailTimeStamp = dateTime;
+            this.AuditTrailUserName = userName;
+            this.AuditTrailComment = comment;
+
+            if (id > 0)
+            {
+                this.MajorCategoryOrderingID = id;
+            }
+            else
+            {
+                this.MajorCategoryOrdering = majorCategoryOrdering;
+            }
+        }
+
         // UpchargeSellPrice
         public AuditTrail(DateTime dateTime, string userName, UpchargeSellPrice upchargeSellPrice, int id, string comment)
         {

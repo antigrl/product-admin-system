@@ -37,9 +37,11 @@
                 </dd>
             </dl>
             <dl class="check-list-left">
-                <dt>Show Print Preview</dt>
                 <dd>
-                    <input type="button" class="showPrintPreview" name="showPrintPreview" value="Show Print Preview" />
+                    <input type="button" class="showPrintPreview btn button" name="showPrintPreview" value="Show Print Preview" />
+                </dd>
+                <dd>
+                    <input type="button" class="savePresentation btn button" name="Save Presentation Ordering" value="Save Presentation Ordering" />
                 </dd>
             </dl>
         </section>
@@ -72,7 +74,7 @@
         </section>
     </div>
 </div>
-<div>
+<div class="drag-and-drop-area" style="display: none;">
     @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
     {
         productCount = 0;
@@ -82,7 +84,7 @@
                 <input type="text" value="@majorCategory.majorCategory" class="major-title">
             </div>
 
-            <table class="index-table index-table-blue">
+            <table class="ui-draggable drag-and-drop-table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -136,7 +138,7 @@
         </div>
     }
 </div>
-<div >
+<div class="presentation-sheet-area">
     @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
     {
         productCount = 0;

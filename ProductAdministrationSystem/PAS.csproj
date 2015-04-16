@@ -159,6 +159,7 @@
     <Compile Include="Controllers\FeeController.cs" />
     <Compile Include="Controllers\FeeNameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MajorCategoryOrderingController.cs" />
     <Compile Include="Controllers\PackagingTypeController.cs" />
     <Compile Include="Controllers\PricingTierController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -843,6 +844,10 @@
     <Content Include="Views\Company\_CompanyList.cshtml" />
     <Content Include="Views\Campaign\_CampaignList.cshtml" />
     <Content Include="Views\Product\UnArchive.cshtml" />
+    <Content Include="Views\MajorCategoryOrdering\Index.cshtml" />
+    <Content Include="Views\MajorCategoryOrdering\Create.cshtml" />
+    <Content Include="Views\MajorCategoryOrdering\Edit.cshtml" />
+    <Content Include="Views\MajorCategoryOrdering\Archive.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

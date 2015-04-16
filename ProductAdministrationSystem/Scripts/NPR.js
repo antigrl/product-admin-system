@@ -50,7 +50,7 @@
     };
 
     $("form[data-npr-ajax='true']").submit(ajaxFormSubmit);
-
+    
     // Add Fee row to the page [currently only does one at a time
     $(".add-item").click(function () {
         $.ajax({
@@ -158,6 +158,11 @@
 
     $(".toggle-archived-products").click(function () {
         $(".archived-products").toggle();
+    });
+
+    $(".showPrintPreview ").click(function () {
+        $(".presentation-sheet-area").toggle();
+        $(".drag-and-drop-area").toggle();
     });
 
     // Presentation view functions
