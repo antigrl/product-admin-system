@@ -74,7 +74,7 @@
         </section>
     </div>
 </div>
-<div class="drag-and-drop-area" style="display: none;">
+<div class="drag-and-drop-area">
     @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
     {
         productCount = 0;
@@ -138,7 +138,7 @@
         </div>
     }
 </div>
-<div class="presentation-sheet-area">
+<div class="presentation-sheet-area"  style="display: none;">
     @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
     {
         productCount = 0;
