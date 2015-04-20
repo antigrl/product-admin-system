@@ -112,7 +112,7 @@ main {
   white-space: nowrap;
 }
 
-.flex-grid, .flex-grid-client {
+.flex-grid, .flex-grid-client, .flex-grid-category {
   display: flex;
   flex-flow: row wrap;
   width: 100%;
@@ -120,7 +120,7 @@ main {
   > article {
     flex: 1;
   }
-  > section {
+  > section{
     flex: 1;
     margin: 0 20px 20px 0;
     padding: 10px;
@@ -272,7 +272,8 @@ main {
   }
 }
 
-.flex-grid-client {
+.flex-grid-client,
+.flex-grid-category {
   > section {
     flex: 1;
   }

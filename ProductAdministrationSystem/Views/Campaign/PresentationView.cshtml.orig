@@ -16,6 +16,9 @@
             <strong>Campaign Name:</strong> @Html.DisplayFor(model => model.CampaignName)
         </div>
     </h1>
+    <input type="hidden" value="@Model.CampaignID" class="campaign-id" />
+    <input type="hidden" value="@Url.Action("SaveMajorCategoryOrdering")" class="save-major-category-url">
+    <input type="hidden" value="@Url.Action("SaveProductOrdering")" class="save-product-url">
 </div>
 <div class="top-wrapper">
     <div class="flex-grid">
@@ -37,13 +40,14 @@
                 </dd>
             </dl>
             <dl class="check-list-left">
-                <dt>Show Print Preview</dt>
                 <dd>
-                    <input type="button" class="showPrintPreview" name="showPrintPreview" value="Show Print Preview" />
+                    <input type="button" class="showPrintPreview btn button" name="showPrintPreview" value="Show Print Preview" />
+                </dd>
+                <dd>
+                    <input type="button" class="savePresentation btn button" name="Save Presentation Ordering" value="Save Presentation Ordering" />
                 </dd>
             </dl>
         </section>
-
         <section class="seamless">
             <dl class="check-list-left">
                 <dt>Show Pricing Tiers</dt>
@@ -56,33 +60,50 @@
                 </dd>
             </dl>
         </section>
-
         <section class="seamless">
             <dl class="category-checkboxes check-list-left">
                 <dt>Categories shown</dt>
                 <dd>
-                    @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
+                    @foreach (Category majorCategory in ViewBag.MajorCategoryList)
                     {
+<<<<<<< HEAD
+                        <input id="@majorCategory.CategoryName" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
+                        <label for="@majorCategory.CategoryName" class="checklist-label iconicfill-check">@majorCategory.CategoryName</label>                        
+=======
                         <input id="@majorCategory.majorCategory" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
                         <label for="@majorCategory.majorCategory" class="checklist-label iconicfill-check">@majorCategory.majorCategory</label>
-                        
+>>>>>>> bf0c6e4fb5c183fd6e2d45c0257e99f291a28b24
                     }
                 </dd>
             </dl>
         </section>
     </div>
 </div>
-<div>
+<<<<<<< HEAD
+<div class="drag-and-drop-area">
+    @foreach (Category majorCategory in ViewBag.MajorCategoryList)
+    {
+        productCount = 0;
+        var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.CategoryName).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
+        <div class="major-category Category_@majorCategory.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
+            <div class="align-ceter">
+                <input type="text" value="@majorCategory.CategoryName" class="major-title">
+                <input type="hidden" value="@majorCategory.CategoryID" class="category-id" />
+            </div>
+=======
+<div class="drag-and-drop-area flex-grid-category">
+
     @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
     {
         productCount = 0;
         var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
-        <div class="major-category Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
-            <div class="align-ceter">
-                <input type="text" value="@majorCategory.majorCategory" class="major-title">
-            </div>
+>>>>>>> bf0c6e4fb5c183fd6e2d45c0257e99f291a28b24
 
-            <table class="index-table index-table-blue">
+        <section class="major-category Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
+
+            <h2><input type="text" value="@majorCategory.majorCategory" class="major-title">
+            </h2>
+            <table class="ui-draggable drag-and-drop-table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -95,10 +116,11 @@
                 <tbody>
                     @foreach (var product in productList)
                     {
-                        <tr>
+                        <tr class="product-row">
                             <td>
                                 <div>
                                     @Html.DisplayFor(model => product.ProductID)
+                                    <input type="hidden" value="@product.ProductID" class="product-id" />
                                 </div>
                             </td>
                             <td>
@@ -123,7 +145,6 @@
                                         @Html.DisplayFor(model => product.Category1.CategoryName)
                                     </div>
                                 }
-<<<<<<< HEAD
                             </td>
                             <td>
                                 <div>
@@ -132,109 +153,22 @@
                             </td>
                         </tr>
                     }
-=======
-                            </div>
-                        </td>
-                        <td>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <div class="name-container">
-                                            @Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)
-                                        </div>
-                                    </td>
-                                    <td style="border-left: 1px solid #000; width: 100%;">
-                                        <div class="icon-container">
-                                            <ul>
-                                                <li class="dish" style="display: none;">
-                                                    <img src="~/Images/dishwasher-icon.png" alt="">
-                                                </li>
-                                                <li class="eco" style="display: none;">
-                                                    <img src="~/Images/leaf-icon.png" alt="">
-                                                </li>
-                                                <li class="rec" style="display: none;">
-                                                    <img src="~/Images/recycle-icon.png" alt="">
-                                                </li>
-                                                <li class="usa" style="display: none;">
-                                                    <img src="~/Images/flag-icon.png" alt="">
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr>
-                                    <td style="border-top: 1px solid #000;">
-                                        <div class="description-container">
-                                            @product.ProductDescription
-                                        </div>
-                                    </td>
-                                    <td style="border-top: 1px solid #000; border-left: 1px solid #000;">
-                                        <table style="padding: 0; vertical-align: middle; height: 112px; width: 100%;">
-                                            <tr style="height: 15px;">
-                                                <td style="vertical-align: middle; border-bottom: 1px solid #000; border-right: 1px solid #000;">Price</td>
-                                                <td style="vertical-align: middle; border-bottom: 1px solid #000;">Approved</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="price-tiers">
-                                                        <ul>
-                                                            @foreach (var sellPrice in product.ProductSellPrices.OrderBy(s => s.SellPriceLevel))
-                                                            {
-                                                                <li class="Tier_@sellPrice.SellPriceLevel">@sellPrice.SellPriceFinalAmount.ToString("c")</li>
-                                                            }
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                                <td style="border-left: 1px solid #000">
-                                                    <div class="questions-container">
-                                                        YES<br>
-                                                        NO<br>
-                                                        MAYBE<br>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr>
-                                    <td style="border-top: 1px solid #000; border-right: 1px solid #000;">
-                                        <div class="country-container">
-                                            @if (string.IsNullOrEmpty(product.ProductCountryOfOrigin) == false)
-                                            {
-                                                <span>Made in @product.ProductCountryOfOrigin</span>
-                                            }
-                                        </div>
-                                    </td>
-                                    <td style="border-top: 1px solid #000; width: 100%;">
-                                        <div class="moq-container">
-                                            MOQ: @product.ProductVendorMinimumOrder
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
->>>>>>> UIMaster
                 </tbody>
             </table>
-        </div>
+        </section>
+
     }
+
 </div>
-<div >
-    @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
+<div class="presentation-sheet-area"  style="display: none;">
+    @foreach (Category majorCategory in ViewBag.MajorCategoryList)
     {
         productCount = 0;
-        var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
-        <div class="major-category Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
-
+        var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.CategoryName).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
+        <div class="presentation-major-category Category_@majorCategory.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
             <div class="align-ceter">
-                <input type="text" value="@majorCategory.majorCategory" class="major-title">
+                <input type="text" value="@majorCategory.CategoryName" class="major-title">
             </div>
-
             @foreach (var product in productList)
             {
                 productCount++;
@@ -257,7 +191,7 @@
                                                 @Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)
                                             </div>
                                         </td>
-                                        <td style="border-left: 1px solid #000;">
+                                    <td style="border-left: 1px solid #000; width: 100%;">
                                             <div class="icon-container">
                                                 <ul>
                                                     <li class="dish" style="display: none;">
@@ -285,9 +219,9 @@
                                             </div>
                                         </td>
                                         <td style="border-top: 1px solid #000; border-left: 1px solid #000;">
-                                            <table style="padding: 0; vertical-align: middle; height: 75px; width: 100%;">
+                                        <table style="padding: 0; vertical-align: middle; height: 112px; width: 100%;">
                                                 <tr style="height: 15px;">
-                                                    <td style="vertical-align: middle; border-bottom: 1px solid #000;">Price</td>
+                                                <td style="vertical-align: middle; border-bottom: 1px solid #000; border-right: 1px solid #000;">Price</td>
                                                     <td style="vertical-align: middle; border-bottom: 1px solid #000;">Approved</td>
                                                 </tr>
                                                 <tr>
@@ -343,7 +277,6 @@
                     </div>
                 }
             }
-
             @{
             // if the product count is not even add an empty box
             if (productCount % 2 != 0)
@@ -353,7 +286,6 @@
                 </div>
             }
             }
-
             <div class="page_number"><span></span></div>
         </div>
         <div class="page_break"></div>

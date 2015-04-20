@@ -67,24 +67,23 @@
                     @foreach (Category majorCategory in ViewBag.MajorCategoryList)
                     {
                         <input id="@majorCategory.CategoryName" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
-                        <label for="@majorCategory.CategoryName" class="checklist-label iconicfill-check">@majorCategory.CategoryName</label>                        
+                        <label for="@majorCategory.CategoryName" class="checklist-label iconicfill-check">@majorCategory.CategoryName</label>
                     }
                 </dd>
             </dl>
         </section>
     </div>
 </div>
-<div class="drag-and-drop-area">
+<div class="drag-and-drop-area flex-grid-category">
     @foreach (Category majorCategory in ViewBag.MajorCategoryList)
     {
         productCount = 0;
         var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.CategoryName).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
-        <div class="major-category Category_@majorCategory.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
-            <div class="align-ceter">
+        <section class="major-category Category_@majorCategory.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
+            <input type="hidden" value="@majorCategory.CategoryID" class="category-id" />
+            <h2>
                 <input type="text" value="@majorCategory.CategoryName" class="major-title">
-                <input type="hidden" value="@majorCategory.CategoryID" class="category-id" />
-            </div>
-
+            </h2>
             <table class="ui-draggable drag-and-drop-table">
                 <thead>
                     <tr>
@@ -137,10 +136,12 @@
                     }
                 </tbody>
             </table>
-        </div>
+        </section>
+
     }
+
 </div>
-<div class="presentation-sheet-area"  style="display: none;">
+<div class="presentation-sheet-area" style="display: none;">
     @foreach (Category majorCategory in ViewBag.MajorCategoryList)
     {
         productCount = 0;
@@ -171,7 +172,7 @@
                                                 @Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)
                                             </div>
                                         </td>
-                                    <td style="border-left: 1px solid #000; width: 100%;">
+                                        <td style="border-left: 1px solid #000; width: 100%;">
                                             <div class="icon-container">
                                                 <ul>
                                                     <li class="dish" style="display: none;">
@@ -199,9 +200,9 @@
                                             </div>
                                         </td>
                                         <td style="border-top: 1px solid #000; border-left: 1px solid #000;">
-                                        <table style="padding: 0; vertical-align: middle; height: 112px; width: 100%;">
+                                            <table style="padding: 0; vertical-align: middle; height: 112px; width: 100%;">
                                                 <tr style="height: 15px;">
-                                                <td style="vertical-align: middle; border-bottom: 1px solid #000; border-right: 1px solid #000;">Price</td>
+                                                    <td style="vertical-align: middle; border-bottom: 1px solid #000; border-right: 1px solid #000;">Price</td>
                                                     <td style="vertical-align: middle; border-bottom: 1px solid #000;">Approved</td>
                                                 </tr>
                                                 <tr>
