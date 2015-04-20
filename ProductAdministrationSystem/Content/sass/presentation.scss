@@ -210,8 +210,12 @@ dl {
 }
 
 .major-category {
-  text-align: center;
-
+  min-width: 47.9%;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  th {
+    padding-bottom: 5px;
+  }
   .major-title {
     display: block;
     position: relative;
@@ -222,7 +226,6 @@ dl {
     margin-bottom: 3px;
     text-align: center;
     width: 100%;
-
     &::-webkit-input-placeholder {
       color: #000;
     }

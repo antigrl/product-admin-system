@@ -64,23 +64,24 @@
                     @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
                     {
                         <input id="@majorCategory.majorCategory" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
-                        <label for="@majorCategory.majorCategory" class="checklist-label iconicfill-check">@majorCategory.majorCategory</label>                        
+                        <label for="@majorCategory.majorCategory" class="checklist-label iconicfill-check">@majorCategory.majorCategory</label>
                     }
                 </dd>
             </dl>
         </section>
     </div>
 </div>
-<div class="drag-and-drop-area">
+<div class="drag-and-drop-area flex-grid-category">
+
     @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
     {
         productCount = 0;
         var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
-        <div class="major-category Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
-            <div class="align-ceter">
-                <input type="text" value="@majorCategory.majorCategory" class="major-title">
-            </div>
 
+        <section class="major-category Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
+
+            <h2><input type="text" value="@majorCategory.majorCategory" class="major-title">
+            </h2>
             <table class="ui-draggable drag-and-drop-table">
                 <thead>
                     <tr>
@@ -132,8 +133,10 @@
                     }
                 </tbody>
             </table>
-        </div>
+        </section>
+
     }
+
 </div>
 <div class="presentation-sheet-area"  style="display: none;">
     @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
