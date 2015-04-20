@@ -61,10 +61,10 @@
             <dl class="category-checkboxes check-list-left">
                 <dt>Categories shown</dt>
                 <dd>
-                    @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
+                    @foreach (string majorCategory in ViewBag.MajorCategoryList)
                     {
-                        <input id="@majorCategory.majorCategory" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
-                        <label for="@majorCategory.majorCategory" class="checklist-label iconicfill-check">@majorCategory.majorCategory</label>                        
+                        <input id="@majorCategory" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
+                        <label for="@majorCategory" class="checklist-label iconicfill-check">@majorCategory</label>                        
                     }
                 </dd>
             </dl>
@@ -72,13 +72,13 @@
     </div>
 </div>
 <div class="drag-and-drop-area">
-    @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
+    @foreach (var majorCategory in ViewBag.MajorCategoryList)
     {
         productCount = 0;
-        var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
-        <div class="major-category Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
+        var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
+        <div class="major-category Category_@majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
             <div class="align-ceter">
-                <input type="text" value="@majorCategory.majorCategory" class="major-title">
+                <input type="text" value="@majorCategory" class="major-title">
             </div>
 
             <table class="ui-draggable drag-and-drop-table">
@@ -136,13 +136,13 @@
     }
 </div>
 <div class="presentation-sheet-area"  style="display: none;">
-    @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
+    @foreach (var majorCategory in ViewBag.MajorCategoryList)
     {
         productCount = 0;
-        var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
-        <div class="major-category Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
+        var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
+        <div class="major-category Category_@majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
             <div class="align-ceter">
-                <input type="text" value="@majorCategory.majorCategory" class="major-title">
+                <input type="text" value="@majorCategory" class="major-title">
             </div>
             @foreach (var product in productList)
             {

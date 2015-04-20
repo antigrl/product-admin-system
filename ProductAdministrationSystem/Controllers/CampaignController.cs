@@ -150,38 +150,15 @@ namespace PAS.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             Campaign campaign = db.Campaigns.Find(id);
-
+            
             // pull active major categories [use hashset for only adding unique values]
-            SortedSet<ActiveMajorCategory> activeMajorCategories = new SortedSet<ActiveMajorCategory>();
+            SortedSet<string> activeMajorCategories = new SortedSet<string>();
             foreach (Product product in campaign.Products)
             {
-                ActiveMajorCategory majorCategory = activeMajorCategories.Where(a => a.majorCategory == product.Category.CategoryName).FirstOrDefault();
-                if (majorCategory == null)
-                {
-                    majorCategory = new ActiveMajorCategory();
-                    majorCategory.majorCategory = product.Category.CategoryName;
-                    if (product.Category1 != null)
-                    {
-                        if (majorCategory.minorCategories.Contains(product.Category1.CategoryName) == false)
-                        {
-                            majorCategory.minorCategories.Add(product.Category1.CategoryName);
-                        }
-                    }
-                    activeMajorCategories.Add(majorCategory);
-                }
-                else
-                {
-                    if (product.Category1 != null)
-                    {
-                        if (activeMajorCategories.Where(a => a.majorCategory == product.Category.CategoryName).FirstOrDefault().minorCategories.Contains(product.Category1.CategoryName) == false)
-                        {
-                            activeMajorCategories.Where(a => a.majorCategory == product.Category.CategoryName).FirstOrDefault().minorCategories.Add(product.Category1.CategoryName);
-                        }
-                    }
-                }
+                activeMajorCategories.Add(product.Category.CategoryName);
             }
             ViewBag.MajorCategoryList = activeMajorCategories.ToList();
-
+            
             if (campaign == null)
             {
                 return HttpNotFound();
