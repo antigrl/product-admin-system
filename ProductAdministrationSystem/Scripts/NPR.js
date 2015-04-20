@@ -32,6 +32,83 @@
         });
     }
 
+    $(".savePresentation").bind("click", function () {
+        var onEventSavePresentation = new postPresentationSheet();
+        onEventSavePresentation.launchMajorCategories();
+        onEventSavePresentation.launchProducts();
+    });
+
+    function postPresentationSheet() {
+        this.launchMajorCategories = function () {
+            var majorCategories = [];
+            var campaignID = $(".campaign-id").val();
+            var count = 0;
+            $(".major-category").each(function (index) {
+                var id = $(this).find(".id").val();
+                var categoryID = $(this).find(".category-id").val();
+                var categoryRename = $(this).find(".major-title").val();
+                var status = "Active";
+                var showCategory = $(this).is(":visible");
+
+                // build json object
+                var category = {
+                    ID: id,
+                    SortValue: count,
+                    CampaignID: campaignID,
+                    CategoryID: categoryID,
+                    CategoryRename: categoryRename,
+                    Status: status,
+                    ShowCategory: showCategory
+                };
+                majorCategories.push(category);
+                count++;
+            });
+
+            var test = JSON.stringify(majorCategories);
+
+            $.ajax({
+                type: "POST",
+                url: $(".save-major-category-url").val(),
+                traditional: true,
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: test,
+                success: function (data) { console.log(data) },
+                error: function (data) { console.log(data) }
+            });
+        }
+        this.launchProducts = function () {
+            var products = [];
+            $(".major-category").each(function (index) {
+                var count = 0;
+                $(this).find(".product-row").each(function (index) {
+                    var id = $(this).find(".product-id").val();
+
+                    // build json object
+                    var product = {
+                        ID: id,
+                        SortValue: count
+                    };
+                    products.push(product);
+                    count++;
+                });
+            });
+
+            var test = JSON.stringify(products);
+
+            $.ajax({
+                type: "POST",
+                url: $(".save-product-url").val(),
+                traditional: true,
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: test,
+                success: function (data) { console.log(data) },
+                error: function (data) { console.log(data) }
+            });
+        }
+    }
+
     var ajaxFormSubmit = function () {
         var $form = $(this);
 
@@ -50,7 +127,7 @@
     };
 
     $("form[data-npr-ajax='true']").submit(ajaxFormSubmit);
-    
+
     // Add Fee row to the page [currently only does one at a time
     $(".add-item").click(function () {
         $.ajax({

@@ -152,10 +152,10 @@ namespace PAS.Controllers
             Campaign campaign = db.Campaigns.Find(id);
             
             // pull active major categories [use hashset for only adding unique values]
-            SortedSet<string> activeMajorCategories = new SortedSet<string>();
+            SortedSet<Category> activeMajorCategories = new SortedSet<Category>();
             foreach (Product product in campaign.Products)
             {
-                activeMajorCategories.Add(product.Category.CategoryName);
+                activeMajorCategories.Add(product.Category);
             }
             ViewBag.MajorCategoryList = activeMajorCategories.ToList();
             
@@ -165,6 +165,48 @@ namespace PAS.Controllers
             }
 
             return View(campaign);
+        }
+
+        //
+        // POST: 
+        [HttpPost]
+        public JsonResult SaveMajorCategoryOrdering(List<MajorCategoryOrdering> categories)
+        {
+            string status = null;
+            try
+            {
+                foreach (MajorCategoryOrdering category in categories)
+                {
+                    //UpdateDB
+                }
+                status = "if you don't see this, something went wring.";
+
+            }
+            catch (Exception ex)
+            {
+                status = ex.ToString();
+            }
+            return Json(status);
+        }
+
+        [HttpPost]
+        public JsonResult SaveProductOrdering(List<SortOrderingProduct> products)
+        {
+            string status = null;
+            try
+            {
+                foreach (SortOrderingProduct product in products)
+                {
+                    //UpdateDB
+                }
+                status = "if you don't see this, something went wring.";
+
+            }
+            catch (Exception ex)
+            {
+                status = ex.ToString();
+            }
+            return Json(status);
         }
 
         //
