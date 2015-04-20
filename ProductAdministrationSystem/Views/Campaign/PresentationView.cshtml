@@ -45,7 +45,6 @@
                 </dd>
             </dl>
         </section>
-
         <section class="seamless">
             <dl class="check-list-left">
                 <dt>Show Pricing Tiers</dt>
@@ -58,7 +57,6 @@
                 </dd>
             </dl>
         </section>
-
         <section class="seamless">
             <dl class="category-checkboxes check-list-left">
                 <dt>Categories shown</dt>
@@ -66,8 +64,7 @@
                     @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
                     {
                         <input id="@majorCategory.majorCategory" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
-                        <label for="@majorCategory.majorCategory" class="checklist-label iconicfill-check">@majorCategory.majorCategory</label>
-                        
+                        <label for="@majorCategory.majorCategory" class="checklist-label iconicfill-check">@majorCategory.majorCategory</label>                        
                     }
                 </dd>
             </dl>
@@ -144,11 +141,9 @@
         productCount = 0;
         var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
         <div class="major-category Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
-
             <div class="align-ceter">
                 <input type="text" value="@majorCategory.majorCategory" class="major-title">
             </div>
-
             @foreach (var product in productList)
             {
                 productCount++;
@@ -257,7 +252,6 @@
                     </div>
                 }
             }
-
             @{
             // if the product count is not even add an empty box
             if (productCount % 2 != 0)
@@ -267,7 +261,6 @@
                 </div>
             }
             }
-
             <div class="page_number"><span></span></div>
         </div>
         <div class="page_break"></div>
