@@ -79,11 +79,12 @@
     {
         productCount = 0;
         var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.MajorCategoryID == majorCategory.CategoryID).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
-        <section class="major-category Category_@majorCategory.CategoryRename.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
+        <section class="major-category Category_@majorCategory.Category.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
             <input type="hidden" value="@majorCategory.CategoryID" class="category-id" />
             <input type="hidden" value="@majorCategory.ID" class="id" />
             <h2>
                 <input type="text" value="@majorCategory.CategoryRename" class="major-title">
+                <small>@majorCategory.Category.CategoryName</small>
             </h2>
             <table class="sortable-table">
                 <thead>
