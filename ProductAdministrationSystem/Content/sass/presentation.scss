@@ -209,7 +209,8 @@ dl {
   @include custom-checkbox(right);
 }
 
-.major-category {
+.major-category,
+.presentation-major-category {
   min-width: 47.9%;
   padding-left: 0 !important;
   padding-right: 0 !important;
@@ -232,6 +233,9 @@ dl {
   }
 }
 
+.presentation-major-category h2 {
+  font-size: 1em;
+}
 body.dragging, body.dragging * {
   cursor: move !important;
 }
@@ -261,5 +265,3 @@ tr.placeholder:before {
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   cursor: -webkit-grab;
 }
-
-.ui-state-highlight { height: 1.5em; line-height: 1.2em; }

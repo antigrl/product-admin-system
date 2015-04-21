@@ -68,6 +68,7 @@
                 <dd>
                     @foreach (MajorCategoryOrdering majorCategory in ViewBag.MajorCategoryOrderingList)
                     {
+<<<<<<< HEAD
                         string checkedAttribute = "";
                         if (majorCategory.ShowCategory)
                         {
@@ -75,6 +76,12 @@
                         }
                         <input id="@majorCategory.Category.CategoryName" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.Category.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" @checkedAttribute />
                         <label for="@majorCategory.Category.CategoryName" class="checklist-label iconicfill-check">@majorCategory.Category.CategoryName</label>
+=======
+                        <div class="sortable-category">
+                            <input id="@majorCategory.CategoryName" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
+                            <label for="@majorCategory.CategoryName" class="checklist-label iconicfill-check">@majorCategory.CategoryName</label>
+                        </div>
+>>>>>>> a95e053cb690b5e5eba1b4eb242f14df5e3d323c
                     }
                 </dd>
             </dl>
