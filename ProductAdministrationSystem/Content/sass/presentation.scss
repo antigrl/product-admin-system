@@ -232,38 +232,6 @@ dl {
   }
 }
 
-.handle {
-  cursor: -webkit-grab;
-  &:after {
-    content: "\f0c9";
-    font-family: "FontAwesome";
-    font-size: 21px;
-    color: gray;
-  }
-}
-
-
-.sortable-table tr.placeholder {
-  display: block;
-  background: red;
-  position: relative;
-  margin: 0;
-  padding: 0;
-  border: none;
-}
-.sortable-table tr.placeholder:before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  border: 5px solid transparent;
-  border-left-color: red;
-  margin-top: -5px;
-  left: -5px;
-  border-right: none;
-}
-
-
 body.dragging, body.dragging * {
   cursor: move !important;
 }
@@ -272,8 +240,7 @@ body.dragging, body.dragging * {
   position: absolute;
   opacity: 1;
   z-index: 2000;
-  background-color: #323a45;
-  box-shadow: 1px 3px 1p rgba(0,0,0,0.5);
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
 }
 
 tr.placeholder {
@@ -283,4 +250,14 @@ tr.placeholder {
 tr.placeholder:before {
   position: absolute;
   /** Define arrowhead **/
+}
+
+.flex-grid-category table {
+  table-layout: auto;
+}
+
+.flex-grid-category tbody tr:hover {
+  background-color: #eee;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  cursor: -webkit-grab;
 }

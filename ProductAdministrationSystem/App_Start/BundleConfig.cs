@@ -24,6 +24,8 @@ namespace PAS
                         "~/Content/bower_components/angular-animate/angular-animate.js",
                         "~/Content/bower_components/ng-modal/src/angular-tooltip.js",
                         "~/Scripts/angular-textarea-fit.js",
+                        "~/Content/bower_components/angular-material/angular-material.js",
+                        "~/Scripts/angular-aria.js",
                         "~/Scripts/jquery-sortable.js",
                         "~/Scripts/nprApp.js"));
 

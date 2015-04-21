@@ -272,6 +272,14 @@ main {
   }
 }
 
+.flex-grid-category {
+  table tbody tr:nth-child(odd) {
+    background: #fff;
+    &:hover {
+      background-color: #eee;
+    }
+  }
+}
 .flex-grid-client,
 .flex-grid-category {
   > section {

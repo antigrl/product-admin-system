@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('nprApp', ['datatables', 'textarea-fit', 'datatables.scroller', 'ngAnimate', 'ngTooltip']);
+var app = angular.module('nprApp', ['datatables', 'textarea-fit', 'datatables.scroller', 'ngAnimate', 'ngTooltip', 'ngMaterial']);
 
 // Side nav expansion
 $(function () {
@@ -58,7 +58,10 @@ $('.sortable-table').sortable({
   group: 'simple_with_animation',
   pullPlaceholder: false,
   onDrop: function (item, targetContainer, _super) {
-    var clonedItem = $('<tr/>').css({height: 0});
+    var clonedItem = $('<tr/>').css({
+      height: 0,
+      border: "3px solid #ccc"
+    });
     item.before(clonedItem)
     clonedItem.animate({'height': item.height()})
 
