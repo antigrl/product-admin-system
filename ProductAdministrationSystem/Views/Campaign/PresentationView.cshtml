@@ -85,7 +85,7 @@
             <h2>
                 <input type="text" value="@majorCategory.CategoryRename" class="major-title">
             </h2>
-            <table class="ui-draggable drag-and-drop-table">
+            <table class="sortable-table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -98,40 +98,42 @@
                 <tbody>
                     @foreach (var product in productList)
                     {
-                        <tr class="product-row">
+                        <tr class="sorted-head product-row">
                             <td>
-                                <div>
-                                    @Html.DisplayFor(model => product.ProductID)
-                                    <input type="hidden" value="@product.ProductID" class="product-id" />
-                                </div>
+
+                                 @Html.DisplayFor(model => product.ProductID)
+                                 <input type="hidden" value="@product.ProductID" class="product-id" />
+
                             </td>
                             <td>
                                 <div class="product-image">
-                                    @if (Model != null && product.ProductImage != null)
-                                    {
-                                        <div class="thumb-image">
-                                            <img style="height:40px; width:40px;" src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
-                                        </div>
-                                    }
+                                    <div class="thumb-image">
+                                        @if (Model != null && product.ProductImage != null)
+                                        {
+
+                                                <img style="height:40px; width:40px;" src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
+
+                                        }
+                                    </div>
                                 </div>
                             </td>
                             <td>
-                                <div>
+
                                     @Html.DisplayFor(model => product.ProductName)
-                                </div>
+
                             </td>
                             <td>
                                 @if (product.Category1 != null)
                                 {
-                                    <div>
+
                                         @Html.DisplayFor(model => product.Category1.CategoryName)
-                                    </div>
+
                                 }
                             </td>
                             <td>
-                                <div>
+
                                     @Html.DisplayFor(model => product.ProductSellPrices.Where(p => p.SellPriceLevel == 1).FirstOrDefault().SellPriceFinalAmount)
-                                </div>
+
                             </td>
                         </tr>
                     }
