@@ -56,7 +56,6 @@ $('.sortable-table').sortable({
   itemSelector: 'tr',
   placeholder: '<tr class="placeholder"/>',
   pullPlaceholder: false,
-  axis: "y",
   onDrop: function (item, targetContainer, _super) {
     var clonedItem = $('<tr/>').css({height: 0});
     item.before(clonedItem)
@@ -86,4 +85,5 @@ $('.sortable-table').sortable({
       top: position.top - adjustment.top
     })
   }
+  ,
 });
