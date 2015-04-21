@@ -150,44 +150,63 @@ namespace PAS.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             Campaign campaign = db.Campaigns.Find(id);
-
+            
             // pull active major categories [use hashset for only adding unique values]
-            SortedSet<ActiveMajorCategory> activeMajorCategories = new SortedSet<ActiveMajorCategory>();
+            SortedSet<Category> activeMajorCategories = new SortedSet<Category>();
             foreach (Product product in campaign.Products)
             {
-                ActiveMajorCategory majorCategory = activeMajorCategories.Where(a => a.majorCategory == product.Category.CategoryName).FirstOrDefault();
-                if (majorCategory == null)
-                {
-                    majorCategory = new ActiveMajorCategory();
-                    majorCategory.majorCategory = product.Category.CategoryName;
-                    if (product.Category1 != null)
-                    {
-                        if (majorCategory.minorCategories.Contains(product.Category1.CategoryName) == false)
-                        {
-                            majorCategory.minorCategories.Add(product.Category1.CategoryName);
-                        }
-                    }
-                    activeMajorCategories.Add(majorCategory);
-                }
-                else
-                {
-                    if (product.Category1 != null)
-                    {
-                        if (activeMajorCategories.Where(a => a.majorCategory == product.Category.CategoryName).FirstOrDefault().minorCategories.Contains(product.Category1.CategoryName) == false)
-                        {
-                            activeMajorCategories.Where(a => a.majorCategory == product.Category.CategoryName).FirstOrDefault().minorCategories.Add(product.Category1.CategoryName);
-                        }
-                    }
-                }
+                activeMajorCategories.Add(product.Category);
             }
             ViewBag.MajorCategoryList = activeMajorCategories.ToList();
-
+            
             if (campaign == null)
             {
                 return HttpNotFound();
             }
 
             return View(campaign);
+        }
+
+        //
+        // POST: 
+        [HttpPost]
+        public JsonResult SaveMajorCategoryOrdering(List<MajorCategoryOrdering> categories)
+        {
+            string status = null;
+            try
+            {
+                foreach (MajorCategoryOrdering category in categories)
+                {
+                    //UpdateDB
+                }
+                status = "if you don't see this, something went wring.";
+
+            }
+            catch (Exception ex)
+            {
+                status = ex.ToString();
+            }
+            return Json(status);
+        }
+
+        [HttpPost]
+        public JsonResult SaveProductOrdering(List<SortOrderingProduct> products)
+        {
+            string status = null;
+            try
+            {
+                foreach (SortOrderingProduct product in products)
+                {
+                    //UpdateDB
+                }
+                status = "if you don't see this, something went wring.";
+
+            }
+            catch (Exception ex)
+            {
+                status = ex.ToString();
+            }
+            return Json(status);
         }
 
         //

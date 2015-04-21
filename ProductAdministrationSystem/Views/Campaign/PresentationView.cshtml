@@ -16,6 +16,9 @@
             <strong>Campaign Name:</strong> @Html.DisplayFor(model => model.CampaignName)
         </div>
     </h1>
+    <input type="hidden" value="@Model.CampaignID" class="campaign-id" />
+    <input type="hidden" value="@Url.Action("SaveMajorCategoryOrdering")" class="save-major-category-url">
+    <input type="hidden" value="@Url.Action("SaveProductOrdering")" class="save-product-url">
 </div>
 <div class="top-wrapper">
     <div class="flex-grid">
@@ -61,10 +64,10 @@
             <dl class="category-checkboxes check-list-left">
                 <dt>Categories shown</dt>
                 <dd>
-                    @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
+                    @foreach (Category majorCategory in ViewBag.MajorCategoryList)
                     {
-                        <input id="@majorCategory.majorCategory" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
-                        <label for="@majorCategory.majorCategory" class="checklist-label iconicfill-check">@majorCategory.majorCategory</label>
+                        <input id="@majorCategory.CategoryName" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
+                        <label for="@majorCategory.CategoryName" class="checklist-label iconicfill-check">@majorCategory.CategoryName</label>
                     }
                 </dd>
             </dl>
@@ -72,17 +75,16 @@
     </div>
 </div>
 <div class="drag-and-drop-area flex-grid-category">
-
-    @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
+    @foreach (Category majorCategory in ViewBag.MajorCategoryList)
     {
         productCount = 0;
-        var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
-
-        <section class="major-category Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
-
-            <h2><input type="text" value="@majorCategory.majorCategory" class="major-title">
+        var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.CategoryName).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
+        <section class="major-category Category_@majorCategory.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
+            <input type="hidden" value="@majorCategory.CategoryID" class="category-id" />
+            <h2>
+                <input type="text" value="@majorCategory.CategoryName" class="major-title">
             </h2>
-            <table class="sortable-table" id="Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
+            <table class="sortable-table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -95,24 +97,29 @@
                 <tbody>
                     @foreach (var product in productList)
                     {
-                        <tr class="sorted-head">
+                        <tr class="sorted-head product-row">
                             <td>
-                                @Html.DisplayFor(model => product.ProductID)
+
+                                 @Html.DisplayFor(model => product.ProductID)
+                                 <input type="hidden" value="@product.ProductID" class="product-id" />
+
                             </td>
                             <td>
                                 <div class="product-image">
                                     <div class="thumb-image">
                                         @if (Model != null && product.ProductImage != null)
                                         {
-                                            <div class="thumb-image">
+
                                                 <img style="height:40px; width:40px;" src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
-                                            </div>
+
                                         }
                                     </div>
                                 </div>
                             </td>
                             <td>
+
                                     @Html.DisplayFor(model => product.ProductName)
+
                             </td>
                             <td>
                                 @if (product.Category1 != null)
@@ -136,14 +143,14 @@
     }
 
 </div>
-<div class="presentation-sheet-area"  style="display: none;">
-    @foreach (ActiveMajorCategory majorCategory in ViewBag.MajorCategoryList)
+<div class="presentation-sheet-area" style="display: none;">
+    @foreach (Category majorCategory in ViewBag.MajorCategoryList)
     {
         productCount = 0;
-        var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.majorCategory).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
-        <div class="major-category Category_@majorCategory.majorCategory.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
+        var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.CategoryName).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
+        <div class="presentation-major-category Category_@majorCategory.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
             <div class="align-ceter">
-                <input type="text" value="@majorCategory.majorCategory" class="major-title">
+                <input type="text" value="@majorCategory.CategoryName" class="major-title">
             </div>
             @foreach (var product in productList)
             {
@@ -167,7 +174,7 @@
                                                 @Html.ActionLink(product.ProductName, "Edit", "Product", new { ReturnUrl = Url.Action("PresentationView", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)
                                             </div>
                                         </td>
-                                    <td style="border-left: 1px solid #000; width: 100%;">
+                                        <td style="border-left: 1px solid #000; width: 100%;">
                                             <div class="icon-container">
                                                 <ul>
                                                     <li class="dish" style="display: none;">
@@ -195,9 +202,9 @@
                                             </div>
                                         </td>
                                         <td style="border-top: 1px solid #000; border-left: 1px solid #000;">
-                                        <table style="padding: 0; vertical-align: middle; height: 112px; width: 100%;">
+                                            <table style="padding: 0; vertical-align: middle; height: 112px; width: 100%;">
                                                 <tr style="height: 15px;">
-                                                <td style="vertical-align: middle; border-bottom: 1px solid #000; border-right: 1px solid #000;">Price</td>
+                                                    <td style="vertical-align: middle; border-bottom: 1px solid #000; border-right: 1px solid #000;">Price</td>
                                                     <td style="vertical-align: middle; border-bottom: 1px solid #000;">Approved</td>
                                                 </tr>
                                                 <tr>

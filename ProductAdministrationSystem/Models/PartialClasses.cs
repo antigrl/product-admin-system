@@ -456,12 +456,18 @@ namespace PAS.Models
     }
 
     [MetadataType(typeof(CategoryMetadata))]
-    public partial class Category
+    public partial class Category : IComparable
     {
         // Default Constructor additions
         public void OnCreate()
         {
             this.CategoryStatus = MyExtensions.GetEnumDescription(Status.Active);
+        }
+
+        int IComparable.CompareTo(object obj)
+        {
+            Category category = (Category)obj;
+            return String.Compare(this.CategoryName, category.CategoryName);
         }
     }
 
