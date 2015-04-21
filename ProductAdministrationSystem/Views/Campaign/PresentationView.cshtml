@@ -82,7 +82,7 @@
 
             <h2><input type="text" value="@majorCategory.majorCategory" class="major-title">
             </h2>
-            <table class="ui-draggable drag-and-drop-table">
+            <table class="sortable-table">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -95,9 +95,10 @@
                 <tbody>
                     @foreach (var product in productList)
                     {
-                        <tr>
+                        <tr class="sorted-head">
                             <td>
                                 <div>
+                                    <span class="handle"></span>
                                     @Html.DisplayFor(model => product.ProductID)
                                 </div>
                             </td>
