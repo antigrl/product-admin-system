@@ -260,7 +260,6 @@
     $(".starting-page-number").change(function () {
         ShowPrintNumbers();
     });
-
     ShowPrintNumbers();
     // End Presentation view functions
 

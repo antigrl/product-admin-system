@@ -147,7 +147,7 @@ namespace PAS.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             Campaign campaign = db.Campaigns.Find(id);
-            
+
             // pull active major categories 
             SortedSet<Category> activeMajorCategories = new SortedSet<Category>();
             foreach (Product product in campaign.Products)
@@ -155,9 +155,27 @@ namespace PAS.Controllers
                 activeMajorCategories.Add(product.Category);
             }
             ViewBag.MajorCategoryList = activeMajorCategories.ToList();
-            
+
             // pull MajorCategoryOrderings
             List<MajorCategoryOrdering> majorCategoryOrderings = db.MajorCategoryOrderings.Where(m => m.CampaignID == campaign.CampaignID).OrderBy(m => m.SortValue).ToList();
+
+            // loop though active categories
+            foreach (Category category in activeMajorCategories.ToList())
+            {
+                // if category not in orderings 
+                var count = majorCategoryOrderings.Where(m => category.CategoryID.Equals(m.CategoryID));
+                if (majorCategoryOrderings.Where(m => category.CategoryID.Equals(m.CategoryID)).Count() == 0)
+                {
+                    // and add them
+                    MajorCategoryOrdering newOrdering = new MajorCategoryOrdering();
+                    newOrdering.Category = category;
+                    newOrdering.CategoryID = category.CategoryID;
+                    newOrdering.CategoryRename = category.CategoryName;
+                    newOrdering.ShowCategory = true;
+                    majorCategoryOrderings.Add(newOrdering);
+                }
+            }
+
             ViewBag.MajorCategoryOrderingList = majorCategoryOrderings;
 
             if (campaign == null)
@@ -179,7 +197,7 @@ namespace PAS.Controllers
                 foreach (MajorCategoryOrdering categoryOrdering in categoryOrderings)
                 {
                     //UpdateDB                    
-                    if (categoryOrdering.ID == null || categoryOrdering.ID < 0)
+                    if (categoryOrdering.ID == 0)
                     {
                         // Create Entry
                         db.MajorCategoryOrderings.Add(categoryOrdering);
@@ -188,10 +206,11 @@ namespace PAS.Controllers
                     }
                     else
                     {
-                        if(ModelState.IsValid)
+                        if (ModelState.IsValid)
                         {
                             db.Entry(categoryOrdering).State = EntityState.Modified;
                             db.SaveChanges();
+                            status = "Successful Entry Updated!";
                         }
                     }
                 }
@@ -206,17 +225,20 @@ namespace PAS.Controllers
         //
         // POST: /Campaign/SaveProductOrdering
         [HttpPost]
-        public JsonResult SaveProductOrdering(List<SortOrderingProduct> products)
+        public JsonResult SaveProductOrdering(List<SortOrderingProduct> sortOrderingProducts)
         {
             string status = null;
             try
             {
-                foreach (SortOrderingProduct product in products)
+                foreach (SortOrderingProduct sortOrderingProduct in sortOrderingProducts)
                 {
                     //UpdateDB
+                    Product product = db.Products.Find(sortOrderingProduct.ID);
+                    product.ProductSortValue = sortOrderingProduct.SortValue;
+                    db.Entry(product).State = EntityState.Modified;
+                    db.SaveChanges();
+                    status = "Sort Value updated/added";
                 }
-                status = "if you don't see this, something went wring.";
-
             }
             catch (Exception ex)
             {

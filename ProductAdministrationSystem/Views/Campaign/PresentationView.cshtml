@@ -64,13 +64,19 @@
             <dl class="category-checkboxes check-list-left">
                 <dt>Categories shown</dt>
                 <dd>
-                    @foreach (Category majorCategory in ViewBag.MajorCategoryList)
+                    @foreach (MajorCategoryOrdering majorCategory in ViewBag.MajorCategoryOrderingList)
                     {
-                        <input id="@majorCategory.CategoryName" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
-                        <label for="@majorCategory.CategoryName" class="checklist-label iconicfill-check">@majorCategory.CategoryName</label>
+                        string checkedAttribute = "";
+                        if (majorCategory.ShowCategory)
+                        {
+                            checkedAttribute = "checked";
+                        }
+                        <input id="@majorCategory.Category.CategoryName" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.Category.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" @checkedAttribute />
+                        <label for="@majorCategory.Category.CategoryName" class="checklist-label iconicfill-check">@majorCategory.Category.CategoryName</label>
                     }
                 </dd>
             </dl>
+
         </section>
     </div>
 </div>
@@ -79,7 +85,16 @@
     {
         productCount = 0;
         var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.MajorCategoryID == majorCategory.CategoryID).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
-        <section class="major-category Category_@majorCategory.Category.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
+        if (majorCategory.ID != null && majorCategory.ID > 0)
+        {
+            productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.MajorCategoryID == majorCategory.CategoryID).OrderBy(p => p.ProductSortValue);
+        }
+        string displayNone = "display: none;";
+        if (majorCategory.ShowCategory)
+        {
+            displayNone = "";
+        }
+        <section class="major-category Category_@majorCategory.Category.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" style="@displayNone">
             <input type="hidden" value="@majorCategory.CategoryID" class="category-id" />
             <input type="hidden" value="@majorCategory.ID" class="id" />
             <h2>
@@ -102,8 +117,8 @@
                         <tr class="sorted-head product-row">
                             <td>
 
-                                 @Html.DisplayFor(model => product.ProductID)
-                                 <input type="hidden" value="@product.ProductID" class="product-id" />
+                                @Html.DisplayFor(model => product.ProductID)
+                                <input type="hidden" value="@product.ProductID" class="product-id" />
 
                             </td>
                             <td>
@@ -112,7 +127,7 @@
                                         @if (Model != null && product.ProductImage != null)
                                         {
 
-                                                <img style="height:40px; width:40px;" src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
+                                            <img style="height:40px; width:40px;" src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
 
                                         }
                                     </div>
@@ -120,20 +135,20 @@
                             </td>
                             <td>
 
-                                    @Html.DisplayFor(model => product.ProductName)
+                                @Html.DisplayFor(model => product.ProductName)
 
                             </td>
                             <td>
                                 @if (product.Category1 != null)
                                 {
 
-                                        @Html.DisplayFor(model => product.Category1.CategoryName)
+                                    @Html.DisplayFor(model => product.Category1.CategoryName)
 
                                 }
                             </td>
                             <td>
 
-                                    @Html.DisplayFor(model => product.ProductSellPrices.Where(p => p.SellPriceLevel == 1).FirstOrDefault().SellPriceFinalAmount)
+                                @Html.DisplayFor(model => product.ProductSellPrices.Where(p => p.SellPriceLevel == 1).FirstOrDefault().SellPriceFinalAmount)
 
                             </td>
                         </tr>
