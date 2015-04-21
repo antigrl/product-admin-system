@@ -55,13 +55,10 @@ $('.sortable-table').sortable({
   itemPath: '> tbody',
   itemSelector: 'tr',
   placeholder: '<tr class="placeholder"/>',
-  group: 'simple_with_animation',
   pullPlaceholder: false,
+  axis: "y",
   onDrop: function (item, targetContainer, _super) {
-    var clonedItem = $('<tr/>').css({
-      height: 0,
-      border: "3px solid #ccc"
-    });
+    var clonedItem = $('<tr/>').css({height: 0});
     item.before(clonedItem)
     clonedItem.animate({'height': item.height()})
 
