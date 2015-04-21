@@ -53,9 +53,6 @@ namespace PAS.Controllers
             // Create New Campaign to get Constructor Values and set Created By
             Campaign campaign = new Campaign();
             campaign.OnCreate(User.Identity.Name);
-
-            string archived = MyExtensions.GetEnumDescription(Status.Archived);
-
             ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != archived), "CompanyID", "CompanyName");
 
             return View(campaign);
@@ -151,7 +148,7 @@ namespace PAS.Controllers
             ViewBag.ReturnUrl = returnUrl;
             Campaign campaign = db.Campaigns.Find(id);
             
-            // pull active major categories [use hashset for only adding unique values]
+            // pull active major categories 
             SortedSet<Category> activeMajorCategories = new SortedSet<Category>();
             foreach (Product product in campaign.Products)
             {
@@ -159,6 +156,10 @@ namespace PAS.Controllers
             }
             ViewBag.MajorCategoryList = activeMajorCategories.ToList();
             
+            // pull MajorCategoryOrderings
+            List<MajorCategoryOrdering> majorCategoryOrderings = db.MajorCategoryOrderings.Where(m => m.CampaignID == campaign.CampaignID).OrderBy(m => m.SortValue).ToList();
+            ViewBag.MajorCategoryOrderingList = majorCategoryOrderings;
+
             if (campaign == null)
             {
                 return HttpNotFound();
@@ -168,19 +169,32 @@ namespace PAS.Controllers
         }
 
         //
-        // POST: 
+        // POST: /Campaign/SaveMajorCategoryOrdering
         [HttpPost]
-        public JsonResult SaveMajorCategoryOrdering(List<MajorCategoryOrdering> categories)
+        public JsonResult SaveMajorCategoryOrdering(List<MajorCategoryOrdering> categoryOrderings)
         {
             string status = null;
             try
             {
-                foreach (MajorCategoryOrdering category in categories)
+                foreach (MajorCategoryOrdering categoryOrdering in categoryOrderings)
                 {
-                    //UpdateDB
+                    //UpdateDB                    
+                    if (categoryOrdering.ID == null || categoryOrdering.ID < 0)
+                    {
+                        // Create Entry
+                        db.MajorCategoryOrderings.Add(categoryOrdering);
+                        db.SaveChanges();
+                        status = "Successful Entry Creation!";
+                    }
+                    else
+                    {
+                        if(ModelState.IsValid)
+                        {
+                            db.Entry(categoryOrdering).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                    }
                 }
-                status = "if you don't see this, something went wring.";
-
             }
             catch (Exception ex)
             {
@@ -189,6 +203,8 @@ namespace PAS.Controllers
             return Json(status);
         }
 
+        //
+        // POST: /Campaign/SaveProductOrdering
         [HttpPost]
         public JsonResult SaveProductOrdering(List<SortOrderingProduct> products)
         {

@@ -75,14 +75,15 @@
     </div>
 </div>
 <div class="drag-and-drop-area flex-grid-category">
-    @foreach (Category majorCategory in ViewBag.MajorCategoryList)
+    @foreach (MajorCategoryOrdering majorCategory in ViewBag.MajorCategoryOrderingList)
     {
         productCount = 0;
-        var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.CategoryName).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
-        <section class="major-category Category_@majorCategory.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
+        var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.MajorCategoryID == majorCategory.CategoryID).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
+        <section class="major-category Category_@majorCategory.CategoryRename.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
             <input type="hidden" value="@majorCategory.CategoryID" class="category-id" />
+            <input type="hidden" value="@majorCategory.ID" class="id" />
             <h2>
-                <input type="text" value="@majorCategory.CategoryName" class="major-title">
+                <input type="text" value="@majorCategory.CategoryRename" class="major-title">
             </h2>
             <table class="ui-draggable drag-and-drop-table">
                 <thead>
