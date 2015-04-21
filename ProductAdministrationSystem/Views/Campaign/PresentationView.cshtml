@@ -54,8 +54,10 @@
                 <dd>
                     @foreach (var tier in Model.Company.PricingTiers)
                     {
-                        <input id="@tier.PricingTierName" type="checkbox" class="pricing-tier-checkbox" name="ShowPriceTiers" value="Tier_@tier.PricingTierLevel" checked />
-                        <label for="@tier.PricingTierName" class="checklist-label iconicfill-check">@tier.PricingTierName</label>
+
+                            <input id="@tier.PricingTierName" type="checkbox" class="pricing-tier-checkbox" name="ShowPriceTiers" value="Tier_@tier.PricingTierLevel" checked />
+                            <label for="@tier.PricingTierName" class="checklist-label iconicfill-check">@tier.PricingTierName</label>
+
                     }
                 </dd>
             </dl>
@@ -66,8 +68,10 @@
                 <dd>
                     @foreach (Category majorCategory in ViewBag.MajorCategoryList)
                     {
-                        <input id="@majorCategory.CategoryName" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
-                        <label for="@majorCategory.CategoryName" class="checklist-label iconicfill-check">@majorCategory.CategoryName</label>
+                        <div class="sortable-category">
+                            <input id="@majorCategory.CategoryName" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" checked />
+                            <label for="@majorCategory.CategoryName" class="checklist-label iconicfill-check">@majorCategory.CategoryName</label>
+                        </div>
                     }
                 </dd>
             </dl>
@@ -149,9 +153,11 @@
         productCount = 0;
         var productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.Category.CategoryName == majorCategory.CategoryName).OrderBy(p => p.MinorCategoryID.HasValue ? p.MinorCategoryID.Value : 0);
         <div class="presentation-major-category Category_@majorCategory.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
-            <div class="align-ceter">
-                <input type="text" value="@majorCategory.CategoryName" class="major-title">
-            </div>
+
+                <h2>
+                    <input type="text" value="@majorCategory.CategoryName" class="major-title">
+                </h2>
+
             @foreach (var product in productList)
             {
                 productCount++;
