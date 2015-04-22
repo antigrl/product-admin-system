@@ -48,6 +48,8 @@
             },
             context: this
         });
+
+
     });
 
     function postPresentationSheet() {
@@ -253,6 +255,7 @@
         $(".presentation-sheet-area").toggle();
         $(".drag-and-drop-area").toggle();
         $(".savePresentation").toggle();
+        ShowPrintNumbers();
     });
 
     // Presentation view functions
