@@ -269,3 +269,35 @@ tr.placeholder:before {
 .sortable-category:hover {
   cursor: -webkit-grab;
 }
+
+.sortable-table-header {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.sortable-table-header,
+.sortable-table  {
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    align-items: center;
+    li {
+      overflow: hidden;
+    }
+    .product-id {
+      width: 35px;
+    }
+
+    .product-name {
+      width: 200px;
+    }
+    .minor-category-name {
+      width: 120px;
+    }
+  }
+}
+.sortable-table ul {
+  border-top: 1px solid #cecece;
+  padding: 10px 0;
+}

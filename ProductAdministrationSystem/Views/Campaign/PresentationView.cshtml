@@ -105,28 +105,28 @@
                 <input type="text" value="@majorCategory.CategoryRename" class="major-title">
                 <small>@majorCategory.Category.CategoryName</small>
             </h2>
-            <table class="sortable-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Minor Category</th>
-                        <th>Sell Price</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div class="sortable-table-header">
+                <ul>
+                    <li class="product-id">ID</li>
+                    <li class="product-image">Image</li>
+                    <li class="product-name">Name</li>
+                    <li class="minor-category-name">Minor Category</li>
+                    <li>Sell Price</li>
+                </ul>
+            </div>
+            <div class="sortable-table">
                     @foreach (var product in productList)
                     {
-                        <tr class="sorted-head product-row">
-                            <td>
+                        <ul class="sorted-head product-row">
 
-                                @Html.DisplayFor(model => product.ProductID)
-                                <input type="hidden" value="@product.ProductID" class="product-id" />
+                                <li class="product-id">
 
-                            </td>
-                            <td>
-                                <div class="product-image">
+                                    @Html.DisplayFor(model => product.ProductID)
+                                    <input type="hidden" value="@product.ProductID" class="product-id" />
+
+                                </li>
+
+                                <li class="product-image">
                                     <div class="thumb-image">
                                         @if (Model != null && product.ProductImage != null)
                                         {
@@ -135,30 +135,31 @@
 
                                         }
                                     </div>
-                                </div>
-                            </td>
-                            <td>
+                                </li>
 
-                                @Html.DisplayFor(model => product.ProductName)
+                                <li class="product-name">
 
-                            </td>
-                            <td>
-                                @if (product.Category1 != null)
-                                {
+                                    @Html.DisplayFor(model => product.ProductName)
 
-                                    @Html.DisplayFor(model => product.Category1.CategoryName)
+                                </li>
+                                <li class="minor-category-name">
+                                    @if (product.Category1 != null)
+                                    {
 
-                                }
-                            </td>
-                            <td>
+                                        @Html.DisplayFor(model => product.Category1.CategoryName)
 
-                                @Html.DisplayFor(model => product.ProductSellPrices.Where(p => p.SellPriceLevel == 1).FirstOrDefault().SellPriceFinalAmount)
+                                    }
+                                </li>
+                                <li class="this-sell-price">
 
-                            </td>
-                        </tr>
+                                    @Html.DisplayFor(model => product.ProductSellPrices.Where(p => p.SellPriceLevel == 1).FirstOrDefault().SellPriceFinalAmount)
+
+                                </li>
+                            </ul>
+
                     }
-                </tbody>
-            </table>
+
+            </div>
         </section>
 
     }
