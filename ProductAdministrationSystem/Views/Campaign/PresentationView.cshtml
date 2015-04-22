@@ -55,8 +55,8 @@
                     @foreach (var tier in Model.Company.PricingTiers)
                     {
 
-                            <input id="@tier.PricingTierName" type="checkbox" class="pricing-tier-checkbox" name="ShowPriceTiers" value="Tier_@tier.PricingTierLevel" checked />
-                            <label for="@tier.PricingTierName" class="checklist-label iconicfill-check">@tier.PricingTierName</label>
+                        <input id="@tier.PricingTierName" type="checkbox" class="pricing-tier-checkbox" name="ShowPriceTiers" value="Tier_@tier.PricingTierLevel" checked />
+                        <label for="@tier.PricingTierName" class="checklist-label iconicfill-check">@tier.PricingTierName</label>
 
                     }
                 </dd>
@@ -73,8 +73,10 @@
                         {
                             checkedAttribute = "checked";
                         }
-                        <input id="@majorCategory.Category.CategoryName" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.Category.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" @checkedAttribute />
-                        <label for="@majorCategory.Category.CategoryName" class="checklist-label iconicfill-check">@majorCategory.Category.CategoryName</label>
+                        <div class="sortable-category">
+                            <input id="@majorCategory.Category.CategoryName" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.Category.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" @checkedAttribute />
+                            <label for="@majorCategory.Category.CategoryName" class="checklist-label iconicfill-check">@majorCategory.Category.CategoryName</label>
+                        </div>
                     }
                 </dd>
             </dl>
