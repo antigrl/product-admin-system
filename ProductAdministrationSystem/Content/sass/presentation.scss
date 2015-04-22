@@ -266,9 +266,6 @@ tr.placeholder:before {
   cursor: -webkit-grab;
 }
 
-section.major-category {
+.sortable-category:hover {
   cursor: -webkit-grab;
-  &:hover {
-    border: 3px dotted #ccc;
-  }
 }
