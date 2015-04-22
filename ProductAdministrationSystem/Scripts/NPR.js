@@ -252,11 +252,11 @@
                 cache: false,
                 success: function (html) {
                     $(".presentation-sheet-area").html(html);
-                    ShowPrintNumbers();
 
                     $(".presentation-sheet-area").toggle();
                     $(".drag-and-drop-area").toggle();
                     $(".savePresentation").toggle();
+                    ShowPrintNumbers();
                 },
                 context: this
             });

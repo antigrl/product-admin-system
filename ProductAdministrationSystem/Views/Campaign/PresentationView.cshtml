@@ -54,10 +54,8 @@
                 <dd>
                     @foreach (var tier in Model.Company.PricingTiers)
                     {
-
                         <input id="@tier.PricingTierName" type="checkbox" class="pricing-tier-checkbox" name="ShowPriceTiers" value="Tier_@tier.PricingTierLevel" checked />
                         <label for="@tier.PricingTierName" class="checklist-label iconicfill-check">@tier.PricingTierName</label>
-
                     }
                 </dd>
             </dl>
