@@ -50,6 +50,16 @@ $('.dataTables_filter > label > input').attr("placeholder", "Search");
 
 var adjustment = $(this);
 
+$('.flex-grid-category').sortable({
+  containerSelector: 'div',
+  itemSelector: 'section.major-category',
+  placeholder: '<section class="placeholder"/>'
+}).on('mousedown', function() {
+  $('.sortable-table').slideUp();
+}).on('mouseup', function() {
+  $('.sortable-table').slideDown();
+});
+
 $('.sortable-table').sortable({
   containerSelector: 'table',
   itemPath: '> tbody',
