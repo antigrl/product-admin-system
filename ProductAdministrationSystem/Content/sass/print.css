@@ -1,0 +1,31 @@
+﻿@media print {
+  @page { }
+
+  body {
+    font-size: 8px; }
+    body #body {
+      margin-top: -25px !important; }
+    body .name-container a {
+      text-decoration: none;
+      font-weight: bold; }
+    body .page_break {
+      page-break-after: always;
+      break-after: page;
+      display: table; }
+      body .page_break:last-child {
+        page-break-after: avoid; }
+    body .page_number {
+      display: block;
+      position: relative; }
+      body .page_number span {
+        position: absolute;
+        top: 6.75in;
+        left: 4.75in; }
+    body header, body .presentation-header, body .header, body .footer, body footer, body .heading, body .top-wrapper, body nav {
+      display: none; }
+    body .presentation-major-category {
+      margin-left: -70px;
+      margin-right: -20px; }
+ }
+
+/*# sourceMappingURL=print.css.map */

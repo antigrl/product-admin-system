@@ -41,7 +41,7 @@
             </dl>
             <dl class="check-list-left">
                 <dd>
-                    <input type="button" class="showPrintPreview btn button" name="showPrintPreview" value="Show Print Preview" />
+                    <input type="button" class="showPrintPreview btn button" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="showPrintPreview" value="Show Print Preview" />
                 </dd>
                 <dd>
                     <input type="button" class="savePresentation btn button" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="Save Presentation Ordering" value="Save Presentation Ordering" />
@@ -54,10 +54,8 @@
                 <dd>
                     @foreach (var tier in Model.Company.PricingTiers)
                     {
-
                         <input id="@tier.PricingTierName" type="checkbox" class="pricing-tier-checkbox" name="ShowPriceTiers" value="Tier_@tier.PricingTierLevel" checked />
                         <label for="@tier.PricingTierName" class="checklist-label iconicfill-check">@tier.PricingTierName</label>
-
                     }
                 </dd>
             </dl>
