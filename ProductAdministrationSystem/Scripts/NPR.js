@@ -36,6 +36,18 @@
         var onEventSavePresentation = new postPresentationSheet();
         onEventSavePresentation.launchMajorCategories();
         onEventSavePresentation.launchProducts();
+
+        // reload partial view
+        var url = $(this).attr("data-url");
+        $.ajax({
+            type: "POST",
+            url: url,
+            cache: false,
+            success: function (html) {
+                $(".presentation-sheet-area").html(html);
+            },
+            context: this
+        });
     });
 
     function postPresentationSheet() {
@@ -240,6 +252,7 @@
     $(".showPrintPreview ").click(function () {
         $(".presentation-sheet-area").toggle();
         $(".drag-and-drop-area").toggle();
+        $(".savePresentation").toggle();
     });
 
     // Presentation view functions

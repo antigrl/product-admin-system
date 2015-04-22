@@ -357,5 +357,41 @@ namespace PAS.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+        public PartialViewResult ReloadPrintPreview(int id)
+        {
+            Campaign campaign = db.Campaigns.Find(id);
+
+
+            // pull active major categories 
+            SortedSet<Category> activeMajorCategories = new SortedSet<Category>();
+            foreach (Product product in campaign.Products)
+            {
+                activeMajorCategories.Add(product.Category);
+            }
+            ViewBag.MajorCategoryList = activeMajorCategories.ToList();
+
+            // pull MajorCategoryOrderings
+            List<MajorCategoryOrdering> majorCategoryOrderings = db.MajorCategoryOrderings.Where(m => m.CampaignID == campaign.CampaignID).OrderBy(m => m.SortValue).ToList();
+
+            // loop though active categories
+            foreach (Category category in activeMajorCategories.ToList())
+            {
+                // if category not in orderings 
+                var count = majorCategoryOrderings.Where(m => category.CategoryID.Equals(m.CategoryID));
+                if (majorCategoryOrderings.Where(m => category.CategoryID.Equals(m.CategoryID)).Count() == 0)
+                {
+                    // and add them
+                    MajorCategoryOrdering newOrdering = new MajorCategoryOrdering();
+                    newOrdering.Category = category;
+                    newOrdering.CategoryID = category.CategoryID;
+                    newOrdering.CategoryRename = category.CategoryName;
+                    newOrdering.ShowCategory = true;
+                    majorCategoryOrderings.Add(newOrdering);
+                }
+            }
+
+            ViewBag.MajorCategoryOrderingList = majorCategoryOrderings;
+            return PartialView("_PresentationPrintPreview", campaign);
+        }
     }
 }
