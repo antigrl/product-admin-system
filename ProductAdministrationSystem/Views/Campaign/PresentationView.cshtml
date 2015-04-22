@@ -41,7 +41,7 @@
             </dl>
             <dl class="check-list-left">
                 <dd>
-                    <input type="button" class="showPrintPreview btn button" name="showPrintPreview" value="Show Print Preview" />
+                    <input type="button" class="showPrintPreview btn button" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="showPrintPreview" value="Show Print Preview" />
                 </dd>
                 <dd>
                     <input type="button" class="savePresentation btn button" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="Save Presentation Ordering" value="Save Presentation Ordering" />
