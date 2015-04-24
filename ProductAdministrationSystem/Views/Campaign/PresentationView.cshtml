@@ -54,8 +54,9 @@
                 <dd>
                     @foreach (var tier in Model.Company.PricingTiers)
                     {
-                        <input id="@tier.PricingTierName" type="checkbox" class="pricing-tier-checkbox" name="ShowPriceTiers" value="Tier_@tier.PricingTierLevel" checked />
-                        <label for="@tier.PricingTierName" class="checklist-label iconicfill-check">@tier.PricingTierName</label>
+
+                            <input id="@tier.PricingTierName" type="checkbox" class="pricing-tier-checkbox" name="ShowPriceTiers" value="Tier_@tier.PricingTierLevel" checked />
+                            <label for="@tier.PricingTierName" class="checklist-label iconicfill-check">@tier.PricingTierName</label>
                     }
                 </dd>
             </dl>
@@ -105,7 +106,7 @@
             </h2>
             <div class="sortable-table-header">
                 <ul>
-                    <li class="product-id">ID</li>
+                    <li class="product-column">ID</li>
                     <li class="product-image">Image</li>
                     <li class="product-name">Name</li>
                     <li class="minor-category-name">Minor Category</li>
@@ -115,9 +116,9 @@
             <div class="sortable-table">
                     @foreach (var product in productList)
                     {
-                        <ul class="sorted-head product-row">
+                        <ul>
 
-                                <li class="product-id">
+                                <li class="product-column">
 
                                     @Html.DisplayFor(model => product.ProductID)
                                     <input type="hidden" value="@product.ProductID" class="product-id" />

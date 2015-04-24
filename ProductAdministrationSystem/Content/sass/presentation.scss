@@ -280,12 +280,12 @@ tr.placeholder:before {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-
+    width: 100%;
     align-items: center;
     li {
       overflow: hidden;
     }
-    .product-id {
+    .product-column {
       width: 35px;
     }
 
@@ -300,4 +300,9 @@ tr.placeholder:before {
 .sortable-table ul {
   border-top: 1px solid #cecece;
   padding: 10px 0;
+  &.selected {
+    background-color: #eee;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    cursor: -webkit-grab;
+  }
 }
