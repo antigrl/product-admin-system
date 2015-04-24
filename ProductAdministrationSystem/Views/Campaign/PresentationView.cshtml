@@ -40,12 +40,8 @@
                 </dd>
             </dl>
             <dl class="check-list-left">
-                <dd>
-                    <input type="button" class="showPrintPreview btn button" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="showPrintPreview" value="Show Print Preview" />
-                </dd>
-                <dd>
-                    <input type="button" class="savePresentation btn button" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="Save Presentation Ordering" value="Save Presentation Ordering" />
-                </dd>
+
+
             </dl>
         </section>
         <section class="seamless">
@@ -55,8 +51,8 @@
                     @foreach (var tier in Model.Company.PricingTiers)
                     {
 
-                            <input id="@tier.PricingTierName" type="checkbox" class="pricing-tier-checkbox" name="ShowPriceTiers" value="Tier_@tier.PricingTierLevel" checked />
-                            <label for="@tier.PricingTierName" class="checklist-label iconicfill-check">@tier.PricingTierName</label>
+                        <input id="@tier.PricingTierName" type="checkbox" class="pricing-tier-checkbox" name="ShowPriceTiers" value="Tier_@tier.PricingTierLevel" checked />
+                        <label for="@tier.PricingTierName" class="checklist-label iconicfill-check">@tier.PricingTierName</label>
                     }
                 </dd>
             </dl>
@@ -163,7 +159,11 @@
 
     }
 </div>
-
 <div class="presentation-sheet-area" style="display: none;">
     @Html.Partial("~/Views/Campaign/_PresentationPrintPreview.cshtml", Model);
+</div>
+<div class="bottom-save-bar">
+        <md-button class="showPrintPreview" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="showPrintPreview">Show Print Preview
+        </md-button>
+        <md-button ng-click="showSimpleToast()" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="Save Presentation Ordering" class="savePresentation md-raised">Save</md-button>
 </div>

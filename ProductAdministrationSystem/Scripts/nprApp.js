@@ -111,3 +111,48 @@ $(".sortable-table").on('click', 'ul', function (e) {
     }
 
 });
+// Saved popup toast
+app.controller('AppCtrl', function($scope, $mdToast, $animate) {
+  $scope.toastPosition = {
+    bottom: true,
+    top: false,
+    left: true
+  };
+  $scope.getToastPosition = function() {
+    return Object.keys($scope.toastPosition)
+      .filter(function(pos) { return $scope.toastPosition[pos]; })
+      .join(' ');
+  };
+  $scope.showSimpleToast = function() {
+    $mdToast.show(
+      $mdToast.simple()
+        .content('Changes saved!')
+        .position($scope.getToastPosition())
+        .hideDelay(3000)
+    );
+  };
+})
+.controller('ToastCtrl', function($scope, $mdToast) {
+  $scope.closeToast = function() {
+    $mdToast.hide();
+  };
+});
+
+$(function(){
+  //Keep track of last scroll
+  var lastScroll = 0;
+  $(window).scroll(function(event){
+      //Sets the current scroll position
+      var st = $(this).scrollTop();
+
+      //Determines up-or-down scrolling
+      if (st > lastScroll){
+        $(".bottom-save-bar").css("display",'inline')
+      }
+      if(st == 0){
+        $(".bottom-save-bar").css("display",'none')
+      }
+      //Updates scroll position
+      lastScroll = st;
+  });
+});

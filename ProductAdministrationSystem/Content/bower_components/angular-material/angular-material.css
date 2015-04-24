@@ -6301,7 +6301,7 @@ md-toast {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  position: absolute;
+  position: fixed;
   box-sizing: border-box;
   -webkit-align-items: center;
       -ms-flex-align: center;
@@ -6383,7 +6383,7 @@ md-toast {
     md-toast.md-bottom {
       bottom: 8px; }
     md-toast.md-left {
-      left: 8px; }
+      left: 68px; }
     md-toast.md-right {
       right: 8px; }
     md-toast.md-top {

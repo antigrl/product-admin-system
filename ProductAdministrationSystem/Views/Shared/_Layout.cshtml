@@ -6,6 +6,7 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/bower_components/angular-material/angular-material.css">
     @Styles.Render("~/Content/css")
     @using PAS.Helpers;
 <script type='text/javascript'>
@@ -17,9 +18,9 @@
   })(document, 'script');
 </script>
 
-<link rel="stylesheet" href="~/Content/bower_components/angular-material/angular-material.css">
+
 </head>
-<body>
+<body ng-controller="AppCtrl">
     <nav class="collapsed main">
         <a class="open"></a>
         <div>
