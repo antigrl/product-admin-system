@@ -313,10 +313,17 @@ main {
   z-index: 999;
   left: 15px;
   bottom: 35px;
+  color: darken(#fff, 25%);
+  transition: all .4s ease-in-out;
+  &:hover, &:active,  {
+    color: #fff;
+  }
+  &:focus {
+    color: darken(#fff, 25%);
+  }
   &:before {
     content: '\f102';
     font-family: "FontAwesome";
     font-size: 32px;
-    color: #fff;
   }
 }

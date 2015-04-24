@@ -67,7 +67,8 @@ nav.main {
       white-space: nowrap;
       transition: all .4s ease-in-out;
     }
-    a {
+    a,
+    .scroll-up {
       position: relative;
       display: block;
       padding: 15px 15px 17px 50px;
