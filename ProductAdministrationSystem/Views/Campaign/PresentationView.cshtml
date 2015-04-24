@@ -162,8 +162,9 @@
 <div class="presentation-sheet-area" style="display: none;">
     @Html.Partial("~/Views/Campaign/_PresentationPrintPreview.cshtml", Model);
 </div>
-<div class="bottom-save-bar">
-        <md-button class="showPrintPreview" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="showPrintPreview">Show Print Preview
+<div class="bottom-save-bar" ng-cloak>
+
+        <md-button ng-click="toggle = !toggle" class="showPrintPreview" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="showPrintPreview"><span ng-show="toggle">Hide Print Preview</span><span ng-hide="toggle">Show Print Preview</span>
         </md-button>
         <md-button ng-click="showSimpleToast()" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="Save Presentation Ordering" class="savePresentation md-raised">Save</md-button>
 </div>

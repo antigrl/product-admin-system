@@ -111,8 +111,9 @@ $(".sortable-table").on('click', 'ul', function (e) {
     }
 
 });
-// Saved popup toast
+
 app.controller('AppCtrl', function($scope, $mdToast, $animate) {
+  // Save toast alert
   $scope.toastPosition = {
     bottom: true,
     top: false,
