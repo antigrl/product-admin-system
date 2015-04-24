@@ -82,35 +82,35 @@ $('.category-checkboxes dd').sortable({
 });
 
 $(".sortable-table").on('click', 'ul', function (e) {
-    if (e.ctrlKey || e.metaKey) {
-        $(this).toggleClass("selected");
-    } else {
-        $(this).addClass("selected").siblings().removeClass('selected');
-    }
+  if (e.ctrlKey || e.metaKey) {
+    $(this).toggleClass("selected");
+  } else {
+    $(this).addClass("selected").siblings().removeClass('selected');
+  }
 }).sortable({
     delay: 150, //Needed to prevent accidental drag when trying to select
     revert: 0,
     placeholder: false,
     helper: function (e, item) {
 
-        if (!item.hasClass('selected')) {
-            item.addClass('selected').siblings().removeClass('selected');
-        }
-        var elements = item.parent().children('.selected').clone();
+      if (!item.hasClass('selected')) {
+        item.addClass('selected').siblings().removeClass('selected');
+      }
+      var elements = item.parent().children('.selected').clone();
 
-        item.data('multidrag', elements).siblings('.selected').remove();
+      item.data('multidrag', elements).siblings('.selected').remove();
 
-        var helper = $('<ul/>');
-        return helper.append(elements);
+      var helper = $('<ul/>');
+      return helper.append(elements);
     },
     stop: function (e, ui) {
 
-        var elements = ui.item.data('multidrag');
+      var elements = ui.item.data('multidrag');
 
-        ui.item.after(elements).remove();
+      ui.item.after(elements).remove();
     }
 
-});
+  });
 
 app.controller('AppCtrl', function($scope, $mdToast, $animate) {
   // Save toast alert
@@ -121,16 +121,16 @@ app.controller('AppCtrl', function($scope, $mdToast, $animate) {
   };
   $scope.getToastPosition = function() {
     return Object.keys($scope.toastPosition)
-      .filter(function(pos) { return $scope.toastPosition[pos]; })
-      .join(' ');
+    .filter(function(pos) { return $scope.toastPosition[pos]; })
+    .join(' ');
   };
   $scope.showSimpleToast = function() {
     $mdToast.show(
       $mdToast.simple()
-        .content('Changes saved!')
-        .position($scope.getToastPosition())
-        .hideDelay(3000)
-    );
+      .content('Changes saved!')
+      .position($scope.getToastPosition())
+      .hideDelay(3000)
+      );
   };
 })
 .controller('ToastCtrl', function($scope, $mdToast) {
@@ -138,3 +138,11 @@ app.controller('AppCtrl', function($scope, $mdToast, $animate) {
     $mdToast.hide();
   };
 });
+
+app.controller('ScrollCtrl', ['$scope', '$location', '$anchorScroll',
+  function ($scope, $location, $anchorScroll) {
+    $scope.gotoTop = function() {
+      $location.hash('top');
+      $anchorScroll();
+    };
+}]);

@@ -307,3 +307,16 @@ main {
     margin-bottom: 15px;
   }
 }
+
+.scroll-up {
+  position: fixed;
+  z-index: 999;
+  left: 15px;
+  bottom: 35px;
+  &:before {
+    content: '\f102';
+    font-family: "FontAwesome";
+    font-size: 32px;
+    color: #fff;
+  }
+}

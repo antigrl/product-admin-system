@@ -47,13 +47,14 @@
             }
         </ul>
     </nav>
-    <main class="collapsed">
+    <main class="collapsed" ng-controller="ScrollCtrl">
         <div id="body">
+            <a id="top"></a>
             @RenderSection("featured", required: false)
             @RenderBody()
         </div>
+        <a class="scroll-up" ng-click="gotoTop()"></a>
     </main>
-
     @Scripts.Render("~/bundles/npr")
     @RenderSection("scripts", required: false)
 </body>
