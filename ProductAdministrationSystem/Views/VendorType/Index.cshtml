@@ -4,40 +4,50 @@
     ViewBag.Title = "Vendor Type Index";
 }
 
-<h2>Vendor Type Index</h2>
-
-<div class="left-half-content">
-    <p>
-        @Html.ActionLink("Create New Vendor Type", "Create")
+<div class="heading">
+    <h1>Vendor Type Index
         @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
         {
-            <span class="float-right">@Html.ActionLink("View Active Vendor Type", "Index")</span>
+            <span class="heading-info">@Html.ActionLink("View Active Vendor Type", "Index")</span>
         }
         else
         {
-            <span class="float-right">@Html.ActionLink("View Archived Vendor Type", "ArchivedIndex")</span>
+            <span class="heading-info">@Html.ActionLink("View Archived Vendor Type", "ArchivedIndex")</span>
         }
-    </p>
-    <table class="index-table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.VendorTypeName)
-            </th>
-            <th></th>
-        </tr>
+        <div class="heading-info">@Html.ActionLink("Create New Vendor Type", "Create")</div>
+    </h1>
+</div>
+<div class="flex-grid">
+    <section>
+        <table datatable="" ng-cloak>
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.VendorTypeName)
+                    </th>
+                    <th>Modify</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VendorTypeName)
+                    </td>
+                    <td class="action-icons">
+                        <ul>
+                            <li>
+                                <a class="edit-btn" href="@Url.Action("Edit", new { id = item.VendorTypeID })"><i class="fa fa-pencil-square-o"></i></a><md-tooltip>Edit</md-tooltip>
+                            </li>
+                            <li>
+                                <a class="archive-btn" href="@Url.Action("Archive", new { id = item.VendorTypeID })"><i class="fa fa-archive"></i></a><md-tooltip>Archive</md-tooltip>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            }
 
-        @foreach(var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.VendorTypeName)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.VendorTypeID }) |
-                    @Html.ActionLink("Archive", "Archive", new { id = item.VendorTypeID })
-                </td>
-            </tr>
-        }
-
-    </table>
+        </table>
+    </section>
 </div>
