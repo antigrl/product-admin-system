@@ -42,7 +42,6 @@ namespace PAS
                         "~/Content/style.css",
                         "~/Content/print.css"));
 
-
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
                         "~/Content/themes/base/jquery.ui.resizable.css",
