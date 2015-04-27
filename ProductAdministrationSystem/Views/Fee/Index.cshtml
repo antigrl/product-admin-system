@@ -20,7 +20,7 @@
 
 <div class="flex-grid">
     <section>
-        <table class="index-table" datatable="">
+        <table datatable="" ng-cloak>
             <thead>
                 <tr>
                     <th>
@@ -41,7 +41,7 @@
                     <th>
                         Connected Object Name
                     </th>
-                    <th></th>
+                    <th>Modify</th>
                 </tr>
             </thead>
             <tbody>
@@ -92,9 +92,15 @@
                                 @item.Company.CompanyName
                             }
                         </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id=item.FeeID }) |
-                            @Html.ActionLink("Archive", "Archive", new { id=item.FeeID })
+                        <td class="action-icons">
+                            <ul>
+                                <li>
+                                    <a class="edit-btn" href="@Url.Action("Edit", new { id=item.FeeID })"><i class="fa fa-pencil-square-o"></i></a><md-tooltip>Edit</md-tooltip>
+                                </li>
+                                <li>
+                                    <a class="archive-btn" href="@Url.Action("Archive", new { id=item.FeeID })"><i class="fa fa-archive"></i></a><md-tooltip>Archive</md-tooltip>
+                                </li>
+                            </ul>
                         </td>
                     </tr>
                 }

@@ -34,9 +34,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.VendorNameName)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.VendorNameID }) |
-                    @Html.ActionLink("Archive", "Archive", new { id = item.VendorNameID })
+                <td class="action-icons">
+                    <ul>
+                        <li>
+                            <a class="edit-btn" href="@Url.Action("Edit", new { id = item.VendorNameID })"><i class="fa fa-pencil-square-o"></i></a><md-tooltip>Edit</md-tooltip>
+                        </li>
+                        <li>
+                            <a class="archive-btn" href="@Url.Action("Archive", new { id = item.VendorNameID })"><i class="fa fa-archive"></i></a><md-tooltip>Archive</md-tooltip>
+                        </li>
+                    </ul>
                 </td>
             </tr>
         }

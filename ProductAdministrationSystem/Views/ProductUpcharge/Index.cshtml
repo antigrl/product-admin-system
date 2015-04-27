@@ -19,7 +19,7 @@
 </div>
 <div class="flex-grid">
     <section>
-        <table datatable="">
+        <table datatable="" ng-cloak>
             <thead>
                 <tr>
                     <th>
@@ -37,7 +37,7 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Product.ProductName)
                     </th>
-                    <th></th>
+                    <th>Modify</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,9 +59,15 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Product.ProductName)
                         </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.UpchargeID }) |
-                            @Html.ActionLink("Archive", "Archive", new { id = item.UpchargeID })
+                        <td class="action-icons">
+                            <ul>
+                                <li>
+                                    <a class="edit-btn" href="@Url.Action("Edit", new { id = item.UpchargeID })"><i class="fa fa-pencil-square-o"></i></a><md-tooltip>Edit</md-tooltip>
+                                </li>
+                                <li>
+                                    <a class="archive-btn" href="@Url.Action("Archive", new { id = item.UpchargeID })"><i class="fa fa-archive"></i></a><md-tooltip>Archive</md-tooltip>
+                                </li>
+                            </ul>
                         </td>
                     </tr>
                 }
