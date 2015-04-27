@@ -255,7 +255,7 @@
         <div class="decoration-container">
             <h2 class="add-fee">
                 Decoration
-                <a class="add-item" href="@Url.Action("BlankEditorRow", new { productID = Model.ProductID, isDecoration = true })"><i class="fa fa-plus-square"></i></a>
+                <a class="add-item" href="@Url.Action("BlankEditorRow", new { productID = Model.ProductID, isDecoration = true })"><i class="fa fa-plus-square"></i><md-tooltip>Add Decoration</md-tooltip></a>
             </h2>
 
             <div class="product-decorations add-target">
@@ -284,7 +284,7 @@
             <div class="dollar-fee-info">
                 <h2 class="add-fee">
                     Dollar Fees
-                    <a ng-tooltip="Add Dollar Fee" class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) })"><i class="fa fa-plus-square"></i></a>
+                    <a class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) })"><i class="fa fa-plus-square"></i><md-tooltip>Add Dollar Fee</md-tooltip></a>
                 </h2>
                 <ul class="fees add-target">
                     @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount)))
@@ -300,7 +300,7 @@
             <div class="main-fee-calc-container">
                 <h2 class="add-fee">
                 Upcharge
-                <a class="add-item" href="@Url.Action("BlankEditorRow", new { productID = Model.ProductID, isDecoration = false, isUpcharge = true })"><i class="fa fa-plus-square"></i></a>
+                <a class="add-item" href="@Url.Action("BlankEditorRow", new { productID = Model.ProductID, isDecoration = false, isUpcharge = true })"><i class="fa fa-plus-square"></i><md-tooltip>Add Upcharge</md-tooltip></a>
                 </h2>
                 <ul class="upcharges add-target">
                     @foreach (var upcharge in Model.ProductUpcharges.Where(p => p.UpchargeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
@@ -335,7 +335,7 @@
             <div class="amortized-fee-info">
                 <h2 class="add-fee">
                     Amortized Fees
-                    <a ng-tooltip="Add Amortized Fee" class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) })"><i class="fa fa-plus-square"></i></a>
+                    <a class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Amortized), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Cost) })"><i class="fa fa-plus-square"></i><md-tooltip>Add Amortized Fee</md-tooltip></a>
                 </h2>
                 <ul class="fees add-target">
                     @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized)))
@@ -380,7 +380,7 @@
             <div class="percent-fee-info">
                 <h2 class="add-fee">
                     Percent Fees
-                    <a ng-tooltip="Add Percent Fee" class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Net_Cost) })"><i class="fa fa-plus-square"></i></a>
+                    <a class="add-item" href="@Url.Action("BlankEditorRow", null, new { productID = Model.ProductID, feeType = MyExtensions.GetEnumDescription(FeeTypeList.Percent), feeCalculation = MyExtensions.GetEnumDescription(FeeCalcuationList.To_Item_Net_Cost) })"><i class="fa fa-plus-square"></i><md-tooltip>Add Percent Fee</md-tooltip></a>
                 </h2>
                 <ul class="fees add-target">
                     @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent)).OrderBy(f => f.FeeLevel))

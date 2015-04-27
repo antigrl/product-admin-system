@@ -122,7 +122,7 @@ main {
   }
   > section{
     flex: 1;
-    margin: 0 20px 20px 0;
+    margin: 0 0 20px 0;
     padding: 10px;
     border: 1px solid #d2d2d2;
     border-top-left-radius: 5px;
@@ -284,6 +284,7 @@ main {
 .flex-grid-category {
   > section {
     flex: 1;
+    margin-right: 20px;
   }
 }
 .truncate {
@@ -304,5 +305,25 @@ main {
 .info-list {
   .controls {
     margin-bottom: 15px;
+  }
+}
+
+.scroll-up {
+  position: fixed;
+  z-index: 999;
+  left: 15px;
+  bottom: 35px;
+  color: darken(#fff, 25%);
+  transition: all .4s ease-in-out;
+  &:hover, &:active,  {
+    color: #fff;
+  }
+  &:focus {
+    color: darken(#fff, 25%);
+  }
+  &:before {
+    content: '\f102';
+    font-family: "FontAwesome";
+    font-size: 32px;
   }
 }
