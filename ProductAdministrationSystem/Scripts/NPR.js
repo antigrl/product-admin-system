@@ -104,7 +104,10 @@
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 data: test,
-                success: function (data) { console.log(data) },
+                success: function (data) {
+                    console.log(data);
+                    angular.element(".success-click").trigger("click");
+                },
                 error: function (data) { console.log(data) }
             });
         }
@@ -240,12 +243,16 @@
 
     $(".showPrintPreview ").click(function () {
         if ($(".presentation-sheet-area").is(":visible")) {
-            $(".presentation-sheet-area").toggle();
-            $(".drag-and-drop-area").toggle();
-            $(".savePresentation").toggle();
+            //Show ordering 
+            $(this).text("Show Print Preview");
+            $(".presentation-sheet-area").hide();
+            $(".drag-and-drop-area").show();
+            $(".savePresentation").show();
+            $(".category-checkboxes").show();
         }
         else {
             // reload partial view
+            // Show print preview
             var url = $(this).attr("data-url");
             $.ajax({
                 type: "POST",
@@ -253,10 +260,11 @@
                 cache: false,
                 success: function (html) {
                     $(".presentation-sheet-area").html(html);
-
-                    $(".presentation-sheet-area").toggle();
-                    $(".drag-and-drop-area").toggle();
-                    $(".savePresentation").toggle();
+                    $(this).text("Hide Print Preview");
+                    $(".presentation-sheet-area").show();
+                    $(".drag-and-drop-area").hide();
+                    $(".savePresentation").hide();
+                    $(".category-checkboxes").hide();
                     ShowPrintNumbers();
                 },
                 context: this

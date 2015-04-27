@@ -17,7 +17,6 @@ namespace PAS
                         "~/Content/bower_components/angular/angular.js",
                         "~/Scripts/jquery.throttledresize.js",
                         "~/Content/bower_components/angular-datatables/dist/angular-datatables.js",
-                        "~/Scripts/NPR.js",
                         "~/Content/bower_components/angular-datatables/dist/angular-datatables.min.js",
                         "~/Content/bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js",
                         "~/Content/bower_components/tether/tether.js",
@@ -25,6 +24,7 @@ namespace PAS
                         "~/Scripts/angular-textarea-fit.js",
                         "~/Content/bower_components/angular-material/angular-material.js",
                         "~/Scripts/angular-aria.js",
+                        "~/Scripts/NPR.js",
                         "~/Scripts/nprApp.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

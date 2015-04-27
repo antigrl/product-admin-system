@@ -235,10 +235,10 @@ namespace PAS.Controllers
                     //UpdateDB
                     Product product = db.Products.Find(sortOrderingProduct.ID);
                     product.ProductSortValue = sortOrderingProduct.SortValue;
-                    db.Entry(product).State = EntityState.Modified;
-                    db.SaveChanges();
-                    status = "Sort Value updated/added";
+                    db.Entry(product).Property(p => p.ProductSortValue).IsModified = true;
                 }
+                db.SaveChanges();
+                status = "Sort Value updated/added";
             }
             catch (Exception ex)
             {
