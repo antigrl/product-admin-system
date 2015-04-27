@@ -18,7 +18,7 @@
     <div class="presentation-major-category Category_@majorCategory.Category.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
 
         <h2>
-            <input type="text" value="@majorCategory.CategoryRename" class="major-title">
+            <input type="text" value="@majorCategory.CategoryRename" class="major-title" disabled>
         </h2>
 
         @foreach (var product in productList)

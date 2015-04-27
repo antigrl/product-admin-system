@@ -43,12 +43,13 @@
             var majorCategories = [];
             var campaignID = $(".campaign-id").val();
             var count = 0;
-            $(".major-category").each(function (index) {
+            $(".sortable-category").each(function (index) {
                 var id = $(this).find(".id").val();
                 var categoryID = $(this).find(".category-id").val();
-                var categoryRename = $(this).find(".major-title").val();
+                var categoryClass = $(this).find(".checklist").val();
+                var categoryRename = $("." + categoryClass).find(".major-title").val();
                 var status = "Active";
-                var showCategory = $(this).is(":visible");
+                var showCategory = $(this).find(".checklist").prop("checked");
 
                 // build json object
                 var category = {
