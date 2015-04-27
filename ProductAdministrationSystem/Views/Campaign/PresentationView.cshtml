@@ -39,10 +39,7 @@
                     <input type="number" class="starting-page-number" name="StartingPageNumber" value="1" />
                 </dd>
             </dl>
-            <dl class="check-list-left">
-
-
-            </dl>
+            <dl class="check-list-left"></dl>
         </section>
         <section class="seamless">
             <dl class="check-list-left">
@@ -71,6 +68,8 @@
                         <div class="sortable-category">
                             <input id="@majorCategory.Category.CategoryName" type="checkbox" class="major-catgory-checkbox checklist" name="ShowMajorCatgory" value="Category_@majorCategory.Category.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" @checkedAttribute />
                             <label for="@majorCategory.Category.CategoryName" class="checklist-label iconicfill-check">@majorCategory.Category.CategoryName</label>
+                            <input type="hidden" value="@majorCategory.CategoryID" class="category-id" />
+                            <input type="hidden" value="@majorCategory.ID" class="id" />
                         </div>
                     }
                 </dd>
@@ -94,10 +93,10 @@
             displayNone = "";
         }
         <section class="major-category Category_@majorCategory.Category.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")" style="@displayNone">
-            <input type="hidden" value="@majorCategory.CategoryID" class="category-id" />
-            <input type="hidden" value="@majorCategory.ID" class="id" />
+
             <h2>
                 <input type="text" value="@majorCategory.CategoryRename" class="major-title">
+                <small>@majorCategory.Category.CategoryName</small>
             </h2>
             <div class="sortable-table-header">
                 <ul>
@@ -109,49 +108,49 @@
                 </ul>
             </div>
             <div class="sortable-table">
-                    @foreach (var product in productList)
-                    {
-                        <ul>
+                @foreach (var product in productList)
+                {
+                    <ul class="product-row">
 
-                                <li class="product-column">
+                        <li class="product-column">
 
-                                    @Html.DisplayFor(model => product.ProductID)
-                                    <input type="hidden" value="@product.ProductID" class="product-id" />
+                            @Html.DisplayFor(model => product.ProductID)
+                            <input type="hidden" value="@product.ProductID" class="product-id" />
 
-                                </li>
+                        </li>
 
-                                <li class="product-image">
-                                    <div class="thumb-image">
-                                        @if (Model != null && product.ProductImage != null)
-                                        {
+                        <li class="product-image">
+                            <div class="thumb-image">
+                                @if (Model != null && product.ProductImage != null)
+                                {
 
-                                            <img style="height:40px; width:40px;" src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
+                                    <img style="height:40px; width:40px;" src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
 
-                                        }
-                                    </div>
-                                </li>
+                                }
+                            </div>
+                        </li>
 
-                                <li class="product-name">
+                        <li class="product-name">
 
-                                    @Html.DisplayFor(model => product.ProductName)
+                            @Html.DisplayFor(model => product.ProductName)
 
-                                </li>
-                                <li class="minor-category-name">
-                                    @if (product.Category1 != null)
-                                    {
+                        </li>
+                        <li class="minor-category-name">
+                            @if (product.Category1 != null)
+                            {
 
-                                        @Html.DisplayFor(model => product.Category1.CategoryName)
+                                @Html.DisplayFor(model => product.Category1.CategoryName)
 
-                                    }
-                                </li>
-                                <li class="this-sell-price">
+                            }
+                        </li>
+                        <li class="this-sell-price">
 
-                                    @Html.DisplayFor(model => product.ProductSellPrices.Where(p => p.SellPriceLevel == 1).FirstOrDefault().SellPriceFinalAmount)
+                            @Html.DisplayFor(model => product.ProductSellPrices.Where(p => p.SellPriceLevel == 1).FirstOrDefault().SellPriceFinalAmount)
 
-                                </li>
-                            </ul>
+                        </li>
+                    </ul>
 
-                    }
+                }
 
             </div>
         </section>
@@ -162,8 +161,8 @@
     @Html.Partial("~/Views/Campaign/_PresentationPrintPreview.cshtml", Model);
 </div>
 <div class="bottom-save-bar" ng-cloak>
-
-        <md-button ng-click="toggle = !toggle" class="showPrintPreview" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="showPrintPreview"><span ng-show="toggle">Hide Print Preview</span><span ng-hide="toggle">Show Print Preview</span>
-        </md-button>
-        <md-button ng-click="showSimpleToast()" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="Save Presentation Ordering" class="savePresentation md-raised">Save</md-button>
+    <md-button ng-click="toggle = !toggle" class="showPrintPreview" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="showPrintPreview">
+        <span ng-show="toggle">Hide Print Preview</span><span ng-hide="toggle">Show Print Preview</span>
+    </md-button>
+    <md-button ng-click="showSimpleToast()" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="Save Presentation Ordering" class="savePresentation md-raised">Save</md-button>
 </div>
