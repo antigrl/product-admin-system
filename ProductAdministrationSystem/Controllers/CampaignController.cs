@@ -361,7 +361,6 @@ namespace PAS.Controllers
         {
             Campaign campaign = db.Campaigns.Find(id);
 
-
             // pull active major categories 
             SortedSet<Category> activeMajorCategories = new SortedSet<Category>();
             foreach (Product product in campaign.Products)
