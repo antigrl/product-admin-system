@@ -7,12 +7,18 @@
   text-align: right;
   margin-left: -60px;
   box-shadow: 0px -8px 47px -28px rgba(0,0,0,0.75);
-  button {
+  button,
+  md-progress-circular {
     margin-right: 60px;
   }
   .md-button.md-default-theme.md-raised{
     background-color: #1fbba6 !important;
     color: #fff;
   }
-
+  .md-ripple {
+    opacity: 0;
+  }
+  .md-ripple-container {
+    background-color: transparent !important;
+  }
 }

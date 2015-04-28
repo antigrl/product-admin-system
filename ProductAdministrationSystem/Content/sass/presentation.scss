@@ -1,3 +1,5 @@
+$green:         #1fbba6;
+
 .drag-and-drop-table {
   width: 100%;
 }
@@ -142,11 +144,11 @@ table {
   }
 
   &:checked + label {
-    color: #2ea34e;
+    color: $green;
 
     &:before {
-      background: #3dc863;
-      border-color: darken(#3dc863, 10%);
+      background: $green;
+      border-color: darken($green, 10%);
     }
   }
 

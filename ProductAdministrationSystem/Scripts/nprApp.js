@@ -145,4 +145,5 @@ app.controller('ScrollCtrl', ['$scope', '$location', '$anchorScroll',
       $location.hash('top');
       $anchorScroll();
     };
-}]);
+  }]);
+

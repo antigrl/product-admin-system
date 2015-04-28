@@ -164,6 +164,6 @@
     <md-button class="showPrintPreview" data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="showPrintPreview">
         Show Print Preview
     </md-button>
-    <md-button data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="Save Presentation Ordering" class="savePresentation md-raised">Save</md-button>
-    <span hidden class="success-click" ng-click="showSimpleToast()"></span>
+    <md-button data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="Save Presentation Ordering" class="savePresentation md-raised ladda-button" data-style="contract">Save</md-button>
+        <span hidden class="success-click" ng-click="showSimpleToast()"></span>
 </div>

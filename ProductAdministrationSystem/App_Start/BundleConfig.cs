@@ -25,6 +25,8 @@ namespace PAS
                         "~/Content/bower_components/angular-material/angular-material.js",
                         "~/Scripts/angular-aria.js",
                         "~/Scripts/NPR.js",
+                        "~/Scripts/spin.js",
+                        "~/Scripts/ladda.js",
                         "~/Scripts/nprApp.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(

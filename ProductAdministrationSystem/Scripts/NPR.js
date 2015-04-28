@@ -74,7 +74,11 @@
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 data: test,
-                success: function (data) { console.log(data) },
+
+                success: function (data) {
+                    console.log(data);
+
+                },
                 error: function (data) { console.log(data) }
             });
         }
@@ -96,7 +100,7 @@
             });
 
             var test = JSON.stringify(products);
-
+            var spinner = Ladda.create(document.querySelector('.ladda-button'));
             $.ajax({
                 type: "POST",
                 url: $(".save-product-url").val(),
@@ -104,9 +108,14 @@
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 data: test,
+                beforeSend: function() {
+                    spinner.start()
+                },
                 success: function (data) {
                     console.log(data);
                     angular.element(".success-click").trigger("click");
+                    spinner.stop();
+                    spinner.remove();
                 },
                 error: function (data) { console.log(data) }
             });
@@ -229,21 +238,21 @@
         }
     });
 
-    $("#FeeType").change(function () {
-        ShowFeeInputBasedOnType();
-    });
+$("#FeeType").change(function () {
+    ShowFeeInputBasedOnType();
+});
 
     // $(".toggle-company-fees").click(function () {
     //     $(".company-fees").toggle();
     // });
 
-    $(".toggle-archived-products").click(function () {
-        $(".archived-products").toggle();
-    });
+$(".toggle-archived-products").click(function () {
+    $(".archived-products").toggle();
+});
 
-    $(".showPrintPreview ").click(function () {
-        if ($(".presentation-sheet-area").is(":visible")) {
-            //Show ordering 
+$(".showPrintPreview ").click(function () {
+    if ($(".presentation-sheet-area").is(":visible")) {
+            //Show ordering
             $(this).text("Show Print Preview");
             $(".presentation-sheet-area").hide();
             $(".drag-and-drop-area").show();
@@ -340,56 +349,56 @@
             $(".productsellprice-data").hide();
         }
             // For if campaign is selected
-        else if ($("#CampaignID option:selected").val() > 0) {
-            $("#CampaignID option:not(:selected)").each(function () {
-                $(this).prop("disabled", "disabled");
-            });
+            else if ($("#CampaignID option:selected").val() > 0) {
+                $("#CampaignID option:not(:selected)").each(function () {
+                    $(this).prop("disabled", "disabled");
+                });
 
-            $(".company-data").hide();
-            $(".campaign-data").show();
-            $(".pricingtier-data").hide();
-            $(".product-data").hide();
-            $(".productsellprice-data").hide();
-        }
+                $(".company-data").hide();
+                $(".campaign-data").show();
+                $(".pricingtier-data").hide();
+                $(".product-data").hide();
+                $(".productsellprice-data").hide();
+            }
             // For if pricingTier is selected
-        else if ($("#PricingTierID option:selected").val() > 0) {
-            $("#PricingTierID option:not(:selected)").each(function () {
-                $(this).prop("disabled", "disabled");
-            });
+            else if ($("#PricingTierID option:selected").val() > 0) {
+                $("#PricingTierID option:not(:selected)").each(function () {
+                    $(this).prop("disabled", "disabled");
+                });
 
-            $(".company-data").hide();
-            $(".campaign-data").hide();
-            $(".pricingtier-data").show();
-            $(".product-data").hide();
-            $(".productsellprice-data").hide();
-        }
+                $(".company-data").hide();
+                $(".campaign-data").hide();
+                $(".pricingtier-data").show();
+                $(".product-data").hide();
+                $(".productsellprice-data").hide();
+            }
             // For if prouct is selected
-        else if ($("#ProductID option:selected").val() > 0) {
-            $("#ProductID option:not(:selected)").each(function () {
-                $(this).prop("disabled", "disabled");
-            });
+            else if ($("#ProductID option:selected").val() > 0) {
+                $("#ProductID option:not(:selected)").each(function () {
+                    $(this).prop("disabled", "disabled");
+                });
 
-            $(".company-data").hide();
-            $(".campaign-data").hide();
-            $(".pricingtier-data").hide();
-            $(".product-data").show();
-            $(".productsellprice-data").hide();
-        }
+                $(".company-data").hide();
+                $(".campaign-data").hide();
+                $(".pricingtier-data").hide();
+                $(".product-data").show();
+                $(".productsellprice-data").hide();
+            }
             // For if prouctSellPrice is selected
-        else if ($("#ProductSellPriceID option:selected").val() > 0) {
-            $("#ProductSellPriceID option:not(:selected)").each(function () {
-                $(this).prop("disabled", "disabled");
-            });
+            else if ($("#ProductSellPriceID option:selected").val() > 0) {
+                $("#ProductSellPriceID option:not(:selected)").each(function () {
+                    $(this).prop("disabled", "disabled");
+                });
 
-            $(".company-data").hide();
-            $(".campaign-data").hide();
-            $(".pricingtier-data").hide();
-            $(".product-data").hide();
-            $(".productsellprice-data").show();
+                $(".company-data").hide();
+                $(".campaign-data").hide();
+                $(".pricingtier-data").hide();
+                $(".product-data").hide();
+                $(".productsellprice-data").show();
+            }
         }
-    }
 
-    function DisabledInheritedFees() {
+        function DisabledInheritedFees() {
         // Loop though all fee rows
         $(".fees .editor-row").each(function () {
             // Check if the fee is inherited
@@ -423,7 +432,7 @@
                 });
             }
         });
-    }
+}
 });
 $('.description-container').html(function (i, t) {
     return t.replace('[eco]', '<span class="hidden">[eco]</span>');
