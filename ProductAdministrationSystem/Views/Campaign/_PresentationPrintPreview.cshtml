@@ -10,12 +10,12 @@
     {
         productList = Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived) && p.MajorCategoryID == majorCategory.CategoryID).OrderBy(p => p.ProductSortValue);
     }
-    string displayNone = "display: none;";
+    string hiddenClass = "hidden";
     if (majorCategory.ShowCategory)
     {
-        displayNone = "";
+        hiddenClass = "";
     }
-    <div class="presentation-major-category Category_@majorCategory.Category.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
+    <div class="@hiddenClass presentation-major-category Category_@majorCategory.Category.CategoryName.Replace(" ", "_").Replace("[", "").Replace("]", "").Replace("/", "")">
 
         <h2>
             <input type="text" value="@majorCategory.CategoryRename" class="major-title" disabled>
