@@ -6,8 +6,8 @@
     @using (Html.BeginCollectionItem("UpchargeSellPrices"))
     {
         <span>
-            @Html.DisplayFor(model => model.UpchargeSellPriceName): 
-            @Html.DisplayFor(model => model.UpchargeSellPriceFinalAmount) 
+            @Html.DisplayFor(model => model.UpchargeSellPriceName):
+            @Html.DisplayFor(model => model.UpchargeSellPriceFinalAmount)
             @Html.TextBoxFor(model => model.UpchargeSellPriceFinalRoundedAmount, new { @class = "dollar-value" })
         </span>
         <span class="hidden-inputs">

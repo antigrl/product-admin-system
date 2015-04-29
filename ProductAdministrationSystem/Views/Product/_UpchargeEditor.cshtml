@@ -7,7 +7,6 @@
     {
         <div>
             <span><a class="delete-row"></a></span>
-
             <span>
                 @if (Model.UpchargeID != null || Model.UpchargeID != 0)
                 {
@@ -15,16 +14,13 @@
                 }
                 else
                 {
-
-                        @Html.DisplayFor(model => model.UpchargeName)
-
+                    @Html.DisplayFor(model => model.UpchargeName)
                 }
                 @Html.HiddenFor(model => model.UpchargeID)
                 @Html.HiddenFor(model => model.ProductID)
                 @Html.HiddenFor(model => model.UpchargeName)
                 @Html.HiddenFor(model => model.UpchargeStatus)
             </span>
-
             <span>
                 $@Html.TextBoxFor(model => model.UpchargeAmount, new { @class = "dollar-value" })
             </span>

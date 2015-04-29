@@ -14,10 +14,8 @@
 
     <fieldset>
         <legend>UpchargeSellPrice</legend>
-
         @Html.HiddenFor(model => model.UpchargeSellPriceID)
         @Html.HiddenFor(model => model.UpchargeSellPriceStatus)
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.UpchargeSellPriceName)
         </div>
@@ -25,7 +23,6 @@
             @Html.EditorFor(model => model.UpchargeSellPriceName)
             @Html.ValidationMessageFor(model => model.UpchargeSellPriceName)
         </div>
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.UpchargeSellPriceLevel)
         </div>
@@ -33,7 +30,6 @@
             @Html.EditorFor(model => model.UpchargeSellPriceLevel)
             @Html.ValidationMessageFor(model => model.UpchargeSellPriceLevel)
         </div>
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.UpchargeSellPriceFinalAmount)
         </div>
@@ -41,7 +37,6 @@
             @Html.EditorFor(model => model.UpchargeSellPriceFinalAmount)
             @Html.ValidationMessageFor(model => model.UpchargeSellPriceFinalAmount)
         </div>
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.UpchargeSellPriceLocked)
         </div>
@@ -49,7 +44,6 @@
             @Html.EditorFor(model => model.UpchargeSellPriceLocked)
             @Html.ValidationMessageFor(model => model.UpchargeSellPriceLocked)
         </div>
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.UpchargeID, "ProductUpcharge")
         </div>
@@ -57,7 +51,6 @@
             @Html.DropDownList("UpchargeID", String.Empty)
             @Html.ValidationMessageFor(model => model.UpchargeID)
         </div>
-
         <p>
             <input type="submit" value="Save" />
         </p>
@@ -67,7 +60,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

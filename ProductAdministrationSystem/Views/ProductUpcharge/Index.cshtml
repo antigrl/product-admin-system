@@ -5,8 +5,9 @@
 }
 
 <div class="heading">
-    <h1>@ViewBag.TitleMessage Product Upcharge Index
-        @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+    <h1>
+        @ViewBag.TitleMessage Product Upcharge Index
+        @if (Request.Url.AbsolutePath.Contains("ArchivedIndex"))
         {
             <span class="heading-info">@Html.ActionLink("View Active", "Index")</span>
         }
@@ -41,7 +42,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach(var item in Model)
+                @foreach (var item in Model)
                 {
                     <tr>
                         <td>

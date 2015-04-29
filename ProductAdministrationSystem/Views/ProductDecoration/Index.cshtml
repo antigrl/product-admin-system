@@ -4,8 +4,9 @@
     ViewBag.Title = "Product Decoration Index";
 }
 <div class="heading">
-    <h1>@ViewBag.TitleMessage Product Decoration Index
-        @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+    <h1>
+        @ViewBag.TitleMessage Product Decoration Index
+        @if (Request.Url.AbsolutePath.Contains("ArchivedIndex"))
         {
             <span class="heading-info">@Html.ActionLink("View Active", "Index")</span>
         }
@@ -43,38 +44,39 @@
                 </tr>
             </thead>
             <tbody>
-        @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DecorationName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DecorationColor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DecorationLocation)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DecorationSize)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DecorationVendor)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Product.ProductName)
-                </td>
-                <td class="action-icons">
-                    <ul>
-                        <li>
-                            <a class="edit-btn" href="@Url.Action("Edit", new { id=item.DecorationID })"><i class="fa fa-pencil-square-o"></i></a><md-tooltip>Edit</md-tooltip>
-                        </li>
-                        <li>
-                            <a class="archive-btn" href="@Url.Action("Archive", new { id=item.DecorationID })"><i class="fa fa-archive"></i></a><md-tooltip>Archive</md-tooltip>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DecorationName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DecorationColor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DecorationLocation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DecorationSize)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DecorationVendor)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.ProductName)
+                        </td>
+                        <td class="action-icons">
+                            <ul>
+                                <li>
+                                    <a class="edit-btn" href="@Url.Action("Edit", new { id=item.DecorationID })"><i class="fa fa-pencil-square-o"></i></a><md-tooltip>Edit</md-tooltip>
+                                </li>
+                                <li>
+                                    <a class="archive-btn" href="@Url.Action("Archive", new { id=item.DecorationID })"><i class="fa fa-archive"></i></a><md-tooltip>Archive</md-tooltip>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </section>

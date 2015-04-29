@@ -9,16 +9,14 @@
     <link rel="stylesheet" href="~/Content/bower_components/angular-material/angular-material.css">
     @Styles.Render("~/Content/css")
     @using PAS.Helpers;
-<script type='text/javascript'>
-(function (d, t) {
-  var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
-  bh.type = 'text/javascript';
-  bh.src = '//www.bugherd.com/sidebarv2.js?apikey=0napvmewib36altnynfnmw';
-  s.parentNode.insertBefore(bh, s);
-  })(document, 'script');
-</script>
-
-
+    <script type='text/javascript'>
+        (function (d, t) {
+            var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            bh.type = 'text/javascript';
+            bh.src = '//www.bugherd.com/sidebarv2.js?apikey=0napvmewib36altnynfnmw';
+            s.parentNode.insertBefore(bh, s);
+        })(document, 'script');
+    </script>
 </head>
 <body ng-controller="AppCtrl">
     <nav class="collapsed main">
@@ -34,7 +32,6 @@
             <li class="section"><span>Navigation</span></li>
             <li>@Html.ActionLink("Home", "Index", "Home")</li>
             <li>@Html.ActionLink("Add New Company", "Create", "Company", new { ReturnUrl = Url.Action("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }) }, null)</li>
-            <!-- <li>@Html.ActionLink("Add New Campaign", "Create", "Campaign")</li>-->
             <li>@Html.ActionLink("Vendor List", "Index", "VendorName")</li>
             <li>@Html.ActionLink("Fee List", "Index", "FeeName")</li>
             @if (User.Identity.Name.ToLower().Contains("john.grabanski") ||

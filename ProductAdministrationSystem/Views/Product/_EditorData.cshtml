@@ -57,7 +57,6 @@
             @Html.HiddenFor(model => model.ProductStatus, new { Value = MyExtensions.GetEnumDescription(Status.New) })
         }
     </div>
-
     <div class="inline-left">
         <div class="product-image">
             <div class="controls">
@@ -121,8 +120,6 @@
             </div>
         </div>
     </div>
-
-
     <div class="inline-left">
         <div class="controls">
             @Html.LabelForRequired(model => model.ProductUnitOfMeasure)
@@ -156,7 +153,6 @@
         </div>
     </div>
     <div class="inline-right">
-
         <div class="controls">
             @Html.LabelForRequired(model => model.ProductSelectedColors)
             @Html.EditorFor(model => model.ProductSelectedColors)
@@ -166,8 +162,6 @@
             @Html.EditorFor(model => model.ProductSelectedSizes)
         </div>
     </div>
-
-
     <div class="inline-left">
         <div class="controls">
             @Html.LabelForRequired(model => model.VendorNameID, "VendorName")
@@ -228,8 +222,6 @@
             @Html.EditorFor(model => model.ProductInitialOrderQuantity)
         </div>
     </div>
-
-
     <div class="controls comments">
         @Html.LabelForRequired(model => model.ProductMerchandiserComments)
         @Html.TextAreaFor(model => model.ProductMerchandiserComments, new { ng_trim = "0", textarea_fit = "", @placeholder = "Add Comment" })
@@ -246,7 +238,6 @@
         @Html.LabelForRequired(model => model.ProductAccountManagerComments)
         @Html.TextAreaFor(model => model.ProductAccountManagerComments, new { ng_trim = "0", textarea_fit = "", @placeholder = "Add Comment" })
     </div>
-
 </div>
 
 @if (Model != null)
@@ -267,7 +258,6 @@
             </div>
         </div>
     </div>
-
     <div class="flex-grid">
         <div class="product-cost">
             <div class="editor-label">
@@ -278,7 +268,6 @@
         <div class="side-fee-calc-container">
         </div>
     </div>
-
     <div class="flex-grid">
         <div class="main-fee-calc-container">
             <div class="dollar-fee-info">
@@ -299,8 +288,8 @@
         <div class="side-fee-calc-container">
             <div class="main-fee-calc-container">
                 <h2 class="add-fee">
-                Upcharge
-                <a class="add-item" href="@Url.Action("BlankEditorRow", new { productID = Model.ProductID, isDecoration = false, isUpcharge = true })"><i class="fa fa-plus-square"></i><md-tooltip>Add Upcharge</md-tooltip></a>
+                    Upcharge
+                    <a class="add-item" href="@Url.Action("BlankEditorRow", new { productID = Model.ProductID, isDecoration = false, isUpcharge = true })"><i class="fa fa-plus-square"></i><md-tooltip>Add Upcharge</md-tooltip></a>
                 </h2>
                 <ul class="upcharges add-target">
                     @foreach (var upcharge in Model.ProductUpcharges.Where(p => p.UpchargeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
@@ -309,23 +298,22 @@
                     }
                 </ul>
             </div>
-
             <div class="toggle-fee">
-                <button type="button" ng-click="expand = !expand" class="toggle-company-fees button green">Show/Hide Default Fees<i class="fa" ng-class="{'fa-expand': expand, 'fa-compress': !expand}"></i>
+                <button type="button" ng-click="expand = !expand" class="toggle-company-fees button green">
+                    Show/Hide Default Fees<i class="fa" ng-class="{'fa-expand': expand, 'fa-compress': !expand}"></i>
                 </button>
             </div>
-        <div class="company-fee controls" ng-show="!expand">
-
-            <div class="the-fees">
-                @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount)).OrderBy(f => f.FeeName.FeeNameName))
-                {
-                    ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames, "FeeNameID", "FeeNameName", item.FeeNameID);
-                    <div class="company-fee">
-                        @Html.ActionLink("Add Fee", "BlankEditorRowExtended", null, new { productID = Model.ProductID, feeType = item.FeeType, inheritedID = item.FeeID, feeNameID = item.FeeNameID, feeDollarAmount = item.FeeDollarAmount, feeAmortizedCharge = item.FeeAmortizedCharge, feeAmortizedType = item.FeeAmortizedType, feePercent = item.FeePercent, feePercentType = item.FeePercentType }, new { @class = "add-existing-fee" })
-                        <input type="checkbox" class="existing-fee-checkbox" name="@item.FeeName" value="@item.FeeID" data-html-location=".dollar-fee-info .fees" />
-                        @item.FeeName.FeeNameName : [@Convert.ToDouble(item.FeeDollarAmount).ToString("c")]
-                    </div>
-                }
+            <div class="company-fee controls" ng-show="!expand">
+                <div class="the-fees">
+                    @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Dollar_Amount)).OrderBy(f => f.FeeName.FeeNameName))
+                    {
+                        ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames, "FeeNameID", "FeeNameName", item.FeeNameID);
+                        <div class="company-fee">
+                            @Html.ActionLink("Add Fee", "BlankEditorRowExtended", null, new { productID = Model.ProductID, feeType = item.FeeType, inheritedID = item.FeeID, feeNameID = item.FeeNameID, feeDollarAmount = item.FeeDollarAmount, feeAmortizedCharge = item.FeeAmortizedCharge, feeAmortizedType = item.FeeAmortizedType, feePercent = item.FeePercent, feePercentType = item.FeePercentType }, new { @class = "add-existing-fee" })
+                            <input type="checkbox" class="existing-fee-checkbox" name="@item.FeeName" value="@item.FeeID" data-html-location=".dollar-fee-info .fees" />
+                            @item.FeeName.FeeNameName : [@Convert.ToDouble(item.FeeDollarAmount).ToString("c")]
+                        </div>
+                    }
                 </div>
             </div>
         </div>
@@ -351,20 +339,19 @@
             <div class="company-fee controls" ng-show="!expand">
 
                 <div class="the-fees">
-                @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized)).OrderBy(f => f.FeeName.FeeNameName))
-                {
-                    ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames, "FeeNameID", "FeeNameName", item.FeeNameID);
-                    <div class="company-fee">
-                        @Html.ActionLink("Add Fee", "BlankEditorRowExtended", null, new { productID = Model.ProductID, feeType = item.FeeType, inheritedID = item.FeeID, feeNameID = item.FeeNameID, feeDollarAmount = item.FeeDollarAmount, feeAmortizedCharge = item.FeeAmortizedCharge, feeAmortizedType = item.FeeAmortizedType, feePercent = item.FeePercent, feePercentType = item.FeePercentType }, new { @class = "add-existing-fee" })
-                        <input type="checkbox" class="existing-fee-checkbox" name="@item.FeeName" value="@item.FeeID" data-html-location=".amortized-fee-info .fees" />
-                        @item.FeeName.FeeNameName : [@Convert.ToDouble(item.FeeAmortizedCharge).ToString("c") | @item.FeeAmortizedType]
-                    </div>
-                }
+                    @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized)).OrderBy(f => f.FeeName.FeeNameName))
+                    {
+                        ViewBag.FeeNames = new SelectList(new NPREntities().FeeNames, "FeeNameID", "FeeNameName", item.FeeNameID);
+                        <div class="company-fee">
+                            @Html.ActionLink("Add Fee", "BlankEditorRowExtended", null, new { productID = Model.ProductID, feeType = item.FeeType, inheritedID = item.FeeID, feeNameID = item.FeeNameID, feeDollarAmount = item.FeeDollarAmount, feeAmortizedCharge = item.FeeAmortizedCharge, feeAmortizedType = item.FeeAmortizedType, feePercent = item.FeePercent, feePercentType = item.FeePercentType }, new { @class = "add-existing-fee" })
+                            <input type="checkbox" class="existing-fee-checkbox" name="@item.FeeName" value="@item.FeeID" data-html-location=".amortized-fee-info .fees" />
+                            @item.FeeName.FeeNameName : [@Convert.ToDouble(item.FeeAmortizedCharge).ToString("c") | @item.FeeAmortizedType]
+                        </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
-
     <div class="flex-grid">
         <div class="net-cost">
             <div class="editor-label">
@@ -394,32 +381,30 @@
         </div>
         <div class="side-fee-calc-container">
             <div class="company-fee controls" ng-show="!expand">
-
                 <div class="the-fees">
-                @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent)).OrderBy(f => f.FeeName.FeeNameName))
-                {
-                    <div class="company-fee">
-                        @Html.ActionLink("Add Fee", "BlankEditorRowExtended", null, new { productID = Model.ProductID, feeType = item.FeeType, inheritedID = item.FeeID, feeNameID = item.FeeNameID, feeDollarAmount = item.FeeDollarAmount, feeAmortizedCharge = item.FeeAmortizedCharge, feeAmortizedType = item.FeeAmortizedType, feePercent = item.FeePercent, feePercentType = item.FeePercentType }, new { @class = "add-existing-fee" })
-                        <input type="checkbox" class="existing-fee-checkbox" name="@item.FeeName" value="@item.FeeID" data-html-location=".percent-fee-info .fees" />
-                        @{  /* NOTE: used convert.todouble to tostring("g") to remove trailing 0's */
-                    string typeDisplay = "";
-                    if (item.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Division))
+                    @foreach (var item in Model.Campaign.Company.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived) && f.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent)).OrderBy(f => f.FeeName.FeeNameName))
                     {
-                        typeDisplay = "÷";
-                    }
-                    else if (item.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Multiplication))
-                    {
-                        typeDisplay = "×";
-                    }
+                        <div class="company-fee">
+                            @Html.ActionLink("Add Fee", "BlankEditorRowExtended", null, new { productID = Model.ProductID, feeType = item.FeeType, inheritedID = item.FeeID, feeNameID = item.FeeNameID, feeDollarAmount = item.FeeDollarAmount, feeAmortizedCharge = item.FeeAmortizedCharge, feeAmortizedType = item.FeeAmortizedType, feePercent = item.FeePercent, feePercentType = item.FeePercentType }, new { @class = "add-existing-fee" })
+                            <input type="checkbox" class="existing-fee-checkbox" name="@item.FeeName" value="@item.FeeID" data-html-location=".percent-fee-info .fees" />
+                            @{  /* NOTE: used convert.todouble to tostring("g") to remove trailing 0's */
+                        string typeDisplay = "";
+                        if (item.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Division))
+                        {
+                            typeDisplay = "÷";
                         }
-                        @item.FeeName.FeeNameName : [@Convert.ToDouble(item.FeePercent).ToString("G")% | @typeDisplay]
-                    </div>
-                }
+                        else if (item.FeePercentType == MyExtensions.GetEnumDescription(PercentTypeList.Multiplication))
+                        {
+                            typeDisplay = "×";
+                        }
+                            }
+                            @item.FeeName.FeeNameName : [@Convert.ToDouble(item.FeePercent).ToString("G")% | @typeDisplay]
+                        </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
-
     <div class="flex-grid">
         <div class="net-cost">
             <div class="editor-label">
@@ -429,7 +414,6 @@
         </div>
         <div class="side-fee-calc-container"></div>
     </div>
-
     <div class="flex-grid product-fees-buttons">
         <button type="submit" class="button dark-blue" formaction="@Url.Action("SaveAndCalculateSellPrice", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Price</button>
 
@@ -438,17 +422,13 @@
         <button type="submit" class="button dark-blue" formaction="@Url.Action("SaveAndCalculateMargin", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Margin</button>
     </div>
     <div>
-
-
-            @foreach (var sellPrice in Model.ProductSellPrices.Where(price => price.SellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(price => price.SellPriceLevel))
+        @foreach (var sellPrice in Model.ProductSellPrices.Where(price => price.SellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(price => price.SellPriceLevel))
+        {
+            if (sellPrice.Product == null)
             {
-                if (sellPrice.Product == null)
-                {
-                    sellPrice.Product = Model;
-                }
-                Html.RenderPartial("_SellPriceEditor", sellPrice);
-
+                sellPrice.Product = Model;
             }
-
+            Html.RenderPartial("_SellPriceEditor", sellPrice);
+        }
     </div>
 }

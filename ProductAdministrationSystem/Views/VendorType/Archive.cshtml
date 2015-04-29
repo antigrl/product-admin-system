@@ -5,11 +5,9 @@
 }
 
 <h2>Archive Vendor Type</h2>
-
 <h3>Are you sure you want to Archive this Vendor Type?</h3>
 <fieldset>
     <legend>VendorType</legend>
-
     <div class="display-label">
         @Html.DisplayNameFor(model => model.VendorTypeName)
     </div>
@@ -17,12 +15,11 @@
         @Html.DisplayFor(model => model.VendorTypeName)
     </div>
 </fieldset>
-@using(Html.BeginForm())
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <p>
         <input type="submit" value="Archive" />
-        |
-        @Html.ActionLink("Back to Vendor Type List", "Index")
+        |@Html.ActionLink("Back to Vendor Type List", "Index")
     </p>
 }

@@ -22,7 +22,6 @@
 
     <fieldset class="full-content">
         @Html.Partial("_EditorData")
-
         <button type="submit" class="button green">Create</button>
         <a class="button" href="@Url.Action("Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)">Cancel</a>
     </fieldset>
