@@ -100,13 +100,13 @@
             </div>
             <div class="controls">
                 <input type="submit" class="button green" value="Save" />
-                | @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl}, null)
+                | @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
             </div>
         </article>
     </div>
     <br>
     <div class="flex-grid">
-                <section>
+        <section>
             <h2 class="add-plus">Campaigns <a href="@Url.Action("Create", "Campaign", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), CompanyID = Model.CompanyID }, null)"><i class="fa fa-plus-square"></i></a></h2>
             <table class="index-table" datatable="">
                 <thead>
@@ -144,7 +144,8 @@
     </div>
     <div class="flex-grid">
         <section>
-            <h2 class="add-plus">Company Fees
+            <h2 class="add-plus">
+                Company Fees
                 <a href="@Url.Action("Create", "Fee", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), CompanyID = Model.CompanyID }, null)">
                     <i class="fa fa-plus-square"></i>
                 </a>
@@ -182,7 +183,6 @@
                 </tbody>
             </table>
         </section>
-
         <section>
             <h2 class="add-plus">Pricing Tiers  <a href="@Url.Action("Create", "PricingTier", new { ReturnUrl = Url.Action("Edit", "Company", new { id = Model.CompanyID, ReturnUrl = ViewBag.ReturnUrl }), CompanyID = Model.CompanyID }, null)"><i class="fa fa-plus-square"></i></a></h2>
             <table class="index-table" datatable="">
@@ -230,8 +230,4 @@
             </table>
         </section>
     </div>
-}
-
-@section Scripts {
-
 }

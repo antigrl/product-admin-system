@@ -5,8 +5,9 @@
 }
 
 <div class="heading">
-    <h1>@ViewBag.TitleMessage Fee Index
-        @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+    <h1>
+        @ViewBag.TitleMessage Fee Index
+        @if (Request.Url.AbsolutePath.Contains("ArchivedIndex"))
         {
             <div class="heading-info">@Html.ActionLink("View Active Fees", "Index")</div>
         }
@@ -45,7 +46,8 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model) {
+                @foreach (var item in Model)
+                {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.FeeStatus)
@@ -63,31 +65,31 @@
                             @item.GetFeeConnection()
                         </td>
                         <td>
-                            @if(item.PricingTier != null)
+                            @if (item.PricingTier != null)
                             {
                                 <b>Pricing Tier:</b> @item.PricingTier.PricingTierName
                                 <br />
                                 <b>Company:</b> @item.PricingTier.Company.CompanyName
                             }
-                            else if(item.ProductSellPrice != null)
+                            else if (item.ProductSellPrice != null)
                             {
                                 <b>Sell Price:</b> @item.ProductSellPrice.SellPriceName
                                 <br />
                                 <b>Product: </b> @item.ProductSellPrice.Product.ProductName
                             }
-                            else if(item.Product != null)
+                            else if (item.Product != null)
                             {
                                 <b>Product:</b> @item.Product.ProductName
                                 <br />
                                 <b>Campaign:</b> @item.Product.Campaign.CampaignName
                             }
-                            else if(item.Campaign != null)
+                            else if (item.Campaign != null)
                             {
                                 <b>Campaign:</b> @item.Campaign.CampaignName
                                 <br />
                                 <b>Company:</b> @item.Campaign.Company.CompanyName
                             }
-                            else if(item.Company != null)
+                            else if (item.Company != null)
                             {
                                 @item.Company.CompanyName
                             }

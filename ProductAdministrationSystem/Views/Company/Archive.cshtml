@@ -94,12 +94,11 @@
         @Html.DisplayFor(model => model.CompanyUrl)
     </div>
 </fieldset>
-@using(Html.BeginForm())
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Archive" />
-        |
+        <input type="submit" value="Archive" />|
         @Html.ActionLink("Back to Company List", "Index")
     </p>
 }

@@ -1165,6 +1165,7 @@
     <Content Include="Views\MajorCategoryOrdering\Edit.cshtml" />
     <Content Include="Views\MajorCategoryOrdering\Archive.cshtml" />
     <Content Include="Views\Campaign\_PresentationPrintPreview.cshtml" />
+    <Content Include="Views\Product\_ProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

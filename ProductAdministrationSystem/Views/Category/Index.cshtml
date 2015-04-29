@@ -1,62 +1,60 @@
 ﻿@model IEnumerable<PAS.Models.Category>
 
 @{
-ViewBag.Title = "Category Index";
+    ViewBag.Title = "Category Index";
 }
 
-
-
 <div class="heading">
-  <h1>
-  Category Index
-    @if (Request.Url.AbsolutePath.Contains("ArchivedIndex"))
-    {
-    <span class="heading-info">@Html.ActionLink("View Active", "Index")</span>
-    }
-    else
-    {
-    <span class="heading-info">@Html.ActionLink("View Archived", "ArchivedIndex")</span>
-    }
-    <div class="heading-info">@Html.ActionLink("Create New", "Create")</div>
-  </h1>
+    <h1>
+        Category Index
+        @if (Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+        {
+            <span class="heading-info">@Html.ActionLink("View Active", "Index")</span>
+        }
+        else
+        {
+            <span class="heading-info">@Html.ActionLink("View Archived", "ArchivedIndex")</span>
+        }
+        <div class="heading-info">@Html.ActionLink("Create New", "Create")</div>
+    </h1>
 </div>
 <div class="flex-grid">
-  <section>
-  <table datatable="">
-  <thead>
-    <tr>
-      <th>
-        @Html.DisplayNameFor(model => model.CategoryName)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.CategoryType)
-      </th>
-      <th>Modify</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach (var item in Model)
-    {
-      <tr>
-        <td>
-          @Html.DisplayFor(modelItem => item.CategoryName)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.CategoryType)
-        </td>
-        <td class="action-icons">
-          <ul>
-            <li>
-              <a class="edit-btn" href="@Url.Action("edit", new { id = item.CategoryID })"><i class="fa fa-pencil-square-o"></i></a><md-tooltip>Edit</md-tooltip>
-            </li>
-            <li>
-              <a class="archive-btn" href="@Url.Action("Archive", new { id = item.CategoryID })"><i class="fa fa-archive"></i></a><md-tooltip>Archive</md-tooltip
-            </li>
-          </ul>
-        </td>
-      </tr>
-    }
-    </tbody>
-    </table>
-  </section>
+    <section>
+        <table datatable="">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CategoryName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CategoryType)
+                    </th>
+                    <th>Modify</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CategoryName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CategoryType)
+                        </td>
+                        <td class="action-icons">
+                            <ul>
+                                <li>
+                                    <a class="edit-btn" href="@Url.Action("edit", new { id = item.CategoryID })"><i class="fa fa-pencil-square-o"></i></a><md-tooltip>Edit</md-tooltip>
+                                </li>
+                                <li>
+                                    <a class="archive-btn" href="@Url.Action("Archive", new { id = item.CategoryID })"><i class="fa fa-archive"></i></a><md-tooltip>Archive</md-tooltip>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
 </div>

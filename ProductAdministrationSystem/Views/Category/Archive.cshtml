@@ -11,20 +11,21 @@
     <legend>Category</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.CategoryName)
+        @Html.DisplayNameFor(model => model.CategoryName)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.CategoryName)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.CategoryType)
+        @Html.DisplayNameFor(model => model.CategoryType)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.CategoryType)
     </div>
 </fieldset>
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     <p>
         <input type="submit" value="Archive" /> |
         @Html.ActionLink("Back to List", "Index")

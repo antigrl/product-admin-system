@@ -23,7 +23,6 @@
                 @Html.ValidationMessageFor(model => model.PricingTierName)
                 @Html.EditorFor(model => model.PricingTierName)
             </div>
-
             <div class="controls">
                 @Html.LabelForRequired(model => model.PricingTierLevel)
                 @Html.ValidationMessageFor(model => model.PricingTierLevel)
@@ -48,11 +47,6 @@
                 <input type="submit" class="button green" value="Create" />
                 <a class="button" href="@Url.Action("Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)">Back</a>
             </p>
-
         </section>
     </div>
-}
-
-@section Scripts {
-
 }

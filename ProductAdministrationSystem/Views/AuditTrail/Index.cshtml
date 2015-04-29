@@ -4,54 +4,53 @@
     ViewBag.Title = "Audit Trail Index";
 }
 <div class="heading">
-<h1>Audit Trail Index
-
-</h1>
+    <h1>Audit Trail Index</h1>
 </div>
 <table datatable="">
-<thead>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AuditTrailTimeStamp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AuditTrailUserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AuditTrailComment)
-        </th>
-        <th>
-            Type
-        </th>
-        <th>
-            TypeID
-        </th>
-        <th>Modify</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AuditTrailTimeStamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuditTrailUserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuditTrailComment)
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                TypeID
+            </th>
+            <th>Modify</th>
+        </tr>
+    </thead>
+    <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AuditTrailTimeStamp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AuditTrailUserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AuditTrailComment)
-        </td>
-        <td>
-            @item.GetAuditTrailType()
-        </td>
-        <td>
-            @item.GetAuditTrailTypeID()
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.AuditTrailID })
-        </td>
-    </tr>
-}
-</tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AuditTrailTimeStamp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AuditTrailUserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AuditTrailComment)
+                </td>
+                <td>
+                    @item.GetAuditTrailType()
+                </td>
+                <td>
+                    @item.GetAuditTrailTypeID()
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.AuditTrailID })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

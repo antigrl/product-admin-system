@@ -5,9 +5,10 @@
 }
 
 <div class="heading">
-    <h1>Pricing Tier Index
+    <h1>
+        Pricing Tier Index
 
-        @if(Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+        @if (Request.Url.AbsolutePath.Contains("ArchivedIndex"))
         {
             <span class="heading-info">@Html.ActionLink("View Active", "Index")</span>
         }
@@ -21,46 +22,46 @@
 <div class="flex-grid">
     <section>
         <table datatable="" ng-cloak>
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.PricingTierLevel)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PricingTierName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Company.CompanyName)
-                </th>
-                <th>Modify</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach(var item in Model)
-            {
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PricingTierLevel)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PricingTierName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Company.CompanyName)
-                    </td>
-                    <td class="action-icons">
-                        <ul>
-                            <li>
-                                <a class="edit-btn" href="@Url.Action("Edit", new { id = item.PricingTierID })"><i class="fa fa-pencil-square-o"></i></a><md-tooltip>Edit</md-tooltip>
-                            </li>
-                            <li>
-                                <a class="archive-btn" href="@Url.Action("Archive", new { id = item.PricingTierID })"><i class="fa fa-archive"></i></a><md-tooltip>Archive</md-tooltip>
-                            </li>
-                        </ul>
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PricingTierLevel)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PricingTierName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Company.CompanyName)
+                    </th>
+                    <th>Modify</th>
                 </tr>
-            }
-        </tbody>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PricingTierLevel)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PricingTierName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Company.CompanyName)
+                        </td>
+                        <td class="action-icons">
+                            <ul>
+                                <li>
+                                    <a class="edit-btn" href="@Url.Action("Edit", new { id = item.PricingTierID })"><i class="fa fa-pencil-square-o"></i></a><md-tooltip>Edit</md-tooltip>
+                                </li>
+                                <li>
+                                    <a class="archive-btn" href="@Url.Action("Archive", new { id = item.PricingTierID })"><i class="fa fa-archive"></i></a><md-tooltip>Archive</md-tooltip>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </tbody>
         </table>
     </section>
 </div>

@@ -27,7 +27,6 @@
             @Html.EditorFor(model => model.PricingTierName)
             @Html.ValidationMessageFor(model => model.PricingTierName)
         </div>
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.PricingTierLevel)
         </div>
@@ -35,7 +34,6 @@
             @Html.EditorFor(model => model.PricingTierLevel)
             @Html.ValidationMessageFor(model => model.PricingTierLevel)
         </div>
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.CompanyID, "Company")
         </div>
@@ -44,7 +42,6 @@
             @Html.HiddenFor(model => model.CompanyID)
             @Html.ValidationMessageFor(model => model.CompanyID)
         </div>
-
         <p>
             <input type="submit" value="Save" />
         </p>
@@ -86,8 +83,4 @@
             </table>
         </div>
     </div>
-}
-
-@section Scripts {
-
 }

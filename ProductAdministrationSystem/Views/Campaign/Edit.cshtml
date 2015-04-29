@@ -70,19 +70,19 @@
             <article class="input-right">
                 <article class="controls">
                     @Html.LabelForRequired(model => model.CampaignAccountManagerComments)
-                    @Html.TextAreaFor(model => model.CampaignAccountManagerComments, new { @placeholder = "Add Comments"})
+                    @Html.TextAreaFor(model => model.CampaignAccountManagerComments, new { @placeholder = "Add Comments" })
                 </article>
                 <article class="controls">
                     @Html.LabelForRequired(model => model.CampaignMerchandiserComments)
-                    @Html.TextAreaFor(model => model.CampaignMerchandiserComments, new { @placeholder = "Add Comments"})
+                    @Html.TextAreaFor(model => model.CampaignMerchandiserComments, new { @placeholder = "Add Comments" })
                 </article>
                 <article class="controls">
                     @Html.LabelForRequired(model => model.CampaignInventoryBuyerComments)
-                    @Html.TextAreaFor(model => model.CampaignInventoryBuyerComments, new { @placeholder = "Add Comments"})
+                    @Html.TextAreaFor(model => model.CampaignInventoryBuyerComments, new { @placeholder = "Add Comments" })
                 </article>
                 <article class="controls">
                     @Html.LabelForRequired(model => model.CampaignMentorComments)
-                    @Html.TextAreaFor(model => model.CampaignMentorComments, new { @placeholder = "Add Comments"})
+                    @Html.TextAreaFor(model => model.CampaignMentorComments, new { @placeholder = "Add Comments" })
                 </article>
             </article>
             <div class="flex-grid">
@@ -94,146 +94,18 @@
     </div>
   <!-- /edit-campaign -->
 }
+
 <div class="flex-grid">
     <a href="@Url.Action("Create", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), CampaignID = Model.CampaignID }, null)" class="button green add-product">New Product <i class="fa fa-plus pull-right"></i></a>
 </div>
-<div class="flex-grid">
-    <section ng-controller="NoScrollCtrl as app" ng-cloak>
-        <table datatable="" dt-options="app.dtOptions" class="campaign-list">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Image</th>
-                    <th>SKU</th>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>Sell Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var product in Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)))
-                {
-                    <tr>
-                        <td>
-                            <div>
-                                @Html.DisplayFor(model => product.ProductID)
-                            </div>
-                        </td>
-                        <td>
-                            <div class="product-image">
-                                <div class="thumb-image">
-                                @if (Model != null && product.ProductImage != null)
-                                    {
+@{
+    // Show Active Products
+    Html.RenderPartial("~/Views/Product/_ProductList.cshtml", (IEnumerable<Product>)Model.Products.Where(p => p.ProductStatus != MyExtensions.GetEnumDescription(Status.Archived)), new ViewDataDictionary { { "type", "Active" } });
+}
 
-                                        <img style="height:40px; width:40px;" src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
-                                    }
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                @Html.DisplayFor(model => product.ProductGatewayCDISKU)
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                @Html.DisplayFor(model => product.ProductName)
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                @Html.DisplayFor(model => product.ProductStatus)
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                @Html.DisplayFor(model => product.ProductSellPrices.Where(p => p.SellPriceLevel == 1).FirstOrDefault().SellPriceFinalAmount)
-                            </div>
-                        </td>
-                        <td class="action-icons">
-                            <ul>
-                                <li><a class="edit-btn" href="@Url.Action("Edit", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }) + "?ReturnUrl=" + ViewBag.ReturnUrl, id = product.ProductID }, null)"><i class="fa fa-pencil-square-o"></i></a><md-tooltip>Edit</md-tooltip></li>
-                                <li><a class="archive-btn" href="@Url.Action("Archive", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)"><i class="fa fa-archive"></i></a><md-tooltip>Archive</md-tooltip></li>
-                            </ul>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </section>
-</div>
 <div class="flex-grid">
     <button type="button" class="button green toggle-archived-products">Show/Hide Archived Product List</button>
 </div>
-<div class="flex-grid archived-products" style="display:none">
-    <section ng-controller="NoScrollCtrl as app">
-        <table datatable="" class="index-table" dt-options="app.dtOptions">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>Sell Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var product in Model.Products.Where(p => p.ProductStatus == MyExtensions.GetEnumDescription(Status.Archived)))
-                {
-                    <tr>
-                        <td>
-                            <div>
-                                @Html.DisplayFor(model => product.ProductID)
-                            </div>
-                        </td>
-                        <td>
-                            <div class="product-image">
-                                @if (Model != null && product.ProductImage != null)
-                                {
-                                    <div class="thumb-image">
-                                        <img style="height:40px; width:40px;" src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
-                                    </div>
-                                }
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                @Html.DisplayFor(model => product.ProductName)
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                @Html.DisplayFor(model => product.ProductStatus)
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                @Html.DisplayFor(model => product.ProductSellPrices.Where(p => p.SellPriceLevel == 1).FirstOrDefault().SellPriceFinalAmount)
-                            </div>
-                        </td>
-                        <td class="action-icons">
-                            <ul>
-                                <li>
-
-                                    <a class="edit-btn" href="@Url.Action("Edit", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)">
-                                        <i class="fa fa-pencil-square-o"></i>
-                                    </a>
-                                    <md-tooltip>Edit</md-tooltip>
-
-                                </li>
-                                <li>
-                                    <a class="archive-btn" href="@Url.Action("UnArchive", "Product", new { ReturnUrl = Url.Action("Edit", "Campaign", new { id = Model.CampaignID, ReturnUrl = ViewBag.ReturnUrl }), id = product.ProductID }, null)">
-                                        <i class="fa fa-undo"></i>
-                                    </a>
-                                    <md-tooltip>Unarchive</md-tooltip>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </section>
-</div>
+@{// Show Archived Products
+    Html.RenderPartial("~/Views/Product/_ProductList.cshtml", (IEnumerable<Product>)Model.Products.Where(p => p.ProductStatus == MyExtensions.GetEnumDescription(Status.Archived)), new ViewDataDictionary { { "type", "Archived" } });
+}

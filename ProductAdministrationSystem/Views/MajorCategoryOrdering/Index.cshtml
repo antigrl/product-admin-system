@@ -5,58 +5,60 @@
 }
 
 <div class="heading">
-    <h1>Index
+    <h1>
+        Index
         <div class="heading-info">@Html.ActionLink("Create New", "Create")</div>
     </h1>
 </div>
 <div class="flex-grid">
     <section>
         <table datatable="" ng-cloak>
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.SortValue)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Campaign.CampaignName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Category.CategoryName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CategoryRename)
-                </th>
-                <th>Modify</th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SortValue)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Campaign.CampaignName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryRename)
-                </td>
-                <td class="action-icons">
-                    <ul>
-                        <li>
-                            <a class="edit-btn" href="@Url.Action("Edit", new { id=item.ID })"><i class="fa fa-pencil-square-o"></i></a><md-tooltip>Edit</md-tooltip>
-                        </li>
-                        <li>
-                            <a class="archive-btn" href="@Url.Action("Delete", new { id=item.ID })"><i class="fa fa-archive"></i></a><md-tooltip>Archive</md-tooltip>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        }
-        </tbody>
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SortValue)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Campaign.CampaignName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category.CategoryName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CategoryRename)
+                    </th>
+                    <th>Modify</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SortValue)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Campaign.CampaignName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CategoryRename)
+                        </td>
+                        <td class="action-icons">
+                            <ul>
+                                <li>
+                                    <a class="edit-btn" href="@Url.Action("Edit", new { id=item.ID })"><i class="fa fa-pencil-square-o"></i></a><md-tooltip>Edit</md-tooltip>
+                                </li>
+                                <li>
+                                    <a class="archive-btn" href="@Url.Action("Delete", new { id=item.ID })"><i class="fa fa-archive"></i></a><md-tooltip>Archive</md-tooltip>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </tbody>
         </table>
     </section>
 </div>

@@ -47,7 +47,6 @@
                 <dd>
                     @foreach (var tier in Model.Company.PricingTiers)
                     {
-
                         <input id="@tier.PricingTierName" type="checkbox" class="pricing-tier-checkbox" name="ShowPriceTiers" value="Tier_@tier.PricingTierLevel" checked />
                         <label for="@tier.PricingTierName" class="checklist-label iconicfill-check">@tier.PricingTierName</label>
                     }
@@ -111,50 +110,34 @@
                 @foreach (var product in productList)
                 {
                     <ul class="product-row">
-
                         <li class="product-column">
-
                             @Html.DisplayFor(model => product.ProductID)
                             <input type="hidden" value="@product.ProductID" class="product-id" />
-
                         </li>
-
                         <li class="product-image">
                             <div class="thumb-image">
                                 @if (Model != null && product.ProductImage != null)
                                 {
-
                                     <img src="@Url.Action("Show", "Product", new { id = product.ProductID })" />
-
                                 }
                             </div>
                         </li>
-
                         <li class="product-name">
-
                             @Html.DisplayFor(model => product.ProductName)
-
                         </li>
                         <li class="minor-category-name">
                             @if (product.Category1 != null)
                             {
-
                                 @Html.DisplayFor(model => product.Category1.CategoryName)
-
                             }
                         </li>
                         <li class="this-sell-price">
-
                             @Html.DisplayFor(model => product.ProductSellPrices.Where(p => p.SellPriceLevel == 1).FirstOrDefault().SellPriceFinalAmount)
-
                         </li>
                     </ul>
-
                 }
-
             </div>
         </section>
-
     }
 </div>
 <div class="presentation-sheet-area" style="display: none;">
@@ -165,5 +148,5 @@
         Show Print Preview
     </md-button>
     <md-button data-url='@Url.Action("ReloadPrintPreview", new { id = Model.CampaignID })' name="Save Presentation Ordering" class="savePresentation md-raised ladda-button" data-style="contract">Save</md-button>
-        <span hidden class="success-click" ng-click="showSimpleToast()"></span>
+    <span hidden class="success-click" ng-click="showSimpleToast()"></span>
 </div>

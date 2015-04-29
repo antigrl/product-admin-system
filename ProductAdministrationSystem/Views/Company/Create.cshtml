@@ -12,7 +12,6 @@
     <div class="heading">
         <h1>Create Company</h1>
     </div>
-
     <div class="flex-grid">
         @Html.HiddenFor(model => model.CompanyStatus)
         <article class="input-left">
@@ -21,43 +20,36 @@
                 @Html.ValidationMessageFor(model => model.CompanyName)
                 @Html.EditorFor(model => model.CompanyName)
             </div>
-
             <div class="controls">
                 @Html.LabelForRequired(model => model.CompanyDivisionNumber)
                 @Html.ValidationMessageFor(model => model.CompanyDivisionNumber)
                 @Html.EditorFor(model => model.CompanyDivisionNumber)
             </div>
-
             <div class="controls">
                 @Html.LabelForRequired(model => model.CompanyDefaultMargin)
                 @Html.ValidationMessageFor(model => model.CompanyDefaultMargin)
                 @Html.EditorFor(model => model.CompanyDefaultMargin)
             </div>
-
             <div class="controls">
                 @Html.LabelForRequired(model => model.CompanyContactName)
                 @Html.ValidationMessageFor(model => model.CompanyContactName)
                 @Html.EditorFor(model => model.CompanyContactName)
             </div>
-
             <div class="controls">
                 @Html.LabelForRequired(model => model.CompanyContactEmail)
                 @Html.ValidationMessageFor(model => model.CompanyContactEmail)
                 @Html.EditorFor(model => model.CompanyContactEmail)
             </div>
-
             <div class="controls">
                 @Html.LabelForRequired(model => model.CompanyLocation)
                 @Html.ValidationMessageFor(model => model.CompanyLocation)
                 @Html.EditorFor(model => model.CompanyLocation)
             </div>
-
             <div class="controls">
                 @Html.LabelForRequired(model => model.CompanyUrl)
                 @Html.ValidationMessageFor(model => model.CompanyUrl)
                 @Html.EditorFor(model => model.CompanyUrl)
             </div>
-
             <div class="controls">
                 @Html.LabelForRequired(model => model.CompanyImage)
                 <input type="file" name="CompanyImage" id="CompanyImage" />
@@ -76,43 +68,29 @@
                 @Html.ValidationMessageFor(model => model.CompanyAccountManagerName)
                 @Html.EditorFor(model => model.CompanyAccountManagerName)
             </div>
-
             <div class="controls">
                 @Html.LabelForRequired(model => model.CompanyAccountManagerEmail)
                 @Html.ValidationMessageFor(model => model.CompanyAccountManagerEmail)
                 @Html.EditorFor(model => model.CompanyAccountManagerEmail)
             </div>
-
             <div class="controls">
                 @Html.LabelForRequired(model => model.CompanyMentorName)
                 @Html.ValidationMessageFor(model => model.CompanyMentorName)
                 @Html.EditorFor(model => model.CompanyMentorName)
             </div>
-
             <div class="controls">
                 @Html.LabelForRequired(model => model.CompanyMentorEmail)
                 @Html.ValidationMessageFor(model => model.CompanyMentorEmail)
                 @Html.EditorFor(model => model.CompanyMentorEmail)
             </div>
-
-
-
             <div class="controls">
                 @Html.LabelForRequired(model => model.CompanyAdditionalDetails)
                 @Html.EditorFor(model => model.CompanyAdditionalDetails)
                 @Html.ValidationMessageFor(model => model.CompanyAdditionalDetails)
             </div>
-
-
         </article>
     </div>
-<br>
+    <br>
     <input type="submit" class="button green" value="Create" />
     <a class="button" href="@Url.Action("Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)">Back</a>
 }
-
-@section Scripts {
-
-}
-
-
