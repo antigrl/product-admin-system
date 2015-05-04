@@ -36,7 +36,6 @@
         var onEventSavePresentation = new postPresentationSheet();
         onEventSavePresentation.launchMajorCategories();
         onEventSavePresentation.launchProducts();
-        location.reload(true);
     });
 
     function postPresentationSheet() {
@@ -117,6 +116,7 @@
                     angular.element(".success-click").trigger("click");
                     spinner.stop();
                     spinner.remove();
+                    location.reload(true);
                 },
                 error: function (data) { console.log(data) }
             });

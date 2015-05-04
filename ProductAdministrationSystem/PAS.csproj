@@ -1039,9 +1039,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\ladda.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\NPR.js" />
     <Content Include="Scripts\nprApp.js" />
+    <Content Include="Scripts\spin.js" />
     <Content Include="Scripts\validationTooltip.js" />
     <Content Include="Scripts\xtForm.min.js" />
     <Content Include="Web.config">
