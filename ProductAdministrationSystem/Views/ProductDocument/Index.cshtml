@@ -7,9 +7,15 @@
 <div class="heading">
     <h1>
         Product Document Index
-        <div class="heading-info">
-            @Html.ActionLink("Create New Product Document", "Create")
-        </div>
+        @if (Request.Url.AbsolutePath.Contains("ArchivedIndex"))
+        {
+            <span class="heading-info">@Html.ActionLink("View Active Product Documents", "Index")</span>
+        }
+        else
+        {
+            <span class="heading-info">@Html.ActionLink("View Archived Product Documents", "ArchivedIndex")</span>
+        }
+        <div class="heading-info">@Html.ActionLink("Create New Product Document", "Create")</div>
     </h1>
 </div>
 <div class="flex-grid">

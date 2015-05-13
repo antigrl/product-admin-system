@@ -199,6 +199,23 @@ namespace PAS.Models
             }
         }
 
+        // ProductAttachmentType
+        public AuditTrail(DateTime dateTime, string userName, ProductAttachmentType productAttachmentType, int id, string comment)
+        {
+            this.AuditTrailTimeStamp = dateTime;
+            this.AuditTrailUserName = userName;
+            this.AuditTrailComment = comment;
+
+            if (id > 0)
+            {
+                this.ProductAttachmentTypeID = id;
+            }
+            else
+            {
+                this.ProductAttachmentType = productAttachmentType;
+            }
+        }
+
         // ProductSellPrice 
         public AuditTrail(DateTime dateTime, string userName, ProductSellPrice productSellPrice, int id, string comment)
         {

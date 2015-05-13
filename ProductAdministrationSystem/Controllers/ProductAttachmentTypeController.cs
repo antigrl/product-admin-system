@@ -3,103 +3,133 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PAS.Models;
+using PAS.Helpers;
+using System.Data.Entity;
 
 namespace PAS.Controllers
 {
     public class ProductAttachmentTypeController : Controller
     {
+        private NPREntities db = new NPREntities();
+        private string archived = MyExtensions.GetEnumDescription(Status.Archived);
+
         //
         // GET: /ProductAttachmentType/
-
         public ActionResult Index()
         {
-            return View();
+            ViewBag.TitleMessage = "Active";
+            var productAttachmentTypes = db.ProductAttachmentTypes.Where(p => p.Status != archived)
+                                                .OrderBy(p => p.Status);
+            return View(productAttachmentTypes.ToList());
         }
 
         //
-        // GET: /ProductAttachmentType/Details/5
-
-        public ActionResult Details(int id)
+        // GET: /VendorType/ArchivedIndex
+        public ActionResult ArchivedIndex()
         {
-            return View();
+            ViewBag.TitleMessage = "Archived";
+            var productAttachmentTypes = db.ProductAttachmentTypes.Where(p => p.Status == archived)
+                                                .OrderBy(p => p.Status);
+            return View(productAttachmentTypes.ToList());
         }
+
 
         //
         // GET: /ProductAttachmentType/Create
-
         public ActionResult Create()
         {
-            return View();
+            ProductAttachmentType productAttachmentType = new ProductAttachmentType();
+            productAttachmentType.OnCreate();
+            
+            return View(productAttachmentType);
         }
 
         //
         // POST: /ProductAttachmentType/Create
-
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ProductAttachmentType productAttachmentType)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, productAttachmentType, productAttachmentType.ID, "Create");
+                db.AuditTrails.Add(audit);
 
+                db.ProductAttachmentTypes.Add(productAttachmentType);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(productAttachmentType);
         }
 
         //
         // GET: /ProductAttachmentType/Edit/5
-
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id = 0)
         {
-            return View();
+            ProductAttachmentType productAttachmentType = db.ProductAttachmentTypes.Find(id);
+            if (productAttachmentType == null)
+            {
+                return HttpNotFound();
+            }
+            return View(productAttachmentType);
         }
 
         //
         // POST: /ProductAttachmentType/Edit/5
-
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(ProductAttachmentType productAttachmentType)
         {
-            try
+            if(ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                // Add Audit Entry 
+                AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, productAttachmentType, productAttachmentType.ID, "Edit");
+                db.AuditTrails.Add(audit);
 
-                return RedirectToAction("Index");
+                db.Entry(productAttachmentType).State = EntityState.Modified;
+                db.SaveChanges();
             }
-            catch
-            {
-                return View();
-            }
+            return View(productAttachmentType);
         }
 
         //
-        // GET: /ProductAttachmentType/Delete/5
-
-        public ActionResult Delete(int id)
+        // GET: /ProductAttachmentType/Archive/5
+        public ActionResult Archive(int id)
         {
-            return View();
+            ProductAttachmentType productAttachmentType = db.ProductAttachmentTypes.Find(id);
+            if(productAttachmentType == null)
+            {
+                return HttpNotFound();
+            }
+            return View(productAttachmentType);
         }
 
         //
-        // POST: /ProductAttachmentType/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        // POST: /ProductAttachmentType/Archive/5
+        [HttpPost, ActionName("Archive")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ArchiveConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            ProductAttachmentType productAttachmentType = db.ProductAttachmentTypes.Find(id);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            // Add Audit Entry 
+            AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, productAttachmentType, id, "Archive");
+            db.AuditTrails.Add(audit);
+
+            // Archive
+            productAttachmentType.Status = archived;
+            db.Entry(productAttachmentType).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

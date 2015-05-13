@@ -29,7 +29,7 @@ namespace PAS.Controllers
         public ActionResult ArchivedIndex()
         {
             ViewBag.TitleMessage = "Archived";
-            var documents = db.ProductDocuments.Where(p => p.Status == archived).OrderBy(p => p.AttachmentType);
+            var documents = db.ProductDocuments.Where(p => p.Status == archived).OrderBy(p => p.AttachmentType.TypeName);
 
             return View("Index", documents.ToList());
         }
@@ -93,7 +93,7 @@ namespace PAS.Controllers
         // POST: /ProductDocument/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Exclude = "Document")]ProductDocument productDocument, HttpPostedFileBase Document)
+        public ActionResult Edit(ProductDocument productDocument, HttpPostedFileBase Document)
         {
             if (ModelState.IsValid)
             {
