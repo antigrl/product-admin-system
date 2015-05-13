@@ -1,0 +1,67 @@
+﻿@model PAS.Models.ProductDocument
+@using PAS.Models
+@using PAS.Helpers
+
+@{
+    ViewBag.Title = "Edit Document";
+}
+
+@using (Html.BeginForm("Edit", "ProductDocument", new { }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="heading">
+        <h1>@ViewBag.Title</h1>
+    </div>
+    <div class="flex-grid">
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="controls">
+            @Html.LabelFor(model => model.ExpirationDate)
+            @Html.EditorFor(model => model.ExpirationDate)
+            @Html.ValidationMessageFor(model => model.ExpirationDate)
+        </div>
+
+        <div class="controls">
+            @Html.LabelFor(model => model.Status)
+            @Html.DropDownListFor(model => model.Status, MyExtensions.GetGenericEnumDropDown<Status>(), "")
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+
+        <div class="controls">
+            @Html.LabelFor(model => model.AttachmentTypeID)
+            @Html.DropDownListFor(model => model.AttachmentTypeID, (SelectList)ViewBag.AttachmentTypes)
+            @Html.ValidationMessageFor(model => model.AttachmentTypeID)
+        </div>
+
+        <div class="controls">
+            @Html.LabelForRequired(model => model.Document)
+
+            <div class="button orange">
+                <input type="file" class="input-file" name="Document" id="Document" />
+            </div>
+            @Html.HiddenFor(model => model.Document)
+            @Html.HiddenFor(model => model.DocumentFileType)
+            @if (Model != null && Model.Document != null)
+            {
+                <a href="@Url.Action("Download", "ProductDocument", new { id = Model.ID })" target="_blank">Download</a>
+            }
+        </div>
+
+        <div class="controls">
+            @Html.LabelFor(model => model.ProductID)
+            @Html.EditorFor(model => model.ProductID)
+            @Html.ValidationMessageFor(model => model.ProductID)
+        </div>
+
+        <p>
+            <input type="submit" class="button green" value="Save" />
+        </p>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

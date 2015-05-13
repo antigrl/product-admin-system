@@ -1,0 +1,54 @@
+﻿@model PAS.Models.ProductDocument
+
+@{
+    ViewBag.Title = "Archive";
+}
+
+<h2>Archive</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>ProductDocument</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ExpirationDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ExpirationDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Status)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Status)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AttachmentTypeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AttachmentTypeID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentFileType)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentFileType)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProductID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductID)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

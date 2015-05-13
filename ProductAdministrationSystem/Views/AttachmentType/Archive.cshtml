@@ -1,0 +1,26 @@
+﻿@model PAS.Models.AttachmentType
+
+@{
+    ViewBag.Title = "Archive Attachment Type";
+}
+
+<h2>Archive Attachment Type</h2>
+<h3>Are you sure you want to delete this Attachment Type?</h3>
+<fieldset>
+    <legend>AttachmentType</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.TypeName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TypeName)
+    </div>
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Archive" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

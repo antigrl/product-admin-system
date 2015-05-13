@@ -19,7 +19,7 @@ namespace PAS.Controllers
         // GET: /VendorType/
         public ActionResult Index()
         {
-            ViewBag.TitleMessage = "Active3";
+            ViewBag.TitleMessage = "Active";
             var vendorTypes = db.VendorTypes.Where(v => v.VendorTypeStatus != archived)
                                                 .OrderBy(v => v.VendorTypeName);
             return View(vendorTypes.ToList());
@@ -34,7 +34,6 @@ namespace PAS.Controllers
                                                 .OrderBy(v => v.VendorTypeName);
             return View("Index", vendorTypes.ToList());
         }
-
 
         //
         // GET: /VendorType/Create
@@ -123,7 +122,7 @@ namespace PAS.Controllers
             db.AuditTrails.Add(audit);
 
             // Archive
-            vendortype.VendorTypeStatus = MyExtensions.GetEnumDescription(Status.Archived);
+            vendortype.VendorTypeStatus = archived;
             db.Entry(vendortype).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");

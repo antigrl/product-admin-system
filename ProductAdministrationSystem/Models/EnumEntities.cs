@@ -237,12 +237,18 @@ namespace PAS.Models
         Product,
         [Description("Product Decoration")]
         Product_Decoration,
+        [Description("Product Document")]
+        Product_Document,
         [Description("Product Sell Price")]
         Product_Sell_Price,
+        [Description("Product Attachment Type")]
+        Product_Attachment_Type,
         [Description("Product Upcharge")]
         Product_Upcharge,
         [Description("Upcharge Sell Price")]
         Upcharge_Sell_Price,
+        [Description("Attachment Type")]
+        Attachment_Type,
         [Description("Vendor Name")]
         Vendor_Name,
         [Description("Vendor Type")]

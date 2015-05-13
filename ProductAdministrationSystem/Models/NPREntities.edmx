@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="NPRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AttachmentType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
         <EntityType Name="AuditTrail">
           <Key>
             <PropertyRef Name="AuditTrailID" />
@@ -29,6 +37,9 @@
           <Property Name="UpchargeSellPriceID" Type="int" />
           <Property Name="CategoryID" Type="int" />
           <Property Name="MajorCategoryOrderingID" Type="int" />
+          <Property Name="ProductDocumentID" Type="int" />
+          <Property Name="AttachmentTypeID" Type="int" />
+          <Property Name="ProductAttachmentTypeID" Type="int" />
         </EntityType>
         <EntityType Name="Campaign">
           <Key>
@@ -190,6 +201,16 @@
           <Property Name="MinorCategoryID" Type="int" />
           <Property Name="ProductSortValue" Type="int" />
         </EntityType>
+        <EntityType Name="ProductAttachmentType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Selected" Type="bit" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="AttachmentTypeID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="ProductDecoration">
           <Key>
             <PropertyRef Name="DecorationID" />
@@ -208,6 +229,18 @@
           <Property Name="DecorationEmbroideryColorWay" Type="nvarchar" MaxLength="150" />
           <Property Name="ProductID" Type="int" Nullable="false" />
           <Property Name="DecorationStatus" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductDocument">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Document" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ExpirationDate" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="AttachmentTypeID" Type="int" Nullable="false" />
+          <Property Name="DocumentFileType" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductSellPrice">
           <Key>
@@ -262,15 +295,27 @@
           <Property Name="VendorTypeName" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="VendorTypeStatus" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
-        <Association Name="FK_AuditTrail_AuditTrail">
-          <End Role="MajorCategoryOrdering" Type="Self.MajorCategoryOrdering" Multiplicity="0..1" />
+        <Association Name="FK_AuditTrail_AttachmentType">
+          <End Role="AttachmentType" Type="Self.AttachmentType" Multiplicity="0..1" />
           <End Role="AuditTrail" Type="Self.AuditTrail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="MajorCategoryOrdering">
+            <Principal Role="AttachmentType">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="AuditTrail">
-              <PropertyRef Name="MajorCategoryOrderingID" />
+              <PropertyRef Name="AttachmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_AuditTrail">
+          <End Role="AuditTrail" Type="Self.AuditTrail" Multiplicity="1" />
+          <End Role="AuditTrail1" Type="Self.AuditTrail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AuditTrail">
+              <PropertyRef Name="AuditTrailID" />
+            </Principal>
+            <Dependent Role="AuditTrail1">
+              <PropertyRef Name="AuditTrailID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -346,6 +391,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AuditTrail_MajorCategoryOrdering">
+          <End Role="MajorCategoryOrdering" Type="Self.MajorCategoryOrdering" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Self.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MajorCategoryOrdering">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="MajorCategoryOrderingID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AuditTrail_PackagingType">
           <End Role="PackagingType" Type="Self.PackagingType" Multiplicity="0..1" />
           <End Role="AuditTrail" Type="Self.AuditTrail" Multiplicity="*" />
@@ -382,6 +439,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AuditTrail_ProductAttachmentType">
+          <End Role="ProductAttachmentType" Type="Self.ProductAttachmentType" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Self.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductAttachmentType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="ProductAttachmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AuditTrail_ProductDecoration">
           <End Role="ProductDecoration" Type="Self.ProductDecoration" Multiplicity="0..1" />
           <End Role="AuditTrail" Type="Self.AuditTrail" Multiplicity="*" />
@@ -391,6 +460,18 @@
             </Principal>
             <Dependent Role="AuditTrail">
               <PropertyRef Name="DecorationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_ProductDocument">
+          <End Role="ProductDocument" Type="Self.ProductDocument" Multiplicity="0..1" />
+          <End Role="AuditTrail" Type="Self.AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductDocument">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="ProductDocumentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -670,6 +751,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductDocument_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductDocument" Type="Self.ProductDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductDocument">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDocument_TestingType">
+          <End Role="AttachmentType" Type="Self.AttachmentType" Multiplicity="1" />
+          <End Role="ProductDocument" Type="Self.ProductDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttachmentType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductDocument">
+              <PropertyRef Name="AttachmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductSellPrice_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="ProductSellPrice" Type="Self.ProductSellPrice" Multiplicity="*" />
@@ -679,6 +784,18 @@
             </Principal>
             <Dependent Role="ProductSellPrice">
               <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductTestingType_TestingType">
+          <End Role="AttachmentType" Type="Self.AttachmentType" Multiplicity="1" />
+          <End Role="ProductAttachmentType" Type="Self.ProductAttachmentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttachmentType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductAttachmentType">
+              <PropertyRef Name="AttachmentTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -707,6 +824,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="NPRModelStoreContainer">
+          <EntitySet Name="AttachmentType" EntityType="Self.AttachmentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AuditTrail" EntityType="Self.AuditTrail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Campaign" EntityType="Self.Campaign" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -718,15 +836,21 @@
           <EntitySet Name="PackagingType" EntityType="Self.PackagingType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PricingTier" EntityType="Self.PricingTier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductAttachmentType" EntityType="Self.ProductAttachmentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductDecoration" EntityType="Self.ProductDecoration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductDocument" EntityType="Self.ProductDocument" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductSellPrice" EntityType="Self.ProductSellPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductUpcharge" EntityType="Self.ProductUpcharge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UpchargeSellPrice" EntityType="Self.UpchargeSellPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorName" EntityType="Self.VendorName" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorType" EntityType="Self.VendorType" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_AuditTrail_AuditTrail" Association="Self.FK_AuditTrail_AuditTrail">
-            <End Role="MajorCategoryOrdering" EntitySet="MajorCategoryOrdering" />
+          <AssociationSet Name="FK_AuditTrail_AttachmentType" Association="Self.FK_AuditTrail_AttachmentType">
+            <End Role="AttachmentType" EntitySet="AttachmentType" />
             <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_AuditTrail" Association="Self.FK_AuditTrail_AuditTrail">
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+            <End Role="AuditTrail1" EntitySet="AuditTrail" />
           </AssociationSet>
           <AssociationSet Name="FK_AuditTrail_Campaign" Association="Self.FK_AuditTrail_Campaign">
             <End Role="Campaign" EntitySet="Campaign" />
@@ -752,6 +876,10 @@
             <End Role="FeeName" EntitySet="FeeName" />
             <End Role="AuditTrail" EntitySet="AuditTrail" />
           </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_MajorCategoryOrdering" Association="Self.FK_AuditTrail_MajorCategoryOrdering">
+            <End Role="MajorCategoryOrdering" EntitySet="MajorCategoryOrdering" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
           <AssociationSet Name="FK_AuditTrail_PackagingType" Association="Self.FK_AuditTrail_PackagingType">
             <End Role="PackagingType" EntitySet="PackagingType" />
             <End Role="AuditTrail" EntitySet="AuditTrail" />
@@ -764,8 +892,16 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="AuditTrail" EntitySet="AuditTrail" />
           </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_ProductAttachmentType" Association="Self.FK_AuditTrail_ProductAttachmentType">
+            <End Role="ProductAttachmentType" EntitySet="ProductAttachmentType" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
           <AssociationSet Name="FK_AuditTrail_ProductDecoration" Association="Self.FK_AuditTrail_ProductDecoration">
             <End Role="ProductDecoration" EntitySet="ProductDecoration" />
+            <End Role="AuditTrail" EntitySet="AuditTrail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_ProductDocument" Association="Self.FK_AuditTrail_ProductDocument">
+            <End Role="ProductDocument" EntitySet="ProductDocument" />
             <End Role="AuditTrail" EntitySet="AuditTrail" />
           </AssociationSet>
           <AssociationSet Name="FK_AuditTrail_ProductSellPrice" Association="Self.FK_AuditTrail_ProductSellPrice">
@@ -860,9 +996,21 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductDecoration" EntitySet="ProductDecoration" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductDocument_Product" Association="Self.FK_ProductDocument_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductDocument" EntitySet="ProductDocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDocument_TestingType" Association="Self.FK_ProductDocument_TestingType">
+            <End Role="AttachmentType" EntitySet="AttachmentType" />
+            <End Role="ProductDocument" EntitySet="ProductDocument" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductSellPrice_Product" Association="Self.FK_ProductSellPrice_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductSellPrice" EntitySet="ProductSellPrice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductTestingType_TestingType" Association="Self.FK_ProductTestingType_TestingType">
+            <End Role="AttachmentType" EntitySet="AttachmentType" />
+            <End Role="ProductAttachmentType" EntitySet="ProductAttachmentType" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductUpcharge_Product" Association="Self.FK_ProductUpcharge_Product">
             <End Role="Product" EntitySet="Product" />
@@ -1047,6 +1195,41 @@
             <End Role="MajorCategoryOrdering" EntitySet="MajorCategoryOrderings" />
             <End Role="AuditTrail" EntitySet="AuditTrails" />
           </AssociationSet>
+          <EntitySet Name="ProductDocuments" EntityType="NPRModel.ProductDocument" />
+          <AssociationSet Name="FK_AuditTrail_ProductDocument" Association="NPRModel.FK_AuditTrail_ProductDocument">
+            <End Role="ProductDocument" EntitySet="ProductDocuments" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDocument_Product" Association="NPRModel.FK_ProductDocument_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductDocument" EntitySet="ProductDocuments" />
+          </AssociationSet>
+          <EntitySet Name="AttachmentTypes" EntityType="NPRModel.AttachmentType" />
+          <EntitySet Name="ProductAttachmentTypes" EntityType="NPRModel.ProductAttachmentType" />
+          <AssociationSet Name="FK_AuditTrail_AttachmentType1" Association="NPRModel.FK_AuditTrail_AttachmentType1">
+            <End Role="AttachmentType" EntitySet="AttachmentTypes" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductDocument_AttachmentType1" Association="NPRModel.FK_ProductDocument_AttachmentType1">
+            <End Role="AttachmentType" EntitySet="AttachmentTypes" />
+            <End Role="ProductDocument" EntitySet="ProductDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductAttachmentType_AttachmentType1" Association="NPRModel.FK_ProductAttachmentType_AttachmentType1">
+            <End Role="AttachmentType" EntitySet="AttachmentTypes" />
+            <End Role="ProductAttachmentType" EntitySet="ProductAttachmentTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_ProductAttachmentType1" Association="NPRModel.FK_AuditTrail_ProductAttachmentType1">
+            <End Role="ProductAttachmentType" EntitySet="ProductAttachmentTypes" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_AttachmentType" Association="NPRModel.FK_AuditTrail_AttachmentType">
+            <End Role="AttachmentType" EntitySet="AttachmentTypes" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuditTrail_ProductAttachmentType" Association="NPRModel.FK_AuditTrail_ProductAttachmentType">
+            <End Role="ProductAttachmentType" EntitySet="ProductAttachmentTypes" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AuditTrail">
           <Key>
@@ -1090,6 +1273,14 @@
           <NavigationProperty Name="VendorType" Relationship="NPRModel.FK_AuditTrail_VendorType" FromRole="AuditTrail" ToRole="VendorType" />
           <Property Name="MajorCategoryOrderingID" Type="Int32" />
           <NavigationProperty Name="MajorCategoryOrdering" Relationship="NPRModel.FK_AuditTrail_AuditTrail1" FromRole="AuditTrail" ToRole="MajorCategoryOrdering" />
+          <Property Name="ProductDocumentID" Type="Int32" />
+          <NavigationProperty Name="ProductDocument" Relationship="NPRModel.FK_AuditTrail_ProductDocument" FromRole="AuditTrail" ToRole="ProductDocument" />
+          <NavigationProperty Name="AttachmentType" Relationship="NPRModel.FK_AuditTrail_AttachmentType1" FromRole="AuditTrail" ToRole="AttachmentType" />
+          <NavigationProperty Name="ProductAttachmentType" Relationship="NPRModel.FK_AuditTrail_ProductAttachmentType1" FromRole="AuditTrail" ToRole="ProductAttachmentType" />
+          <Property Name="AttachmentTypeID" Type="Int32" />
+          <Property Name="ProductAttachmentTypeID" Type="Int32" />
+          <NavigationProperty Name="AttachmentType1" Relationship="NPRModel.FK_AuditTrail_AttachmentType" FromRole="AuditTrail" ToRole="AttachmentType" />
+          <NavigationProperty Name="ProductAttachmentType1" Relationship="NPRModel.FK_AuditTrail_ProductAttachmentType" FromRole="AuditTrail" ToRole="ProductAttachmentType" />
         </EntityType>
         <EntityType Name="Campaign">
           <Key>
@@ -1278,6 +1469,7 @@
           <NavigationProperty Name="ProductSellPrices" Relationship="NPRModel.FK_ProductSellPrice_Product" FromRole="Product" ToRole="ProductSellPrice" />
           <NavigationProperty Name="ProductUpcharges" Relationship="NPRModel.FK_ProductUpcharge_Product" FromRole="Product" ToRole="ProductUpcharge" />
           <Property Name="ProductSortValue" Type="Int32" />
+          <NavigationProperty Name="ProductDocuments" Relationship="NPRModel.FK_ProductDocument_Product" FromRole="Product" ToRole="ProductDocument" />
         </EntityType>
         <EntityType Name="ProductDecoration">
           <Key>
@@ -1837,6 +2029,142 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ProductDocument">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Document" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DocumentFileType" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AuditTrails" Relationship="NPRModel.FK_AuditTrail_ProductDocument" FromRole="ProductDocument" ToRole="AuditTrail" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="NPRModel.FK_ProductDocument_Product" FromRole="ProductDocument" ToRole="Product" />
+          <Property Name="AttachmentTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AttachmentType" Relationship="NPRModel.FK_ProductDocument_AttachmentType1" FromRole="ProductDocument" ToRole="AttachmentType" />
+        </EntityType>
+        <Association Name="FK_AuditTrail_ProductDocument">
+          <End Type="NPRModel.ProductDocument" Role="ProductDocument" Multiplicity="0..1" />
+          <End Type="NPRModel.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductDocument">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="ProductDocumentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDocument_Product">
+          <End Type="NPRModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="NPRModel.ProductDocument" Role="ProductDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductDocument">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AttachmentType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AuditTrails" Relationship="NPRModel.FK_AuditTrail_AttachmentType1" FromRole="AttachmentType" ToRole="AuditTrail" />
+          <NavigationProperty Name="ProductDocuments" Relationship="NPRModel.FK_ProductDocument_AttachmentType1" FromRole="AttachmentType" ToRole="ProductDocument" />
+          <NavigationProperty Name="ProductAttachmentTypes" Relationship="NPRModel.FK_ProductAttachmentType_AttachmentType1" FromRole="AttachmentType" ToRole="ProductAttachmentType" />
+          <NavigationProperty Name="AuditTrails1" Relationship="NPRModel.FK_AuditTrail_AttachmentType" FromRole="AttachmentType" ToRole="AuditTrail" />
+        </EntityType>
+        <EntityType Name="ProductAttachmentType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Selected" Type="Boolean" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="AttachmentTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AttachmentType" Relationship="NPRModel.FK_ProductAttachmentType_AttachmentType1" FromRole="ProductAttachmentType" ToRole="AttachmentType" />
+          <NavigationProperty Name="AuditTrails" Relationship="NPRModel.FK_AuditTrail_ProductAttachmentType1" FromRole="ProductAttachmentType" ToRole="AuditTrail" />
+          <NavigationProperty Name="AuditTrails1" Relationship="NPRModel.FK_AuditTrail_ProductAttachmentType" FromRole="ProductAttachmentType" ToRole="AuditTrail" />
+        </EntityType>
+        <Association Name="FK_AuditTrail_AttachmentType1">
+          <End Type="NPRModel.AttachmentType" Role="AttachmentType" Multiplicity="0..1" />
+          <End Type="NPRModel.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttachmentType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="AttachmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductDocument_AttachmentType1">
+          <End Type="NPRModel.AttachmentType" Role="AttachmentType" Multiplicity="1" />
+          <End Type="NPRModel.ProductDocument" Role="ProductDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttachmentType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductDocument">
+              <PropertyRef Name="AttachmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductAttachmentType_AttachmentType1">
+          <End Type="NPRModel.AttachmentType" Role="AttachmentType" Multiplicity="1" />
+          <End Type="NPRModel.ProductAttachmentType" Role="ProductAttachmentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttachmentType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductAttachmentType">
+              <PropertyRef Name="AttachmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_ProductAttachmentType1">
+          <End Type="NPRModel.ProductAttachmentType" Role="ProductAttachmentType" Multiplicity="0..1" />
+          <End Type="NPRModel.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductAttachmentType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="ProductAttachmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_AttachmentType">
+          <End Type="NPRModel.AttachmentType" Role="AttachmentType" Multiplicity="0..1" />
+          <End Type="NPRModel.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AttachmentType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="AttachmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuditTrail_ProductAttachmentType">
+          <End Type="NPRModel.ProductAttachmentType" Role="ProductAttachmentType" Multiplicity="0..1" />
+          <End Type="NPRModel.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductAttachmentType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="ProductAttachmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1846,6 +2174,9 @@
           <EntitySetMapping Name="AuditTrails">
             <EntityTypeMapping TypeName="NPRModel.AuditTrail">
               <MappingFragment StoreEntitySet="AuditTrail">
+                <ScalarProperty Name="ProductAttachmentTypeID" ColumnName="ProductAttachmentTypeID" />
+                <ScalarProperty Name="AttachmentTypeID" ColumnName="AttachmentTypeID" />
+                <ScalarProperty Name="ProductDocumentID" ColumnName="ProductDocumentID" />
                 <ScalarProperty Name="MajorCategoryOrderingID" ColumnName="MajorCategoryOrderingID" />
                 <ScalarProperty Name="AuditTrailID" ColumnName="AuditTrailID" />
                 <ScalarProperty Name="AuditTrailTimeStamp" ColumnName="AuditTrailTimeStamp" />
@@ -2117,7 +2448,40 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="ProductDocuments">
+            <EntityTypeMapping TypeName="NPRModel.ProductDocument">
+              <MappingFragment StoreEntitySet="ProductDocument">
+                <ScalarProperty Name="AttachmentTypeID" ColumnName="AttachmentTypeID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="DocumentFileType" ColumnName="DocumentFileType" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="Document" ColumnName="Document" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttachmentTypes">
+            <EntityTypeMapping TypeName="NPRModel.AttachmentType">
+              <MappingFragment StoreEntitySet="AttachmentType">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductAttachmentTypes">
+            <EntityTypeMapping TypeName="NPRModel.ProductAttachmentType">
+              <MappingFragment StoreEntitySet="ProductAttachmentType">
+                <ScalarProperty Name="AttachmentTypeID" ColumnName="AttachmentTypeID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Selected" ColumnName="Selected" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

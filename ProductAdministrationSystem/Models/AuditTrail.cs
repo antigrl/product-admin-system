@@ -34,6 +34,9 @@ namespace PAS.Models
         public Nullable<int> UpchargeSellPriceID { get; set; }
         public Nullable<int> CategoryID { get; set; }
         public Nullable<int> MajorCategoryOrderingID { get; set; }
+        public Nullable<int> ProductDocumentID { get; set; }
+        public Nullable<int> AttachmentTypeID { get; set; }
+        public Nullable<int> ProductAttachmentTypeID { get; set; }
     
         public virtual AuditTrail AuditTrail1 { get; set; }
         public virtual AuditTrail AuditTrail2 { get; set; }
@@ -53,5 +56,10 @@ namespace PAS.Models
         public virtual VendorName VendorName { get; set; }
         public virtual VendorType VendorType { get; set; }
         public virtual MajorCategoryOrdering MajorCategoryOrdering { get; set; }
+        public virtual ProductDocument ProductDocument { get; set; }
+        public virtual AttachmentType AttachmentType { get; set; }
+        public virtual ProductAttachmentType ProductAttachmentType { get; set; }
+        public virtual AttachmentType AttachmentType1 { get; set; }
+        public virtual ProductAttachmentType ProductAttachmentType1 { get; set; }
     }
 }

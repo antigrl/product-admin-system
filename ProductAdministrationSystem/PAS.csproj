@@ -166,10 +166,13 @@
     <Compile Include="Controllers\MajorCategoryOrderingController.cs" />
     <Compile Include="Controllers\PackagingTypeController.cs" />
     <Compile Include="Controllers\PricingTierController.cs" />
+    <Compile Include="Controllers\ProductAttachmentTypeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductDecorationController.cs" />
+    <Compile Include="Controllers\ProductDocumentController.cs" />
     <Compile Include="Controllers\ProductSellPriceController.cs" />
     <Compile Include="Controllers\ProductUpchargeController.cs" />
+    <Compile Include="Controllers\AttachmentTypeController.cs" />
     <Compile Include="Controllers\UpchargeSellPriceController.cs" />
     <Compile Include="Controllers\VendorNameController.cs" />
     <Compile Include="Controllers\VendorTypeController.cs" />
@@ -182,6 +185,9 @@
     <Compile Include="Helpers\MyExtensions.cs" />
     <Compile Include="Mailers\IUserMailer.cs" />
     <Compile Include="Mailers\UserMailer.cs" />
+    <Compile Include="Models\AttachmentType.cs">
+      <DependentUpon>NPREntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AuditTrail.cs">
       <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
@@ -233,7 +239,13 @@
     <Compile Include="Models\Product.cs">
       <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductAttachmentType.cs">
+      <DependentUpon>NPREntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ProductDecoration.cs">
+      <DependentUpon>NPREntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProductDocument.cs">
       <DependentUpon>NPREntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductSellPrice.cs">
@@ -1168,6 +1180,14 @@
     <Content Include="Views\MajorCategoryOrdering\Archive.cshtml" />
     <Content Include="Views\Campaign\_PresentationPrintPreview.cshtml" />
     <Content Include="Views\Product\_ProductList.cshtml" />
+    <Content Include="Views\AttachmentType\Index.cshtml" />
+    <Content Include="Views\AttachmentType\Edit.cshtml" />
+    <Content Include="Views\AttachmentType\Create.cshtml" />
+    <Content Include="Views\AttachmentType\Archive.cshtml" />
+    <Content Include="Views\ProductDocument\Archive.cshtml" />
+    <Content Include="Views\ProductDocument\Create.cshtml" />
+    <Content Include="Views\ProductDocument\Edit.cshtml" />
+    <Content Include="Views\ProductDocument\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -21,6 +21,7 @@ namespace PAS.Models
             this.ProductDecorations = new HashSet<ProductDecoration>();
             this.ProductSellPrices = new HashSet<ProductSellPrice>();
             this.ProductUpcharges = new HashSet<ProductUpcharge>();
+            this.ProductDocuments = new HashSet<ProductDocument>();
         }
     
         public int ProductID { get; set; }
@@ -73,5 +74,6 @@ namespace PAS.Models
         public virtual ICollection<ProductDecoration> ProductDecorations { get; set; }
         public virtual ICollection<ProductSellPrice> ProductSellPrices { get; set; }
         public virtual ICollection<ProductUpcharge> ProductUpcharges { get; set; }
+        public virtual ICollection<ProductDocument> ProductDocuments { get; set; }
     }
 }
