@@ -14,8 +14,8 @@
     <div class="heading">
         <h1>@ViewBag.Title</h1>
     </div>
-    <div class="flex-grid">
 
+    <div class="flex-grid">
         @Html.HiddenFor(model => model.ID)
 
         <div class="controls">
@@ -44,24 +44,26 @@
             </div>
             @Html.HiddenFor(model => model.Document)
             @Html.HiddenFor(model => model.DocumentFileType)
+            @Html.HiddenFor(model => model.DocumentFileName)
             @if (Model != null && Model.Document != null)
             {
                 <a href="@Url.Action("Download", "ProductDocument", new { id = Model.ID })" target="_blank">Download</a>
+                <a href="@Url.Action("ViewInBrowser", "ProductDocument", new { id = Model.ID })" target="_blank">View in Browser</a>
             }
         </div>
 
         <div class="controls">
             @Html.LabelFor(model => model.ProductID)
-            @Html.EditorFor(model => model.ProductID)
+            @Html.DropDownList("ProductID", ViewBag.Products as SelectList)
             @Html.ValidationMessageFor(model => model.ProductID)
         </div>
 
-        <p>
-            <input type="submit" class="button green" value="Save" />
-        </p>
+        <div class="controls">
+            <input type="submit" class="button green" value="Create" />
+        </div>
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

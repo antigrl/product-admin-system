@@ -26,6 +26,7 @@ namespace PAS.Models
         public string DocumentFileType { get; set; }
         public int ProductID { get; set; }
         public int AttachmentTypeID { get; set; }
+        public string DocumentFileName { get; set; }
     
         public virtual ICollection<AuditTrail> AuditTrails { get; set; }
         public virtual Product Product { get; set; }

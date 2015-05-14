@@ -65,6 +65,7 @@ namespace PAS.Controllers
                     int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
                     productDocument.Document = documentBinaryData;
                     productDocument.DocumentFileType = Document.ContentType;
+                    productDocument.DocumentFileName = Document.FileName;
                 }
 
                 db.ProductDocuments.Add(productDocument);
@@ -108,6 +109,7 @@ namespace PAS.Controllers
                     int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
                     productDocument.Document = documentBinaryData;
                     productDocument.DocumentFileType = Document.ContentType;
+                    productDocument.DocumentFileName = Document.FileName;
                 }
 
                 db.Entry(productDocument).State = EntityState.Modified;
@@ -160,6 +162,24 @@ namespace PAS.Controllers
         {
             var documentData = db.ProductDocuments.Find(id).Document;
             var documentType = db.ProductDocuments.Find(id).DocumentFileType;
+            var documentName = db.ProductDocuments.Find(id).DocumentFileName;
+
+            try
+            {
+                var file = File(documentData, documentType, documentName);
+                return file;
+            }
+            catch (Exception ex)
+            {
+                Console.Write("ProductDocumentController.cs Download() failure. Exception: " + ex.ToString());
+                return null;
+            }
+        }
+
+        public FileResult ViewInBrowser(int id)
+        {
+            var documentData = db.ProductDocuments.Find(id).Document;
+            var documentType = db.ProductDocuments.Find(id).DocumentFileType;
 
             try
             {
@@ -191,6 +211,5 @@ namespace PAS.Controllers
                 ViewBag.Products = new SelectList(productList, "ProductID", "ProductName");
             }
         }
-
     }
 }

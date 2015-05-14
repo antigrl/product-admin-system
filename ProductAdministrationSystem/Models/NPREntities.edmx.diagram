@@ -78,6 +78,7 @@
         <AssociationConnector Association="NPRModel.FK_AuditTrail_ProductAttachmentType1" />
         <AssociationConnector Association="NPRModel.FK_AuditTrail_AttachmentType" />
         <AssociationConnector Association="NPRModel.FK_AuditTrail_ProductAttachmentType" />
+        <AssociationConnector Association="NPRModel.FK_ProductAttachmentType_Product" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

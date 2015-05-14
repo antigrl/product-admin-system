@@ -532,6 +532,10 @@ namespace PAS.Models
         [StringLength(150)]
         public object DocumentFileType { get; set; }
         
+        [DisplayName("File Name")]
+        [StringLength(150)]
+        public object DocumentFileName { get; set; }
+        
         [DisplayName("Product ID")]
         [Required]
         public object ProductID { get; set; }

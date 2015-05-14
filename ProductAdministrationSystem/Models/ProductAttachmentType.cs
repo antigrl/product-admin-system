@@ -29,5 +29,6 @@ namespace PAS.Models
         public virtual AttachmentType AttachmentType { get; set; }
         public virtual ICollection<AuditTrail> AuditTrails { get; set; }
         public virtual ICollection<AuditTrail> AuditTrails1 { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

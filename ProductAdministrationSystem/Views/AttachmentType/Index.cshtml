@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<PAS.Models.AttachmentType>
 
 @{
-    ViewBag.Title = "Attachment TypeIndex";
+    ViewBag.Title = "Attachment Type Index";
 }
 <div class="heading">
     <h1>
-        Attachment Type Index
+        @ViewBag.Title
         @if (Request.Url.AbsolutePath.Contains("ArchivedIndex"))
         {
             <span class="heading-info">@Html.ActionLink("View Active Attachment Type", "Index")</span>

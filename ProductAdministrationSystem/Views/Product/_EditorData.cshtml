@@ -104,6 +104,18 @@
             @Html.LabelForRequired(model => model.ProductGatewayCDISKU)
             @Html.EditorFor(model => model.ProductGatewayCDISKU)
         </div>
+        <div class="controls">
+            @if (Model != null)
+            {
+                <ul>
+                    @foreach (var productAttachmentType in Model.ProductAttachmentTypes.Where(p => p.Status != MyExtensions.GetEnumDescription(Status.Archived)))
+                    {
+                        Html.RenderPartial("_ProductAttachmentTypeEditor", productAttachmentType);
+                    }
+                </ul>
+                <button type="button" class="button green">Attach Document</button>
+            }
+        </div>
     </div>
     <div class="inline-right">
         <div class="controls">

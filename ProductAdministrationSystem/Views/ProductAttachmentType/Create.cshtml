@@ -1,0 +1,64 @@
+﻿@model PAS.Models.ProductAttachmentType
+@using PAS.Models
+@using PAS.Helpers
+
+@{
+    ViewBag.Title = "Create Product Attachment Type";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="heading">
+        <h1>@ViewBag.Title</h1>
+    </div>
+    <div class="flex-grid">
+        <div class="controls">
+            @Html.LabelFor(model => model.Status)
+            @Html.DropDownListFor(model => model.Status, MyExtensions.GetGenericEnumDropDown<Status>(), "")
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+
+        <div class="controls">
+            @Html.LabelFor(model => model.Selected)
+            @Html.EditorFor(model => model.Selected)
+            @Html.ValidationMessageFor(model => model.Selected)
+        </div>
+
+        <div class="controls">
+            @Html.LabelFor(model => model.ProductID)
+            @if (Model == null || Model.ProductID == 0)
+            {
+                @Html.DropDownList("ProductID", ViewBag.Products as SelectList, String.Empty)
+            }
+            else
+            {
+                @Html.DropDownList("ProductID", ViewBag.Products as SelectList)
+            }
+            @Html.ValidationMessageFor(model => model.ProductID)
+        </div>
+
+        <div class="controls">
+            @Html.LabelFor(model => model.AttachmentTypeID)
+            @if (Model == null || Model.AttachmentTypeID == 0)
+            {
+                @Html.DropDownListFor(model => model.AttachmentTypeID, (SelectList)ViewBag.AttachmentTypes, String.Empty)
+            }
+            else
+            {
+                @Html.DropDownListFor(model => model.AttachmentTypeID, (SelectList)ViewBag.AttachmentTypes)
+            }
+            @Html.ValidationMessageFor(model => model.AttachmentTypeID)
+        </div>
+
+        <div class="controls">
+            <input type="submit" class="button green" value="Create" />
+        </div>
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+}

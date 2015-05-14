@@ -241,6 +241,7 @@
           <Property Name="AttachmentTypeID" Type="int" Nullable="false" />
           <Property Name="DocumentFileType" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="DocumentFileName" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductSellPrice">
           <Key>
@@ -727,6 +728,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductAttachmentType_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductAttachmentType" Type="Self.ProductAttachmentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductAttachmentType">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductDecoration_DecorationMethod">
           <End Role="DecorationMethod" Type="Self.DecorationMethod" Multiplicity="1" />
           <End Role="ProductDecoration" Type="Self.ProductDecoration" Multiplicity="*" />
@@ -988,6 +1001,10 @@
             <End Role="VendorType" EntitySet="VendorType" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductAttachmentType_Product" Association="Self.FK_ProductAttachmentType_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductAttachmentType" EntitySet="ProductAttachmentType" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductDecoration_DecorationMethod" Association="Self.FK_ProductDecoration_DecorationMethod">
             <End Role="DecorationMethod" EntitySet="DecorationMethod" />
             <End Role="ProductDecoration" EntitySet="ProductDecoration" />
@@ -1230,6 +1247,10 @@
             <End Role="ProductAttachmentType" EntitySet="ProductAttachmentTypes" />
             <End Role="AuditTrail" EntitySet="AuditTrails" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductAttachmentType_Product" Association="NPRModel.FK_ProductAttachmentType_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductAttachmentType" EntitySet="ProductAttachmentTypes" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AuditTrail">
           <Key>
@@ -1470,6 +1491,7 @@
           <NavigationProperty Name="ProductUpcharges" Relationship="NPRModel.FK_ProductUpcharge_Product" FromRole="Product" ToRole="ProductUpcharge" />
           <Property Name="ProductSortValue" Type="Int32" />
           <NavigationProperty Name="ProductDocuments" Relationship="NPRModel.FK_ProductDocument_Product" FromRole="Product" ToRole="ProductDocument" />
+          <NavigationProperty Name="ProductAttachmentTypes" Relationship="NPRModel.FK_ProductAttachmentType_Product" FromRole="Product" ToRole="ProductAttachmentType" />
         </EntityType>
         <EntityType Name="ProductDecoration">
           <Key>
@@ -2043,6 +2065,7 @@
           <NavigationProperty Name="Product" Relationship="NPRModel.FK_ProductDocument_Product" FromRole="ProductDocument" ToRole="Product" />
           <Property Name="AttachmentTypeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AttachmentType" Relationship="NPRModel.FK_ProductDocument_AttachmentType1" FromRole="ProductDocument" ToRole="AttachmentType" />
+          <Property Name="DocumentFileName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_AuditTrail_ProductDocument">
           <End Type="NPRModel.ProductDocument" Role="ProductDocument" Multiplicity="0..1" />
@@ -2092,6 +2115,7 @@
           <NavigationProperty Name="AttachmentType" Relationship="NPRModel.FK_ProductAttachmentType_AttachmentType1" FromRole="ProductAttachmentType" ToRole="AttachmentType" />
           <NavigationProperty Name="AuditTrails" Relationship="NPRModel.FK_AuditTrail_ProductAttachmentType1" FromRole="ProductAttachmentType" ToRole="AuditTrail" />
           <NavigationProperty Name="AuditTrails1" Relationship="NPRModel.FK_AuditTrail_ProductAttachmentType" FromRole="ProductAttachmentType" ToRole="AuditTrail" />
+          <NavigationProperty Name="Product" Relationship="NPRModel.FK_ProductAttachmentType_Product" FromRole="ProductAttachmentType" ToRole="Product" />
         </EntityType>
         <Association Name="FK_AuditTrail_AttachmentType1">
           <End Type="NPRModel.AttachmentType" Role="AttachmentType" Multiplicity="0..1" />
@@ -2162,6 +2186,18 @@
             </Principal>
             <Dependent Role="AuditTrail">
               <PropertyRef Name="ProductAttachmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductAttachmentType_Product">
+          <End Type="NPRModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="NPRModel.ProductAttachmentType" Role="ProductAttachmentType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductAttachmentType">
+              <PropertyRef Name="ProductID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2451,6 +2487,7 @@
           <EntitySetMapping Name="ProductDocuments">
             <EntityTypeMapping TypeName="NPRModel.ProductDocument">
               <MappingFragment StoreEntitySet="ProductDocument">
+                <ScalarProperty Name="DocumentFileName" ColumnName="DocumentFileName" />
                 <ScalarProperty Name="AttachmentTypeID" ColumnName="AttachmentTypeID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="DocumentFileType" ColumnName="DocumentFileType" />

@@ -56,7 +56,6 @@ namespace PAS.Controllers
             // Sets Viewbag data for dropdowns
             SetViewBagData(returnUrl);
 
-            // Possible Issue?
             return View();
         }
 
@@ -91,6 +90,15 @@ namespace PAS.Controllers
                         db.Fees.Add(newFee);
                     }
                 }
+
+                // Loop though Attachment Types and add a ProductAttachmentType for each Attachment Type
+                foreach(var attachmentType in db.AttachmentTypes.Where(a => a.Status != archived).OrderBy(a => a.TypeName))
+                {
+                    // Create a Product Attament type
+                    ProductAttachmentType newProductAttachmentType = new ProductAttachmentType(product.ProductID, attachmentType.ID);
+                    db.ProductAttachmentTypes.Add(newProductAttachmentType);
+                }
+
                 // Product Image 
                 if (ProductImage != null && ProductImage.ContentLength > 0)
                 {
@@ -193,6 +201,7 @@ namespace PAS.Controllers
                         db.Entry(fee).State = EntityState.Modified; ;
                     }
                 }
+
                 // Remove Upcharges
                 var Upcharges = product.ProductUpcharges.ToList();
                 foreach (var upcharge in db.ProductUpcharges.Where(p => p.ProductID == product.ProductID))
@@ -219,6 +228,7 @@ namespace PAS.Controllers
                         db.Entry(fee).State = EntityState.Modified;
                     }
                 }
+
                 // update  SellPriceFees
                 foreach (var sellPrice in product.ProductSellPrices)
                 {
@@ -273,6 +283,7 @@ namespace PAS.Controllers
                         }
                     }
                 }
+
                 // Decorations
                 // Remove
                 var decorations = product.ProductDecorations.ToList();
@@ -349,8 +360,7 @@ namespace PAS.Controllers
                 #endregion
 
                 db.SaveChanges();
-
-
+                
                 return RedirectToAction("Edit", new { id = product.ProductID, ReturnUrl = returnUrl });
             }
             else
@@ -395,6 +405,7 @@ namespace PAS.Controllers
                         index++;
                     }
                 }
+
                 foreach (var upcharge in product.ProductUpcharges)
                 {
                     if (upcharge.UpchargeID <= 0)
@@ -416,6 +427,7 @@ namespace PAS.Controllers
                         db.Entry(fee).State = EntityState.Modified; ;
                     }
                 }
+
                 // Remove Upcharges
                 var Upcharges = product.ProductUpcharges.ToList();
                 foreach (var upcharge in db.ProductUpcharges.Where(p => p.ProductID == product.ProductID))
@@ -442,6 +454,7 @@ namespace PAS.Controllers
                         db.Entry(fee).State = EntityState.Modified;
                     }
                 }
+
                 // update  SellPriceFees
                 foreach (var sellPrice in product.ProductSellPrices)
                 {
@@ -483,7 +496,6 @@ namespace PAS.Controllers
                         db.Entry(upcharge).State = EntityState.Modified;
                     }
 
-
                     //TODO: add/update/remove SellPriceFees
                     foreach (var upchargeSellPrice in upcharge.UpchargeSellPrices)
                     {
@@ -497,6 +509,7 @@ namespace PAS.Controllers
                         }
                     }
                 }
+
                 // Decorations
                 // Remove
                 var decorations = product.ProductDecorations.ToList();
@@ -638,6 +651,7 @@ namespace PAS.Controllers
                         db.Entry(fee).State = EntityState.Modified;
                     }
                 }
+
                 // Remove Upcharges
                 var Upcharges = product.ProductUpcharges.ToList();
                 foreach (var upcharge in db.ProductUpcharges.Where(p => p.ProductID == product.ProductID))
@@ -664,6 +678,7 @@ namespace PAS.Controllers
                         db.Entry(fee).State = EntityState.Modified;
                     }
                 }
+
                 // update  SellPriceFees
                 foreach (var sellPrice in product.ProductSellPrices)
                 {
@@ -802,6 +817,7 @@ namespace PAS.Controllers
                     count++;
                 }
             }
+
             // Error
             return View("Edit", product);
         }
@@ -875,6 +891,7 @@ namespace PAS.Controllers
                         db.Entry(fee).State = EntityState.Modified;
                     }
                 }
+
                 // update  SellPriceFees
                 foreach (var sellPrice in product.ProductSellPrices)
                 {
@@ -930,6 +947,7 @@ namespace PAS.Controllers
 
                     }
                 }
+
                 // Decorations
                 // Remove
                 var decorations = product.ProductDecorations.ToList();
@@ -1026,6 +1044,7 @@ namespace PAS.Controllers
                     count++;
                 }
             }
+
             // Error
             product.Campaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID)
                                             .FirstOrDefault();
