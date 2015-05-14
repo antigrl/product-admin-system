@@ -249,6 +249,12 @@ namespace PAS.Controllers
                     }
                 }
 
+                // update ProductAttachmentTypes
+                foreach(var productAttachmentType in product.ProductUpcharges)
+                {
+                    db.Entry(productAttachmentType).State = EntityState.Modified;
+                }
+
                 // update Upcharges
                 foreach (var upcharge in product.ProductUpcharges)
                 {
@@ -475,6 +481,13 @@ namespace PAS.Controllers
                     }
                 }
 
+                // update ProductAttachmentTypes
+                foreach (var productAttachmentType in product.ProductAttachmentTypes)
+                {
+                    db.Entry(productAttachmentType).State = EntityState.Modified;
+                }
+
+
                 // update Upcharges
                 foreach (var upcharge in product.ProductUpcharges)
                 {
@@ -699,6 +712,13 @@ namespace PAS.Controllers
                     }
                 }
 
+                // update ProductAttachmentTypes
+                foreach (var productAttachmentType in product.ProductUpcharges)
+                {
+                    db.Entry(productAttachmentType).State = EntityState.Modified;
+                }
+
+
                 // update Upcharges
                 foreach (var upcharge in product.ProductUpcharges)
                 {
@@ -911,6 +931,13 @@ namespace PAS.Controllers
                         }
                     }
                 }
+
+                // update ProductAttachmentTypes
+                foreach (var productAttachmentType in product.ProductUpcharges)
+                {
+                    db.Entry(productAttachmentType).State = EntityState.Modified;
+                }
+
 
                 // update Upcharges
                 foreach (var upcharge in product.ProductUpcharges)
