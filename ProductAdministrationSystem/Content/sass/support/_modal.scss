@@ -31,7 +31,7 @@ $ease: transition all $s cubic-bezier(0.23, 1, 0.32, 1);
   bottom: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  z-index: 1000;
+  z-index: 10;
   visibility: hidden;
   opacity: 0;
   -webkit-transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
@@ -70,7 +70,7 @@ $ease: transition all $s cubic-bezier(0.23, 1, 0.32, 1);
   opacity: 1;
 }
 .modal__close {
-  z-index: 1100;
+  z-index: 11;
   cursor: pointer;
 }
 .modal__trigger {

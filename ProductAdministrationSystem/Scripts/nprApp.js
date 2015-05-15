@@ -335,3 +335,23 @@ var Modal = (function() {
 }());
 
 Modal.init();
+
+// File upload attachment
+$('#chooseFile').bind('change', function () {
+  var filename = $("#chooseFile").val();
+  if (/^\s*$/.test(filename)) {
+    $(".file-upload").removeClass('active');
+    $("#noFile").text("No file chosen...");
+  }
+  else {
+    $(".file-upload").addClass('active');
+    $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+  }
+});
+
+app.controller('selectCtrl', function($scope) {
+  $scope.safety = [
+    { value: 'Childlike Apparel', opt: 'Childlike Apparel'},
+    { value: 'Child Apparel', opt: 'Child Apparel'}
+  ];
+});

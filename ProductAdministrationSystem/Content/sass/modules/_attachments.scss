@@ -1,7 +1,19 @@
-.dialogdemoBasicUsage .dialogDemo1 {
-  height: 500px; }
-.dialogdemoBasicUsage .dialog-demo-content div {
-  text-align: center; }
-.dialogdemoBasicUsage .md-subheader {
-  background-color: #dcedc8;
-  margin: 0; }
+.attachment-container {
+  width: 100%;
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  text-align: right;
+  margin-bottom: 5px;
+  background-color: lighten($lightgray, 30%);
+  padding: 10px;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input.dollar-value {
+    justify-content: flex-end;
+  }
+}
