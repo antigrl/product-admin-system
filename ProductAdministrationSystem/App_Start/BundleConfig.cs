@@ -23,6 +23,7 @@ namespace PAS
                         "~/Content/bower_components/angular-animate/angular-animate.js",
                         "~/Scripts/angular-textarea-fit.js",
                         "~/Content/bower_components/angular-material/angular-material.js",
+                        "~/Content/bower_components/md-date-time/dist/md-date-time.js",
                         "~/Scripts/angular-aria.js",
                         "~/Scripts/NPR.js",
                         "~/Scripts/spin.js",

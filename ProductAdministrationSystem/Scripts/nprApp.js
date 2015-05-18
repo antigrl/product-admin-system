@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('nprApp', ['datatables', 'textarea-fit', 'datatables.scroller', 'ngAnimate', 'ngMaterial']);
+var app = angular.module('nprApp', ['datatables', 'textarea-fit', 'datatables.scroller', 'ngAnimate', 'ngMaterial', 'mdDateTime']);
 
 // Side nav expansion
 $(function () {
