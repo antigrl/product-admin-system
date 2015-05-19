@@ -393,7 +393,7 @@ namespace PAS.Controllers
         // POST: /Product/SaveAndCalculateSellPrice/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveAndCalculateSellPrice(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, string returnUrl)
+        public ActionResult SaveAndCalculateSellPrice(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, HttpPostedFileBase Document, string returnUrl)
         {
             // Sets Viewbag data for dropdowns
             SetViewBagData(returnUrl, product);
@@ -414,9 +414,20 @@ namespace PAS.Controllers
 
                 foreach (var upcharge in product.ProductUpcharges)
                 {
+                    // If it's a new upcharge
                     if (upcharge.UpchargeID <= 0)
                     {
                         upcharge.UpchargeID = index;
+                        index++;
+                    }
+                }
+
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // if it's a new document
+                    if(productDocument.ID <= 0)
+                    {
+                        productDocument.ID = index;
                         index++;
                     }
                 }
@@ -487,7 +498,6 @@ namespace PAS.Controllers
                     db.Entry(productAttachmentType).State = EntityState.Modified;
                 }
 
-
                 // update Upcharges
                 foreach (var upcharge in product.ProductUpcharges)
                 {
@@ -522,6 +532,43 @@ namespace PAS.Controllers
                         }
                     }
                 }
+                
+                // Document
+                // Remove
+                var productDocuments = product.ProductDocuments.ToList();
+                foreach (var productDocument in db.ProductDocuments.Where(p => p.ProductID == product.ProductID))
+                {
+                    if(!productDocuments.Contains(productDocument))
+                    {
+                        productDocument.Status = archived;
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }
+                // Add/Update
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // file
+                    if (Document != null && Document.ContentLength > 0)
+                    {
+                        byte[] documentBinaryData = new byte[Document.ContentLength];
+                        int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
+                        productDocument.Document = documentBinaryData;
+                        productDocument.DocumentFileType = Document.ContentType;
+                        productDocument.DocumentFileName = Document.FileName;
+                    }
+
+                    // IF it's a new productDocument
+                    if (productDocument.ID <= 0)
+                    {
+                        // Create a new productDocument
+                        db.ProductDocuments.Add(productDocument);
+                    }
+                    else
+                    {
+                        // Else update existing productDocument
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }                
 
                 // Decorations
                 // Remove
@@ -534,7 +581,6 @@ namespace PAS.Controllers
                         db.Entry(decoration).State = EntityState.Modified;
                     }
                 }
-
                 // Add/Update
                 foreach (var decoration in product.ProductDecorations)
                 {
@@ -546,19 +592,20 @@ namespace PAS.Controllers
                         decoration.DecorationImageType = DecorationImage.ContentType;
                     }
 
-                    // IF it's a new fee
+                    // IF it's a new decoration
                     if (decoration.DecorationID <= 0)
                     {
-                        // Create a new Fee
+                        // Create a new decoration
                         db.ProductDecorations.Add(decoration);
                     }
                     else
                     {
-                        // Else update existing Fee
+                        // Else update existing decoration
                         db.Entry(decoration).State = EntityState.Modified;
                     }
                 }
 
+                // Product Image
                 if (ProductImage != null && ProductImage.ContentLength > 0)
                 {
                     byte[] imageBinaryData = new byte[ProductImage.ContentLength];
@@ -566,6 +613,16 @@ namespace PAS.Controllers
                     product.ProductImage = imageBinaryData;
                     product.ProductImageType = ProductImage.ContentType;
                 }
+                // Product Documents
+                if (Document != null && Document.ContentLength > 0)
+                {
+                    byte[] documentBinaryData = new byte[Document.ContentLength];
+                    int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
+                    //productDocument.Document = documentBinaryData;
+                    //productDocument.DocumentFileType = Document.ContentType;
+                    //productDocument.DocumentFileName = Document.FileName;
+                }
+
 
                 // Calculator
                 Helpers.FeeCalculator newCalculator = new Helpers.FeeCalculator(product);
@@ -1191,6 +1248,13 @@ namespace PAS.Controllers
             }
 
             return PartialView();
+        }
+
+        public PartialViewResult BlankProductDecorationEditorRow(int productID)
+        {
+            var attachmentTypeList = db.AttachmentTypes.Where(a => a.Status != archived);
+            ViewBag.AttachmentTypes = new SelectList(attachmentTypeList, "ID", "TypeName", 0);
+            return PartialView("_ProductDocumentEditor", new ProductDocument(productID));
         }
 
         public PartialViewResult BlankEditorRowExtended(int productID, string feeType, string feeCalculation, int feeNameID, decimal? feeDollarAmount, decimal? feeAmortizedCharge, string feeAmortizedType, decimal? feePercent, string feePercentType, int inheritedID)

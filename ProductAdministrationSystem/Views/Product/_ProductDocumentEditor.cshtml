@@ -1,22 +1,16 @@
 ﻿@model PAS.Models.ProductDocument
-@using PAS.Models
-@using PAS.Helpers
+@using PAS.Helpers;
+@using PAS.Models;
 
-@{
-    ViewBag.Title = "Edit Document";
-}
-
-@using (Html.BeginForm("Edit", "ProductDocument", new { }, FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-
-    <div class="heading">
-        <h1>@ViewBag.Title</h1>
-    </div>
-
-    <div class="flex-grid">
+<li class="product-document editor-row">
+    @using (Html.BeginCollectionItem("ProductDocuments"))
+    {
         @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.ProductID)
+
+        @Html.ValidationSummary(true)
+
+        <span><a class="delete-row"></a></span>
 
         <div class="controls">
             @Html.LabelFor(model => model.ExpirationDate)
@@ -51,19 +45,6 @@
                 <a href="@Url.Action("ViewInBrowser", "ProductDocument", new { id = Model.ID })" target="_blank">View in Browser</a>
             }
         </div>
+    }
+</li>
 
-        <div class="controls">
-            @Html.LabelFor(model => model.ProductID)
-            @Html.DropDownList("ProductID", ViewBag.Products as SelectList)
-            @Html.ValidationMessageFor(model => model.ProductID)
-        </div>
-
-        <div class="controls">
-            <input type="submit" class="button green" value="Save" />
-        </div>
-
-        <div>
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    </div>
-}

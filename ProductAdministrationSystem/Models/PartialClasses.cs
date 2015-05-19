@@ -787,6 +787,13 @@ namespace PAS.Models
             this.Status = MyExtensions.GetEnumDescription(PAS.Models.Status.Active);
             this.ExpirationDate = DateTime.Today.AddYears(1);
         }
+        public ProductDocument(int productID)
+        {
+            this.ProductID = productID;
+            this.AuditTrails = new HashSet<AuditTrail>();
+            this.Status = MyExtensions.GetEnumDescription(PAS.Models.Status.Active);
+            this.ExpirationDate = DateTime.Today.AddYears(1);
+        }
         public ProductDocument(int productID, int AttachmentTypeID)
         {
             this.ProductID = productID;

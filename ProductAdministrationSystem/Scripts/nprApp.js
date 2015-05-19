@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('nprApp', ['datatables', 'textarea-fit', 'datatables.scroller', 'ngAnimate', 'ngMaterial', 'mdDateTime']);
+var app = angular.module('nprApp', ['datatables', 'textarea-fit', 'datatables.scroller', 'ngAnimate', 'ngMaterial']);
 
 // Side nav expansion
 $(function () {
@@ -148,7 +148,6 @@ app.controller('ScrollCtrl', ['$scope', '$location', '$anchorScroll',
   }]);
 
 var Modal = (function() {
-
     var trigger = $qsa('.modal__trigger'); // what you click to activate the modal
     var modals = $qsa('.modal'); // the entire modal (takes up entire window)
     var modalsbg = $qsa('.modal__bg'); // the entire modal (takes up entire window)
