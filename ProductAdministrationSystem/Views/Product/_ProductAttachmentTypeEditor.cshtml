@@ -9,9 +9,9 @@
         @Html.HiddenFor(model => model.ProductID)
         @Html.HiddenFor(model => model.Status)
         // checkbox for selected
-        <div>
+        <li class="">
             @Html.EditorFor(model => model.Selected)
             @Html.DisplayFor(model => model.AttachmentType.TypeName)
-        </div>
+        </li>
     }
 </li>

@@ -1,9 +1,8 @@
 .attachment-container {
   width: 100%;
-  display: inline-flex;
   align-items: flex-start;
   justify-content: space-between;
-  text-align: right;
+  text-align: left;
   margin-bottom: 5px;
   background-color: lighten($lightgray, 30%);
   padding: 10px;

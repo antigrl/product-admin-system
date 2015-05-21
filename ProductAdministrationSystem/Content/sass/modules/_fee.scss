@@ -59,7 +59,8 @@
 .dollar-fee-container,
 .percent-fee-container,
 .upcharge,
-.sell-price {
+.sell-price,
+.product-fee-container {
     width: 100%;
     display: inline-flex;
     align-items: flex-start;
@@ -79,6 +80,11 @@
     }
 }
 
+.product-fee-container {
+    .controls {
+        display: inline-block;
+    }
+}
 .upcharge {
     padding: 10px 5px;
 }
