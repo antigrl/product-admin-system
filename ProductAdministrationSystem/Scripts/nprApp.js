@@ -169,3 +169,10 @@ $(document).on('ready', function(){
     });
 
   });
+
+$(".attachment-label input").on("click", function(){
+  if ( $(this).attr("type") === "checkbox" ) {
+    $(this).parent().siblings().removeClass("isSelected");
+  }
+  $(this).parent().toggleClass("isSelected").attr("checked");
+});
