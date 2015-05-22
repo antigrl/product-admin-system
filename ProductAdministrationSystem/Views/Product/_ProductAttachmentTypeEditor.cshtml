@@ -1,7 +1,7 @@
 ﻿@model PAS.Models.ProductAttachmentType
 @using PAS.Helpers;
 
-<li class="product-attachment-types">
+
     @using (Html.BeginCollectionItem("ProductAttachmentTypes"))
     {
         @Html.HiddenFor(model => model.ID)
@@ -9,9 +9,9 @@
         @Html.HiddenFor(model => model.ProductID)
         @Html.HiddenFor(model => model.Status)
         // checkbox for selected
-        <li class="">
+
             @Html.EditorFor(model => model.Selected)
+            //TODO: Add label for checkbox
             @Html.DisplayFor(model => model.AttachmentType.TypeName)
-        </li>
+
     }
-</li>
