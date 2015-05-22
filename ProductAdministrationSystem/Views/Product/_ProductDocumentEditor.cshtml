@@ -2,7 +2,7 @@
 @using PAS.Helpers;
 @using PAS.Models;
 
-<li class="product-document product-fee-container">
+<li class="product-document-container editor-row">
     @using (Html.BeginCollectionItem("ProductDocuments"))
     {
         @Html.HiddenFor(model => model.ID)
@@ -13,14 +13,13 @@
         <span><a class="delete-row"></a></span>
 
         <div class="controls">
-
-
             <div class="button orange">
-                <input type="file" class="input-file" name="Document" id="Document" />
+                <input type="file" class="input-file" name="Documents" id="Document" />
             </div>
             @Html.HiddenFor(model => model.Document)
             @Html.HiddenFor(model => model.DocumentFileType)
             @Html.HiddenFor(model => model.DocumentFileName)
+            @Html.HiddenFor(model => model.Status)
             @if (Model != null && Model.Document != null)
             {
                 <a href="@Url.Action("Download", "ProductDocument", new { id = Model.ID })" target="_blank">Download</a>
@@ -28,32 +27,14 @@
             }
         </div>
 
-        // <div class="controls">
-        //     @Html.LabelFor(model => model.Status)
-        //     @Html.DropDownListFor(model => model.Status, MyExtensions.GetGenericEnumDropDown<Status>(), "")
-        //     @Html.ValidationMessageFor(model => model.Status)
-        // </div>
-
         <div class="controls">
-
             @Html.DropDownListFor(model => model.AttachmentTypeID, (SelectList)ViewBag.AttachmentTypes)
             @Html.ValidationMessageFor(model => model.AttachmentTypeID)
         </div>
 
         <div class="controls">
-
             @Html.EditorFor(model => model.ExpirationDate)
             @Html.ValidationMessageFor(model => model.ExpirationDate)
         </div>
-        <div class="action-icons">
-            <ul>
-                <li>
-                    <a class="archive-btn" href=""><i class="fa fa-archive"></i></a>
-                </li>
-            </ul>
-        </div>
-
-
     }
 </li>
-
