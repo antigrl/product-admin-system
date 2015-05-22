@@ -2,7 +2,7 @@
 @using PAS.Helpers;
 @using PAS.Models;
 
-<li class="product-document editor-row">
+<li class="product-document product-fee-container">
     @using (Html.BeginCollectionItem("ProductDocuments"))
     {
         @Html.HiddenFor(model => model.ID)
@@ -13,25 +13,7 @@
         <span><a class="delete-row"></a></span>
 
         <div class="controls">
-            @Html.LabelFor(model => model.ExpirationDate)
-            @Html.EditorFor(model => model.ExpirationDate)
-            @Html.ValidationMessageFor(model => model.ExpirationDate)
-        </div>
 
-        <div class="controls">
-            @Html.LabelFor(model => model.Status)
-            @Html.DropDownListFor(model => model.Status, MyExtensions.GetGenericEnumDropDown<Status>(), "")
-            @Html.ValidationMessageFor(model => model.Status)
-        </div>
-
-        <div class="controls">
-            @Html.LabelFor(model => model.AttachmentTypeID)
-            @Html.DropDownListFor(model => model.AttachmentTypeID, (SelectList)ViewBag.AttachmentTypes)
-            @Html.ValidationMessageFor(model => model.AttachmentTypeID)
-        </div>
-
-        <div class="controls">
-            @Html.LabelForRequired(model => model.Document)
 
             <div class="button orange">
                 <input type="file" class="input-file" name="Document" id="Document" />
@@ -45,6 +27,33 @@
                 <a href="@Url.Action("ViewInBrowser", "ProductDocument", new { id = Model.ID })" target="_blank">View in Browser</a>
             }
         </div>
+
+        // <div class="controls">
+        //     @Html.LabelFor(model => model.Status)
+        //     @Html.DropDownListFor(model => model.Status, MyExtensions.GetGenericEnumDropDown<Status>(), "")
+        //     @Html.ValidationMessageFor(model => model.Status)
+        // </div>
+
+        <div class="controls">
+
+            @Html.DropDownListFor(model => model.AttachmentTypeID, (SelectList)ViewBag.AttachmentTypes)
+            @Html.ValidationMessageFor(model => model.AttachmentTypeID)
+        </div>
+
+        <div class="controls">
+
+            @Html.EditorFor(model => model.ExpirationDate)
+            @Html.ValidationMessageFor(model => model.ExpirationDate)
+        </div>
+        <div class="action-icons">
+            <ul>
+                <li>
+                    <a class="archive-btn" href=""><i class="fa fa-archive"></i></a>
+                </li>
+            </ul>
+        </div>
+
+
     }
 </li>
 

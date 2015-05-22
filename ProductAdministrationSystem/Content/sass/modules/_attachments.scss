@@ -1,20 +1,9 @@
 .attachment-container {
   width: 100%;
-  align-items: flex-start;
-  justify-content: space-between;
   text-align: left;
   margin-bottom: 5px;
   background-color: lighten($lightgray, 30%);
   padding: 10px;
-
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  input.dollar-value {
-    justify-content: flex-end;
-  }
 }
 
 /*
