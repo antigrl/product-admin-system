@@ -92,7 +92,7 @@ namespace PAS.Controllers
                 }
 
                 // Loop though Attachment Types and add a ProductAttachmentType for each Attachment Type
-                foreach(var attachmentType in db.AttachmentTypes.Where(a => a.Status != archived).OrderBy(a => a.TypeName))
+                foreach (var attachmentType in db.AttachmentTypes.Where(a => a.Status != archived).OrderBy(a => a.TypeName))
                 {
                     // Create a Product Attament type
                     ProductAttachmentType newProductAttachmentType = new ProductAttachmentType(product.ProductID, attachmentType.ID);
@@ -250,7 +250,7 @@ namespace PAS.Controllers
                 }
 
                 // update ProductAttachmentTypes
-                foreach(var productAttachmentType in product.ProductUpcharges)
+                foreach (var productAttachmentType in product.ProductUpcharges)
                 {
                     db.Entry(productAttachmentType).State = EntityState.Modified;
                 }
@@ -366,7 +366,7 @@ namespace PAS.Controllers
                 #endregion
 
                 db.SaveChanges();
-                
+
                 return RedirectToAction("Edit", new { id = product.ProductID, ReturnUrl = returnUrl });
             }
             else
@@ -393,7 +393,7 @@ namespace PAS.Controllers
         // POST: /Product/SaveAndCalculateSellPrice/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveAndCalculateSellPrice(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, HttpPostedFileBase Document, string returnUrl)
+        public ActionResult SaveAndCalculateSellPrice(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, IEnumerable<HttpPostedFileBase> Documents, string returnUrl)
         {
             // Sets Viewbag data for dropdowns
             SetViewBagData(returnUrl, product);
@@ -401,14 +401,14 @@ namespace PAS.Controllers
 
             if (ModelState.IsValid)
             {
-                int index = -100;
+                int idIndex = -100;
                 foreach (var fee in product.Fees)
                 {
                     // IF it's a new fee
                     if (fee.FeeID <= 0)
                     {
-                        fee.FeeID = index;
-                        index++;
+                        fee.FeeID = idIndex;
+                        idIndex++;
                     }
                 }
 
@@ -417,18 +417,18 @@ namespace PAS.Controllers
                     // If it's a new upcharge
                     if (upcharge.UpchargeID <= 0)
                     {
-                        upcharge.UpchargeID = index;
-                        index++;
+                        upcharge.UpchargeID = idIndex;
+                        idIndex++;
                     }
                 }
 
                 foreach (var productDocument in product.ProductDocuments)
                 {
                     // if it's a new document
-                    if(productDocument.ID <= 0)
+                    if (productDocument.ID <= 0)
                     {
-                        productDocument.ID = index;
-                        index++;
+                        productDocument.ID = idIndex;
+                        idIndex++;
                     }
                 }
 
@@ -492,6 +492,49 @@ namespace PAS.Controllers
                     }
                 }
 
+                // Document
+                // Remove
+                var productDocuments = product.ProductDocuments.ToList();
+                foreach (var productDocument in db.ProductDocuments.Where(p => p.ProductID == product.ProductID))
+                {
+                    if (!productDocuments.Contains(productDocument))
+                    {
+                        productDocument.Status = archived;
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }
+                //Files
+                for (int index = 0; index < Documents.Count(); index++)
+                {
+                    var productDocument = product.ProductDocuments.ElementAt(index);
+                    var Document = Documents.ElementAt(index);
+                    // file
+                    if (Document != null && Document.ContentLength > 0)
+                    {
+                        byte[] documentBinaryData = new byte[Document.ContentLength];
+                        int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
+                        productDocument.Document = documentBinaryData;
+                        productDocument.DocumentFileType = Document.ContentType;
+                        productDocument.DocumentFileName = Document.FileName;
+                    }
+                }
+                // Add/Update
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // IF it's a new productDocument
+                    if (productDocument.ID <= 0)
+                    {
+                        // Create a new productDocument
+                        db.ProductDocuments.Add(productDocument);
+                    }
+                    else
+                    {
+                        // Else update existing productDocument
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }
+
+
                 // update ProductAttachmentTypes
                 foreach (var productAttachmentType in product.ProductAttachmentTypes)
                 {
@@ -532,43 +575,6 @@ namespace PAS.Controllers
                         }
                     }
                 }
-                
-                // Document
-                // Remove
-                var productDocuments = product.ProductDocuments.ToList();
-                foreach (var productDocument in db.ProductDocuments.Where(p => p.ProductID == product.ProductID))
-                {
-                    if(!productDocuments.Contains(productDocument))
-                    {
-                        productDocument.Status = archived;
-                        db.Entry(productDocument).State = EntityState.Modified;
-                    }
-                }
-                // Add/Update
-                foreach (var productDocument in product.ProductDocuments)
-                {
-                    // file
-                    if (Document != null && Document.ContentLength > 0)
-                    {
-                        byte[] documentBinaryData = new byte[Document.ContentLength];
-                        int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
-                        productDocument.Document = documentBinaryData;
-                        productDocument.DocumentFileType = Document.ContentType;
-                        productDocument.DocumentFileName = Document.FileName;
-                    }
-
-                    // IF it's a new productDocument
-                    if (productDocument.ID <= 0)
-                    {
-                        // Create a new productDocument
-                        db.ProductDocuments.Add(productDocument);
-                    }
-                    else
-                    {
-                        // Else update existing productDocument
-                        db.Entry(productDocument).State = EntityState.Modified;
-                    }
-                }                
 
                 // Decorations
                 // Remove
@@ -613,16 +619,6 @@ namespace PAS.Controllers
                     product.ProductImage = imageBinaryData;
                     product.ProductImageType = ProductImage.ContentType;
                 }
-                // Product Documents
-                if (Document != null && Document.ContentLength > 0)
-                {
-                    byte[] documentBinaryData = new byte[Document.ContentLength];
-                    int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
-                    //productDocument.Document = documentBinaryData;
-                    //productDocument.DocumentFileType = Document.ContentType;
-                    //productDocument.DocumentFileName = Document.FileName;
-                }
-
 
                 // Calculator
                 Helpers.FeeCalculator newCalculator = new Helpers.FeeCalculator(product);
@@ -1250,7 +1246,7 @@ namespace PAS.Controllers
             return PartialView();
         }
 
-        public PartialViewResult BlankProductDecorationEditorRow(int productID)
+        public PartialViewResult BlankProductDocumentEditorRow(int productID)
         {
             var attachmentTypeList = db.AttachmentTypes.Where(a => a.Status != archived);
             ViewBag.AttachmentTypes = new SelectList(attachmentTypeList, "ID", "TypeName", 0);
