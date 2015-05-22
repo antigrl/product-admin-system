@@ -1030,6 +1030,7 @@
     <Content Include="Content\bower_components\angular-material\README.md" />
     <Content Include="Content\sass\support\_actions.scss" />
     <Content Include="Content\sass\main.css.map" />
+    <Content Include="Content\sass\modules\_attachments.scss" />
     <None Include="Properties\PublishProfiles\Live Production.pubxml" />
     <None Include="Properties\PublishProfiles\Staging Test.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
