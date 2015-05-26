@@ -1,0 +1,311 @@
+$green:         #1fbba6;
+
+.drag-and-drop-table {
+  width: 100%;
+}
+.button {
+  margin: 5px;
+}
+
+.index-table {
+  border: 1px solid #000;
+  height: 122px;
+  width: 49.9% !important;
+  font-size: 12px !important;
+}
+
+table {
+  margin: 0;
+  table-layout: fixed;
+  text-align: center;
+  border-spacing: 0;
+  box-sizing: content-box;
+
+  &.index-table {
+    &:nth-child(odd) {
+      float: left;
+    }
+
+    &:nth-child(even) {
+      float: left;
+    }
+
+    table {
+      border-spacing: 0;
+    }
+  }
+
+  td {
+    padding: 0;
+    box-sizing: content-box;
+    border-spacing: 0;
+    height: 21px;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.image-container {
+  width: 110px;
+  height: 112px;
+  border-right: 1px solid #000;
+
+  .image {
+    img {
+      max-width: 107px;
+      max-height: 150px;
+      margin: 0;
+    }
+  }
+}
+
+.name-container {
+  height: 16px;
+  width: 204px;
+  overflow: hidden;
+}
+
+.icon-container {
+  height: 16px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    li {
+      display: inline-block;
+    }
+  }
+}
+
+.description-container {
+  width: 204px;
+  height: 107px;
+  overflow: hidden;
+  border: none;
+}
+
+.price-tiers {
+  width: 78px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+  }
+}
+
+.questions-container {
+  width: 78px;
+}
+
+.country-container {
+  width: 204px;
+  overflow: hidden;
+}
+
+
+.starting-page-number {
+  width: 50px;
+  padding: 10px;
+}
+
+
+/// Define basic default for checkboxes. Do not use on its own - use mixins!
+%custom-form-buttons { // hide radio buttons/checkboxes
+  opacity: 0;
+  float: left;
+  width: 1px;
+  margin: 0;
+
+  + label {
+    position: relative;
+    margin: 0;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    color: #222;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      background: #ddd;
+      border: 1px solid #aaa;
+    }
+  }
+
+  &:checked + label {
+    color: $green;
+
+    &:before {
+      background: $green;
+      border-color: darken($green, 10%);
+    }
+  }
+
+  &:disabled + label {
+    color: #ccc;
+
+    &:before {
+      background: fade-out(#ccc, .5);
+      border: 2px dotted #ccc;
+    }
+  }
+
+  &:focus + label {
+    box-shadow: inset 0 0 3px #eee;
+  }
+}
+
+
+// CALL THIS Default position: left. Override with @include custom-radio(right);
+@mixin custom-checkbox($position: left) {
+
+  input[type="checkbox"] {
+    @extend %custom-form-buttons;
+
+    + label {
+      padding-#{$position}: 50px;
+
+      &:before {
+        height: 24px;
+        width: 24px;
+        margin-top: -13px;
+        #{$position}: 10px;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+dl {
+  max-width: 350px;
+  text-align: left !important;
+
+  dt {
+    margin: 0 0 5px;
+    font-size: 18px;
+  }
+
+  dd {
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+}
+
+.check-list-left {
+  @include custom-checkbox;
+}
+
+.check-list-right {
+  @include custom-checkbox(right);
+}
+
+.major-category,
+.presentation-major-category {
+  min-width: 47.9%;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  th {
+    padding-bottom: 5px;
+  }
+  .major-title {
+    display: block;
+    position: relative;
+    font-size: 1.75em;
+    border: none;
+    background: none;
+    padding: 0;
+    margin-bottom: 3px;
+    text-align: center;
+    width: 100%;
+    &::-webkit-input-placeholder {
+      color: #000;
+    }
+  }
+}
+
+.presentation-major-category h2 {
+  font-size: 1em;
+}
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 1;
+  z-index: 2000;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+}
+
+tr.placeholder {
+  position: relative;
+  /** More li styles **/
+}
+tr.placeholder:before {
+  position: absolute;
+  /** Define arrowhead **/
+}
+
+.flex-grid-category table {
+  table-layout: auto;
+}
+
+.flex-grid-category tbody tr:hover {
+  background-color: #eee;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  cursor: -webkit-grab;
+}
+
+.sortable-category:hover {
+  cursor: -webkit-grab;
+}
+
+.sortable-table-header {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.sortable-table-header,
+.sortable-table  {
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+    li {
+      font-size: 13px;
+      overflow: hidden;
+    }
+    .product-column {
+      width: 35px;
+    }
+
+    .product-name {
+      width: 200px;
+    }
+    .minor-category-name {
+      width: 120px;
+    }
+  }
+}
+.sortable-table ul {
+  border-top: 1px solid #cecece;
+  padding: 10px 0;
+  &.selected {
+    background-color: #eee;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    cursor: -webkit-grab;
+  }
+}
