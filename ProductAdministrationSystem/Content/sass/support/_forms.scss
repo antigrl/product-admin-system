@@ -294,6 +294,20 @@ input[type="checkbox"].input-validation-error {
 
 // Checkbox for attachments
 
+.attachment-label {
+  input[type="checkbox"] + label {
+    display: inline-block;
+    background-color: #ccc;
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+  input[type="checkbox"]:checked + label {
+    display: inline-block;
+    background-color: #f3d42e;
+  }
+}
+
+
 
 .attachment-label label{
   display: block;
@@ -311,9 +325,6 @@ input[type="checkbox"].input-validation-error {
   }
 }
 
-// input[id*="ProductAttachmentType"] {
-//   display: none;
-// }
 .isSelected {
   background-color: lightgreen;
 }

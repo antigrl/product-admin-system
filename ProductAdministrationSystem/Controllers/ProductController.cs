@@ -83,7 +83,7 @@ namespace PAS.Controllers
                     ProductSellPrice newSellPrice = new ProductSellPrice(product, tier.PricingTierName, tier.PricingTierLevel, (decimal)thisCampaign.Company.CompanyDefaultMargin);
                     db.ProductSellPrices.Add(newSellPrice);
 
-                    // Attach fees                 
+                    // Attach fees
                     foreach (var fee in tier.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
                     {
                         Fee newFee = new Fee(fee.FeeNameID, newSellPrice, fee.FeeType, fee.FeeCalculation, fee.FeeDollarAmount, fee.FeeAmortizedCharge, fee.FeeAmortizedType, fee.FeePercent, fee.FeePercentType, fee.FeeID);
@@ -99,7 +99,7 @@ namespace PAS.Controllers
                     db.ProductAttachmentTypes.Add(newProductAttachmentType);
                 }
 
-                // Product Image 
+                // Product Image
                 if (ProductImage != null && ProductImage.ContentLength > 0)
                 {
                     byte[] imageBinaryData = new byte[ProductImage.ContentLength];
@@ -108,7 +108,7 @@ namespace PAS.Controllers
                     product.ProductImageType = ProductImage.ContentType;
                 }
 
-                // Add Audit Entry 
+                // Add Audit Entry
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Create");
                 db.AuditTrails.Add(audit);
 
@@ -232,7 +232,7 @@ namespace PAS.Controllers
                 // update  SellPriceFees
                 foreach (var sellPrice in product.ProductSellPrices)
                 {
-                    // Update sellprice 
+                    // Update sellprice
                     db.Entry(sellPrice).State = EntityState.Modified;
 
                     //TODO: add/update/remove SellPriceFees
@@ -346,13 +346,13 @@ namespace PAS.Controllers
                     Console.Write("ProductController.cs SaveAndCalculateSellPriceToNearestFiveCents() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
                 }
 
-                // Add Audit Entry 
+                // Add Audit Entry
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Save and Calculate Prices");
                 db.AuditTrails.Add(audit);
 
                 // Send Emails
                 #region SendEmails
-                // Check previous status 
+                // Check previous status
                 if (preSaveStatus != product.ProductStatus)
                 {
                     List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(product.ProductStatus);
@@ -475,7 +475,7 @@ namespace PAS.Controllers
                 // update  SellPriceFees
                 foreach (var sellPrice in product.ProductSellPrices)
                 {
-                    // Update sellprice 
+                    // Update sellprice
                     db.Entry(sellPrice).State = EntityState.Modified;
 
                     //TODO: add/update/remove SellPriceFees
@@ -504,18 +504,20 @@ namespace PAS.Controllers
                     }
                 }
                 //Files
-                for (int index = 0; index < Documents.Count(); index++)
-                {
-                    var productDocument = product.ProductDocuments.ElementAt(index);
-                    var Document = Documents.ElementAt(index);
-                    // file
-                    if (Document != null && Document.ContentLength > 0)
+                if (Documents!=null){
+                    for (int index = 0; index < Documents.Count(); index++)
                     {
-                        byte[] documentBinaryData = new byte[Document.ContentLength];
-                        int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
-                        productDocument.Document = documentBinaryData;
-                        productDocument.DocumentFileType = Document.ContentType;
-                        productDocument.DocumentFileName = Document.FileName;
+                        var productDocument = product.ProductDocuments.ElementAt(index);
+                        var Document = Documents.ElementAt(index);
+                        // file
+                        if (Document != null && Document.ContentLength > 0)
+                        {
+                            byte[] documentBinaryData = new byte[Document.ContentLength];
+                            int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
+                            productDocument.Document = documentBinaryData;
+                            productDocument.DocumentFileType = Document.ContentType;
+                            productDocument.DocumentFileName = Document.FileName;
+                        }
                     }
                 }
                 // Add/Update
@@ -631,13 +633,13 @@ namespace PAS.Controllers
                     Console.Write("ProductController.cs SaveAndCalculateSellPrice() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
                 }
 
-                // Add Audit Entry 
+                // Add Audit Entry
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Save and Calculate Prices");
                 db.AuditTrails.Add(audit);
 
                 // Send Emails
                 #region SendEmails
-                // Check previous status 
+                // Check previous status
                 if (preSaveStatus != product.ProductStatus)
                 {
                     List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(product.ProductStatus);
@@ -748,7 +750,7 @@ namespace PAS.Controllers
                 // update  SellPriceFees
                 foreach (var sellPrice in product.ProductSellPrices)
                 {
-                    // Update sellprice 
+                    // Update sellprice
                     db.Entry(sellPrice).State = EntityState.Modified;
 
                     //TODO: add/update/remove SellPriceFees
@@ -854,13 +856,13 @@ namespace PAS.Controllers
                     Console.Write("ProductController.cs SaveAndCalculateMargin() ComputeMarginBasedOnSellprice() failure. Exception: " + ex.ToString());
                 }
 
-                // Add Audit Entry 
+                // Add Audit Entry
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Save and Calculate Margin");
                 db.AuditTrails.Add(audit);
 
                 // Send Emails
                 #region SendEmails
-                // Check previous status 
+                // Check previous status
                 if (preSaveStatus != product.ProductStatus)
                 {
                     List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(product.ProductStatus);
@@ -968,7 +970,7 @@ namespace PAS.Controllers
                 // update  SellPriceFees
                 foreach (var sellPrice in product.ProductSellPrices)
                 {
-                    // Update sellprice 
+                    // Update sellprice
                     db.Entry(sellPrice).State = EntityState.Modified;
 
                     //TODO: add/update/remove SellPriceFees
@@ -1083,13 +1085,13 @@ namespace PAS.Controllers
                     Console.Write("ProductController.cs SaveAndCalculateSellPrice() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
                 }
 
-                // Add Audit Entry 
+                // Add Audit Entry
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Save and Calculate Prices");
                 db.AuditTrails.Add(audit);
 
                 // Send Emails
                 #region SendEmails
-                // Check previous status 
+                // Check previous status
                 if (preSaveStatus != product.ProductStatus)
                 {
                     List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(product.ProductStatus);
@@ -1156,7 +1158,7 @@ namespace PAS.Controllers
             product.ProductStatus = MyExtensions.GetEnumDescription(Status.Archived);
             db.Entry(product).State = EntityState.Modified;
 
-            // Add Audit Entry 
+            // Add Audit Entry
             AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Archive");
             db.AuditTrails.Add(audit);
 
@@ -1194,7 +1196,7 @@ namespace PAS.Controllers
             product.ProductStatus = MyExtensions.GetEnumDescription(Status.Active);
             db.Entry(product).State = EntityState.Modified;
 
-            // Add Audit Entry 
+            // Add Audit Entry
             AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "UnArchive");
             db.AuditTrails.Add(audit);
 

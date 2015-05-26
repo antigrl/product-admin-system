@@ -107,41 +107,32 @@
         <div class="controls">
             @if (Model != null)
             {
+                <h2 class="add-fee">
+                    Upload Attachment
+                    <a class="add-item open"><i class="fa fa-plus-square"></i><md-tooltip>Upload</md-tooltip></a>
+                </h2>
                 <ul>
                     @foreach (var productAttachmentType in Model.ProductAttachmentTypes.Where(p => p.Status != MyExtensions.GetEnumDescription(Status.Archived)))
                     {
                         Html.RenderPartial("_ProductAttachmentTypeEditor", productAttachmentType);
                     }
                 </ul>
-                <a class="button green open">Product Documents</a>
+
 
                 <!-- Modal -->
                 <div class="modal-frame">
                     <div class="modal">
                         <div class="modal-inset">
                             <div class="close"><i class="fa fa-close"></i></div>
-                            <div class="modal_body">
+                            <div class="modal-body">
 
-                                <div class="Quotes">
+                                <div class="Document Manager">
                                     <h2 class="add-attachment">
-                                        Quotes
+                                        Attachments
                                         <a class="add-item" href="@Url.Action("BlankProductDocumentEditorRow", new { productID = Model.ProductID })"><i class="fa fa-plus-square"></i></a>
                                     </h2>
                                     <ul class="add-target">
                                         @foreach (var productDocument in Model.ProductDocuments.Where(p => p.Status != archived && p.AttachmentType.TypeName == "Quote"))
-                                        {
-                                            ViewBag.AttachmentTypes = new SelectList(new NPREntities().AttachmentTypes.Where(a => a.Status != archived), "ID", "TypeName", productDocument.AttachmentTypeID);
-                                            Html.RenderPartial("_ProductDocumentEditor", productDocument);
-                                        }
-                                    </ul>
-                                </div>
-                                <div class="Product-Safety">
-                                    <h2 class="add-attachment">
-                                        Product Safety
-                                        <a class="add-item" href="@Url.Action("BlankProductDocumentEditorRow", null, new { productID = Model.ProductID })"><i class="fa fa-plus-square"></i></a>
-                                    </h2>
-                                    <ul class="add-target">
-                                        @foreach (var productDocument in Model.ProductDocuments.Where(p => p.Status != archived && p.AttachmentType.TypeName != "Quote" && p.AttachmentType.TypeName != "Virtual Proof"))
                                         {
                                             ViewBag.AttachmentTypes = new SelectList(new NPREntities().AttachmentTypes.Where(a => a.Status != archived), "ID", "TypeName", productDocument.AttachmentTypeID);
                                             Html.RenderPartial("_ProductDocumentEditor", productDocument);
