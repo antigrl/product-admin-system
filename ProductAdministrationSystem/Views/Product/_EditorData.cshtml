@@ -109,7 +109,7 @@
             {
                 <h2 class="add-fee">
                     Upload Attachment
-                    <a class="add-item open"><i class="fa fa-plus-square"></i><md-tooltip>Upload</md-tooltip></a>
+                    <a class="add-item open"><i class="fa fa-plus-square"></i></a>
                 </h2>
                 <ul>
                     @foreach (var productAttachmentType in Model.ProductAttachmentTypes.Where(p => p.Status != MyExtensions.GetEnumDescription(Status.Archived)))
@@ -455,11 +455,7 @@
         <div class="side-fee-calc-container"></div>
     </div>
     <div class="flex-grid product-fees-buttons">
-        <button type="submit" class="button dark-blue" formaction="@Url.Action("SaveAndCalculateSellPrice", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Price</button>
 
-        <button type="submit" class="button dark-blue" formaction="@Url.Action("SaveAndCalculateSellPriceToNearestFiveCents", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Rounded Price</button>
-
-        <button type="submit" class="button dark-blue" formaction="@Url.Action("SaveAndCalculateMargin", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Margin</button>
     </div>
     <div>
         @foreach (var sellPrice in Model.ProductSellPrices.Where(price => price.SellPriceStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(price => price.SellPriceLevel))
@@ -472,3 +468,13 @@
         }
     </div>
 }
+
+<div class="bottom-save-bar" ng-cloak>
+ <button type="submit" class="button dark-blue" formaction="@Url.Action("SaveAndCalculateSellPrice", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Price</button>
+
+        <button type="submit" class="button dark-blue" formaction="@Url.Action("SaveAndCalculateSellPriceToNearestFiveCents", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Rounded Price</button>
+
+        <button type="submit" class="button dark-blue" formaction="@Url.Action("SaveAndCalculateMargin", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Calculate Margin</button>
+
+
+</div>
