@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="eb3cbba8602d45b28808ca5b27b771ea" Name="Diagram1" ZoomLevel="89">
-        <EntityTypeShape EntityType="NPRModel.AuditTrail" Width="1.5" PointX="3.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.AuditTrail" Width="1.5" PointX="3.5" PointY="5.25" IsExpanded="false" />
         <EntityTypeShape EntityType="NPRModel.Campaign" Width="1.5" PointX="2.75" PointY="0.5" IsExpanded="false" />
         <EntityTypeShape EntityType="NPRModel.Category" Width="1.5" PointX="6.375" PointY="2.5" IsExpanded="false" />
         <EntityTypeShape EntityType="NPRModel.Company" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="false" />
@@ -67,7 +67,7 @@
         <AssociationConnector Association="NPRModel.FK_MajorCategoryOrdering_Campaign" />
         <AssociationConnector Association="NPRModel.FK_MajorCategoryOrdering_Category" />
         <AssociationConnector Association="NPRModel.FK_AuditTrail_AuditTrail1" />
-        <EntityTypeShape EntityType="NPRModel.ProductDocument" Width="1.5" PointX="7.1649088483140382" PointY="20.736628959298425" />
+        <EntityTypeShape EntityType="NPRModel.ProductDocument" Width="1.5" PointX="7.1649088483140382" PointY="20.736628959298425" IsExpanded="false" />
         <AssociationConnector Association="NPRModel.FK_AuditTrail_ProductDocument" />
         <AssociationConnector Association="NPRModel.FK_ProductDocument_Product" />
         <EntityTypeShape EntityType="NPRModel.AttachmentType" Width="1.5" PointX="10.777368423890959" PointY="3.8968958872821631" />
