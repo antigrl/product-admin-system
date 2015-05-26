@@ -13,9 +13,12 @@
         <span><a class="delete-row"></a></span>
 
         <div class="controls">
-            <div class="button orange">
-                <input type="file" class="input-file" name="Documents" id="Document" />
-            </div>
+            @if (Model.Document == null)
+            {
+                <div class="button orange">
+                    <input type="file" class="input-file" name="Documents" id="Document" />
+                </div>
+            }
             @Html.HiddenFor(model => model.Document)
             @Html.HiddenFor(model => model.DocumentFileType)
             @Html.HiddenFor(model => model.DocumentFileName)
