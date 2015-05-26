@@ -275,7 +275,7 @@ namespace PAS.Controllers
                 {
                     for (int index = 0; index < Documents.Count(); index++)
                     {
-                        var productDocument = product.ProductDocuments.ElementAt(index);
+                        var productDocument = product.ProductDocuments.Where(p => p.Status != archived).ElementAt(product.ProductDocuments.Where(p => p.Status != archived).Count() - 1 - index);
                         var Document = Documents.ElementAt(index);
                         // file
                         if (Document != null && Document.ContentLength > 0)
@@ -563,7 +563,7 @@ namespace PAS.Controllers
                 {
                     for (int index = 0; index < Documents.Count(); index++)
                     {
-                        var productDocument = product.ProductDocuments.ElementAt(index);
+                        var productDocument = product.ProductDocuments.Where(p => p.Status != archived).ElementAt(product.ProductDocuments.Where(p => p.Status != archived).Count()-1 - index);
                         var Document = Documents.ElementAt(index);
                         // file
                         if (Document != null && Document.ContentLength > 0)
@@ -707,7 +707,14 @@ namespace PAS.Controllers
                 }
                 #endregion
 
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
 
                 return RedirectToAction("Edit", new { id = product.ProductID, ReturnUrl = returnUrl });
             }
@@ -848,7 +855,7 @@ namespace PAS.Controllers
                 {
                     for (int index = 0; index < Documents.Count(); index++)
                     {
-                        var productDocument = product.ProductDocuments.ElementAt(index);
+                        var productDocument = product.ProductDocuments.Where(p => p.Status != archived).ElementAt(product.ProductDocuments.Where(p => p.Status != archived).Count() - 1 - index);
                         var Document = Documents.ElementAt(index);
                         // file
                         if (Document != null && Document.ContentLength > 0)
@@ -1131,7 +1138,7 @@ namespace PAS.Controllers
                 {
                     for (int index = 0; index < Documents.Count(); index++)
                     {
-                        var productDocument = product.ProductDocuments.ElementAt(index);
+                        var productDocument = product.ProductDocuments.Where(p => p.Status != archived).ElementAt(product.ProductDocuments.Where(p => p.Status != archived).Count() - 1 - index);
                         var Document = Documents.ElementAt(index);
                         // file
                         if (Document != null && Document.ContentLength > 0)
