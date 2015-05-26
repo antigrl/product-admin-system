@@ -100,7 +100,8 @@
             </div>
             <div class="controls">
                 <input type="submit" class="button green" value="Save" />
-                | @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
+                <input type="submit" class="button green" formaction="@Url.Action("SaveAndUpdateMargins")" value="Save & Update Active Margins" />
+                @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
             </div>
         </article>
     </div>
