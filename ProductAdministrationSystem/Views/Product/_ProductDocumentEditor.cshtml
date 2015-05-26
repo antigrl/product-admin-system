@@ -22,6 +22,9 @@
             @Html.HiddenFor(model => model.Status)
             @if (Model != null && Model.Document != null)
             {
+                <div>
+                    @Html.DisplayFor(model => model.DocumentFileName)
+                </div>
                 <a href="@Url.Action("Download", "ProductDocument", new { id = Model.ID })" target="_blank">Download</a>
                 <a href="@Url.Action("ViewInBrowser", "ProductDocument", new { id = Model.ID })" target="_blank">View in Browser</a>
             }

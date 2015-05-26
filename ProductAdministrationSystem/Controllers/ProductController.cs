@@ -162,7 +162,7 @@ namespace PAS.Controllers
         // POST: /Product/SaveAndCalculateSellPriceToNearestFiveCents/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveAndCalculateSellPriceToNearestFiveCents(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, string returnUrl)
+        public ActionResult SaveAndCalculateSellPriceToNearestFiveCents(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, IEnumerable<HttpPostedFileBase> Documents, string returnUrl)
         {
             // Sets Viewbag data for dropdowns
             SetViewBagData(returnUrl, product);
@@ -170,22 +170,32 @@ namespace PAS.Controllers
 
             if (ModelState.IsValid)
             {
-                int index = -100;
+                int idIndex = -100;
                 foreach (var fee in product.Fees)
                 {
                     // IF it's a new fee
                     if (fee.FeeID <= 0)
                     {
-                        fee.FeeID = index;
-                        index++;
+                        fee.FeeID = idIndex;
+                        idIndex++;
                     }
                 }
                 foreach (var upcharge in product.ProductUpcharges)
                 {
                     if (upcharge.UpchargeID <= 0)
                     {
-                        upcharge.UpchargeID = index;
-                        index++;
+                        upcharge.UpchargeID = idIndex;
+                        idIndex++;
+                    }
+                }
+
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // if it's a new document
+                    if (productDocument.ID <= 0)
+                    {
+                        productDocument.ID = idIndex;
+                        idIndex++;
                     }
                 }
 
@@ -246,6 +256,51 @@ namespace PAS.Controllers
                         {
                             db.Entry(fee).State = EntityState.Modified;
                         }
+                    }
+                }
+
+                // Document
+                // Remove
+                var productDocuments = product.ProductDocuments.ToList();
+                foreach (var productDocument in db.ProductDocuments.Where(p => p.ProductID == product.ProductID))
+                {
+                    if (!productDocuments.Contains(productDocument))
+                    {
+                        productDocument.Status = archived;
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }
+                //Files
+                if (Documents != null)
+                {
+                    for (int index = 0; index < Documents.Count(); index++)
+                    {
+                        var productDocument = product.ProductDocuments.ElementAt(index);
+                        var Document = Documents.ElementAt(index);
+                        // file
+                        if (Document != null && Document.ContentLength > 0)
+                        {
+                            byte[] documentBinaryData = new byte[Document.ContentLength];
+                            int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
+                            productDocument.Document = documentBinaryData;
+                            productDocument.DocumentFileType = Document.ContentType;
+                            productDocument.DocumentFileName = Document.FileName;
+                        }
+                    }
+                }
+                // Add/Update
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // IF it's a new productDocument
+                    if (productDocument.ID <= 0)
+                    {
+                        // Create a new productDocument
+                        db.ProductDocuments.Add(productDocument);
+                    }
+                    else
+                    {
+                        // Else update existing productDocument
+                        db.Entry(productDocument).State = EntityState.Modified;
                     }
                 }
 
@@ -504,7 +559,8 @@ namespace PAS.Controllers
                     }
                 }
                 //Files
-                if (Documents!=null){
+                if (Documents != null)
+                {
                     for (int index = 0; index < Documents.Count(); index++)
                     {
                         var productDocument = product.ProductDocuments.ElementAt(index);
@@ -535,7 +591,6 @@ namespace PAS.Controllers
                         db.Entry(productDocument).State = EntityState.Modified;
                     }
                 }
-
 
                 // update ProductAttachmentTypes
                 foreach (var productAttachmentType in product.ProductAttachmentTypes)
@@ -680,7 +735,7 @@ namespace PAS.Controllers
         // POST: /Product/SaveAndCalculateMargin/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveAndCalculateMargin(Product product, HttpPostedFileBase ProductImage, string returnUrl)
+        public ActionResult SaveAndCalculateMargin(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, IEnumerable<HttpPostedFileBase> Documents, string returnUrl)
         {
             // Sets Viewbag data for dropdowns
             SetViewBagData(returnUrl, product);
@@ -688,22 +743,32 @@ namespace PAS.Controllers
 
             if (ModelState.IsValid)
             {
-                int index = -100;
+                int idIndex = -100;
                 foreach (var fee in product.Fees)
                 {
                     // IF it's a new fee
                     if (fee.FeeID <= 0)
                     {
-                        fee.FeeID = index;
-                        index++;
+                        fee.FeeID = idIndex;
+                        idIndex++;
                     }
                 }
                 foreach (var upcharge in product.ProductUpcharges)
                 {
                     if (upcharge.UpchargeID <= 0)
                     {
-                        upcharge.UpchargeID = index;
-                        index++;
+                        upcharge.UpchargeID = idIndex;
+                        idIndex++;
+                    }
+                }
+
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // if it's a new document
+                    if (productDocument.ID <= 0)
+                    {
+                        productDocument.ID = idIndex;
+                        idIndex++;
                     }
                 }
 
@@ -767,6 +832,51 @@ namespace PAS.Controllers
                     }
                 }
 
+                // Document
+                // Remove
+                var productDocuments = product.ProductDocuments.ToList();
+                foreach (var productDocument in db.ProductDocuments.Where(p => p.ProductID == product.ProductID))
+                {
+                    if (!productDocuments.Contains(productDocument))
+                    {
+                        productDocument.Status = archived;
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }
+                //Files
+                if (Documents != null)
+                {
+                    for (int index = 0; index < Documents.Count(); index++)
+                    {
+                        var productDocument = product.ProductDocuments.ElementAt(index);
+                        var Document = Documents.ElementAt(index);
+                        // file
+                        if (Document != null && Document.ContentLength > 0)
+                        {
+                            byte[] documentBinaryData = new byte[Document.ContentLength];
+                            int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
+                            productDocument.Document = documentBinaryData;
+                            productDocument.DocumentFileType = Document.ContentType;
+                            productDocument.DocumentFileName = Document.FileName;
+                        }
+                    }
+                }
+                // Add/Update
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // IF it's a new productDocument
+                    if (productDocument.ID <= 0)
+                    {
+                        // Create a new productDocument
+                        db.ProductDocuments.Add(productDocument);
+                    }
+                    else
+                    {
+                        // Else update existing productDocument
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }
+
                 // update ProductAttachmentTypes
                 foreach (var productAttachmentType in product.ProductUpcharges)
                 {
@@ -814,6 +924,14 @@ namespace PAS.Controllers
                 var decorations = product.ProductDecorations.ToList();
                 foreach (var decoration in db.ProductDecorations.Where(p => p.ProductID == product.ProductID))
                 {
+                    if (DecorationImage != null && DecorationImage.ContentLength > 0)
+                    {
+                        byte[] imageBinaryData = new byte[DecorationImage.ContentLength];
+                        int readresult = DecorationImage.InputStream.Read(imageBinaryData, 0, DecorationImage.ContentLength);
+                        decoration.DecorationImage = imageBinaryData;
+                        decoration.DecorationImageType = DecorationImage.ContentType;
+                    }
+
                     if (!decorations.Contains(decoration))
                     {
                         decoration.DecorationStatus = MyExtensions.GetEnumDescription(Status.Archived);
@@ -901,7 +1019,7 @@ namespace PAS.Controllers
         // POST: /Product/SaveAndClose/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveAndClose(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, string returnUrl)
+        public ActionResult SaveAndClose(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, IEnumerable<HttpPostedFileBase> Documents, string returnUrl)
         {
             // Sets Viewbag data for dropdowns
             SetViewBagData(returnUrl, product);
@@ -909,22 +1027,32 @@ namespace PAS.Controllers
 
             if (ModelState.IsValid)
             {
-                int index = -100;
+                int idIndex = -100;
                 foreach (var fee in product.Fees)
                 {
                     // IF it's a new fee
                     if (fee.FeeID <= 0)
                     {
-                        fee.FeeID = index;
-                        index++;
+                        fee.FeeID = idIndex;
+                        idIndex++;
                     }
                 }
                 foreach (var upcharge in product.ProductUpcharges)
                 {
                     if (upcharge.UpchargeID <= 0)
                     {
-                        upcharge.UpchargeID = index;
-                        index++;
+                        upcharge.UpchargeID = idIndex;
+                        idIndex++;
+                    }
+                }
+
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // if it's a new document
+                    if (productDocument.ID <= 0)
+                    {
+                        productDocument.ID = idIndex;
+                        idIndex++;
                     }
                 }
 
@@ -984,6 +1112,51 @@ namespace PAS.Controllers
                         {
                             db.Entry(fee).State = EntityState.Modified;
                         }
+                    }
+                }
+
+                // Document
+                // Remove
+                var productDocuments = product.ProductDocuments.ToList();
+                foreach (var productDocument in db.ProductDocuments.Where(p => p.ProductID == product.ProductID))
+                {
+                    if (!productDocuments.Contains(productDocument))
+                    {
+                        productDocument.Status = archived;
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }
+                //Files
+                if (Documents != null)
+                {
+                    for (int index = 0; index < Documents.Count(); index++)
+                    {
+                        var productDocument = product.ProductDocuments.ElementAt(index);
+                        var Document = Documents.ElementAt(index);
+                        // file
+                        if (Document != null && Document.ContentLength > 0)
+                        {
+                            byte[] documentBinaryData = new byte[Document.ContentLength];
+                            int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
+                            productDocument.Document = documentBinaryData;
+                            productDocument.DocumentFileType = Document.ContentType;
+                            productDocument.DocumentFileName = Document.FileName;
+                        }
+                    }
+                }
+                // Add/Update
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // IF it's a new productDocument
+                    if (productDocument.ID <= 0)
+                    {
+                        // Create a new productDocument
+                        db.ProductDocuments.Add(productDocument);
+                    }
+                    else
+                    {
+                        // Else update existing productDocument
+                        db.Entry(productDocument).State = EntityState.Modified;
                     }
                 }
 
