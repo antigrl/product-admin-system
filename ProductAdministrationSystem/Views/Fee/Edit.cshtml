@@ -33,41 +33,35 @@
                 @Html.ValidationMessageFor(model => model.FeeType)
                 @Html.DropDownListFor(model => model.FeeType, MyExtensions.GetGenericEnumDropDown<FeeTypeList>(), "")
             </div>
-
             <div class="controls">
                 @Html.LabelForRequired(model => model.FeeNameID, "FeeName")
                 @Html.ValidationMessageFor(model => model.FeeNameID)
                 @Html.DropDownList("FeeNameID", String.Empty)
             </div>
-
             <div class="amortized-fee">
                 <div class="controls">
                     @Html.LabelForRequired(model => model.FeeAmortizedCharge)
                     @Html.ValidationMessageFor(model => model.FeeAmortizedCharge)
                     @Html.EditorFor(model => model.FeeAmortizedCharge)
                 </div>
-
                 <div class="controls">
                     @Html.LabelForRequired(model => model.FeeAmortizedType)
                     @Html.ValidationMessageFor(model => model.FeeAmortizedType)
                     @Html.DropDownListFor(model => model.FeeAmortizedType, MyExtensions.GetGenericEnumDropDown<AmortizedTypeList>(), "")
                 </div>
             </div>
-
             <div class="percent-fee">
                 <div class="controls">
                     @Html.LabelForRequired(model => model.FeePercent)
                     @Html.ValidationMessageFor(model => model.FeePercent)
                     @Html.EditorFor(model => model.FeePercent)
                 </div>
-
                 <div class="controls">
                     @Html.LabelForRequired(model => model.FeePercentType)
                     @Html.ValidationMessageFor(model => model.FeePercentType)
                     @Html.DropDownListFor(model => model.FeePercentType, MyExtensions.GetGenericEnumDropDown<PercentTypeList>(), "")
                 </div>
             </div>
-
             <div class="dollar-amount-fee">
                 <div class="controls">
                     @Html.LabelForRequired(model => model.FeeDollarAmount)
@@ -75,15 +69,10 @@
                     @Html.EditorFor(model => model.FeeDollarAmount)
                 </div>
             </div>
-
             <p>
                 <input type="submit" class="button green" value="Save" />
                 | @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
             </p>
         </section>
     </div>
-}
-
-@section Scripts {
-
 }

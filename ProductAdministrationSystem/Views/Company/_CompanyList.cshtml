@@ -2,7 +2,6 @@
 @using PAS.Models;
 @using PAS.Helpers;
 
-
 @foreach (var item in Model)
 {
     string returnLink = Url.Action("Index", "Home", new { id = item.CompanyID, ReturnUrl = ViewBag.ReturnUrl });
@@ -21,7 +20,8 @@
                     <h1>@Html.DisplayFor(model => item.CompanyName)</h1>
                 }
             </div>
-            <a class="button orange add-campaign" href="@Url.Action("Create", "Campaign", new { ReturnURL = Url.Action("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }), CompanyID = item.CompanyID }, null)">Add Campaign
+            <a class="button orange add-campaign" href="@Url.Action("Create", "Campaign", new { ReturnURL = Url.Action("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }), CompanyID = item.CompanyID }, null)">
+                Add Campaign
             </a>
         </h2>
         @{

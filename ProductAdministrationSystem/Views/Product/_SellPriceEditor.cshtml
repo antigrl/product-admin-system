@@ -2,7 +2,6 @@
 @using PAS.Helpers
 @using PAS.Models
 
-
 @using (Html.BeginCollectionItem("ProductSellPrices"))
 {
     <div class="flex-grid">
@@ -10,7 +9,7 @@
 
             <h2 class="add-fee">
                 Sell Price
-                <a ng-tooltip="Add Sell Price" href="@Url.Action("Create", "Fee", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), ProductSellPriceID = Model.SellPriceID }, null)"><i class="fa fa-plus-square"></i></a>
+                <a href="@Url.Action("Create", "Fee", new { ReturnUrl = Url.Action("Edit", "Product", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl }), ProductSellPriceID = Model.SellPriceID }, null)"><i class="fa fa-plus-square"></i><md-tooltip>Add Sell Price</md-tooltip></a>
             </h2>
             <div class="sell-price">
                 <div class="price-level">
@@ -26,8 +25,6 @@
                     <span>
                         @Html.DisplayFor(model => model.SellPriceMarginDollarAmount)
                     </span>
-
-
                     @foreach (var fee in Model.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
                     {
                         if (fee.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Percent))
@@ -46,11 +43,9 @@
                 </div>
                 <div class="final-sell">
                     <strong>@Html.DisplayFor(model => model.SellPriceName) Sell Price:</strong>
-
                     <span>
                         @Html.TextBoxFor(model => model.SellPriceFinalAmount, new { @class = "dollar-value" })
                     </span>
-
                 </div>
                 <div class="upcharge-sell">
                     @foreach (var upcharge in Model.Product.ProductUpcharges.Where(u => u.UpchargeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
@@ -82,8 +77,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 }
-

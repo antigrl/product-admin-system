@@ -1,23 +1,17 @@
 ﻿@model PAS.Models.VendorName
 
 @{
-ViewBag.Title = "Edit Vendor Name";
+    ViewBag.Title = "Edit Vendor Name";
 }
 <div class="heading">
     <h1>Edit Vendor Name</h1>
 </div>
 <div class="flex-grid">
     <section>
-
-
-
         @using (Html.BeginForm())
         {
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
-
-
-
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
             @Html.HiddenFor(model => model.VendorNameID)
             @Html.HiddenFor(model => model.VendorNameStatus)
 
@@ -29,13 +23,6 @@ ViewBag.Title = "Edit Vendor Name";
             <p>
                 <input type="submit" class="button green" value="Save" /> | @Html.ActionLink("Back to Vendor Name List", "Index")
             </p>
-
-
-
-
-    }
-
-    @section Scripts {
-}
+        }
     </section>
 </div>

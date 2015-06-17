@@ -1,0 +1,33 @@
+﻿@model PAS.Models.AttachmentType
+
+@{
+    ViewBag.Title = "Edit Attachment Type";
+}
+<h2>Edit Attachment Type</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="left-half-content">
+        <legend>AttachmentType</legend>
+
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.Status)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TypeName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TypeName)
+            @Html.ValidationMessageFor(model => model.TypeName)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+        <div>
+            @Html.ActionLink("Back to Attachment Type List", "Index")
+        </div>
+    </fieldset>
+}

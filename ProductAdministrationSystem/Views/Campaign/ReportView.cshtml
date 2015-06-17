@@ -35,13 +35,14 @@
             <th>Net Cost</th>
             <th>Total Cost</th>
             <th>Inventory Cost (Total Cost*IOQ)</th>
-            @foreach(var pricingTier in Model.Company.PricingTiers.Where(p => p.PricingTierStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.PricingTierLevel))
+            @foreach (var pricingTier in Model.Company.PricingTiers.Where(p => p.PricingTierStatus != MyExtensions.GetEnumDescription(Status.Archived)).OrderBy(p => p.PricingTierLevel))
             {
-                <th>Tier Level: @pricingTier.PricingTierLevel
+                <th>
+                    Tier Level: @pricingTier.PricingTierLevel
                     <br />
                     Tier Name: @pricingTier.PricingTierName
                     <br />
-                    Blended Margin: @ViewBag.BlendedMarginsList[pricingTier.PricingTierLevel-1]
+                    Blended Margin: @ViewBag.BlendedMarginsList[pricingTier.PricingTierLevel - 1]
                 </th>
             }
         </tr>
@@ -60,7 +61,7 @@
                 <td>@product.ProductNetCost</td>
                 <td>@product.ProductTotalCost</td>
                 <td>@(product.ProductTotalCost * product.ProductInitialOrderQuantity)</td>
-                @foreach(var sellPrice in product.ProductSellPrices.OrderBy(s => s.SellPriceLevel))
+                @foreach (var sellPrice in product.ProductSellPrices.OrderBy(s => s.SellPriceLevel))
                 {
                     <td class="table-wrapper">
                         <table>
@@ -68,7 +69,7 @@
                                 <tr>
                                     <th>Margin Percent</th>
                                     <th>Margin Dollar Amount</th>
-                                    @foreach(var fee in sellPrice.Fees)
+                                    @foreach (var fee in sellPrice.Fees)
                                     {
                                         <th>@fee.FeeName.FeeNameName</th>
                                     }
@@ -79,7 +80,7 @@
                                 <tr>
                                     <td>@sellPrice.SellPriceMarginPercent</td>
                                     <td>@sellPrice.SellPriceMarginDollarAmount</td>
-                                    @foreach(var fee in sellPrice.Fees)
+                                    @foreach (var fee in sellPrice.Fees)
                                     {
                                         <td>@fee.FeeDollarAmount</td>
                                     }

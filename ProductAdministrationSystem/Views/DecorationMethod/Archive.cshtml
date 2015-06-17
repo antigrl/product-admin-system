@@ -5,7 +5,6 @@
 }
 
 <h2>Archive Decoration Method</h2>
-
 <h3>Are you sure you want to archive this Decoration Method?</h3>
 <fieldset>
     <legend>DecorationMethod</legend>
@@ -17,7 +16,7 @@
         @Html.DisplayFor(model => model.DecorationMethodName)
     </div>
 </fieldset>
-@using(Html.BeginForm())
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <p>

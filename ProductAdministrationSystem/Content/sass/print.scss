@@ -1,9 +1,12 @@
 @media print {
   @page {
-    margin: 20px;
+
   }
   body {
     font-size: 8px;
+    #body{
+      margin-top: -25px !important;
+    }
 
     .name-container a {
       text-decoration: none;
@@ -29,11 +32,11 @@
     }
 
     header, .presentation-header, .header, .footer, footer,
-    .heading, .top-wrapper, nav {
+    .heading, .top-wrapper, nav, .bottom-save-bar, .scroll-up {
       display: none;
     }
 
-    .major-category {
+    .presentation-major-category {
       margin-left: -70px;
       margin-right: -20px;
     }

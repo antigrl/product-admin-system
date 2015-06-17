@@ -56,7 +56,6 @@ namespace PAS.Controllers
             // Sets Viewbag data for dropdowns
             SetViewBagData(returnUrl);
 
-            // Possible Issue?
             return View();
         }
 
@@ -84,14 +83,23 @@ namespace PAS.Controllers
                     ProductSellPrice newSellPrice = new ProductSellPrice(product, tier.PricingTierName, tier.PricingTierLevel, (decimal)thisCampaign.Company.CompanyDefaultMargin);
                     db.ProductSellPrices.Add(newSellPrice);
 
-                    // Attach fees                 
+                    // Attach fees
                     foreach (var fee in tier.Fees.Where(f => f.FeeStatus != MyExtensions.GetEnumDescription(Status.Archived)))
                     {
                         Fee newFee = new Fee(fee.FeeNameID, newSellPrice, fee.FeeType, fee.FeeCalculation, fee.FeeDollarAmount, fee.FeeAmortizedCharge, fee.FeeAmortizedType, fee.FeePercent, fee.FeePercentType, fee.FeeID);
                         db.Fees.Add(newFee);
                     }
                 }
-                // Product Image 
+
+                // Loop though Attachment Types and add a ProductAttachmentType for each Attachment Type
+                foreach (var attachmentType in db.AttachmentTypes.Where(a => a.Status != archived).OrderBy(a => a.TypeName))
+                {
+                    // Create a Product Attament type
+                    ProductAttachmentType newProductAttachmentType = new ProductAttachmentType(product.ProductID, attachmentType.ID);
+                    db.ProductAttachmentTypes.Add(newProductAttachmentType);
+                }
+
+                // Product Image
                 if (ProductImage != null && ProductImage.ContentLength > 0)
                 {
                     byte[] imageBinaryData = new byte[ProductImage.ContentLength];
@@ -100,7 +108,7 @@ namespace PAS.Controllers
                     product.ProductImageType = ProductImage.ContentType;
                 }
 
-                // Add Audit Entry 
+                // Add Audit Entry
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Create");
                 db.AuditTrails.Add(audit);
 
@@ -154,7 +162,7 @@ namespace PAS.Controllers
         // POST: /Product/SaveAndCalculateSellPriceToNearestFiveCents/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveAndCalculateSellPriceToNearestFiveCents(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, string returnUrl)
+        public ActionResult SaveAndCalculateSellPriceToNearestFiveCents(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, IEnumerable<HttpPostedFileBase> Documents, string returnUrl)
         {
             // Sets Viewbag data for dropdowns
             SetViewBagData(returnUrl, product);
@@ -162,22 +170,32 @@ namespace PAS.Controllers
 
             if (ModelState.IsValid)
             {
-                int index = -100;
+                int idIndex = -100;
                 foreach (var fee in product.Fees)
                 {
                     // IF it's a new fee
                     if (fee.FeeID <= 0)
                     {
-                        fee.FeeID = index;
-                        index++;
+                        fee.FeeID = idIndex;
+                        idIndex++;
                     }
                 }
                 foreach (var upcharge in product.ProductUpcharges)
                 {
                     if (upcharge.UpchargeID <= 0)
                     {
-                        upcharge.UpchargeID = index;
-                        index++;
+                        upcharge.UpchargeID = idIndex;
+                        idIndex++;
+                    }
+                }
+
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // if it's a new document
+                    if (productDocument.ID <= 0)
+                    {
+                        productDocument.ID = idIndex;
+                        idIndex++;
                     }
                 }
 
@@ -193,6 +211,7 @@ namespace PAS.Controllers
                         db.Entry(fee).State = EntityState.Modified; ;
                     }
                 }
+
                 // Remove Upcharges
                 var Upcharges = product.ProductUpcharges.ToList();
                 foreach (var upcharge in db.ProductUpcharges.Where(p => p.ProductID == product.ProductID))
@@ -219,10 +238,11 @@ namespace PAS.Controllers
                         db.Entry(fee).State = EntityState.Modified;
                     }
                 }
+
                 // update  SellPriceFees
                 foreach (var sellPrice in product.ProductSellPrices)
                 {
-                    // Update sellprice 
+                    // Update sellprice
                     db.Entry(sellPrice).State = EntityState.Modified;
 
                     //TODO: add/update/remove SellPriceFees
@@ -237,6 +257,57 @@ namespace PAS.Controllers
                             db.Entry(fee).State = EntityState.Modified;
                         }
                     }
+                }
+
+                // Document
+                // Remove
+                var productDocuments = product.ProductDocuments.ToList();
+                foreach (var productDocument in db.ProductDocuments.Where(p => p.ProductID == product.ProductID))
+                {
+                    if (!productDocuments.Contains(productDocument))
+                    {
+                        productDocument.Status = archived;
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }
+                //Files
+                if (Documents != null)
+                {
+                    for (int index = 0; index < Documents.Count(); index++)
+                    {
+                        var productDocument = product.ProductDocuments.Where(p => p.Status != archived).ElementAt(product.ProductDocuments.Where(p => p.Status != archived).Count() - 1 - index);
+                        var Document = Documents.ElementAt(index);
+                        // file
+                        if (Document != null && Document.ContentLength > 0)
+                        {
+                            byte[] documentBinaryData = new byte[Document.ContentLength];
+                            int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
+                            productDocument.Document = documentBinaryData;
+                            productDocument.DocumentFileType = Document.ContentType;
+                            productDocument.DocumentFileName = Document.FileName;
+                        }
+                    }
+                }
+                // Add/Update
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // IF it's a new productDocument
+                    if (productDocument.ID <= 0)
+                    {
+                        // Create a new productDocument
+                        db.ProductDocuments.Add(productDocument);
+                    }
+                    else
+                    {
+                        // Else update existing productDocument
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }
+
+                // update ProductAttachmentTypes
+                foreach (var productAttachmentType in product.ProductUpcharges)
+                {
+                    db.Entry(productAttachmentType).State = EntityState.Modified;
                 }
 
                 // update Upcharges
@@ -273,6 +344,7 @@ namespace PAS.Controllers
                         }
                     }
                 }
+
                 // Decorations
                 // Remove
                 var decorations = product.ProductDecorations.ToList();
@@ -329,13 +401,13 @@ namespace PAS.Controllers
                     Console.Write("ProductController.cs SaveAndCalculateSellPriceToNearestFiveCents() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
                 }
 
-                // Add Audit Entry 
+                // Add Audit Entry
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Save and Calculate Prices");
                 db.AuditTrails.Add(audit);
 
                 // Send Emails
                 #region SendEmails
-                // Check previous status 
+                // Check previous status
                 if (preSaveStatus != product.ProductStatus)
                 {
                     List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(product.ProductStatus);
@@ -349,7 +421,6 @@ namespace PAS.Controllers
                 #endregion
 
                 db.SaveChanges();
-
 
                 return RedirectToAction("Edit", new { id = product.ProductID, ReturnUrl = returnUrl });
             }
@@ -377,7 +448,7 @@ namespace PAS.Controllers
         // POST: /Product/SaveAndCalculateSellPrice/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveAndCalculateSellPrice(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, string returnUrl)
+        public ActionResult SaveAndCalculateSellPrice(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, IEnumerable<HttpPostedFileBase> Documents, string returnUrl)
         {
             // Sets Viewbag data for dropdowns
             SetViewBagData(returnUrl, product);
@@ -385,22 +456,34 @@ namespace PAS.Controllers
 
             if (ModelState.IsValid)
             {
-                int index = -100;
+                int idIndex = -100;
                 foreach (var fee in product.Fees)
                 {
                     // IF it's a new fee
                     if (fee.FeeID <= 0)
                     {
-                        fee.FeeID = index;
-                        index++;
+                        fee.FeeID = idIndex;
+                        idIndex++;
                     }
                 }
+
                 foreach (var upcharge in product.ProductUpcharges)
                 {
+                    // If it's a new upcharge
                     if (upcharge.UpchargeID <= 0)
                     {
-                        upcharge.UpchargeID = index;
-                        index++;
+                        upcharge.UpchargeID = idIndex;
+                        idIndex++;
+                    }
+                }
+
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // if it's a new document
+                    if (productDocument.ID <= 0)
+                    {
+                        productDocument.ID = idIndex;
+                        idIndex++;
                     }
                 }
 
@@ -416,6 +499,7 @@ namespace PAS.Controllers
                         db.Entry(fee).State = EntityState.Modified; ;
                     }
                 }
+
                 // Remove Upcharges
                 var Upcharges = product.ProductUpcharges.ToList();
                 foreach (var upcharge in db.ProductUpcharges.Where(p => p.ProductID == product.ProductID))
@@ -442,10 +526,11 @@ namespace PAS.Controllers
                         db.Entry(fee).State = EntityState.Modified;
                     }
                 }
+
                 // update  SellPriceFees
                 foreach (var sellPrice in product.ProductSellPrices)
                 {
-                    // Update sellprice 
+                    // Update sellprice
                     db.Entry(sellPrice).State = EntityState.Modified;
 
                     //TODO: add/update/remove SellPriceFees
@@ -460,6 +545,57 @@ namespace PAS.Controllers
                             db.Entry(fee).State = EntityState.Modified;
                         }
                     }
+                }
+
+                // Document
+                // Remove
+                var productDocuments = product.ProductDocuments.ToList();
+                foreach (var productDocument in db.ProductDocuments.Where(p => p.ProductID == product.ProductID))
+                {
+                    if (!productDocuments.Contains(productDocument))
+                    {
+                        productDocument.Status = archived;
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }
+                //Files
+                if (Documents != null)
+                {
+                    for (int index = 0; index < Documents.Count(); index++)
+                    {
+                        var productDocument = product.ProductDocuments.Where(p => p.Status != archived).ElementAt(product.ProductDocuments.Where(p => p.Status != archived).Count()-1 - index);
+                        var Document = Documents.ElementAt(index);
+                        // file
+                        if (Document != null && Document.ContentLength > 0)
+                        {
+                            byte[] documentBinaryData = new byte[Document.ContentLength];
+                            int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
+                            productDocument.Document = documentBinaryData;
+                            productDocument.DocumentFileType = Document.ContentType;
+                            productDocument.DocumentFileName = Document.FileName;
+                        }
+                    }
+                }
+                // Add/Update
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // IF it's a new productDocument
+                    if (productDocument.ID <= 0)
+                    {
+                        // Create a new productDocument
+                        db.ProductDocuments.Add(productDocument);
+                    }
+                    else
+                    {
+                        // Else update existing productDocument
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }
+
+                // update ProductAttachmentTypes
+                foreach (var productAttachmentType in product.ProductAttachmentTypes)
+                {
+                    db.Entry(productAttachmentType).State = EntityState.Modified;
                 }
 
                 // update Upcharges
@@ -483,7 +619,6 @@ namespace PAS.Controllers
                         db.Entry(upcharge).State = EntityState.Modified;
                     }
 
-
                     //TODO: add/update/remove SellPriceFees
                     foreach (var upchargeSellPrice in upcharge.UpchargeSellPrices)
                     {
@@ -497,6 +632,7 @@ namespace PAS.Controllers
                         }
                     }
                 }
+
                 // Decorations
                 // Remove
                 var decorations = product.ProductDecorations.ToList();
@@ -508,7 +644,6 @@ namespace PAS.Controllers
                         db.Entry(decoration).State = EntityState.Modified;
                     }
                 }
-
                 // Add/Update
                 foreach (var decoration in product.ProductDecorations)
                 {
@@ -520,19 +655,20 @@ namespace PAS.Controllers
                         decoration.DecorationImageType = DecorationImage.ContentType;
                     }
 
-                    // IF it's a new fee
+                    // IF it's a new decoration
                     if (decoration.DecorationID <= 0)
                     {
-                        // Create a new Fee
+                        // Create a new decoration
                         db.ProductDecorations.Add(decoration);
                     }
                     else
                     {
-                        // Else update existing Fee
+                        // Else update existing decoration
                         db.Entry(decoration).State = EntityState.Modified;
                     }
                 }
 
+                // Product Image
                 if (ProductImage != null && ProductImage.ContentLength > 0)
                 {
                     byte[] imageBinaryData = new byte[ProductImage.ContentLength];
@@ -552,13 +688,13 @@ namespace PAS.Controllers
                     Console.Write("ProductController.cs SaveAndCalculateSellPrice() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
                 }
 
-                // Add Audit Entry 
+                // Add Audit Entry
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Save and Calculate Prices");
                 db.AuditTrails.Add(audit);
 
                 // Send Emails
                 #region SendEmails
-                // Check previous status 
+                // Check previous status
                 if (preSaveStatus != product.ProductStatus)
                 {
                     List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(product.ProductStatus);
@@ -571,7 +707,14 @@ namespace PAS.Controllers
                 }
                 #endregion
 
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
 
                 return RedirectToAction("Edit", new { id = product.ProductID, ReturnUrl = returnUrl });
             }
@@ -599,7 +742,7 @@ namespace PAS.Controllers
         // POST: /Product/SaveAndCalculateMargin/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveAndCalculateMargin(Product product, HttpPostedFileBase ProductImage, string returnUrl)
+        public ActionResult SaveAndCalculateMargin(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, IEnumerable<HttpPostedFileBase> Documents, string returnUrl)
         {
             // Sets Viewbag data for dropdowns
             SetViewBagData(returnUrl, product);
@@ -607,22 +750,32 @@ namespace PAS.Controllers
 
             if (ModelState.IsValid)
             {
-                int index = -100;
+                int idIndex = -100;
                 foreach (var fee in product.Fees)
                 {
                     // IF it's a new fee
                     if (fee.FeeID <= 0)
                     {
-                        fee.FeeID = index;
-                        index++;
+                        fee.FeeID = idIndex;
+                        idIndex++;
                     }
                 }
                 foreach (var upcharge in product.ProductUpcharges)
                 {
                     if (upcharge.UpchargeID <= 0)
                     {
-                        upcharge.UpchargeID = index;
-                        index++;
+                        upcharge.UpchargeID = idIndex;
+                        idIndex++;
+                    }
+                }
+
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // if it's a new document
+                    if (productDocument.ID <= 0)
+                    {
+                        productDocument.ID = idIndex;
+                        idIndex++;
                     }
                 }
 
@@ -638,6 +791,7 @@ namespace PAS.Controllers
                         db.Entry(fee).State = EntityState.Modified;
                     }
                 }
+
                 // Remove Upcharges
                 var Upcharges = product.ProductUpcharges.ToList();
                 foreach (var upcharge in db.ProductUpcharges.Where(p => p.ProductID == product.ProductID))
@@ -664,10 +818,11 @@ namespace PAS.Controllers
                         db.Entry(fee).State = EntityState.Modified;
                     }
                 }
+
                 // update  SellPriceFees
                 foreach (var sellPrice in product.ProductSellPrices)
                 {
-                    // Update sellprice 
+                    // Update sellprice
                     db.Entry(sellPrice).State = EntityState.Modified;
 
                     //TODO: add/update/remove SellPriceFees
@@ -683,6 +838,58 @@ namespace PAS.Controllers
                         }
                     }
                 }
+
+                // Document
+                // Remove
+                var productDocuments = product.ProductDocuments.ToList();
+                foreach (var productDocument in db.ProductDocuments.Where(p => p.ProductID == product.ProductID))
+                {
+                    if (!productDocuments.Contains(productDocument))
+                    {
+                        productDocument.Status = archived;
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }
+                //Files
+                if (Documents != null)
+                {
+                    for (int index = 0; index < Documents.Count(); index++)
+                    {
+                        var productDocument = product.ProductDocuments.Where(p => p.Status != archived).ElementAt(product.ProductDocuments.Where(p => p.Status != archived).Count() - 1 - index);
+                        var Document = Documents.ElementAt(index);
+                        // file
+                        if (Document != null && Document.ContentLength > 0)
+                        {
+                            byte[] documentBinaryData = new byte[Document.ContentLength];
+                            int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
+                            productDocument.Document = documentBinaryData;
+                            productDocument.DocumentFileType = Document.ContentType;
+                            productDocument.DocumentFileName = Document.FileName;
+                        }
+                    }
+                }
+                // Add/Update
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // IF it's a new productDocument
+                    if (productDocument.ID <= 0)
+                    {
+                        // Create a new productDocument
+                        db.ProductDocuments.Add(productDocument);
+                    }
+                    else
+                    {
+                        // Else update existing productDocument
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }
+
+                // update ProductAttachmentTypes
+                foreach (var productAttachmentType in product.ProductUpcharges)
+                {
+                    db.Entry(productAttachmentType).State = EntityState.Modified;
+                }
+
 
                 // update Upcharges
                 foreach (var upcharge in product.ProductUpcharges)
@@ -724,6 +931,14 @@ namespace PAS.Controllers
                 var decorations = product.ProductDecorations.ToList();
                 foreach (var decoration in db.ProductDecorations.Where(p => p.ProductID == product.ProductID))
                 {
+                    if (DecorationImage != null && DecorationImage.ContentLength > 0)
+                    {
+                        byte[] imageBinaryData = new byte[DecorationImage.ContentLength];
+                        int readresult = DecorationImage.InputStream.Read(imageBinaryData, 0, DecorationImage.ContentLength);
+                        decoration.DecorationImage = imageBinaryData;
+                        decoration.DecorationImageType = DecorationImage.ContentType;
+                    }
+
                     if (!decorations.Contains(decoration))
                     {
                         decoration.DecorationStatus = MyExtensions.GetEnumDescription(Status.Archived);
@@ -766,13 +981,13 @@ namespace PAS.Controllers
                     Console.Write("ProductController.cs SaveAndCalculateMargin() ComputeMarginBasedOnSellprice() failure. Exception: " + ex.ToString());
                 }
 
-                // Add Audit Entry 
+                // Add Audit Entry
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Save and Calculate Margin");
                 db.AuditTrails.Add(audit);
 
                 // Send Emails
                 #region SendEmails
-                // Check previous status 
+                // Check previous status
                 if (preSaveStatus != product.ProductStatus)
                 {
                     List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(product.ProductStatus);
@@ -802,6 +1017,7 @@ namespace PAS.Controllers
                     count++;
                 }
             }
+
             // Error
             return View("Edit", product);
         }
@@ -810,7 +1026,7 @@ namespace PAS.Controllers
         // POST: /Product/SaveAndClose/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveAndClose(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, string returnUrl)
+        public ActionResult SaveAndClose(Product product, HttpPostedFileBase ProductImage, HttpPostedFileBase DecorationImage, IEnumerable<HttpPostedFileBase> Documents, string returnUrl)
         {
             // Sets Viewbag data for dropdowns
             SetViewBagData(returnUrl, product);
@@ -818,22 +1034,32 @@ namespace PAS.Controllers
 
             if (ModelState.IsValid)
             {
-                int index = -100;
+                int idIndex = -100;
                 foreach (var fee in product.Fees)
                 {
                     // IF it's a new fee
                     if (fee.FeeID <= 0)
                     {
-                        fee.FeeID = index;
-                        index++;
+                        fee.FeeID = idIndex;
+                        idIndex++;
                     }
                 }
                 foreach (var upcharge in product.ProductUpcharges)
                 {
                     if (upcharge.UpchargeID <= 0)
                     {
-                        upcharge.UpchargeID = index;
-                        index++;
+                        upcharge.UpchargeID = idIndex;
+                        idIndex++;
+                    }
+                }
+
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // if it's a new document
+                    if (productDocument.ID <= 0)
+                    {
+                        productDocument.ID = idIndex;
+                        idIndex++;
                     }
                 }
 
@@ -875,10 +1101,11 @@ namespace PAS.Controllers
                         db.Entry(fee).State = EntityState.Modified;
                     }
                 }
+
                 // update  SellPriceFees
                 foreach (var sellPrice in product.ProductSellPrices)
                 {
-                    // Update sellprice 
+                    // Update sellprice
                     db.Entry(sellPrice).State = EntityState.Modified;
 
                     //TODO: add/update/remove SellPriceFees
@@ -894,6 +1121,58 @@ namespace PAS.Controllers
                         }
                     }
                 }
+
+                // Document
+                // Remove
+                var productDocuments = product.ProductDocuments.ToList();
+                foreach (var productDocument in db.ProductDocuments.Where(p => p.ProductID == product.ProductID))
+                {
+                    if (!productDocuments.Contains(productDocument))
+                    {
+                        productDocument.Status = archived;
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }
+                //Files
+                if (Documents != null)
+                {
+                    for (int index = 0; index < Documents.Count(); index++)
+                    {
+                        var productDocument = product.ProductDocuments.Where(p => p.Status != archived).ElementAt(product.ProductDocuments.Where(p => p.Status != archived).Count() - 1 - index);
+                        var Document = Documents.ElementAt(index);
+                        // file
+                        if (Document != null && Document.ContentLength > 0)
+                        {
+                            byte[] documentBinaryData = new byte[Document.ContentLength];
+                            int readresult = Document.InputStream.Read(documentBinaryData, 0, Document.ContentLength);
+                            productDocument.Document = documentBinaryData;
+                            productDocument.DocumentFileType = Document.ContentType;
+                            productDocument.DocumentFileName = Document.FileName;
+                        }
+                    }
+                }
+                // Add/Update
+                foreach (var productDocument in product.ProductDocuments)
+                {
+                    // IF it's a new productDocument
+                    if (productDocument.ID <= 0)
+                    {
+                        // Create a new productDocument
+                        db.ProductDocuments.Add(productDocument);
+                    }
+                    else
+                    {
+                        // Else update existing productDocument
+                        db.Entry(productDocument).State = EntityState.Modified;
+                    }
+                }
+
+                // update ProductAttachmentTypes
+                foreach (var productAttachmentType in product.ProductUpcharges)
+                {
+                    db.Entry(productAttachmentType).State = EntityState.Modified;
+                }
+
 
                 // update Upcharges
                 foreach (var upcharge in product.ProductUpcharges)
@@ -930,6 +1209,7 @@ namespace PAS.Controllers
 
                     }
                 }
+
                 // Decorations
                 // Remove
                 var decorations = product.ProductDecorations.ToList();
@@ -985,13 +1265,13 @@ namespace PAS.Controllers
                     Console.Write("ProductController.cs SaveAndCalculateSellPrice() ComputeAllProductPrices() failure. Exception: " + ex.ToString());
                 }
 
-                // Add Audit Entry 
+                // Add Audit Entry
                 AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Save and Calculate Prices");
                 db.AuditTrails.Add(audit);
 
                 // Send Emails
                 #region SendEmails
-                // Check previous status 
+                // Check previous status
                 if (preSaveStatus != product.ProductStatus)
                 {
                     List<EmailTo> sendEmailTos = MyExtensions.GetEmailTo(product.ProductStatus);
@@ -1026,6 +1306,7 @@ namespace PAS.Controllers
                     count++;
                 }
             }
+
             // Error
             product.Campaign = db.Campaigns.Where(c => c.CampaignID == product.CampaignID)
                                             .FirstOrDefault();
@@ -1057,7 +1338,7 @@ namespace PAS.Controllers
             product.ProductStatus = MyExtensions.GetEnumDescription(Status.Archived);
             db.Entry(product).State = EntityState.Modified;
 
-            // Add Audit Entry 
+            // Add Audit Entry
             AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "Archive");
             db.AuditTrails.Add(audit);
 
@@ -1095,7 +1376,7 @@ namespace PAS.Controllers
             product.ProductStatus = MyExtensions.GetEnumDescription(Status.Active);
             db.Entry(product).State = EntityState.Modified;
 
-            // Add Audit Entry 
+            // Add Audit Entry
             AuditTrail audit = new AuditTrail(DateTime.Now, User.Identity.Name, product, product.ProductID, "UnArchive");
             db.AuditTrails.Add(audit);
 
@@ -1145,6 +1426,13 @@ namespace PAS.Controllers
             }
 
             return PartialView();
+        }
+
+        public PartialViewResult BlankProductDocumentEditorRow(int productID)
+        {
+            var attachmentTypeList = db.AttachmentTypes.Where(a => a.Status != archived);
+            ViewBag.AttachmentTypes = new SelectList(attachmentTypeList, "ID", "TypeName", 0);
+            return PartialView("_ProductDocumentEditor", new ProductDocument(productID));
         }
 
         public PartialViewResult BlankEditorRowExtended(int productID, string feeType, string feeCalculation, int feeNameID, decimal? feeDollarAmount, decimal? feeAmortizedCharge, string feeAmortizedType, decimal? feePercent, string feePercentType, int inheritedID)

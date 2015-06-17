@@ -53,9 +53,6 @@ namespace PAS.Controllers
             // Create New Campaign to get Constructor Values and set Created By
             Campaign campaign = new Campaign();
             campaign.OnCreate(User.Identity.Name);
-
-            string archived = MyExtensions.GetEnumDescription(Status.Archived);
-
             ViewBag.CompanyID = new SelectList(db.Companies.Where(c => c.CompanyStatus != archived), "CompanyID", "CompanyName");
 
             return View(campaign);
@@ -151,36 +148,35 @@ namespace PAS.Controllers
             ViewBag.ReturnUrl = returnUrl;
             Campaign campaign = db.Campaigns.Find(id);
 
-            // pull active major categories [use hashset for only adding unique values]
-            SortedSet<ActiveMajorCategory> activeMajorCategories = new SortedSet<ActiveMajorCategory>();
+            // pull active major categories 
+            SortedSet<Category> activeMajorCategories = new SortedSet<Category>();
             foreach (Product product in campaign.Products)
             {
-                ActiveMajorCategory majorCategory = activeMajorCategories.Where(a => a.majorCategory == product.Category.CategoryName).FirstOrDefault();
-                if (majorCategory == null)
-                {
-                    majorCategory = new ActiveMajorCategory();
-                    majorCategory.majorCategory = product.Category.CategoryName;
-                    if (product.Category1 != null)
-                    {
-                        if (majorCategory.minorCategories.Contains(product.Category1.CategoryName) == false)
-                        {
-                            majorCategory.minorCategories.Add(product.Category1.CategoryName);
-                        }
-                    }
-                    activeMajorCategories.Add(majorCategory);
-                }
-                else
-                {
-                    if (product.Category1 != null)
-                    {
-                        if (activeMajorCategories.Where(a => a.majorCategory == product.Category.CategoryName).FirstOrDefault().minorCategories.Contains(product.Category1.CategoryName) == false)
-                        {
-                            activeMajorCategories.Where(a => a.majorCategory == product.Category.CategoryName).FirstOrDefault().minorCategories.Add(product.Category1.CategoryName);
-                        }
-                    }
-                }
+                activeMajorCategories.Add(product.Category);
             }
             ViewBag.MajorCategoryList = activeMajorCategories.ToList();
+
+            // pull MajorCategoryOrderings
+            List<MajorCategoryOrdering> majorCategoryOrderings = db.MajorCategoryOrderings.Where(m => m.CampaignID == campaign.CampaignID).OrderBy(m => m.SortValue).ToList();
+
+            // loop though active categories
+            foreach (Category category in activeMajorCategories.ToList())
+            {
+                // if category not in orderings 
+                var count = majorCategoryOrderings.Where(m => category.CategoryID.Equals(m.CategoryID));
+                if (majorCategoryOrderings.Where(m => category.CategoryID.Equals(m.CategoryID)).Count() == 0)
+                {
+                    // and add them
+                    MajorCategoryOrdering newOrdering = new MajorCategoryOrdering();
+                    newOrdering.Category = category;
+                    newOrdering.CategoryID = category.CategoryID;
+                    newOrdering.CategoryRename = category.CategoryName;
+                    newOrdering.ShowCategory = true;
+                    majorCategoryOrderings.Add(newOrdering);
+                }
+            }
+
+            ViewBag.MajorCategoryOrderingList = majorCategoryOrderings;
 
             if (campaign == null)
             {
@@ -188,6 +184,67 @@ namespace PAS.Controllers
             }
 
             return View(campaign);
+        }
+
+        //
+        // POST: /Campaign/SaveMajorCategoryOrdering
+        [HttpPost]
+        public JsonResult SaveMajorCategoryOrdering(List<MajorCategoryOrdering> categoryOrderings)
+        {
+            string status = null;
+            try
+            {
+                foreach (MajorCategoryOrdering categoryOrdering in categoryOrderings)
+                {
+                    //UpdateDB                    
+                    if (categoryOrdering.ID == 0)
+                    {
+                        // Create Entry
+                        db.MajorCategoryOrderings.Add(categoryOrdering);
+                        db.SaveChanges();
+                        status = "Successful Entry Creation!";
+                    }
+                    else
+                    {
+                        if (ModelState.IsValid)
+                        {
+                            db.Entry(categoryOrdering).State = EntityState.Modified;
+                            db.SaveChanges();
+                            status = "Successful Entry Updated!";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                status = ex.ToString();
+            }
+            return Json(status);
+        }
+
+        //
+        // POST: /Campaign/SaveProductOrdering
+        [HttpPost]
+        public JsonResult SaveProductOrdering(List<SortOrderingProduct> sortOrderingProducts)
+        {
+            string status = null;
+            try
+            {
+                foreach (SortOrderingProduct sortOrderingProduct in sortOrderingProducts)
+                {
+                    //UpdateDB
+                    Product product = db.Products.Find(sortOrderingProduct.ID);
+                    product.ProductSortValue = sortOrderingProduct.SortValue;
+                    db.Entry(product).Property(p => p.ProductSortValue).IsModified = true;
+                }
+                db.SaveChanges();
+                status = "Sort Value updated/added";
+            }
+            catch (Exception ex)
+            {
+                status = ex.ToString();
+            }
+            return Json(status);
         }
 
         //
@@ -299,6 +356,41 @@ namespace PAS.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+        public PartialViewResult ReloadPrintPreview(int id)
+        {
+            Campaign campaign = db.Campaigns.Find(id);
+
+            // pull active major categories 
+            SortedSet<Category> activeMajorCategories = new SortedSet<Category>();
+            foreach (Product product in campaign.Products)
+            {
+                activeMajorCategories.Add(product.Category);
+            }
+            ViewBag.MajorCategoryList = activeMajorCategories.ToList();
+
+            // pull MajorCategoryOrderings
+            List<MajorCategoryOrdering> majorCategoryOrderings = db.MajorCategoryOrderings.Where(m => m.CampaignID == campaign.CampaignID).OrderBy(m => m.SortValue).ToList();
+
+            // loop though active categories
+            foreach (Category category in activeMajorCategories.ToList())
+            {
+                // if category not in orderings 
+                var count = majorCategoryOrderings.Where(m => category.CategoryID.Equals(m.CategoryID));
+                if (majorCategoryOrderings.Where(m => category.CategoryID.Equals(m.CategoryID)).Count() == 0)
+                {
+                    // and add them
+                    MajorCategoryOrdering newOrdering = new MajorCategoryOrdering();
+                    newOrdering.Category = category;
+                    newOrdering.CategoryID = category.CategoryID;
+                    newOrdering.CategoryRename = category.CategoryName;
+                    newOrdering.ShowCategory = true;
+                    majorCategoryOrderings.Add(newOrdering);
+                }
+            }
+
+            ViewBag.MajorCategoryOrderingList = majorCategoryOrderings;
+            return PartialView("_PresentationPrintPreview", campaign);
         }
     }
 }

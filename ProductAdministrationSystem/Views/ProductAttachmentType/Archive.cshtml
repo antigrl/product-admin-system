@@ -1,0 +1,47 @@
+﻿@model PAS.Models.ProductAttachmentType
+
+@{
+    ViewBag.Title = "Archive Product Attachment Type";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Are you sure you want to delete this Product Attachment Type?</h3>
+<fieldset>
+    <legend>ProductAttachmentType</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Status)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Status)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Selected)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Selected)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ProductID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProductID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AttachmentTypeID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AttachmentTypeID)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Archive" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

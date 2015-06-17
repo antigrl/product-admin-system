@@ -19,6 +19,15 @@ namespace PAS.Models
         public object AuditTrailComment{ get; set; }
     }
 
+    public class MajorCategoryOrderingMetedata
+    {
+        [DisplayName("Sort Value")]
+        public object SortValue { get; set; }
+
+        [DisplayName("Category Rename")]
+        public object CategoryRename { get; set; }
+    }
+
     public class CampaignMetadata
     {
         [HiddenInput]
@@ -496,6 +505,42 @@ namespace PAS.Models
         public object DecorationStatus { get; set; }
     }
 
+    public class ProductDocumentMetadata
+    {
+        [HiddenInput]
+        [DisplayName("ID")]
+        public object ID { get; set; }
+
+        [DisplayName("Document")]
+        public object Document { get; set; }
+
+        [DisplayName("Expiration Date")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
+        public object ExpirationDate { get; set; }
+
+        [DisplayName("Status")]
+        [StringLength(150)]
+        [Required]
+        public object Status { get; set; }
+
+        [DisplayName("Attachment Type ID")]
+        [Required]
+        public object AttachmentTypeID { get; set; }
+
+        [DisplayName("File Type")]
+        [StringLength(150)]
+        public object DocumentFileType { get; set; }
+        
+        [DisplayName("File Name")]
+        [StringLength(150)]
+        public object DocumentFileName { get; set; }
+        
+        [DisplayName("Product ID")]
+        [Required]
+        public object ProductID { get; set; }
+    }
+
     public class ProductSellPriceMetadata
     {
         [DisplayName("Sell Price Name")]
@@ -525,6 +570,18 @@ namespace PAS.Models
         [StringLength(150)]
         [Required]
         public object SellPriceStatus { get; set; }
+    }
+
+    public class ProductAttachmentTypeMetadata
+    {
+        [DisplayName("Selected")]
+        [Required]
+        public object Selected { get; set; }
+
+        [DisplayName("Status")]
+        [StringLength(150)]
+        [Required]
+        public object Status { get; set; }
     }
 
     public class ProductUpchargeMetadata
@@ -579,6 +636,19 @@ namespace PAS.Models
         [DisplayName("Upcharge Sell Price Final Rounded Amount")]
         [DisplayFormat(DataFormatString = "{0:C}")]
         public object UpchargeSellPriceFinalRoundedAmount { get; set; }
+    }
+
+    public class AttachmentTypeMetadata
+    {
+        [DisplayName("Status")]
+        [StringLength(150)]
+        [Required]
+        public object Status { get; set; }
+
+        [DisplayName("Type Name")]
+        [StringLength(150)]
+        [Required]
+        public object TypeName { get; set; }
     }
 
     public class VendorNameMetadata

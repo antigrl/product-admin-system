@@ -1,0 +1,32 @@
+﻿@model PAS.Models.AttachmentType
+
+@{
+    ViewBag.Title = "Create Attachment Type";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="heading">
+        <h1>@ViewBag.Title</h1>
+    </div>
+
+    <div class="flex-grid">
+        @Html.HiddenFor(model => model.Status)
+
+        <div class="controls">
+            @Html.LabelFor(model => model.TypeName)
+            @Html.EditorFor(model => model.TypeName)
+            @Html.ValidationMessageFor(model => model.TypeName)
+        </div>
+
+        <div class="controls">
+            <input type="submit" class="button green" value="Create" />
+        </div>
+
+        <div>
+            @Html.ActionLink("Back to Attachment Type List", "Index")
+        </div>
+    </div>
+}

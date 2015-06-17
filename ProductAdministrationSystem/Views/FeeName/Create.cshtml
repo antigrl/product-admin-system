@@ -7,10 +7,9 @@
 }
 
 <div class="heading">
-    <h1>
-        @ViewBag.Title
-    </h1>
+    <h1>@ViewBag.Title</h1>
 </div>
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

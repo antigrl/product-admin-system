@@ -17,12 +17,11 @@
         @Html.DisplayFor(model => model.PackagingTypeName)
     </div>
 </fieldset>
-@using(Html.BeginForm())
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <p>
         <input type="submit" value="Archive" />
-        |
-        @Html.ActionLink("Back to Packaging Type List", "Index")
+        |@Html.ActionLink("Back to Packaging Type List", "Index")
     </p>
 }

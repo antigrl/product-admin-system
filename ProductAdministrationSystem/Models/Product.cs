@@ -21,6 +21,8 @@ namespace PAS.Models
             this.ProductDecorations = new HashSet<ProductDecoration>();
             this.ProductSellPrices = new HashSet<ProductSellPrice>();
             this.ProductUpcharges = new HashSet<ProductUpcharge>();
+            this.ProductDocuments = new HashSet<ProductDocument>();
+            this.ProductAttachmentTypes = new HashSet<ProductAttachmentType>();
         }
     
         public int ProductID { get; set; }
@@ -60,6 +62,7 @@ namespace PAS.Models
         public int CampaignID { get; set; }
         public int MajorCategoryID { get; set; }
         public Nullable<int> MinorCategoryID { get; set; }
+        public Nullable<int> ProductSortValue { get; set; }
     
         public virtual ICollection<AuditTrail> AuditTrails { get; set; }
         public virtual Campaign Campaign { get; set; }
@@ -72,5 +75,7 @@ namespace PAS.Models
         public virtual ICollection<ProductDecoration> ProductDecorations { get; set; }
         public virtual ICollection<ProductSellPrice> ProductSellPrices { get; set; }
         public virtual ICollection<ProductUpcharge> ProductUpcharges { get; set; }
+        public virtual ICollection<ProductDocument> ProductDocuments { get; set; }
+        public virtual ICollection<ProductAttachmentType> ProductAttachmentTypes { get; set; }
     }
 }

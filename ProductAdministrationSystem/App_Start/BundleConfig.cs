@@ -17,13 +17,17 @@ namespace PAS
                         "~/Content/bower_components/angular/angular.js",
                         "~/Scripts/jquery.throttledresize.js",
                         "~/Content/bower_components/angular-datatables/dist/angular-datatables.js",
-                        "~/Scripts/NPR.js",
                         "~/Content/bower_components/angular-datatables/dist/angular-datatables.min.js",
                         "~/Content/bower_components/angular-datatables/dist/plugins/scroller/angular-datatables.scroller.js",
                         "~/Content/bower_components/tether/tether.js",
                         "~/Content/bower_components/angular-animate/angular-animate.js",
-                        "~/Content/bower_components/ng-modal/src/angular-tooltip.js",
                         "~/Scripts/angular-textarea-fit.js",
+                        "~/Content/bower_components/angular-material/angular-material.js",
+                        "~/Content/bower_components/md-date-time/dist/md-date-time.js",
+                        "~/Scripts/angular-aria.js",
+                        "~/Scripts/NPR.js",
+                        "~/Scripts/spin.js",
+                        "~/Scripts/ladda.js",
                         "~/Scripts/nprApp.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
@@ -39,7 +43,6 @@ namespace PAS
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/style.css",
                         "~/Content/print.css"));
-
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

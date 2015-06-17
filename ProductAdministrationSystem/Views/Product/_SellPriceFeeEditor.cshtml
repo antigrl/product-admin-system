@@ -24,11 +24,13 @@
                 }
                 @if (Model.FeeType == MyExtensions.GetEnumDescription(FeeTypeList.Amortized))
                 {
-                    <span class="left-half-content">Full Charge
+                    <span class="left-half-content">
+                        Full Charge
                         <br />
                         $@Html.TextBoxFor(model => model.FeeAmortizedCharge, new { @class = "dollar-value" })
                     </span>
-                    <span class="left-half-content">Unit Amount
+                    <span class="left-half-content">
+                        Unit Amount
                         <br />
                         $@Html.TextBoxFor(model => model.FeeDollarAmount, new { @class = "dollar-value" })
                     </span>
@@ -48,6 +50,6 @@
                 @Html.HiddenFor(model => model.FeeStatus)
                 <!-- Not sure if I need to add other Hidden inputs -->
             </div>
-        </div> 
+        </div>
     }
 </div>

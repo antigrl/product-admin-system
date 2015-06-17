@@ -27,7 +27,3 @@
     <button type="submit" class="button green" formaction="@Url.Action("SaveAndClose", new { id = Model.ProductID, ReturnUrl = ViewBag.ReturnUrl })">Save &amp; Close</button>
     <input type="submit" class="button" value="Cancel" />
 }
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

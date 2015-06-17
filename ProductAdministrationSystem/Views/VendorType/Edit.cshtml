@@ -5,7 +5,6 @@
 }
 
 <h2>Edit Vendor Type</h2>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -13,10 +12,8 @@
 
     <fieldset class="left-half-content">
         <legend>VendorType</legend>
-
         @Html.HiddenFor(model => model.VendorTypeID)
         @Html.HiddenFor(model => model.VendorTypeStatus)
-
         <div class="editor-label">
             @Html.LabelFor(model => model.VendorTypeName)
         </div>
@@ -24,16 +21,11 @@
             @Html.EditorFor(model => model.VendorTypeName)
             @Html.ValidationMessageFor(model => model.VendorTypeName)
         </div>
-
         <p>
             <input type="submit" value="Save" />
         </p>
-
         <div>
             @Html.ActionLink("Back to Vendor Type List", "Index")
         </div>
     </fieldset>
-}
-
-@section Scripts {
 }

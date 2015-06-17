@@ -7,18 +7,15 @@
 }
 
 <h2>Edit Product Upcharge</h2>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(false)
-    
+
     <fieldset class="left-half-content">
         <legend>ProductUpcharge</legend>
-
         @Html.HiddenFor(model => model.UpchargeID)
         @Html.HiddenFor(model => model.UpchargeStatus)
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.UpchargeName)
         </div>
@@ -26,7 +23,6 @@
             @Html.DropDownListFor(model => model.UpchargeName, MyExtensions.GetGenericEnumDropDown<ProductUpchargeNames>(), "")
             @Html.ValidationMessageFor(model => model.UpchargeName)
         </div>
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.UpchargeAmount)
         </div>
@@ -34,7 +30,6 @@
             @Html.EditorFor(model => model.UpchargeAmount)
             @Html.ValidationMessageFor(model => model.UpchargeAmount)
         </div>
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.UpchargeTotalCost)
         </div>
@@ -42,7 +37,6 @@
             @Html.EditorFor(model => model.UpchargeTotalCost)
             @Html.ValidationMessageFor(model => model.UpchargeTotalCost)
         </div>
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.ProductID, "Product")
         </div>
@@ -50,7 +44,6 @@
             @Html.DropDownList("ProductID", String.Empty)
             @Html.ValidationMessageFor(model => model.ProductID)
         </div>
-
         <p>
             <input type="submit" value="Save" />
         </p>
@@ -58,7 +51,4 @@
             @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
         </div>
     </fieldset>
-}
-
-@section Scripts {
 }

@@ -1,3 +1,12 @@
+$green:         #1fbba6;
+
+.drag-and-drop-table {
+  width: 100%;
+}
+.button {
+  margin: 5px;
+}
+
 .index-table {
   border: 1px solid #000;
   height: 122px;
@@ -103,7 +112,7 @@ table {
 
 
 .starting-page-number {
-  width: 100%;
+  width: 50px;
   padding: 10px;
 }
 
@@ -135,11 +144,11 @@ table {
   }
 
   &:checked + label {
-    color: #2ea34e;
+    color: $green;
 
     &:before {
-      background: #3dc863;
-      border-color: darken(#3dc863, 10%);
+      background: $green;
+      border-color: darken($green, 10%);
     }
   }
 
@@ -202,9 +211,14 @@ dl {
   @include custom-checkbox(right);
 }
 
-.major-category {
-  text-align: center;
-
+.major-category,
+.presentation-major-category {
+  min-width: 47.9%;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  th {
+    padding-bottom: 5px;
+  }
   .major-title {
     display: block;
     position: relative;
@@ -215,9 +229,83 @@ dl {
     margin-bottom: 3px;
     text-align: center;
     width: 100%;
-
     &::-webkit-input-placeholder {
       color: #000;
     }
+  }
+}
+
+.presentation-major-category h2 {
+  font-size: 1em;
+}
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 1;
+  z-index: 2000;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+}
+
+tr.placeholder {
+  position: relative;
+  /** More li styles **/
+}
+tr.placeholder:before {
+  position: absolute;
+  /** Define arrowhead **/
+}
+
+.flex-grid-category table {
+  table-layout: auto;
+}
+
+.flex-grid-category tbody tr:hover {
+  background-color: #eee;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  cursor: -webkit-grab;
+}
+
+.sortable-category:hover {
+  cursor: -webkit-grab;
+}
+
+.sortable-table-header {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.sortable-table-header,
+.sortable-table  {
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+    li {
+      font-size: 13px;
+      overflow: hidden;
+    }
+    .product-column {
+      width: 35px;
+    }
+
+    .product-name {
+      width: 200px;
+    }
+    .minor-category-name {
+      width: 120px;
+    }
+  }
+}
+.sortable-table ul {
+  border-top: 1px solid #cecece;
+  padding: 10px 0;
+  &.selected {
+    background-color: #eee;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    cursor: -webkit-grab;
   }
 }

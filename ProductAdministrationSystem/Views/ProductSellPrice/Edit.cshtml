@@ -14,7 +14,6 @@
 
     <fieldset class="left-half-content">
         <legend>ProductSellPrice</legend>
-
         @Html.HiddenFor(model => model.SellPriceID)
         @Html.HiddenFor(model => model.SellPriceStatus)
 
@@ -25,7 +24,6 @@
             @Html.EditorFor(model => model.SellPriceName)
             @Html.ValidationMessageFor(model => model.SellPriceName)
         </div>
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.SellPriceLevel)
         </div>
@@ -33,7 +31,6 @@
             @Html.EditorFor(model => model.SellPriceLevel)
             @Html.ValidationMessageFor(model => model.SellPriceLevel)
         </div>
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.SellPriceMarginPercent)
         </div>
@@ -41,7 +38,6 @@
             @Html.EditorFor(model => model.SellPriceMarginPercent)
             @Html.ValidationMessageFor(model => model.SellPriceMarginPercent)
         </div>
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.SellPriceMarginDollarAmount)
         </div>
@@ -49,7 +45,6 @@
             @Html.EditorFor(model => model.SellPriceMarginDollarAmount)
             @Html.ValidationMessageFor(model => model.SellPriceMarginDollarAmount)
         </div>
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.SellPriceFinalAmount)
         </div>
@@ -57,7 +52,6 @@
             @Html.EditorFor(model => model.SellPriceFinalAmount)
             @Html.ValidationMessageFor(model => model.SellPriceFinalAmount)
         </div>
-
         <div class="editor-label">
             @Html.LabelForRequired(model => model.ProductID, "Product")
         </div>
@@ -66,7 +60,6 @@
             @Html.HiddenFor(model => model.ProductID)
             @Html.ValidationMessageFor(model => model.ProductID)
         </div>
-
         <p>
             <input type="submit" value="Save" />
         </p>
@@ -74,8 +67,4 @@
             @Html.ActionLink("Back to Sell Price List", "Index")
         </div>
     </fieldset>
-}
-
-@section Scripts {
-
 }

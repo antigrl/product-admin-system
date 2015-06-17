@@ -1,0 +1,42 @@
+﻿@model PAS.Models.MajorCategoryOrdering
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="heading">
+    <h1>Create Major Category Ordering</h1>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="flex-grid">
+        <section>
+            <div class="controls">
+                @Html.LabelFor(model => model.SortValue)
+                @Html.EditorFor(model => model.SortValue)
+                @Html.ValidationMessageFor(model => model.SortValue)
+            </div>
+            <div class="controls">
+                @Html.LabelFor(model => model.CampaignID, "Campaign")
+                @Html.DropDownList("CampaignID", String.Empty)
+                @Html.ValidationMessageFor(model => model.CampaignID)
+            </div>
+            <div class="controls">
+                @Html.LabelFor(model => model.CategoryID, "Category")
+                @Html.DropDownList("CategoryID", String.Empty)
+                @Html.ValidationMessageFor(model => model.CategoryID)
+            </div>
+            <div class="controls">
+                @Html.LabelFor(model => model.CategoryRename)
+                @Html.EditorFor(model => model.CategoryRename)
+                @Html.ValidationMessageFor(model => model.CategoryRename)
+            </div>
+        </section>
+    </div>
+    <input type="submit" class="button green" value="Create" />
+    <a class="button" href="@Url.Action("Index")">Back</a>
+}

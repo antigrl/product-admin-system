@@ -4,30 +4,30 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="eb3cbba8602d45b28808ca5b27b771ea" Name="Diagram1" ZoomLevel="65">
+      <Diagram DiagramId="eb3cbba8602d45b28808ca5b27b771ea" Name="Diagram1" ZoomLevel="89">
         <EntityTypeShape EntityType="NPRModel.AuditTrail" Width="1.5" PointX="3.5" PointY="5.25" IsExpanded="false" />
-        <EntityTypeShape EntityType="NPRModel.Campaign" Width="1.5" PointX="2.75" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.Category" Width="1.5" PointX="6.375" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.Company" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.DecorationMethod" Width="1.5" PointX="9.75" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.Fee" Width="1.5" PointX="3.25" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.FeeName" Width="1.5" PointX="3.25" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.PackagingType" Width="1.5" PointX="6" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.PricingTier" Width="1.5" PointX="1" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.Product" Width="1.5" PointX="5.625" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.ProductDecoration" Width="1.5" PointX="11.875" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.ProductSellPrice" Width="1.5" PointX="7.5" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.Campaign" Width="1.5" PointX="2.75" PointY="0.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="NPRModel.Category" Width="1.5" PointX="6.375" PointY="2.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="NPRModel.Company" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="NPRModel.DecorationMethod" Width="1.5" PointX="9.75" PointY="1.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="NPRModel.Fee" Width="1.5" PointX="3.25" PointY="2.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="NPRModel.FeeName" Width="1.5" PointX="3.25" PointY="3.625" IsExpanded="false" />
+        <EntityTypeShape EntityType="NPRModel.PackagingType" Width="1.5" PointX="6" PointY="7.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="NPRModel.PricingTier" Width="1.5" PointX="1" PointY="3.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="NPRModel.Product" Width="1.5" PointX="5.625" PointY="0.5" IsExpanded="false" />
+        <EntityTypeShape EntityType="NPRModel.ProductDecoration" Width="1.5" PointX="11.875" PointY="1.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="NPRModel.ProductSellPrice" Width="1.5" PointX="7.5" PointY="10.5" IsExpanded="false" />
 <<<<<<< HEAD
-        <EntityTypeShape EntityType="NPRModel.ProductUpcharge" Width="1.5" PointX="7.5" PointY="24.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.UpchargeSellPrice" Width="2.5" PointX="9.75" PointY="24.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.VendorName" Width="1.5" PointX="3" PointY="19.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.VendorType" Width="1.5" PointX="3" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NPRModel.ProductUpcharge" Width="1.5" PointX="7.5" PointY="24.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="NPRModel.UpchargeSellPrice" Width="2.5" PointX="9.75" PointY="24.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="NPRModel.VendorName" Width="1.5" PointX="3" PointY="19.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="NPRModel.VendorType" Width="1.5" PointX="3" PointY="22.125" IsExpanded="false" />
 =======
-        <EntityTypeShape EntityType="NPRModel.ProductUpcharge" Width="1.5" PointX="13.75" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.UpchargeSellPrice" Width="1.5" PointX="12.25" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.VendorName" Width="1.5" PointX="5.625" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="NPRModel.VendorType" Width="1.5" PointX="7.375" PointY="4" IsExpanded="true" />
->>>>>>> master
+        
+        
+        
+        
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; master
         <AssociationConnector Association="NPRModel.FK_AuditTrail_AuditTrail" ManuallyRouted="false" />
         <AssociationConnector Association="NPRModel.FK_AuditTrail_Campaign" ManuallyRouted="false" />
         <AssociationConnector Association="NPRModel.FK_AuditTrail_Category" ManuallyRouted="false" />
@@ -63,6 +63,22 @@
         <AssociationConnector Association="NPRModel.FK_ProductSellPrice_Product" ManuallyRouted="false" />
         <AssociationConnector Association="NPRModel.FK_ProductUpcharge_Product" ManuallyRouted="false" />
         <AssociationConnector Association="NPRModel.FK_UpchargeSellPrice_ProductUpcharge" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="NPRModel.MajorCategoryOrdering" Width="1.5" PointX="5.75" PointY="6.5" IsExpanded="false" />
+        <AssociationConnector Association="NPRModel.FK_MajorCategoryOrdering_Campaign" />
+        <AssociationConnector Association="NPRModel.FK_MajorCategoryOrdering_Category" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_AuditTrail1" />
+        <EntityTypeShape EntityType="NPRModel.ProductDocument" Width="1.5" PointX="7.1649088483140382" PointY="20.736628959298425" IsExpanded="false" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_ProductDocument" />
+        <AssociationConnector Association="NPRModel.FK_ProductDocument_Product" />
+        <EntityTypeShape EntityType="NPRModel.AttachmentType" Width="1.5" PointX="10.777368423890959" PointY="3.8968958872821631" />
+        <EntityTypeShape EntityType="NPRModel.ProductAttachmentType" Width="1.5" PointX="8.4179649224588484" PointY="11.87923290388623" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_AttachmentType1" />
+        <AssociationConnector Association="NPRModel.FK_ProductDocument_AttachmentType1" />
+        <AssociationConnector Association="NPRModel.FK_ProductAttachmentType_AttachmentType1" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_ProductAttachmentType1" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_AttachmentType" />
+        <AssociationConnector Association="NPRModel.FK_AuditTrail_ProductAttachmentType" />
+        <AssociationConnector Association="NPRModel.FK_ProductAttachmentType_Product" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

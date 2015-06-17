@@ -8,6 +8,7 @@ using System.Reflection;
 using System.ComponentModel;
 using System.Data;
 using System.Globalization;
+using System.Data.Entity;
 
 namespace PAS.Helpers
 {

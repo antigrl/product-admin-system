@@ -148,37 +148,20 @@ namespace PAS.Models
             }
         }
 
-        // VendorName 
-        public AuditTrail(DateTime dateTime, string userName, VendorName vendorName, int id, string comment)
+        // ProductDocument
+        public AuditTrail(DateTime dateTime, string userName, ProductDocument productDocument, int id, string comment)
         {
             this.AuditTrailTimeStamp = dateTime;
             this.AuditTrailUserName = userName;
             this.AuditTrailComment = comment;
 
-            if(id > 0)
+            if (id > 0)
             {
-                this.VendorNameID = id;
+                this.ProductDocumentID = id;
             }
             else
             {
-                this.VendorName = vendorName;
-            }
-        }
-
-        // VendorType 
-        public AuditTrail(DateTime dateTime, string userName, VendorType vendorType, int id, string comment)
-        {
-            this.AuditTrailTimeStamp = dateTime;
-            this.AuditTrailUserName = userName;
-            this.AuditTrailComment = comment;
-
-            if(id > 0)
-            {
-                this.VendorTypeID = id;
-            }
-            else
-            {
-                this.VendorType = vendorType;
+                this.ProductDocument = productDocument;
             }
         }
 
@@ -216,6 +199,23 @@ namespace PAS.Models
             }
         }
 
+        // ProductAttachmentType
+        public AuditTrail(DateTime dateTime, string userName, ProductAttachmentType productAttachmentType, int id, string comment)
+        {
+            this.AuditTrailTimeStamp = dateTime;
+            this.AuditTrailUserName = userName;
+            this.AuditTrailComment = comment;
+
+            if (id > 0)
+            {
+                this.ProductAttachmentTypeID = id;
+            }
+            else
+            {
+                this.ProductAttachmentType = productAttachmentType;
+            }
+        }
+
         // ProductSellPrice 
         public AuditTrail(DateTime dateTime, string userName, ProductSellPrice productSellPrice, int id, string comment)
         {
@@ -250,6 +250,23 @@ namespace PAS.Models
             }
         }
 
+        // MajorCategoryOrdering 
+        public AuditTrail(DateTime dateTime, string userName, MajorCategoryOrdering majorCategoryOrdering, int id, string comment)
+        {
+            this.AuditTrailTimeStamp = dateTime;
+            this.AuditTrailUserName = userName;
+            this.AuditTrailComment = comment;
+
+            if (id > 0)
+            {
+                this.MajorCategoryOrderingID = id;
+            }
+            else
+            {
+                this.MajorCategoryOrdering = majorCategoryOrdering;
+            }
+        }
+
         // UpchargeSellPrice
         public AuditTrail(DateTime dateTime, string userName, UpchargeSellPrice upchargeSellPrice, int id, string comment)
         {
@@ -264,6 +281,57 @@ namespace PAS.Models
             else
             {
                 this.UpchargeSellPrice = upchargeSellPrice;
+            }
+        }
+
+        // AttachmentType
+        public AuditTrail(DateTime dateTime, string userName, AttachmentType AttachmentType, int id, string comment)
+        {
+            this.AuditTrailTimeStamp = dateTime;
+            this.AuditTrailUserName = userName;
+            this.AuditTrailComment = comment;
+
+            if (id > 0)
+            {
+                this.AttachmentTypeID = id;
+            }
+            else
+            {
+                this.AttachmentType = AttachmentType;
+            }
+        }
+
+        // VendorName 
+        public AuditTrail(DateTime dateTime, string userName, VendorName vendorName, int id, string comment)
+        {
+            this.AuditTrailTimeStamp = dateTime;
+            this.AuditTrailUserName = userName;
+            this.AuditTrailComment = comment;
+
+            if (id > 0)
+            {
+                this.VendorNameID = id;
+            }
+            else
+            {
+                this.VendorName = vendorName;
+            }
+        }
+
+        // VendorType 
+        public AuditTrail(DateTime dateTime, string userName, VendorType vendorType, int id, string comment)
+        {
+            this.AuditTrailTimeStamp = dateTime;
+            this.AuditTrailUserName = userName;
+            this.AuditTrailComment = comment;
+
+            if (id > 0)
+            {
+                this.VendorTypeID = id;
+            }
+            else
+            {
+                this.VendorType = vendorType;
             }
         }
 
@@ -311,9 +379,17 @@ namespace PAS.Models
             {
                 type = ObjectType.Product_Decoration;
             }
+            else if (this.ProductDocument != null)
+            {
+                type = ObjectType.Product_Document;
+            }
             else if (this.ProductSellPrice != null)
             {
                 type = ObjectType.Product_Sell_Price;
+            }
+            else if (this.ProductAttachmentType != null)
+            {
+                type = ObjectType.Product_Attachment_Type;
             }
             else if (this.ProductUpcharge != null)
             {
@@ -323,6 +399,10 @@ namespace PAS.Models
             {
                 type = ObjectType.Upcharge_Sell_Price;
             }
+            else if (this.AttachmentType != null)
+            {
+                type = ObjectType.Attachment_Type;
+            }
             else if (this.VendorName != null)
             {
                 type = ObjectType.Vendor_Name;
@@ -330,6 +410,10 @@ namespace PAS.Models
             else if (this.VendorType != null)
             {
                 type = ObjectType.Vendor_Type;
+            }
+            else if (this.MajorCategoryOrdering != null)
+            {
+                type = ObjectType.Major_Category_Ordering;
             }
 
             return MyExtensions.GetEnumDescription(type);
@@ -377,6 +461,10 @@ namespace PAS.Models
             {
                 return this.DecorationID;
             }
+            else if (this.ProductDocument != null)
+            {
+                return this.ProductDocumentID;
+            }
             else if (this.ProductSellPrice != null)
             {
                 return this.SellPriceID;
@@ -385,9 +473,17 @@ namespace PAS.Models
             {
                 return this.UpchargeID;
             }
+            else if (this.ProductAttachmentType != null)
+            {
+                return this.ProductAttachmentTypeID;
+            }
             else if (this.UpchargeSellPrice != null)
             {
                 return this.UpchargeSellPriceID;
+            }
+            else if (this.AttachmentType != null)
+            {
+                return this.AttachmentTypeID;
             }
             else if (this.VendorName != null)
             {
@@ -397,8 +493,28 @@ namespace PAS.Models
             {
                 return this.VendorTypeID;
             }
+            else if (this.MajorCategoryOrdering != null)
+            {
+                return this.MajorCategoryOrderingID;
+            }
 
             return 0;
+        }
+    }
+
+    [MetadataType(typeof(MajorCategoryOrderingMetedata))]
+    public partial class MajorCategoryOrdering
+    {
+        public void OnCreate(int sortValue, int campaignID, int categoryID, bool showCategory, string categoryRename = null)
+        {
+            this.SortValue = SortValue;
+            this.CampaignID = campaignID;
+            this.CategoryID = categoryID;
+            this.ShowCategory = showCategory;
+            if (string.IsNullOrEmpty(categoryRename) == false)
+            {
+                this.CategoryRename = categoryRename;
+            }
         }
     }
 
@@ -415,12 +531,18 @@ namespace PAS.Models
     }
 
     [MetadataType(typeof(CategoryMetadata))]
-    public partial class Category
+    public partial class Category : IComparable
     {
         // Default Constructor additions
         public void OnCreate()
         {
             this.CategoryStatus = MyExtensions.GetEnumDescription(Status.Active);
+        }
+
+        int IComparable.CompareTo(object obj)
+        {
+            Category category = (Category)obj;
+            return String.Compare(this.CategoryName, category.CategoryName);
         }
     }
 
@@ -441,6 +563,16 @@ namespace PAS.Models
         public void OnCreate()
         {
             this.DecorationMethodStatus = MyExtensions.GetEnumDescription(Status.Active);
+        }
+    }
+
+    [MetadataType(typeof(AttachmentTypeMetadata))]
+    public partial class AttachmentType
+    {
+        // Default Constructor additions
+        public void OnCreate()
+        {
+            this.Status = MyExtensions.GetEnumDescription(PAS.Models.Status.Active);
         }
     }
 
@@ -642,7 +774,33 @@ namespace PAS.Models
         {
             this.ProductID = productID;
             this.AuditTrails = new HashSet<AuditTrail>();
-            this.DecorationStatus = "Active";
+            this.DecorationStatus = MyExtensions.GetEnumDescription(Status.Active);
+        }
+    }
+
+    [MetadataType(typeof(ProductDocumentMetadata))]
+    public partial class ProductDocument
+    {
+        // Default Constructor Additions
+        public void OnCreate()
+        {
+            this.Status = MyExtensions.GetEnumDescription(PAS.Models.Status.Active);
+            this.ExpirationDate = DateTime.Today.AddYears(1);
+        }
+        public ProductDocument(int productID)
+        {
+            this.ProductID = productID;
+            this.AuditTrails = new HashSet<AuditTrail>();
+            this.Status = MyExtensions.GetEnumDescription(PAS.Models.Status.Active);
+            this.ExpirationDate = DateTime.Today.AddYears(1);
+        }
+        public ProductDocument(int productID, int AttachmentTypeID)
+        {
+            this.ProductID = productID;
+            this.AttachmentTypeID = AttachmentTypeID;
+            this.AuditTrails = new HashSet<AuditTrail>();
+            this.Status = MyExtensions.GetEnumDescription(PAS.Models.Status.Active);
+            this.ExpirationDate = DateTime.Today.AddYears(1);
         }
     }
 
@@ -663,7 +821,25 @@ namespace PAS.Models
             this.SellPriceLevel = level;
             this.SellPriceMarginPercent = defaultMargin;
             this.AuditTrails = new HashSet<AuditTrail>();
-            this.SellPriceStatus = "Active";
+            this.SellPriceStatus = MyExtensions.GetEnumDescription(Status.Active);
+        }
+    }
+
+    [MetadataType(typeof(ProductAttachmentTypeMetadata))]
+    public partial class ProductAttachmentType
+    {
+        // Default Constructor additions
+        public void OnCreate()
+        {
+            this.Status = MyExtensions.GetEnumDescription(PAS.Models.Status.Active);
+        }
+
+        public ProductAttachmentType(int productID, int AttachmentTypeID)
+        {
+            this.ProductID = productID;
+            this.AttachmentTypeID = AttachmentTypeID;
+            this.Status = MyExtensions.GetEnumDescription(PAS.Models.Status.Active);
+            this.AuditTrails = new HashSet<AuditTrail>();
         }
     }
 
@@ -680,7 +856,7 @@ namespace PAS.Models
         {
             this.ProductID = productID;
             this.AuditTrails = new HashSet<AuditTrail>();
-            this.UpchargeStatus = "Active";
+            this.UpchargeStatus = MyExtensions.GetEnumDescription(Status.Active);
         }
     }
 
@@ -700,7 +876,7 @@ namespace PAS.Models
             this.UpchargeSellPriceName = name;
             this.UpchargeSellPriceLevel = level;
             this.AuditTrails = new HashSet<AuditTrail>();
-            this.UpchargeSellPriceStatus = "Active";
+            this.UpchargeSellPriceStatus = MyExtensions.GetEnumDescription(Status.Active);
         }
     }
 

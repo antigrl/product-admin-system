@@ -12,7 +12,7 @@
     @Html.ValidationSummary(true)
 
     <div class="heading">
-        <h1>Create Campaign</h1>
+        <h1>@ViewBag.Title</h1>
     </div>
 
     <div class="flex-grid">
@@ -99,7 +99,3 @@
 <div>
     @Html.ActionLink("Back", "Back", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, null)
 </div>
-
-@section Scripts {
-
-}

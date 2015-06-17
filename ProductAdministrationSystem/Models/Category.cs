@@ -19,6 +19,7 @@ namespace PAS.Models
             this.AuditTrails = new HashSet<AuditTrail>();
             this.Products = new HashSet<Product>();
             this.Products1 = new HashSet<Product>();
+            this.MajorCategoryOrderings = new HashSet<MajorCategoryOrdering>();
         }
     
         public int CategoryID { get; set; }
@@ -29,5 +30,6 @@ namespace PAS.Models
         public virtual ICollection<AuditTrail> AuditTrails { get; set; }
         public virtual ICollection<Product> Products { get; set; }
         public virtual ICollection<Product> Products1 { get; set; }
+        public virtual ICollection<MajorCategoryOrdering> MajorCategoryOrderings { get; set; }
     }
 }

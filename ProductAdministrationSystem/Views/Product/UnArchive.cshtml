@@ -7,7 +7,6 @@
 <div class="heading">
     <h1>@ViewBag.Title</h1>
 </div>
-
 <div class="flex-grid">
     <section class="info-list">
         <h2>Are you sure you want to un-archive this Product from the @Html.DisplayFor(model => model.Campaign.CampaignName) Campaign?</h2>
@@ -15,47 +14,38 @@
             <strong>@Html.DisplayNameFor(model => model.ProductName)</strong><br>
             @Html.DisplayFor(model => model.ProductName)
         </div>
-
         <div class="controls">
             <strong>@Html.DisplayNameFor(model => model.ProductDescription)</strong><br>
             @Html.DisplayFor(model => model.ProductDescription)
         </div>
-
         <div class="controls">
             <strong>@Html.DisplayNameFor(model => model.ProductStatus)</strong><br>
             @Html.DisplayFor(model => model.ProductStatus)
         </div>
-
         <div class="controls">
             <strong>@Html.DisplayNameFor(model => model.Category.CategoryName)</strong><br>
             @Html.DisplayFor(model => model.Category.CategoryName)
         </div>
-
         <div class="controls">
             <strong>@Html.DisplayNameFor(model => model.Category1.CategoryName)</strong><br>
             @Html.DisplayFor(model => model.Category1.CategoryName)
         </div>
-
         <div class="controls">
             <strong>@Html.DisplayNameFor(model => model.ProductAccountManagerComments)</strong><br>
             @Html.DisplayFor(model => model.ProductAccountManagerComments)
         </div>
-
         <div class="controls">
             <strong>@Html.DisplayNameFor(model => model.ProductMerchandiserComments)</strong><br>
             @Html.DisplayFor(model => model.ProductMerchandiserComments)
         </div>
-
         <div class="controls">
             <strong>@Html.DisplayNameFor(model => model.ProductInventoryBuyerComments)</strong><br>
             @Html.DisplayFor(model => model.ProductInventoryBuyerComments)
         </div>
-
         <div class="controls">
             <strong>@Html.DisplayNameFor(model => model.ProductMentorComments)</strong><br>
             @Html.DisplayFor(model => model.ProductMentorComments)
         </div>
-
         @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
         {
             @Html.AntiForgeryToken()

@@ -1,11 +1,13 @@
 .product-add-detail,
 .product-fees-default,
 .product-fees,
-.decoration-container {
+.decoration-container,
+.attachment-container {
   background-color: #fff;
   width: 100%;
   margin-bottom: 20px;
 }
+
 
 .product-fees-default,
 .product-fees,
@@ -163,7 +165,8 @@
 
 
 .add-fee,
-.add-plus {
+.add-plus,
+.add-attachment {
   position: relative;
 
   a {
@@ -186,6 +189,10 @@
       }
     }
   }
+}
+
+h2.add-attachment {
+  margin-right: 0;
 }
 
 .cost-info {
@@ -260,6 +267,7 @@
 
 .action-icons {
   padding: 0;
+  display: inline-block;
 
   li {
     display: inline-block;
@@ -287,11 +295,21 @@ a.archive-btn {
 }
 
 .thumb-image {
-  height: 43px;
+  height: 40px;
+  width: 40px;
+
+  img {
+    max-height: 40px;
+    max-width: 40px;
+  }
 }
 
 .fixed-textarea {
   textarea {
     height: 160px;
   }
+}
+
+.archived-products {
+  display: none;
 }

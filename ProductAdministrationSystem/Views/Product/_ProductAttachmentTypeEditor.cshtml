@@ -1,0 +1,20 @@
+﻿@model PAS.Models.ProductAttachmentType
+@using PAS.Helpers;
+<span class="attachment-label">
+
+    @using (Html.BeginCollectionItem("ProductAttachmentTypes"))
+    {
+        string index = "ProductAttachmentType" + Model.ID;
+
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.AttachmentTypeID)
+        @Html.HiddenFor(model => model.ProductID)
+        @Html.HiddenFor(model => model.Status)
+        // checkbox for selected
+        <label for="@index">
+            @Html.CheckBoxFor(model => model.Selected, new { id = index, @class = "check-box" })
+
+            @Html.DisplayFor(model => model.AttachmentType.TypeName)
+        </label>
+    }
+</span>

@@ -6,9 +6,7 @@
     ViewBag.Title = "Edit Fee Name";
 }
 <div class="heading">
-    <h1>
-        @ViewBag.Title
-    </h1>
+    <h1>@ViewBag.Title</h1>
 </div>
 
 <div class="flex-grid">
@@ -17,7 +15,7 @@
         {
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(false)
-            
+
             @Html.HiddenFor(model => model.FeeNameID)
             @Html.HiddenFor(model => model.FeeNameStatus)
 

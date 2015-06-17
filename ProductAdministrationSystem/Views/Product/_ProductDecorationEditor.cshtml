@@ -13,7 +13,6 @@
         </li>
         <li>
             <div class="inline-left">
-
                 <div class="controls">
                     @Html.LabelForRequired(model => model.DecorationName)
                     @Html.EditorFor(model => model.DecorationName)
@@ -51,6 +50,10 @@
                     @Html.LabelForRequired(model => model.DecorationSize)
                     @Html.EditorFor(model => model.DecorationSize)
                 </div>
+                <div class="controls">
+                    @Html.LabelForRequired(model => model.DecorationEmbroideryColorWay)
+                    @Html.EditorFor(model => model.DecorationEmbroideryColorWay)
+                </div>
             </div>
             <div class="inline-right">
                 <div class="controls">
@@ -58,8 +61,18 @@
                     @Html.EditorFor(model => model.DecorationEmbroideryStitchCount)
                 </div>
                 <div class="controls">
-                    @Html.LabelForRequired(model => model.DecorationEmbroideryColorWay)
-                    @Html.EditorFor(model => model.DecorationEmbroideryColorWay)
+                    @Html.LabelFor(model => model.DecorationImage)
+                    <div class="input-file-button button orange">
+                        Upload File<input type="file" class="input-file" name="DecorationImage" id="DecorationImage" />
+                    </div>
+                    @Html.HiddenFor(model => model.DecorationImage)
+                    @Html.HiddenFor(model => model.DecorationImageType)
+                    @if (Model != null && Model.DecorationImage != null)
+                    {
+                        <div class="image decoration-logo">
+                            <img src="@Url.Action("Show", "ProductDecoration", new { id = Model.DecorationID })" />
+                        </div>
+                    }
                 </div>
             </div>
         </li>

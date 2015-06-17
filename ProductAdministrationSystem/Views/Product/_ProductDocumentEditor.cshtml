@@ -1,0 +1,46 @@
+﻿@model PAS.Models.ProductDocument
+@using PAS.Helpers;
+@using PAS.Models;
+
+<li class="product-document-container editor-row">
+    @using (Html.BeginCollectionItem("ProductDocuments"))
+    {
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.ProductID)
+
+        @Html.ValidationSummary(true)
+
+        <span><a class="delete-row"></a></span>
+
+        <div class="controls">
+            @if (Model.Document == null)
+            {
+                <div class="button orange">
+                    <input type="file" class="input-file" name="Documents" id="Document" />
+                </div>
+            }
+            @Html.HiddenFor(model => model.Document)
+            @Html.HiddenFor(model => model.DocumentFileType)
+            @Html.HiddenFor(model => model.DocumentFileName)
+            @Html.HiddenFor(model => model.Status)
+            @if (Model != null && Model.Document != null)
+            {
+                <div>
+                    @Html.DisplayFor(model => model.DocumentFileName)
+                </div>
+                <a href="@Url.Action("Download", "ProductDocument", new { id = Model.ID })" target="_blank">Download</a>
+                <a href="@Url.Action("ViewInBrowser", "ProductDocument", new { id = Model.ID })" target="_blank">View in Browser</a>
+            }
+        </div>
+
+        <div class="controls">
+            @Html.DropDownListFor(model => model.AttachmentTypeID, (SelectList)ViewBag.AttachmentTypes)
+            @Html.ValidationMessageFor(model => model.AttachmentTypeID)
+        </div>
+
+        <div class="controls">
+            @Html.EditorFor(model => model.ExpirationDate)
+            @Html.ValidationMessageFor(model => model.ExpirationDate)
+        </div>
+    }
+</li>
